@@ -1,4 +1,7 @@
 package com.drawiin.myheroes.repository
 
-class DefaultHeroesRepository {
-}
+import com.drawiin.myheroes.network.HeroesService
+
+class DefaultHeroesRepository(
+    private val heroesService: HeroesService
+) : HeroesRepository
