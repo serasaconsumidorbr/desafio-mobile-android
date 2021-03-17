@@ -5,14 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.drawiin.myheroes.R
+import com.drawiin.myheroes.databinding.FragmentHeroesBinding
 
 
 class HeroesFragment : Fragment() {
+    private lateinit var binding: FragmentHeroesBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_heroes, container, false)
+        binding = FragmentHeroesBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }
