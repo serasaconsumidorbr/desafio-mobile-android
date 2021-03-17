@@ -1,4 +1,4 @@
-package com.drawiin.myheros
+package com.drawiin.myheroes
 
 import org.junit.Test
 
