@@ -20,6 +20,7 @@ class HeroesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHeroesBinding.inflate(inflater, container, false)
+        viewModel
         return binding.root
     }
 }
