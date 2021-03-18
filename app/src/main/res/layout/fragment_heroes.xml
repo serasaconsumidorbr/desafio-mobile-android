@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <FrameLayout
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".presentation.ui.heroes_list.HeroesFragment">
-        <TextView
+        android:layout_height="match_parent">
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            tools:context=".presentation.ui.heroes_list.HeroesFragment">
 
-    </FrameLayout>
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/hello_blank_fragment"
+                android:textSize="50sp" />
+
+        </FrameLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

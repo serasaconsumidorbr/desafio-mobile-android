@@ -1,6 +1,7 @@
 package com.drawiin.myheroes.di
 
 
+import com.drawiin.myheroes.network.model.CharacterDtoMapper
 import com.drawiin.myheroes.network.service.HeroesService
 import com.drawiin.myheroes.repository.DefaultHeroesRepository
 import com.drawiin.myheroes.repository.HeroesRepository
@@ -17,10 +18,12 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideHeroesRepository(
-        heroesService: HeroesService
+        heroesService: HeroesService,
+        characterDtoMapper: CharacterDtoMapper
     ): HeroesRepository {
         return DefaultHeroesRepository(
-            heroesService
+            heroesService,
+            characterDtoMapper
         )
     }
 }

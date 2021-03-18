@@ -1,5 +1,7 @@
 package com.drawiin.myheroes.di
 
+import com.drawiin.myheroes.network.model.CharacterDtoMapper
+import com.drawiin.myheroes.network.model.ThumbnailDtoMapper
 import com.drawiin.myheroes.network.service.HeroesService
 import com.drawiin.myheroes.utils.NAMED_API_KEY
 import com.drawiin.myheroes.utils.NAMED_HASH
@@ -18,6 +20,20 @@ import javax.inject.Singleton
 @Module
 @InstallIn(ApplicationComponent::class)
 object NetworkModule {
+    @Singleton
+    @Provides
+    fun providesThumbnailDtoMapper(): ThumbnailDtoMapper {
+        return ThumbnailDtoMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun providesCharacterDtoMapper(
+        thumbnailDtoMapper: ThumbnailDtoMapper
+    ): CharacterDtoMapper {
+        return CharacterDtoMapper(thumbnailDtoMapper)
+    }
+
     @Singleton
     @Provides
     fun providesLoggingService(): HttpLoggingInterceptor {
