@@ -1,6 +1,6 @@
 package com.drawiin.myheroes.di
 
-import com.drawiin.myheroes.network.HeroesService
+import com.drawiin.myheroes.network.service.HeroesService
 import com.drawiin.myheroes.utils.NAMED_API_KEY
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -28,7 +28,7 @@ object NetworkModule {
     @Singleton
     @Provides
     @Named(NAMED_API_KEY)
-    fun providesAuthToken(): String {
-        return ""
+    fun providesApiKey(): String {
+        return "6971ee8cf8ffbe03d29e6e85e9121238"
     }
 }

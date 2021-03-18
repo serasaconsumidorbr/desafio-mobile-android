@@ -1,7 +1,7 @@
 package com.drawiin.myheroes.di
 
 
-import com.drawiin.myheroes.network.HeroesService
+import com.drawiin.myheroes.network.service.HeroesService
 import com.drawiin.myheroes.repository.DefaultHeroesRepository
 import com.drawiin.myheroes.repository.HeroesRepository
 import dagger.Module

@@ -1,4 +1,4 @@
-package com.drawiin.myheroes.network
+package com.drawiin.myheroes.network.service
 
 import retrofit2.http.GET
 import retrofit2.http.Query
