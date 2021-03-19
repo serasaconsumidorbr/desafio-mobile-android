@@ -8,27 +8,36 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import com.drawiin.myheroes.databinding.FragmentHeroesBinding
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HeroesFragment : Fragment() {
     private lateinit var binding: FragmentHeroesBinding
 
-    val viewModel: HeroesViewModel by viewModels()
+    private val viewModel: HeroesViewModel by viewModels()
+
+    private lateinit var carouselAdapter: CarouselAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHeroesBinding.inflate(inflater, container, false)
-        viewModel
+        setupUi()
         subscribeUi()
         return binding.root
     }
 
+    private fun setupUi() {
+        carouselAdapter = CarouselAdapter()
+        binding.carousel.adapter = carouselAdapter
+        TabLayoutMediator(binding.carouselIndicator, binding.carousel) { _, _ -> }.attach()
+    }
+
     private fun subscribeUi() {
         viewModel.heroes.observe(viewLifecycleOwner) {
-            binding.text.text = it.map { it.name }.reduce { acc, s -> acc + "\n" + s }
+            carouselAdapter.submitList(it)
         }
     }
 }

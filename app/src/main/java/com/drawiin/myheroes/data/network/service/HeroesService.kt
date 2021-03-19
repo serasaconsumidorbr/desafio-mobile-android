@@ -10,6 +10,7 @@ interface HeroesService {
     suspend fun getCharacters(
         @Query("apikey") apiKey: String,
         @Query("hash") hash: String,
-        @Query("ts") timeStamp: Int
+        @Query("ts") timeStamp: Int,
+        @Query("limit") limitInt: Int = 5
     ): GetHeroesResponse
 }
