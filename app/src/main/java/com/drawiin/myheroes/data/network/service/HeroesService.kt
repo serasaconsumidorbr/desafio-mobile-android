@@ -11,6 +11,7 @@ interface HeroesService {
         @Query("apikey") apiKey: String,
         @Query("hash") hash: String,
         @Query("ts") timeStamp: Int,
-        @Query("limit") limitInt: Int = 5
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
     ): GetHeroesResponse
 }

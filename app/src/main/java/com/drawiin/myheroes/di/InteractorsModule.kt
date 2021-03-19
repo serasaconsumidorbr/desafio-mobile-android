@@ -2,6 +2,7 @@ package com.drawiin.myheroes.di
 
 
 import com.drawiin.myheroes.domain.boundarys.HeroesRepository
+import com.drawiin.myheroes.domain.interactors.GetCarousel
 import com.drawiin.myheroes.domain.interactors.GetHeroes
 import dagger.Module
 import dagger.Provides
@@ -11,7 +12,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-object UseCaseModule {
+object InteractorsModule {
 
     @Singleton
     @Provides
@@ -19,5 +20,13 @@ object UseCaseModule {
         heroesRepository: HeroesRepository
     ): GetHeroes {
         return GetHeroes(heroesRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCarousel(
+        heroesRepository: HeroesRepository
+    ): GetCarousel {
+        return GetCarousel(heroesRepository)
     }
 }
