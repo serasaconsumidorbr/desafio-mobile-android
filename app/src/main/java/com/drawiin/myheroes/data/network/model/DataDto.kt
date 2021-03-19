@@ -1,7 +1,6 @@
-package com.drawiin.myheroes.network.model
+package com.drawiin.myheroes.data.network.model
 
 
-import com.drawiin.myheroes.network.model.CharacterDto
 import com.google.gson.annotations.SerializedName
 
 data class DataDto(

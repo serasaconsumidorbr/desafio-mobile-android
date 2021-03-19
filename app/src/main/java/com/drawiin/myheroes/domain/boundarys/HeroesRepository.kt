@@ -1,4 +1,4 @@
-package com.drawiin.myheroes.repository
+package com.drawiin.myheroes.domain.boundarys
 
 import com.drawiin.myheroes.domain.model.character.Character
 

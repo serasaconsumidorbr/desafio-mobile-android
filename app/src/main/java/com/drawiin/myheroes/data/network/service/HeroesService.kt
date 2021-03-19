@@ -1,6 +1,6 @@
-package com.drawiin.myheroes.network.service
+package com.drawiin.myheroes.data.network.service
 
-import com.drawiin.myheroes.network.model.response.GetHeroesResponse
+import com.drawiin.myheroes.data.network.model.response.GetHeroesResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

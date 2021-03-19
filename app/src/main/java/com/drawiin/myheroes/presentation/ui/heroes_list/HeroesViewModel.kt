@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.drawiin.myheroes.domain.model.character.Character
-import com.drawiin.myheroes.useCases.GetHeroes
+import com.drawiin.myheroes.domain.interactors.GetHeroes
 import com.drawiin.myheroes.utils.NAMED_API_KEY
 import com.drawiin.myheroes.utils.NAMED_HASH
 import kotlinx.coroutines.launch

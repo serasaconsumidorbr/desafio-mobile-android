@@ -1,4 +1,4 @@
-package com.drawiin.myheroes.network.model
+package com.drawiin.myheroes.data.network.model
 
 import com.drawiin.myheroes.domain.util.DomainMapper
 import com.drawiin.myheroes.domain.model.character.Thumbnail

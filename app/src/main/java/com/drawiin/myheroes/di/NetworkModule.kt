@@ -1,8 +1,8 @@
 package com.drawiin.myheroes.di
 
-import com.drawiin.myheroes.network.model.CharacterDtoMapper
-import com.drawiin.myheroes.network.model.ThumbnailDtoMapper
-import com.drawiin.myheroes.network.service.HeroesService
+import com.drawiin.myheroes.data.network.model.CharacterDtoMapper
+import com.drawiin.myheroes.data.network.model.ThumbnailDtoMapper
+import com.drawiin.myheroes.data.network.service.HeroesService
 import com.drawiin.myheroes.utils.NAMED_API_KEY
 import com.drawiin.myheroes.utils.NAMED_HASH
 import com.google.gson.GsonBuilder

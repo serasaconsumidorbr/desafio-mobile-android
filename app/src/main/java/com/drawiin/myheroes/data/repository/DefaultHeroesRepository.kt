@@ -1,8 +1,9 @@
-package com.drawiin.myheroes.repository
+package com.drawiin.myheroes.data.repository
 
 import com.drawiin.myheroes.domain.model.character.Character
-import com.drawiin.myheroes.network.model.CharacterDtoMapper
-import com.drawiin.myheroes.network.service.HeroesService
+import com.drawiin.myheroes.data.network.model.CharacterDtoMapper
+import com.drawiin.myheroes.data.network.service.HeroesService
+import com.drawiin.myheroes.domain.boundarys.HeroesRepository
 import com.drawiin.myheroes.utils.getMd5Digest
 
 class DefaultHeroesRepository(

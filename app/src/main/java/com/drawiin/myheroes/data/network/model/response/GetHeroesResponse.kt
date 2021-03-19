@@ -1,7 +1,7 @@
-package com.drawiin.myheroes.network.model.response
+package com.drawiin.myheroes.data.network.model.response
 
 
-import com.drawiin.myheroes.network.model.DataDto
+import com.drawiin.myheroes.data.network.model.DataDto
 import com.google.gson.annotations.SerializedName
 
 data class GetHeroesResponse(
