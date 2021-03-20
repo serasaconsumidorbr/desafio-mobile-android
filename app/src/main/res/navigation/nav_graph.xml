@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/heroesFragment"
-        android:name="com.drawiin.myheroes.presentation.ui.heroes_list.HeroesFragment"
+        android:name="com.drawiin.marvelcharacters.presentation.ui.characters_list.CharactersListFragment"
         android:label="HeroesFragment" />
 </navigation>

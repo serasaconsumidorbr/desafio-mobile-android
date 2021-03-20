@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.ui.characters_list.CharactersListFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingHorizontal="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/screen_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:fontFamily="@font/bebas_neue_regular"
+                android:text="@string/character_list_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="40sp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/carousel_container"
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/screen_title">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/carousel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/carousel_indicator"
+                style="@style/Widget.MaterialComponents.TabLayout.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:elevation="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/transparent"
+                app:layout_constraintBottom_toBottomOf="@id/carousel_container"
+                app:layout_constraintEnd_toEndOf="@id/carousel_container"
+                app:layout_constraintStart_toStartOf="@id/carousel_container"
+                app:tabBackground="@drawable/page_dot_selector"
+                app:tabIndicatorHeight="0dp"
+                app:tabMaxWidth="20dp"
+                app:tabMinWidth="20dp"
+                app:tabPadding="2dp"
+                app:tabMode="scrollable" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/characters_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/carousel_container"
+                tools:itemCount="4"
+                tools:listitem="@layout/character_item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
