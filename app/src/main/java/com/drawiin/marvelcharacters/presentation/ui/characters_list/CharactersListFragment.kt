@@ -1,5 +1,6 @@
 package com.drawiin.marvelcharacters.presentation.ui.characters_list
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,5 +48,17 @@ class CharactersListFragment : Fragment() {
         viewModel.charactersList.observe(viewLifecycleOwner) {
             characterListAdapter.submitList(it)
         }
+
+        viewModel.dialog.observe(viewLifecycleOwner) {
+            showDialog(it)
+        }
+    }
+
+    private fun showDialog(message: String) {
+        AlertDialog.Builder(context).apply {
+            setTitle("Something went wrong")
+            setMessage(message)
+            setPositiveButton(android.R.string.ok, null)
+        }.show()
     }
 }

@@ -2,7 +2,8 @@ package com.drawiin.marvelcharacters.di
 
 import com.drawiin.marvelcharacters.data.network.model.CharacterDtoMapper
 import com.drawiin.marvelcharacters.data.network.model.ThumbnailDtoMapper
-import com.drawiin.marvelcharacters.data.network.service.MavelService
+import com.drawiin.marvelcharacters.data.network.service.MarvelClient
+import com.drawiin.marvelcharacters.data.network.service.MarvelService
 import com.drawiin.marvelcharacters.utils.NAMED_API_KEY
 import com.drawiin.marvelcharacters.utils.NAMED_HASH
 import com.google.gson.GsonBuilder
@@ -53,13 +54,19 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providesHeroesService(client: OkHttpClient): MavelService {
+    fun providesMarvelService(client: OkHttpClient): MarvelService {
         return Retrofit.Builder()
             .baseUrl("https://gateway.marvel.com:443/v1/public/")
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .client(client)
             .build()
-            .create(MavelService::class.java)
+            .create(MarvelService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providesMarvelClient(marvelService: MarvelService): MarvelClient {
+        return MarvelClient(marvelService)
     }
 
     @Singleton
