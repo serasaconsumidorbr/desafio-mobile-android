@@ -11,7 +11,7 @@ class DefaultCharactersRepository(
     private val characterDtoMapper: CharacterDtoMapper
 
 ) : CharactersRepository {
-    override suspend fun getHeroes(
+    override suspend fun getCharacters(
         apiKey: String,
         hash: String,
         limit: Int,

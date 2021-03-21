@@ -10,6 +10,6 @@ class GetCarousel(
         apikey: String,
         hash: String
     ): List<Character> {
-        return charactersRepository.getHeroes(apikey, hash, 5, 0)
+        return charactersRepository.getCharacters(apikey, hash, 5, 0)
     }
 }

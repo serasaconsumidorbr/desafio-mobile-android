@@ -8,7 +8,7 @@ class GetCharacters (
 ) {
     suspend fun execute(apiKey: String, hash: String, page: Int): List<Character> {
         val offset = (NETWORK_PAGE_LIMIT * page) + DEFAULT_OFFSET
-        return charactersRepository.getHeroes(apiKey, hash, NETWORK_PAGE_LIMIT, offset)
+        return charactersRepository.getCharacters(apiKey, hash, NETWORK_PAGE_LIMIT, offset)
     }
 
     companion object {
