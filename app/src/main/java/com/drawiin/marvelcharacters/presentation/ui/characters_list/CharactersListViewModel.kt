@@ -1,5 +1,6 @@
 package com.drawiin.marvelcharacters.presentation.ui.characters_list
 
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,26 +24,46 @@ class CharactersListViewModel @ViewModelInject constructor(
 ) : ViewModel() {
     val charactersCarousel get() = _charactersCarousel
     val charactersCarouselLoading get() = _charactersCarouselLoading
-
     val charactersList get() = _charactersList
     val charactersListLoading get() = _charactersListLoading
-
     val dialog get() = _dialog
 
     private val _charactersCarousel by lazy { MutableLiveData<List<Character>>() }
     private val _charactersCarouselLoading by lazy { MutableLiveData<Boolean>() }
-
-    private val _charactersList by lazy { MutableLiveData<List<Character>>() }
+    private val _charactersList by lazy { MutableLiveData<List<Character>>(emptyList()) }
     private val _charactersListLoading by lazy { MutableLiveData<Boolean>() }
-
     private val _dialog by lazy { MutableLiveData<String>() }
+
+    private var currentPage: Int? = 0
 
     init {
         loadCarousel()
-        loadCharactersList()
+        loadNextPage()
+    }
+
+    fun reloadPage() {
+        currentPage = 0
+        clearData()
+        loadCarousel()
+        loadNextPage()
+    }
+
+    fun listScrolled(scrollY: Int, maxScroll: Int) {
+        if (scrollY + VISIBLE_THRESHOLD >= maxScroll)
+            loadNextPage()
+    }
+
+    private fun clearData() {
+        _charactersCarousel.value = emptyList()
+        _charactersList.value = emptyList()
+    }
+
+    private fun loadNextPage() {
+        currentPage?.let { loadCharactersList(it) }
     }
 
     private fun loadCarousel() {
+        charactersCarouselLoading.postValue(true)
         launchDataLoad(
             onFinish = { charactersCarouselLoading.postValue(false) },
             onFailure = ::handleError
@@ -52,13 +73,21 @@ class CharactersListViewModel @ViewModelInject constructor(
         }
     }
 
-    private fun loadCharactersList() {
+    private fun loadCharactersList(page: Int) {
+        charactersListLoading.postValue(true)
         launchDataLoad(
             onFinish = { charactersListLoading.postValue(false) },
             onFailure = ::handleError
         ) {
-            val heroes = getCharacters.execute(apiKey, hash)
-            _charactersList.postValue(heroes)
+            val heroes = getCharacters.execute(apiKey, hash, page)
+
+            currentPage = if (heroes.isEmpty()) {
+                null
+            } else {
+                page + 1
+            }
+            Log.d("VIEWMODEL", "Load Heros$page")
+            _charactersList.postValue(_charactersList.value?.plus(heroes))
         }
     }
 
@@ -83,11 +112,14 @@ class CharactersListViewModel @ViewModelInject constructor(
         }
     }
 
-
     private fun getErrorMessage(throwable: Throwable): String? {
         return when (throwable) {
             is NetworkError -> throwable.errorMessage
             else -> "An unexpected error has occurred"
         }
+    }
+
+    companion object {
+        private const val VISIBLE_THRESHOLD = 600
     }
 }

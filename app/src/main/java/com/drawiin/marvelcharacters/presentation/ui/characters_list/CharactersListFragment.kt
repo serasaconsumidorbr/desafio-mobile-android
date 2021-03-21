@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
@@ -28,6 +29,7 @@ class CharactersListFragment : Fragment() {
         binding = FragmentCharactersListBinding.inflate(inflater, container, false)
         setupUi()
         subscribeUi()
+        setupScrollListener()
         return binding.root
     }
 
@@ -38,20 +40,43 @@ class CharactersListFragment : Fragment() {
 
         characterListAdapter = CharactersAdapter()
         binding.charactersList.adapter = characterListAdapter
+
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.reloadPage()
+        }
     }
 
     private fun subscribeUi() {
-        viewModel.charactersCarousel.observe(viewLifecycleOwner) {
-            carouselAdapter.submitList(it)
-        }
+        viewModel.run {
+            charactersCarousel.observe(viewLifecycleOwner, carouselAdapter::submitList)
+            charactersList.observe(viewLifecycleOwner) {
+                characterListAdapter.submitList(it)
+            }
+            dialog.observe(viewLifecycleOwner, ::showDialog)
+            charactersCarouselLoading.observe(viewLifecycleOwner) { loading ->
+                if (loading) binding.carouselLoading.show()
+                else {
+                    binding.carouselLoading.hide()
+                    binding.swipeRefresh.isRefreshing = false
+                }
+            }
 
-        viewModel.charactersList.observe(viewLifecycleOwner) {
-            characterListAdapter.submitList(it)
+            charactersListLoading.observe(viewLifecycleOwner) { loading ->
+                if (loading) binding.charactersListLoading.show()
+                else binding.charactersListLoading.hide()
+            }
         }
+    }
 
-        viewModel.dialog.observe(viewLifecycleOwner) {
-            showDialog(it)
-        }
+    private fun setupScrollListener() {
+        binding.nestedScroll.setOnScrollChangeListener(
+            NestedScrollView.OnScrollChangeListener { scrollView, _, scrollY, _, _ ->
+                val totalScrollHeight = scrollView.getChildAt(0).measuredHeight
+                val scrollViewHeight = scrollView.measuredHeight
+                val maxScroll = totalScrollHeight - scrollViewHeight
+                viewModel.listScrolled(scrollY, maxScroll)
+            }
+        )
     }
 
     private fun showDialog(message: String) {
