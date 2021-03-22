@@ -3,9 +3,9 @@
   <h3 align="center">Marvel's Characters</h3>
 </p>
 <p align="center">
-  <a href="#seed-fluxos">Fluxo</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-licença">Roadmap</a>
+  <a href="#fluxo">Fluxo</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#roadmap">Roadmap</a>
 </p>
 
 <p align="center">
