@@ -16,7 +16,7 @@
 
 ## 🌱Fluxo
 
-Eu dividi o fluxo utilizando o kaban+trello, as tarefas foram em cards ,com a checklists das D.o.R (Definition of Ready), durante o desenvolvimento segui o modelo git flow criando feture branchs e merjando na developer:
+Eu controlei meu fluxo de desenvolvimento utilizando o kaban+trello, dividindo as tarefas em cards, cada um com sua checklists de D.o.R's (Definition of Ready), tentei seguir o gitflow, criando branchs pra cada feature e integrando elas na develop, até ter tudo pronto e mandar pra main:
 
 * Listar os requisitos.
 * Criar o trello com todos os requisitos.
@@ -47,7 +47,7 @@ Eu usei as seguintes tecnologias durante :
 * <b><a href="https://developer.android.com/jetpack/androidx/releases/lifecycle#declaring_dependencies">Lifecycle Components</a></b> - Os components nescessários pra minha arquitetura MVVM, ViewModel e LiveData.
 
 ## 🗺️Roadmap
-Gostei do resultado mais eu gostaria de adicionar mais algumas coisas nele, pra dar aquele toque especial:
+Gostei do resultado mais eu gostaria de adicionar mais algumas coisas no app, pra dar aquele toque especial:
 
 * Refatorar esse design (mudar paleta de cores interação, listagem etc).
 * Tela de detalhes dos personagens(com direito a hero animation).
