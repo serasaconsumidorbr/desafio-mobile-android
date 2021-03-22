@@ -35,6 +35,7 @@ class CharactersListViewModel @ViewModelInject constructor(
     private val _dialog by lazy { MutableLiveData<String>() }
 
     private var currentPage: Int? = 0
+    private var loading = false
 
     init {
         loadCarousel()
@@ -79,15 +80,20 @@ class CharactersListViewModel @ViewModelInject constructor(
             onFinish = { charactersListLoading.postValue(false) },
             onFailure = ::handleError
         ) {
-            val heroes = getCharacters.execute(apiKey, hash, page)
+            if (!loading) {
+                loading = true
+                val heroes = getCharacters.execute(apiKey, hash, page)
 
-            currentPage = if (heroes.isEmpty()) {
-                null
-            } else {
-                page + 1
+                currentPage = if (heroes.isEmpty()) {
+                    null
+                } else {
+                    page + 1
+                }
+                Log.d("VIEWMODEL", "Load Heros$page")
+                _charactersList.postValue(_charactersList.value?.plus(heroes))
+                loading = false
             }
-            Log.d("VIEWMODEL", "Load Heros$page")
-            _charactersList.postValue(_charactersList.value?.plus(heroes))
+
         }
     }
 
