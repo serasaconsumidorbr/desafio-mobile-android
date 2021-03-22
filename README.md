@@ -13,6 +13,7 @@
 </p>
 
 <br>
+
 ## 🌱Fluxo
 
 Eu dividi o fluxo utilizando o kaban+trello, separei as tarefas em cards e coloquei checklists com as "Definitions of Ready" do que eu preciso fazer para a determinada tarefa:
