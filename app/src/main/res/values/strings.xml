@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MARVEL</string>
+    <string name="name_app">Marvel Characters</string>
+    <string name="error_network">No momento você está sem intenet! Tente novamente mais tarde.</string>
 </resources>
