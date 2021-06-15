@@ -2,7 +2,6 @@ package com.luisedu.marvel_app.data.repository
 
 import com.luisedu.marvel_app.data.retrofit.RetrofitService
 import com.luisedu.marvel_app.model.MarvelApiResponse
-import com.luisedu.marvel_app.model.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Call

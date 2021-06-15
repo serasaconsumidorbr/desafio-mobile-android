@@ -3,9 +3,7 @@ package com.luisedu.marvel_app.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +17,6 @@ import com.luisedu.marvel_app.utils.changeVisibility
 import com.luisedu.marvel_app.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.carousel_heros_view_pager.*
-import kotlin.random.Random
 
 
 class HomeActivity : AppCompatActivity() {
@@ -43,7 +40,7 @@ class HomeActivity : AppCompatActivity() {
         setSwipeListener()
         setHeroList()
         setCarouselHeroes()
-        setObervables()
+        setObservables()
         setCloseButtonListener()
         homeViewModel.fetchCharactersList()
     }
@@ -85,14 +82,14 @@ class HomeActivity : AppCompatActivity() {
                     notifyDataSetChanged()
                 }
             } else {
-                showError(true)
+                showError()
             }
         })
     }
 
     private fun observableError() {
         homeViewModel.errorLiveData.observe(this, Observer {
-            showError(true)
+            showError()
         })
     }
 
@@ -105,7 +102,7 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
-    private fun setObervables() {
+    private fun setObservables() {
         observableCharacters()
         observableError()
         observableLoading()
@@ -139,9 +136,9 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun showError(visible: Boolean) {
+    private fun showError() {
         setErrorGif(clError)
-        clError.changeVisibility(visible)
+        clError.changeVisibility(true)
     }
 
     private fun setErrorGif(view: View) {
