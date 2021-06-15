@@ -36,7 +36,7 @@ class HomeHeroListAdapter(private val onClickListener: CharacterOnClickListener)
             tvCharactersDescriptionHomeList.text = items.description
 
             Glide.with(itemView)
-                .load(items.thumbnail.path + "/portrait_medium." + items.thumbnail.extension)
+                .load(items.thumbnail.path + "/portrait_incredible." + items.thumbnail.extension)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .into(ivCharacterImageHomeList)
 
