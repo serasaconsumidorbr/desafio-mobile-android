@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.github.islamkhsh.CardSliderIndicator
+        android:id="@+id/indicatorVpHeroes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:defaultIndicator="@drawable/default_dot"
+        app:selectedIndicator="@drawable/selected_dot"
+        app:indicatorsToShow="5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.islamkhsh.CardSliderViewPager
+        android:id="@+id/vpHeroes"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:cardSlider_otherPagesWidth="48dp"
+        app:cardSlider_pageMargin="12dp"
+        app:cardSlider_indicator="@id/indicatorVpHeroes"
+        app:cardSlider_smallAlphaFactor="0.7"
+        app:cardSlider_smallScaleFactor="0.9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/indicatorVpHeroes"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
