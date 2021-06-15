@@ -15,13 +15,4 @@ interface MarvelApiCall {
         @Query("apikey") apiKey: String,
         @Query("limit") limit: Int = 100
     ): Call<MarvelApiResponse>
-
-    @GET("characters/{characterId}/comics")
-    fun getComicsList(
-        @Path("characterId") characterId: Int,
-        @Query("ts") ts: String,
-        @Query("hash") hash: String,
-        @Query("apikey") apiKey: String,
-        @Query("limit") limit: Int = 100
-    ): Call<MarvelApiResponse>
 }

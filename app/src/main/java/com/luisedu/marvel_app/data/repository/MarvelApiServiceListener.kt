@@ -7,7 +7,5 @@ interface MarvelApiServiceListener {
 
     fun onSuccess(response: MarvelApiResponse)
 
-    fun onSuccessComics(response: Data)
-
     fun onError(error: Throwable)
 }

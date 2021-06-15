@@ -11,6 +11,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.github.islamkhsh.CardSliderAdapter
 import com.luisedu.marvel_app.R
 import com.luisedu.marvel_app.model.Result
+import kotlin.random.Random
 
 class HomeHeroCarouselAdapter : CardSliderAdapter<HomeHeroCarouselAdapter.ViewHolder>() {
 
@@ -37,15 +38,11 @@ class HomeHeroCarouselAdapter : CardSliderAdapter<HomeHeroCarouselAdapter.ViewHo
 
     override fun bindVH(holder: ViewHolder, position: Int) {
         charactersList[position].run {
-
             holder.apply {
                 tvHeroCarousel.text = name
 
                 Glide.with(itemView)
                     .load(thumbnail.path + "/standard_fantastic." + thumbnail.extension)
-//                .placeholder(R.drawable.ic_marvel_logo)
-//                .error(R.drawable.ic_marvel_logo)
-//                .fallback(R.drawable.ic_marvel_logo)
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .into(ivHeroCarousel)
             }

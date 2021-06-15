@@ -31,21 +31,6 @@ class MarvelApiRepository {
         })
     }
 
-    fun fetchComicsList(listener: MarvelApiServiceListener, characterId: Int) {
-        serviceApi.getComicsList(characterId, ts, hash, PUBLIC_KEY).enqueue(object : Callback<MarvelApiResponse> {
-
-            override fun onResponse(call: Call<MarvelApiResponse>, response: Response<MarvelApiResponse>) {
-                response.body()?.let {
-                    listener.onSuccessComics(it.data)
-                } ?: listener.onError(Exception())
-            }
-
-            override fun onFailure(call: Call<MarvelApiResponse>, t: Throwable) {
-                listener.onError(t)
-            }
-        })
-    }
-
     private fun getMd5(ts: String): String {
         try {
             val md = MessageDigest.getInstance(MD5)

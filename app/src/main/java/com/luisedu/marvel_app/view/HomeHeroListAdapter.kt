@@ -1,5 +1,7 @@
 package com.luisedu.marvel_app.view
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +12,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.luisedu.marvel_app.R
 import com.luisedu.marvel_app.model.Result
+import com.luisedu.marvel_app.utils.CharacterOnClickListener
 
-class HomeHeroListAdapter : RecyclerView.Adapter<HomeHeroListAdapter.ViewHolder>() {
+class HomeHeroListAdapter(private val onClickListener: CharacterOnClickListener) : RecyclerView.Adapter<HomeHeroListAdapter.ViewHolder>() {
 
     private var charactersList = listOf<Result>()
 
@@ -33,15 +36,16 @@ class HomeHeroListAdapter : RecyclerView.Adapter<HomeHeroListAdapter.ViewHolder>
 
             Glide.with(itemView)
                 .load(items.thumbnail.path + "/portrait_medium." + items.thumbnail.extension)
-//                .placeholder(R.drawable.ic_marvel_logo)
-//                .error(R.drawable.ic_marvel_logo)
-//                .fallback(R.drawable.ic_marvel_logo)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .into(ivCharacterImageHomeList)
+
+            itemView.setOnClickListener {
+                onClickListener.onClickCharacter(items)
+            }
         }
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvCharactersNameHomeList: TextView = itemView.findViewById(R.id.tvHero)
         val tvCharactersDescriptionHomeList: TextView = itemView.findViewById(R.id.tvHeroDescription)
         val ivCharacterImageHomeList: ImageView = itemView.findViewById(R.id.ivHero)
