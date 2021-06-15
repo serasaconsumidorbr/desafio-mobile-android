@@ -4,9 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.luisedu.marvel_app.data.repository.MarvelApiRepository
 import com.luisedu.marvel_app.data.repository.MarvelApiServiceListener
-import com.luisedu.marvel_app.model.Data
 import com.luisedu.marvel_app.model.MarvelApiResponse
 import com.luisedu.marvel_app.model.Result
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeViewModel (
     private var marvelRepository: MarvelApiRepository
@@ -23,19 +26,32 @@ class HomeViewModel (
 
     fun fetchCharactersList() {
         loading.value = Loading.ShowLoading
-        marvelRepository.fetchCharactersList(
-            this
-        )
+        CoroutineScope(Dispatchers.Main).launch {
+            return@launch withContext(Dispatchers.Default) {
+                marvelRepository.fetchCharactersList(
+                    this@HomeViewModel
+                )
+            }
+        }
     }
 
     override fun onSuccess(response: MarvelApiResponse) {
         loading.value = Loading.HideLoading
-        marvelCharacterResponse.value =
-            if (response.data.results.isNullOrEmpty()) null else response.data.results
+        CoroutineScope(Dispatchers.Main).launch {
+            val charactersList = withContext(Dispatchers.Default) {
+                response.data.results
+            }
+            marvelCharacterResponse.value = charactersList
+        }
     }
 
     override fun onError(error: Throwable) {
         loading.value = Loading.HideLoading
-        errorLiveData.value = error
+        CoroutineScope(Dispatchers.Main).launch {
+            val error = withContext(Dispatchers.Default) {
+                error
+            }
+            errorLiveData.value = error
+        }
     }
 }

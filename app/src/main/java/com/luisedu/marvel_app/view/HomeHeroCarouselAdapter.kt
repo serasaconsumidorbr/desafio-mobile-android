@@ -11,9 +11,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.github.islamkhsh.CardSliderAdapter
 import com.luisedu.marvel_app.R
 import com.luisedu.marvel_app.model.Result
-import kotlin.random.Random
+import com.luisedu.marvel_app.utils.CharacterOnClickListener
 
-class HomeHeroCarouselAdapter : CardSliderAdapter<HomeHeroCarouselAdapter.ViewHolder>() {
+class HomeHeroCarouselAdapter(private val onClickListener: CharacterOnClickListener) : CardSliderAdapter<HomeHeroCarouselAdapter.ViewHolder>() {
 
     private var charactersList = listOf<Result>()
     private val maxItems = 5
@@ -45,6 +45,12 @@ class HomeHeroCarouselAdapter : CardSliderAdapter<HomeHeroCarouselAdapter.ViewHo
                     .load(thumbnail.path + "/standard_fantastic." + thumbnail.extension)
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .into(ivHeroCarousel)
+
+                itemView.setOnClickListener {
+                    onClickListener.onClickCharacter(charactersList[position])
+                }
+
+                ivHeroCarousel.contentDescription = "Imagem do personagem $name"
             }
         }
     }

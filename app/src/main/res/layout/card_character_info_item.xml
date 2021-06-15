@@ -4,14 +4,14 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="10dp"
+    android:padding="@dimen/padding_10dp"
     android:background="@color/marvel_dark_red">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="3dp"
-        app:contentPadding="10dp"
+        app:cardCornerRadius="@dimen/radius_3dp"
+        app:contentPadding="@dimen/padding_10dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,8 +23,8 @@
 
             <ImageView
                 android:id="@+id/ivHero"
-                android:layout_width="100dp"
-                android:layout_height="150dp"
+                android:layout_width="@dimen/dimen_100dp"
+                android:layout_height="@dimen/dimen_150dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -32,25 +32,25 @@
 
             <TextView
                 android:id="@+id/tvHero"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/match_constraints_0dp"
                 android:layout_height="wrap_content"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
+                android:paddingLeft="@dimen/padding_4dp"
+                android:paddingRight="@dimen/padding_4dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivHero"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="herói brabo"
                 android:textStyle="bold"
                 android:fontFamily="@font/bebas_neue_regular"
-                android:textSize="20sp"/>
+                android:textSize="@dimen/text_size_20sp"/>
 
             <TextView
                 android:id="@+id/tvHeroDescription"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:paddingTop="8dp"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
+                android:layout_width="@dimen/match_constraints_0dp"
+                android:layout_height="@dimen/match_constraints_0dp"
+                android:paddingTop="@dimen/padding_8dp"
+                android:paddingLeft="@dimen/padding_4dp"
+                android:paddingRight="@dimen/padding_4dp"
                 android:ellipsize="end"
                 android:maxLines="4"
                 app:layout_constraintTop_toBottomOf="@+id/tvHero"
@@ -59,7 +59,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:fontFamily="@font/bebas_neue_regular"
                 android:text="Esse herói é muito brabo "
-                android:textSize="20sp"/>
+                android:textSize="@dimen/text_size_20sp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Marvel_app</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_activity_error_message_1">Houve algum erro... \n \n ou então Thanos venceu e apagou todos heróis na sua linha do tempo :(</string>
+    <string name="accessibility_title_logo">Imagem com o logo da Marvel</string>
+    <string name="accessibility_title_close_button">Fechar aplicativo</string>
 </resources>

@@ -29,7 +29,7 @@ class HeroDescriptionActivity : AppCompatActivity() {
         tvHeroName.text = characterName
         tvHeroDescription.text = characterDescription
         Glide.with(this)
-            .load(characterImage?.path + "/portrait_medium." + characterImage?.extension)
+            .load(characterImage?.path + imageSizeUrl + characterImage?.extension)
             .into(ivHeroDescription)
     }
 
@@ -43,6 +43,10 @@ class HeroDescriptionActivity : AppCompatActivity() {
         ivClose.setOnClickListener{
             this.finish()
         }
+    }
+
+    companion object {
+        const val imageSizeUrl = "/standard_fantastic."
     }
 
 }

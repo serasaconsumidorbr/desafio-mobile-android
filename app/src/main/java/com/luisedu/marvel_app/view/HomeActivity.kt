@@ -30,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var homeHeroListAdapter: HomeHeroListAdapter
-    private var homeHeroCarouselAdapter = HomeHeroCarouselAdapter()
+    private lateinit var homeHeroCarouselAdapter: HomeHeroCarouselAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,15 +59,18 @@ class HomeActivity : AppCompatActivity() {
     private val onCharacterClick = object : CharacterOnClickListener {
         override fun onClickCharacter(characters: Result) {
             val intent = Intent(this@HomeActivity, HeroDescriptionActivity::class.java)
-            intent.putExtra("characterName", characters.name)
-            intent.putExtra("characterThumb", characters.thumbnail)
-            intent.putExtra("characterDescription", characters.description)
+            intent.putExtra(characterName, characters.name)
+            intent.putExtra(characterThumb, characters.thumbnail)
+            intent.putExtra(characterDescription, characters.description)
             startActivity(intent)
         }
     }
 
     private fun setCarouselHeroes() {
-        vpHeroes.adapter = homeHeroCarouselAdapter
+        vpHeroes.apply {
+            homeHeroCarouselAdapter = HomeHeroCarouselAdapter(onCharacterClick)
+            adapter = homeHeroCarouselAdapter
+        }
     }
 
     private fun observableCharacters() {
@@ -146,5 +149,11 @@ class HomeActivity : AppCompatActivity() {
             .asGif()
             .load(R.drawable.thanos_wins_error)
             .into(ivError)
+    }
+
+    companion object {
+        const val characterName = "characterName"
+        const val characterThumb = "characterThumb"
+        const val characterDescription = "characterDescription"
     }
 }

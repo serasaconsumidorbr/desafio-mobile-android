@@ -42,6 +42,9 @@ class HomeHeroListAdapter(private val onClickListener: CharacterOnClickListener)
             itemView.setOnClickListener {
                 onClickListener.onClickCharacter(items)
             }
+
+            tvCharactersNameHomeList.contentDescription = items.name
+            tvCharactersDescriptionHomeList.contentDescription = "Descrição do personagem $items.name, $items.description"
         }
     }
 
