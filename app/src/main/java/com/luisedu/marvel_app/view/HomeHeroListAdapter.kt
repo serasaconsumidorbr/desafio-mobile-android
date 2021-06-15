@@ -17,6 +17,7 @@ import com.luisedu.marvel_app.utils.CharacterOnClickListener
 class HomeHeroListAdapter(private val onClickListener: CharacterOnClickListener) : RecyclerView.Adapter<HomeHeroListAdapter.ViewHolder>() {
 
     private var charactersList = listOf<Result>()
+    private var carrousselSize = 5
 
     fun addCharactersList(items: List<Result>) {
         charactersList = items
@@ -25,10 +26,10 @@ class HomeHeroListAdapter(private val onClickListener: CharacterOnClickListener)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder (
         LayoutInflater.from(parent.context).inflate(R.layout.card_character_info_item, parent, false))
 
-    override fun getItemCount() = charactersList.size
+    override fun getItemCount() = charactersList.size - carrousselSize
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val items = charactersList[position]
+        val items = charactersList[position + carrousselSize]
 
         holder.apply {
             tvCharactersNameHomeList.text = items.name
@@ -44,7 +45,8 @@ class HomeHeroListAdapter(private val onClickListener: CharacterOnClickListener)
             }
 
             tvCharactersNameHomeList.contentDescription = items.name
-            tvCharactersDescriptionHomeList.contentDescription = "Descrição do personagem $items.name, $items.description"
+            tvCharactersDescriptionHomeList.contentDescription =
+                "Descrição do personagem $items.name, $items.description"
         }
     }
 
