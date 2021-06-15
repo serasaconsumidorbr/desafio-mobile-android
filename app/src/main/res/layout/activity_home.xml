@@ -29,6 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
+            android:id="@+id/ivClose"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/ic_close"
@@ -68,9 +69,52 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/containerHerosCarousel"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/card_character_info_item">
+            tools:listitem="@layout/card_character_info_item"/>
 
-        </androidx.recyclerview.widget.RecyclerView>
+        <ImageView
+            android:id="@+id/ivLoading"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clError"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <TextView
+            android:id="@+id/tvError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/ivError"
+            android:text="Houve algum erro\n clique na tela para tentar novamente... \n \n ou então Thanos venceu e apagou todos heróis na sua linha do tempo. :("
+            android:fontFamily="@font/bebas_neue_regular"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+
+            <ImageView
+                android:id="@+id/ivError"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvError" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

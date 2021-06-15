@@ -1,16 +1,19 @@
 package com.luisedu.marvel_app.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.luisedu.marvel_app.R
 import com.luisedu.marvel_app.utils.ViewModelFactory
+import com.luisedu.marvel_app.utils.changeVisibility
 import com.luisedu.marvel_app.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.carousel_heros_view_pager.*
+
 
 class HomeActivity : AppCompatActivity() {
 
@@ -25,9 +28,14 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        screenSetup()
+    }
+
+    private fun screenSetup() {
         setHeroList()
         setCarouselHeroes()
         setObervables()
+        setCloseButtonListener()
         homeViewModel.fetchCharactersList()
     }
 
@@ -55,14 +63,14 @@ class HomeActivity : AppCompatActivity() {
                     notifyDataSetChanged()
                 }
             } else {
-                //TODO show error
+                showError(true)
             }
         })
     }
 
     private fun observableError() {
         homeViewModel.errorLiveData.observe(this, Observer {
-            Toast.makeText(this, "Erro", Toast.LENGTH_LONG).show()
+            showError(true)
         })
     }
 
@@ -78,10 +86,42 @@ class HomeActivity : AppCompatActivity() {
     private fun setObervables() {
         observableCharacters()
         observableError()
-//        observableLoading()
+        observableLoading()
     }
 
-    private fun showLoading(visibility: Boolean) {
-        //TODO implement loading
+    private fun showLoading(visible: Boolean) {
+        ivLoading.changeVisibility(visible)
+        setLoadingGif(ivLoading)
+    }
+
+    private fun setLoadingGif(view: View) {
+        Glide.with(view)
+                .asGif()
+                .load(R.drawable.infinity_gauntlet_loading)
+                .into(ivLoading)
+    }
+
+    private fun setCloseButtonListener() {
+        ivClose.setOnClickListener{
+            this.finish()
+        }
+    }
+
+    private fun showError(visible: Boolean) {
+        setErrorGif(clError)
+        clError.changeVisibility(visible)
+        clError.setOnClickListener {
+            val intent = intent
+            finish()
+            startActivity(intent)
+            overridePendingTransition(0, 0)
+        }
+    }
+
+    private fun setErrorGif(view: View) {
+        Glide.with(view)
+                .asGif()
+                .load(R.drawable.thanos_wins_error)
+                .into(ivError)
     }
 }

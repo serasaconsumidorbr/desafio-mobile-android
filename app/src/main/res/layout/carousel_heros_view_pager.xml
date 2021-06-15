@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
     <com.github.islamkhsh.CardSliderIndicator
         android:id="@+id/indicatorVpHeroes"
@@ -25,7 +24,7 @@
         app:cardSlider_pageMargin="12dp"
         app:cardSlider_indicator="@id/indicatorVpHeroes"
         app:cardSlider_smallAlphaFactor="0.7"
-        app:cardSlider_smallScaleFactor="0.9"
+        app:cardSlider_smallScaleFactor="0.8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/indicatorVpHeroes"

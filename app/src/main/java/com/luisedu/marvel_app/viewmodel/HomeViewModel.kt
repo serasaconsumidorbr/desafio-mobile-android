@@ -30,12 +30,6 @@ class HomeViewModel (
         )
     }
 
-    fun fetchComicsList(charactersId: Int) {
-        loading.value = Loading.ShowLoading
-        marvelRepository.fetchComicsList(this, charactersId)
-    }
-
-
     override fun onSuccess(response: MarvelApiResponse) {
         loading.value = Loading.HideLoading
         marvelCharacterResponse.value =
