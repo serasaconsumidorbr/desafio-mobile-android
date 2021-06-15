@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_8dp">8dp</dimen>
+    <dimen name="dimen_80dp">80dp</dimen>
+    <dimen name="dimen_40dp">40dp</dimen>
+    <dimen name="margin_10dp">10dp</dimen>
+    <dimen name="match_constraints_0dp">0dp</dimen>
+    <dimen name="dimen_300dp">300dp</dimen>
+    <dimen name="margin_12dp">12dp</dimen>
+    <dimen name="text_size_30sp">30sp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="dimen_100dp">100dp</dimen>
+    <dimen name="margin_200dp">200dp</dimen>
+    <dimen name="margin_100dp">100dp</dimen>
+    <dimen name="dimen_120dp">120dp</dimen>
+    <dimen name="margin_50dp">50dp</dimen>
+    <dimen name="padding_10dp">10dp</dimen>
+    <dimen name="radius_3dp">3dp</dimen>
+    <dimen name="dimen_150dp">150dp</dimen>
+    <dimen name="padding_4dp">4dp</dimen>
+    <dimen name="dimen_48dp">48dp</dimen>
+</resources>
