@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Marvel Heroes</string>
+    <string name="try_again">Tentar novamente</string>
+    <string name="ops_algo_errado">Ops! algo deu errado.</string>
+</resources>
