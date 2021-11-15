@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/drawable/default_dot.xml" value="0.4" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/drawable/ic_marvel.xml" value="0.14479166666666668" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/drawable/selected_dot.xml" value="0.14427083333333332" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/drawable/tab_selector.xml" value="0.14479166666666668" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/layout/activity_scrolling.xml" value="0.146875" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/layout/character_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/layout/content_scrolling.xml" value="0.1609375" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/layout/item_carousel_character.xml" value="0.16145833333333334" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/layout/item_character.xml" value="0.264" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/layout/main_activity.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/layout/main_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/layout/selected_dot.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/menu/menu_scrolling.xml" value="0.15260416666666668" />
+        <entry key="..\:/Users/developer/AndroidStudioProjects/Marvel/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.26666666666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

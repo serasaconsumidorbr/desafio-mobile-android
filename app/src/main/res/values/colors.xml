@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#121212</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="darker_gray">#1e1e1e</color>
+    <color name="darker_gray_alpha">#B41E1E1E</color>
+    <color name="text_color_secondary">#e1e1e1</color>
+    <color name="red">#f0141e</color>
+    <color name="red_dark">#9C0D13</color>
+    <color name="red_accent">#ED4E55</color>
+    <color name="ic_launcher_background">#F0141E</color>
+</resources>

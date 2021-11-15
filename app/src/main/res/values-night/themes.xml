@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Marvel" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#272727</item>
+        <item name="colorPrimaryDark">#202124</item>
+        <item name="colorAccent">@color/red</item>
+        <item name="android:windowBackground">@color/black</item>
+
+        <!-- Customize your theme here. -->
+    </style>
+</resources>
