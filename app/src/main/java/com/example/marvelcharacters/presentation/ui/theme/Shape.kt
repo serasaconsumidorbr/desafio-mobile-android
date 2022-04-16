@@ -1,4 +1,4 @@
-package com.example.marvelcharacters.ui.theme
+package com.example.marvelcharacters.presentation.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
