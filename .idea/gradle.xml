@@ -11,6 +11,15 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/ui" />
+            <option value="$PROJECT_DIR$/core/util" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/home" />
+            <option value="$PROJECT_DIR$/features/home/home_data" />
+            <option value="$PROJECT_DIR$/features/home/home_domain" />
+            <option value="$PROJECT_DIR$/features/home/home_presentation" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
