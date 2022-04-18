@@ -7,6 +7,7 @@ import com.example.home_domain.model.Character
 class CharacterDtoToCharacter : CharacterDtoToCharacterMapper {
     override fun mapFrom(from: CharacterDto): Character = Character(
         name = from.name.orEmpty(),
-        imageUrl = from.thumbnail?.path.orEmpty()
+        imageUrl = from.thumbnail?.path.orEmpty(),
+        description = from.description.orEmpty()
     )
 }
