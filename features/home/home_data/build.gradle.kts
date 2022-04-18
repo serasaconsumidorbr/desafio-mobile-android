@@ -13,6 +13,5 @@ dependencies {
     "implementation"(Retrofit.moshiConverter)
 
     // Paging
-    "implementation"(Paging.paging)
     "implementation"(Paging.pagingCompose)
 }

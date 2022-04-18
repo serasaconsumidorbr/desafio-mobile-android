@@ -6,6 +6,5 @@ dependencies {
     "implementation"(project(Modules.coreUtil))
 
     // Paging
-    "implementation"(Paging.paging)
     "implementation"(Paging.pagingCompose)
 }

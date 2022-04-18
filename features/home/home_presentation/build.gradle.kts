@@ -9,6 +9,5 @@ dependencies {
     "implementation"(project(Modules.homeDomain))
 
     // Paging
-    "implementation"(Paging.paging)
     "implementation"(Paging.pagingCompose)
 }
