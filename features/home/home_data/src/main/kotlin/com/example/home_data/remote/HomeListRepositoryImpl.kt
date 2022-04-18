@@ -3,6 +3,7 @@ package com.example.home_data.remote
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.example.home_data.remote.datasource.HomeListDataSource
 import com.example.home_data.remote.datasource.HomeListDataSourceImpl
 import com.example.home_data.remote.mapper.CharactersDataDtoToCharactersMapper
 import com.example.home_domain.model.Character
@@ -11,8 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class HomeListRepositoryImpl @Inject constructor(
-    private val api: HomeListApi,
-    private val mapper: CharactersDataDtoToCharactersMapper,
+    private val homeListDataSource: HomeListDataSource,
 ) : HomeListRepository {
 
     companion object {
@@ -25,11 +25,6 @@ class HomeListRepositoryImpl @Inject constructor(
             pageSize = PAGE_SIZE,
             maxSize = MAX_SIZE
         ),
-        pagingSourceFactory = {
-            HomeListDataSourceImpl(
-                api = api,
-                mapper = mapper
-            )
-        }
+        pagingSourceFactory = { homeListDataSource.factoryGenerator() }
     ).flow
 }
