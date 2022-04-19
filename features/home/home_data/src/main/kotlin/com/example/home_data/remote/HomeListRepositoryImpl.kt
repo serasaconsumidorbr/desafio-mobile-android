@@ -13,18 +13,11 @@ import javax.inject.Inject
 
 class HomeListRepositoryImpl @Inject constructor(
     private val homeListDataSource: HomeListDataSource,
+    private val pageSize: Int,
 ) : HomeListRepository {
 
-    companion object {
-        const val PAGE_SIZE = 20
-        private const val MAX_SIZE = 500
-    }
-
     override fun getCharactersList(): Flow<PagingData<Character>> = Pager(
-        config = PagingConfig(
-            pageSize = PAGE_SIZE,
-            maxSize = MAX_SIZE
-        ),
-        pagingSourceFactory = { homeListDataSource.factoryGenerator() }
+        config = PagingConfig(pageSize),
+        pagingSourceFactory = { homeListDataSource }
     ).flow
 }

@@ -58,12 +58,14 @@ dependencies {
     implementation(Compose.navigation)
     implementation(Compose.viewModelCompose)
     implementation(Compose.activityCompose)
+    implementation(Paging.pagingCompose)
 
     implementation(DaggerHilt.hiltAndroid)
     kapt(DaggerHilt.hiltCompiler)
 
     implementation(project(Modules.coreUtil))
     implementation(project(Modules.coreUi))
+    implementation(project(Modules.viewModel))
     implementation(project(Modules.homeData))
     implementation(project(Modules.homeDomain))
     implementation(project(Modules.homePresentation))

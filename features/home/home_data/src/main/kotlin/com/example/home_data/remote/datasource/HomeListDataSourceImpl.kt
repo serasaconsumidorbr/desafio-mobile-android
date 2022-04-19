@@ -1,9 +1,8 @@
 package com.example.home_data.remote.datasource
 
-import androidx.paging.PagingSource
+import android.util.Log
 import androidx.paging.PagingState
 import com.example.home_data.remote.HomeListApi
-import com.example.home_data.remote.HomeListRepositoryImpl
 import com.example.home_data.remote.mapper.CharactersDataDtoToCharactersMapper
 import com.example.home_domain.model.Character
 import okio.IOException
@@ -13,34 +12,38 @@ import javax.inject.Inject
 class HomeListDataSourceImpl @Inject constructor(
     private val api: HomeListApi,
     private val mapper: CharactersDataDtoToCharactersMapper,
-) : HomeListDataSource {
+    private val homePageConfig: HomePageConfig,
+) : HomeListDataSource() {
 
-    companion object {
-        private const val STARTING_PAGE_INDEX = 1
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> = try {
+        val key = params.key
+        val limit = (key ?: homePageConfig.startingIndex) * homePageConfig.size
+        val offset = key ?: 0
+        val nextKey = key?.plus(homePageConfig.incrementValue) ?: homePageConfig.startingIndex
+        val prevKey = key?.minus(homePageConfig.incrementValue)
+        Log.d("HomeListDataSourceImpl", key.toString())
+        val response = api.getAllCharacters(
+            limit = limit,
+            offset = offset
+        )
+        val charactersUi = mapper.mapFrom(response.data)
+        LoadResult.Page(
+            data = charactersUi,
+            prevKey = prevKey,
+            nextKey = nextKey
+        )
+    } catch (e: IOException) {
+        LoadResult.Error(e)
+    } catch (e: HttpException) {
+        LoadResult.Error(e)
     }
 
-    inner class Loader: PagingSource<Int, Character>() {
-
-        override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> = try {
-            val key = params.key
-            val response = api.getAllCharacters(
-                limit = (key ?: STARTING_PAGE_INDEX) * HomeListRepositoryImpl.PAGE_SIZE,
-                offset = key ?: 0
+    override fun getRefreshKey(state: PagingState<Int, Character>): Int? = state.anchorPosition
+        ?.let { anchorPosition ->
+            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(
+                homePageConfig.incrementValue
+            ) ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(
+                homePageConfig.incrementValue
             )
-            val charactersUi = mapper.mapFrom(response.data)
-            LoadResult.Page(
-                data = charactersUi,
-                prevKey = key,
-                nextKey = params.key?.plus(1) ?: STARTING_PAGE_INDEX
-            )
-        } catch (e: IOException) {
-            LoadResult.Error(e)
-        } catch (e: HttpException) {
-            LoadResult.Error(e)
         }
-
-        override fun getRefreshKey(state: PagingState<Int, Character>): Int? = null
-    }
-
-    override fun factoryGenerator(): PagingSource<Int, Character> = Loader()
 }

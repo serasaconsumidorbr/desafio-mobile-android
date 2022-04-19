@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
@@ -22,7 +23,7 @@ import kotlinx.coroutines.flow.Flow
 @Composable
 fun HomeListScreenSuccessLoaded(
     flowCharacters: Flow<PagingData<Character>>,
-    retryAction: () -> Unit
+    retryAction: () -> Unit,
 ) {
     val spacing = LocalSpacing.current
     val lazyCharacters = flowCharacters.collectAsLazyPagingItems()
@@ -43,16 +44,23 @@ fun HomeListScreenSuccessLoaded(
             }
         }
         item {
-            lazyCharacters.apply {
-                when {
-                    loadState.refresh is LoadState.Loading -> LoadingComponent()
-                    loadState.append is LoadState.Loading -> LoadingComponent()
-                    loadState.refresh is LoadState.Error -> RetryButtonComponent(
-                        onClick = retryAction
-                    )
-                    loadState.append is LoadState.Error -> RetryButtonComponent(
-                        onClick = retryAction
-                    )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = spacing.medium),
+                contentAlignment = Alignment.Center
+            ) {
+                lazyCharacters.apply {
+                    when {
+                        loadState.refresh is LoadState.Loading -> LoadingComponent()
+                        loadState.append is LoadState.Loading -> LoadingComponent()
+                        loadState.refresh is LoadState.Error -> RetryButtonComponent(
+                            onClick = retryAction
+                        )
+                        loadState.append is LoadState.Error -> RetryButtonComponent(
+                            onClick = retryAction
+                        )
+                    }
                 }
             }
         }
