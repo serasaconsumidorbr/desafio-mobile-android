@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:id="@+id/heroContainer"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:alpha="0.5"
+       android:background="@drawable/ic_na"
+       tools:context="com.br.leandro.marvel_hero_app.ui.hero.HeroFragment">
+
+
+      <ImageView
+          android:id="@+id/heroImage"
+          style="@style/heroImageStyle"
+          android:layout_width="@dimen/hero_image_size_width"
+          android:layout_height="@dimen/hero_image_size_height"
+          android:importantForAccessibility="no"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/heroName"
+          style="@style/heroNameStyle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/no_hero_selected"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/heroImage" />
+
+      <TextView
+          android:id="@+id/heroDescription"
+          style="@style/heroDescriptionStyle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:alpha="1.0"
+          android:text="@string/select_a_hero_in_the_home_page_or_favorite_page"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/heroName"
+          app:layout_constraintVertical_bias="0.0" />
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/heroFavoriteButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:alpha="1.0"
+          android:backgroundTint="@color/colorAccent"
+          android:clickable="true"
+          android:focusable="true"
+          android:src="@drawable/ic_favorite_red_24dp"
+          android:visibility="invisible"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent" />
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
