@@ -15,6 +15,7 @@ include ':app'
 include ':core'
 include ':core:ui'
 include ':core:util'
+include ':core:view_model'
 
 // Features
 include ':features'
