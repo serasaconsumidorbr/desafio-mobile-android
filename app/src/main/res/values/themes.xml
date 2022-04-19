@@ -13,4 +13,22 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="fabTryButtonStyle">
+        <item name="android:backgroundTint">@color/colorPrimaryDark</item>
+        <item name="android:src">@android:drawable/ic_search_category_default</item>
+        <item name="android:tint">@android:color/white</item>
+    </style>
+
+    <style name="hintLookForHeroesStyle">
+        <item name="android:textSize">@dimen/hero_look_hint_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:layout_marginTop">@dimen/dimen_16</item>
+    </style>
+
+    <color name="colorPrimaryDark">#7F0F0B</color>
+    <dimen name="hero_look_hint_size">28sp</dimen>
+    <dimen name="dimen_16">16dp</dimen>
 </resources>
