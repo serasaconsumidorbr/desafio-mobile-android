@@ -7,7 +7,7 @@
 ![102366914-84f6b000-3ffc-11eb-8d49-b20694239782](https://user-images.githubusercontent.com/49800137/163729771-79d1c637-dc58-4b72-987e-81e279df487e.png)
 
 ## Architecture
-Pokedex is based on the MVVM architecture and the Repository pattern.
+Marvel - Hero is based on the MVVM architecture and the Repository pattern.
 ![77502018-f7d36000-6e9c-11ea-92b0-1097240c8689](https://user-images.githubusercontent.com/49800137/163729776-7ef76492-9426-4f30-a207-f7ccb6ebb5c7.png)
 
 # Architecture
