@@ -5,4 +5,5 @@ import com.squareup.moshi.Json
 
 data class ThumbnailDto(
     @field:Json(name = "path") val path: String?,
+    @field:Json(name = "extension") val extension: String?,
 )

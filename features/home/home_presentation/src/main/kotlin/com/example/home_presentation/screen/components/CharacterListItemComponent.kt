@@ -1,4 +1,4 @@
-package com.example.home_presentation.components
+package com.example.home_presentation.screen.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -42,14 +42,16 @@ fun CharacterListItemComponent(
         Row(
             modifier = Modifier.fillMaxSize()
         ) {
-            CharacterImageComponent(
-                imageUrl = character.imageUrl,
-                name = character.name,
+            Box(
                 modifier = Modifier
                     .fillMaxHeight()
                     .fillMaxWidth(0.4f)
-                    .padding(spacing.small)
-            )
+            ) {
+                CharacterImageComponent(
+                    imageUrl = character.imageUrl,
+                    name = character.name,
+                )
+            }
             Divider(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -78,7 +80,7 @@ private fun CharacterNameItemComponent(name: String) {
         ),
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
-        fontWeight = FontWeight.Normal
+        fontWeight = FontWeight.Bold
     )
 }
 
@@ -99,13 +101,13 @@ fun CharacterDescriptionItemComponent(description: String) {
 @Composable
 private fun CharacterImageComponent(imageUrl: String, name: String, modifier: Modifier = Modifier) {
     AsyncImage(
-        modifier = modifier,
+        modifier = modifier.fillMaxSize(),
         model = ImageRequest.Builder(LocalContext.current)
             .data(imageUrl)
             .crossfade(true)
             .build(),
         placeholder = painterResource(id = R.drawable.marvel_placeholder),
         contentDescription = name,
-        contentScale = ContentScale.Fit
+        contentScale = ContentScale.FillBounds
     )
 }
