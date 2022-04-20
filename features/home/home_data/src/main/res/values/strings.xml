@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_name">There\'s no name</string>
+    <string name="no_description">There\'s no description</string>
+</resources>
