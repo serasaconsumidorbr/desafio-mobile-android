@@ -9,4 +9,5 @@
     <string name="select_a_hero_in_the_home_page_or_favorite_page">Select a hero in the Home page or Favorite page</string>
     <string name="no_hero_saved">No hero saved</string>
     <string name="select_a_hero_in_the_home_page">Save a hero in the Home page</string>
+    <string name="title_favorite">Favorite</string>
 </resources>

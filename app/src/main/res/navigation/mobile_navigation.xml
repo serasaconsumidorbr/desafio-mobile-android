@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/navigation_hero"
-        android:name="com.br.leandro.marvel_hero_app.ui.dashboard.DashboardFragment"
+        android:name="com.br.leandro.marvel_hero_app.ui.hero.HeroFragment"
         android:label="@string/title_hero"
         tools:layout="@layout/fragment_hero" />
 
@@ -28,5 +28,22 @@
         android:id="@+id/navigation_notifications"
         android:name="com.br.leandro.marvel_hero_app.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications" >
+        <argument
+            android:name="heroDetail"
+            app:argType="com.br.leandro.marvel_hero_app.domain.hero.Hero" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_favorites"
+        android:name="com.br.leandro.marvel_hero_app.ui.favorite.FavoriteFragment"
+        android:label="@string/title_favorite"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_navigation_favorites_to_navigation_hero"
+            app:destination="@id/navigation_hero"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:launchSingleTop="true" />
+    </fragment>
 </navigation>
