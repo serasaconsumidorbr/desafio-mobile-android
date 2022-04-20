@@ -9,10 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.br.leandro.marvel_hero_app.R
 import com.br.leandro.marvel_hero_app.databinding.FragmentHomeBinding
+import com.br.leandro.marvel_hero_app.domain.hero.Hero
+import com.br.leandro.marvel_hero_app.ui.core.BaseFragment
+import com.br.leandro.marvel_hero_app.ui.core.InfiniteRecyclerViewScrollListener
+import com.br.leandro.marvel_hero_app.ui.core.OnFavoriteButtonClick
+import com.br.leandro.marvel_hero_app.ui.home.list.HomeHeroListAdapter
 
 
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(), OnFavoriteButtonClick {

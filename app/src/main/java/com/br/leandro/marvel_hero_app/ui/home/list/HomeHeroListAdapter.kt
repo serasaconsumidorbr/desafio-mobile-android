@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.br.leandro.marvel_hero_app.databinding.HeroItemListBinding
+import com.br.leandro.marvel_hero_app.domain.hero.Hero
+import com.br.leandro.marvel_hero_app.ui.core.HeroViewHolder
+import com.br.leandro.marvel_hero_app.ui.core.OnFavoriteButtonClick
 import com.bumptech.glide.RequestManager
 
 class HomeHeroListAdapter (

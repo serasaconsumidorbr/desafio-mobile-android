@@ -13,6 +13,7 @@ import com.br.leandro.marvel_hero_app.domain.hero.Hero
 import com.br.leandro.marvel_hero_app.domain.hero.usecase.DeleteHeroInDataBaseUseCase
 import com.br.leandro.marvel_hero_app.domain.hero.usecase.GetHeroesListUseCase
 import com.br.leandro.marvel_hero_app.domain.hero.usecase.SaveHeroInDataBaseUseCase
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

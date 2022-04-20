@@ -4,6 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.navigation.navGraphViewModels
+import com.br.leandro.marvel_hero_app.R
+import com.br.leandro.marvel_hero_app.databinding.FragmentHeroBinding
+import com.br.leandro.marvel_hero_app.domain.hero.Hero
+import com.br.leandro.marvel_hero_app.ui.core.BaseFragment
+import com.br.leandro.marvel_hero_app.ui.core.BundleKey
+import com.br.leandro.marvel_hero_app.ui.core.ThumbnailOrientation.LANDSCAPE
+import com.br.leandro.marvel_hero_app.ui.core.ThumbnailSize.LARGE
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.snackbar.Snackbar
 
@@ -39,7 +48,7 @@ class HeroFragment : BaseFragment<HeroViewModel, FragmentHeroBinding>() {
                 }
                 requestManagerGlide
                     .load(observableHero.imageUrl(LANDSCAPE, LARGE))
-                    .placeholder(R.drawable.ic_superhero_placeholder)
+                    .placeholder(R.drawable.ic_na)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(mViewBinding.heroImage)
                     .clearOnDetach()

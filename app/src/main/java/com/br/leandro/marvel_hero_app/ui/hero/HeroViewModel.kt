@@ -5,6 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.br.leandro.marvel_hero_app.common.ActionResult
+import com.br.leandro.marvel_hero_app.common.Failure
+import com.br.leandro.marvel_hero_app.common.Loading
+import com.br.leandro.marvel_hero_app.common.Success
+import com.br.leandro.marvel_hero_app.domain.hero.Hero
+import com.br.leandro.marvel_hero_app.domain.hero.usecase.SaveHeroInDataBaseUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
