@@ -1,6 +1,9 @@
 package com.br.leandro.marvel_hero_app.common.di.ui
 
 import androidx.lifecycle.ViewModel
+import com.br.leandro.marvel_hero_app.ui.favorite.FavoriteFragment
+import com.br.leandro.marvel_hero_app.ui.hero.HeroFragment
+import com.br.leandro.marvel_hero_app.ui.hero.HeroViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -40,4 +43,5 @@ abstract class FragmentBuilderModule {
     @ViewModelKey(FavoriteViewModel::class)
     abstract fun bindFavoriteViewModel(viewModel: FavoriteViewModel): ViewModel
     //endregion
+    //alterado
 }
