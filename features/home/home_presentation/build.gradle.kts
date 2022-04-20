@@ -7,7 +7,14 @@ dependencies {
     "implementation"(project(Modules.coreUtil))
     "implementation"(project(Modules.coreUi))
     "implementation"(project(Modules.homeDomain))
+    "implementation"(project(Modules.viewModel))
 
     // Paging
     "implementation"(Paging.pagingCompose)
+
+    // Coil
+    "implementation"(Coil.coilCompose)
+
+    // Swipe Refresh
+    "implementation"(Accompanist.swipeRefresh)
 }

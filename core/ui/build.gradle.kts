@@ -3,5 +3,5 @@ apply {
 }
 
 dependencies {
-    "implementation"(project(Modules.coreUtil))
+
 }

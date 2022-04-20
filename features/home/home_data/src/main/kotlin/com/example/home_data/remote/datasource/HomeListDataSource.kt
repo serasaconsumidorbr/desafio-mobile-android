@@ -1,8 +1,6 @@
 package com.example.home_data.remote.datasource
 
 import androidx.paging.PagingSource
-import com.example.home_domain.model.Character
+import com.example.home_domain.model.CharacterHomeUiModel
 
-interface HomeListDataSource {
-    fun factoryGenerator(): PagingSource<Int, Character>
-}
+abstract class HomeListDataSource : PagingSource<Int, CharacterHomeUiModel>()

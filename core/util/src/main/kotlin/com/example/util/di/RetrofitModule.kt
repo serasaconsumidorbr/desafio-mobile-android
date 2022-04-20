@@ -1,6 +1,6 @@
 package com.example.util.di
 
-import com.example.util.Api
+import com.example.util.api.Api
 import com.example.util.hash.Md5HashGenerator
 import com.example.util.hash.impl.Md5HashGeneratorImpl
 import dagger.Module
