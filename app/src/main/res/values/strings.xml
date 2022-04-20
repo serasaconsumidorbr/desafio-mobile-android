@@ -5,4 +5,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="look_for_heroes">Start</string>
     <string name="title_hero">Hero</string>
+    <string name="no_hero_selected">No hero selected</string>
+    <string name="select_a_hero_in_the_home_page_or_favorite_page">Select a hero in the Home page or Favorite page</string>
 </resources>

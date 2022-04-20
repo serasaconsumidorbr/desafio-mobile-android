@@ -27,7 +27,7 @@
 
       <TextView
           android:id="@+id/heroName"
-          style="@style/heroNameStyle"
+          style="@style/heroImageStyle"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:text="@string/no_hero_selected"
@@ -60,8 +60,4 @@
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent" />
    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-   </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.core.widget.NestedScrollView>

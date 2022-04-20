@@ -14,6 +14,14 @@
         <!-- Customize your theme here. -->
     </style>
 
+
+
+    <!--   region Hero Fragment-->
+    <style name="heroImageStyle">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:alpha">0.5</item>
+    </style>
+
     <style name="fabTryButtonStyle">
         <item name="android:backgroundTint">@color/colorPrimaryDark</item>
         <item name="android:src">@android:drawable/ic_search_category_default</item>
@@ -28,7 +36,17 @@
         <item name="android:layout_marginTop">@dimen/dimen_16</item>
     </style>
 
+    <style name="heroDescriptionStyle">
+        <item name="android:textSize">@dimen/hero_description_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:maxLines">10</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_marginTop">@dimen/dimen_16</item>
+    </style>
+
     <color name="colorPrimaryDark">#7F0F0B</color>
     <dimen name="hero_look_hint_size">28sp</dimen>
     <dimen name="dimen_16">16dp</dimen>
+    <dimen name="hero_description_size">28sp</dimen>
 </resources>
