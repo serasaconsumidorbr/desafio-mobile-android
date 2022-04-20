@@ -10,7 +10,7 @@ class OffsetCalculatorImpl @Inject constructor(
         if (currentKey <= startingIndex) {
             startingIndex
         } else {
-            (currentKey - startingIndex) * size
+            (currentKey - startingIndex) * size + startingIndex
         }
     }
 }

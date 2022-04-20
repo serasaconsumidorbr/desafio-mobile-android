@@ -20,7 +20,7 @@ fun CharacterListItemComponent(
     characterHomeUiModel: CharacterHomeUiModel,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    cardHeight: Dp = 64.dp,
+    cardHeight: Dp = 80.dp,
 ) = CharacterCardComponent(
     modifier = modifier,
     onClick = onClick,
