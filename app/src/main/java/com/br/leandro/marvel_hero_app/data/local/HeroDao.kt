@@ -1,6 +1,7 @@
 package com.br.leandro.marvel_hero_app.data.local
 
 import androidx.room.*
+import com.br.leandro.marvel_hero_app.domain.hero.Hero
 import kotlinx.coroutines.flow.Flow
 
 @Dao
