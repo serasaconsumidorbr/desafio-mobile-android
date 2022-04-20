@@ -1,6 +1,6 @@
 package com.example.home_domain.model
 
-data class Character(
+data class CharacterHomeUiModel(
     val name: String,
     val imageUrl: String,
     val description: String

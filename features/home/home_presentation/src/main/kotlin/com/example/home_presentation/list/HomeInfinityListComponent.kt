@@ -1,4 +1,4 @@
-package com.example.home_presentation.screen
+package com.example.home_presentation.list
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,8 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.items
-import com.example.home_domain.model.Character
-import com.example.home_presentation.screen.components.CharacterListItemComponent
+import com.example.home_domain.model.CharacterHomeUiModel
+import com.example.home_presentation.list.components.CharacterListItemComponent
 import com.example.ui.components.LoadingComponent
 import com.example.ui.components.RetryButtonComponent
 import com.example.ui.components.spacers.VerticalSpacer
@@ -21,8 +21,8 @@ import com.example.ui.theme.LocalSpacing
 import kotlinx.coroutines.flow.Flow
 
 @Composable
-fun HomeListScreenSuccessLoaded(
-    flowCharacters: Flow<PagingData<Character>>,
+fun HomeInfinityListComponent(
+    flowCharacters: Flow<PagingData<CharacterHomeUiModel>>,
     retryAction: () -> Unit,
 ) {
     val spacing = LocalSpacing.current
@@ -35,7 +35,7 @@ fun HomeListScreenSuccessLoaded(
             character?.let {
                 Box(modifier = Modifier.padding(horizontal = spacing.medium)) {
                     CharacterListItemComponent(
-                        character = it,
+                        characterHomeUiModel = it,
                         onClick = {},
                         modifier = Modifier.fillMaxWidth()
                     )

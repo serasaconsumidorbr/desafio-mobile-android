@@ -1,4 +1,4 @@
-package com.example.home_presentation.screen.components
+package com.example.home_presentation.list.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.home_domain.model.Character
+import com.example.home_domain.model.CharacterHomeUiModel
 import com.example.home_presentation.R
 import com.example.ui.components.spacers.VerticalSpacer
 import com.example.ui.theme.LocalSpacing
@@ -28,7 +28,7 @@ import com.example.ui.theme.LocalSpacing
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CharacterListItemComponent(
-    character: Character,
+    characterHomeUiModel: CharacterHomeUiModel,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     cardHeight: Dp = 64.dp,
@@ -48,8 +48,8 @@ fun CharacterListItemComponent(
                     .fillMaxWidth(0.4f)
             ) {
                 CharacterImageComponent(
-                    imageUrl = character.imageUrl,
-                    name = character.name,
+                    imageUrl = characterHomeUiModel.imageUrl,
+                    name = characterHomeUiModel.name,
                 )
             }
             Divider(
@@ -63,9 +63,9 @@ fun CharacterListItemComponent(
                     .fillMaxSize()
                     .padding(horizontal = spacing.small)
             ) {
-                CharacterNameItemComponent(character.name)
+                CharacterNameItemComponent(characterHomeUiModel.name)
                 VerticalSpacer(spacing.small)
-                CharacterDescriptionItemComponent(character.description)
+                CharacterDescriptionItemComponent(characterHomeUiModel.description)
             }
         }
     }

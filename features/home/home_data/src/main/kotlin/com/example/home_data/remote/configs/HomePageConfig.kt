@@ -1,4 +1,4 @@
-package com.example.home_data.remote.datasource
+package com.example.home_data.remote.configs
 
 data class HomePageConfig(
     val size: Int,

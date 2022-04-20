@@ -1,11 +1,7 @@
 package com.example.home_data.di
 
-import com.example.home_data.remote.mapper.CharacterDtoToCharacterMapper
-import com.example.home_data.remote.mapper.CharacterThumbnailToImageUrlMapper
-import com.example.home_data.remote.mapper.CharactersDataDtoToCharactersMapper
-import com.example.home_data.remote.mapper.impl.CharacterDtoToCharacter
-import com.example.home_data.remote.mapper.impl.CharacterThumbnailToImageUrl
-import com.example.home_data.remote.mapper.impl.CharactersDataDtoToCharacters
+import com.example.home_data.remote.mapper.*
+import com.example.home_data.remote.mapper.impl.*
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -21,6 +17,18 @@ object HomeMappersModule {
     @Singleton
     fun providesCharacterThumbnailToImageUrlMapper(): CharacterThumbnailToImageUrlMapper =
         CharacterThumbnailToImageUrl()
+
+    @Provides
+    @Singleton
+    fun providesCharactersHomeDatabaseToCharactersHomeUiMapper():
+            CharactersHomeDatabaseToCharactersHomeUiMapper =
+        CharactersHomeDatabaseToCharactersHomeUi()
+
+    @Provides
+    @Singleton
+    fun providesCharactersHomeUiToCharactersHomeDatabase():
+            CharactersHomeUiToCharactersHomeDatabaseMapper =
+        CharactersHomeUiToCharactersHomeDatabase()
 
 }
 
