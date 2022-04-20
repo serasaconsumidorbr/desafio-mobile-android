@@ -14,6 +14,20 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'BASE_URL', '"https://gateway.marvel.com:443/v1/public/"'
+        buildConfigField 'String', 'API_PRIVATE', '"d6d16713cfd2ba7aee39a6a5ed03fb2be1b3313c"'
+        buildConfigField 'String', 'API_PUBLIC', '"4d61c99bc5708b7da816aa78e4cbb4d3"'
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
+            }
+        }
+
     }
     allprojects {
         configurations.all {
@@ -112,8 +126,12 @@ dependencies {
     implementation "androidx.arch.core:core-testing:$arch_core_test_version"
     def paging_version = "2.1.2"
     implementation "androidx.paging:paging-runtime:$paging_version"
-    def fragment_version = "1.2.4"
+    def fragment_version = "1.4.1"
+    implementation "androidx.fragment:fragment:$fragment_version"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$navigation_version"
+
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
 
 
 
