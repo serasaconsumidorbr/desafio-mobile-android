@@ -1,6 +1,10 @@
 package com.br.leandro.marvel_hero_app.common.di.component
 
 import android.app.Application
+import com.br.leandro.marvel_hero_app.SaveMyHeroApplication
+import com.br.leandro.marvel_hero_app.common.di.module.ApplicationModule
+import com.br.leandro.marvel_hero_app.common.di.module.NetworkModule
+import com.br.leandro.marvel_hero_app.common.di.ui.FragmentBuilderModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
