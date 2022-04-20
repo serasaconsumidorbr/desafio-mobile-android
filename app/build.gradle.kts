@@ -80,9 +80,21 @@ dependencies {
     implementation(Retrofit.okHttpLoggingInterceptor)
     implementation(Retrofit.moshiConverter)
 
-    kapt(Room.roomCompiler)
-    implementation(Room.roomKtx)
-    implementation(Room.roomRuntime)
-
     kaptAndroidTest(DaggerHilt.hiltCompiler)
+
+    // Tests
+    testImplementation(Testing.junit4)
+    testImplementation(Testing.junitAndroidExt)
+    testImplementation(Testing.truth)
+    testImplementation(Testing.coroutines)
+    testImplementation(Testing.composeUiTest)
+    testImplementation(Testing.mockk)
+
+    androidTestImplementation(Testing.junit4)
+    androidTestImplementation(Testing.junitAndroidExt)
+    androidTestImplementation(Testing.truth)
+    androidTestImplementation(Testing.coroutines)
+    androidTestImplementation(Testing.composeUiTest)
+    androidTestImplementation(Testing.mockk)
+    androidTestImplementation(Testing.hiltTesting)
 }

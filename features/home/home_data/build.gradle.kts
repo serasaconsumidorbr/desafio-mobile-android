@@ -14,9 +14,4 @@ dependencies {
 
     // Paging
     "implementation"(Paging.pagingCompose)
-
-    // Room
-//    "implementation"(Room.roomCompiler)
-//    "implementation"(Room.roomKtx)
-//    "implementation"(Room.roomRuntime)
 }

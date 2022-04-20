@@ -9,6 +9,7 @@ class CharacterThumbnailToImageUrl: CharacterThumbnailToImageUrlMapper {
         thumbnailDto: ThumbnailDto?,
         imageVariant: ImageVariant,
         imageType: ImageVariant.Type,
-    ): String = "${thumbnailDto?.path.orEmpty()}/${imageVariant.getValue(imageType)}." +
-            thumbnailDto?.extension.orEmpty()
+    ): String = thumbnailDto?.let {
+        "${it.path}/${imageVariant.getValue(imageType)}.${it.extension}"
+    }.orEmpty()
 }

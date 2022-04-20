@@ -1,6 +1,5 @@
 package com.example.home_data.remote.datasource
 
-import android.util.Log
 import androidx.paging.PagingState
 import com.example.home_data.remote.HomeApi
 import com.example.home_data.remote.configs.HomePageConfig
@@ -29,12 +28,6 @@ class HomeListDataSourceImpl @Inject constructor(
             }
             val nextKey = key + homePageConfig.incrementValue
             val offset = offsetCalculator(key)
-            Log.d("HomeListDataSourceImpl", "\nLimit: ${homePageConfig.size}\n" +
-                    "Previous key: $prevKey\n" +
-                    "Key: $key\n" +
-                    "Next key: $nextKey\n" +
-                    "Offset: $offset"
-            )
             val response = api.getCharacters(
                 limit = homePageConfig.size,
                 offset = offset

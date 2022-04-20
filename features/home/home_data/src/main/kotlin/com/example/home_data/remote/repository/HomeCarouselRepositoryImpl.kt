@@ -5,11 +5,7 @@ import com.example.home_data.remote.configs.CarouselConfig
 import com.example.home_data.remote.mapper.CharactersDataDtoToCharactersMapper
 import com.example.home_domain.model.CharacterHomeUiModel
 import com.example.home_domain.repository.HomeCarouselRepository
-import com.example.util.Resource
 import com.example.util.api.ImageVariant
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
