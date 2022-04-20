@@ -1,8 +1,5 @@
 package com.example.home_data.di
 
-import android.app.Application
-import androidx.room.Room
-import com.example.home_data.local.CharacterHomeCarouselDatabase
 import com.example.home_data.remote.HomeApi
 import com.example.home_data.remote.configs.CarouselConfig
 import com.example.home_data.remote.configs.HomePageConfig
@@ -21,16 +18,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object HomeDataModule {
-
-    @Provides
-    @Singleton
-    fun providesCarouselDatabase(app: Application): CharacterHomeCarouselDatabase = Room
-        .databaseBuilder(
-            app,
-            CharacterHomeCarouselDatabase::class.java,
-            "characters_carousel.db"
-        )
-        .build()
 
     @Provides
     @Singleton

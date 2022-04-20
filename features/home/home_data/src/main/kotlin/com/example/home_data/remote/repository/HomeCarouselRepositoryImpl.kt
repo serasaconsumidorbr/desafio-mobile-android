@@ -1,11 +1,8 @@
 package com.example.home_data.remote.repository
 
-import com.example.home_data.local.CharacterHomeCarouselDatabase
 import com.example.home_data.remote.HomeApi
 import com.example.home_data.remote.configs.CarouselConfig
 import com.example.home_data.remote.mapper.CharactersDataDtoToCharactersMapper
-import com.example.home_data.remote.mapper.CharactersHomeDatabaseToCharactersHomeUiMapper
-import com.example.home_data.remote.mapper.CharactersHomeUiToCharactersHomeDatabaseMapper
 import com.example.home_domain.model.CharacterHomeUiModel
 import com.example.home_domain.repository.HomeCarouselRepository
 import com.example.util.Resource
@@ -21,29 +18,11 @@ class HomeCarouselRepositoryImpl @Inject constructor(
     private val api: HomeApi,
     private val charactersDataDtoToCharacters: CharactersDataDtoToCharactersMapper,
     private val carouselConfig: CarouselConfig,
-    private val databaseToUiMapper: CharactersHomeDatabaseToCharactersHomeUiMapper,
-    private val uiToDatabaseMapper: CharactersHomeUiToCharactersHomeDatabaseMapper,
-    database: CharacterHomeCarouselDatabase,
 ) : HomeCarouselRepository {
-
-    private val dao by lazy { database.dao }
 
     override fun getHomeCarouselCharacters(): Flow<Resource<List<CharacterHomeUiModel>>> = flow {
         emit(value = Resource.Loading())
-        val charactersDatabase = dao.getCharacters()
-        if (charactersDatabase.isNotEmpty()) {
-            emit(
-                Resource.Success(
-                    data = databaseToUiMapper.mapFrom(charactersDatabase)
-                )
-            )
-        } else {
-            loadFromRemote()
-        }
-    }
-
-    override suspend fun dropDatabase() {
-        dao.clearCharacters()
+        loadFromRemote()
     }
 
     private suspend fun FlowCollector<Resource<List<CharacterHomeUiModel>>>.loadFromRemote() {
@@ -60,14 +39,10 @@ class HomeCarouselRepositoryImpl @Inject constructor(
             null
         }
         remoteCharacters?.data?.let {
-            dropDatabase()
             val uiCharacters = charactersDataDtoToCharacters.mapFrom(
                 dto = it,
                 imageVariant = ImageVariant.Standard,
                 imageType = ImageVariant.Type.MEDIUM
-            )
-            dao.insertCharacters(
-                characters = uiToDatabaseMapper.mapFrom(uiCharacters)
             )
             emit(
                 Resource.Success(

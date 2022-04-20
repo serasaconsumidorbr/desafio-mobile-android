@@ -18,18 +18,6 @@ object HomeMappersModule {
     fun providesCharacterThumbnailToImageUrlMapper(): CharacterThumbnailToImageUrlMapper =
         CharacterThumbnailToImageUrl()
 
-    @Provides
-    @Singleton
-    fun providesCharactersHomeDatabaseToCharactersHomeUiMapper():
-            CharactersHomeDatabaseToCharactersHomeUiMapper =
-        CharactersHomeDatabaseToCharactersHomeUi()
-
-    @Provides
-    @Singleton
-    fun providesCharactersHomeUiToCharactersHomeDatabase():
-            CharactersHomeUiToCharactersHomeDatabaseMapper =
-        CharactersHomeUiToCharactersHomeDatabase()
-
 }
 
 @Module

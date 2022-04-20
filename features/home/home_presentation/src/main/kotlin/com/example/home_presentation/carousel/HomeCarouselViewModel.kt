@@ -22,15 +22,6 @@ class HomeCarouselViewModel @Inject constructor(
         getCharacters()
     }
 
-    override fun dispatchEvent(event: HomeScreenUiEvent) {
-        super.dispatchEvent(event)
-        if (event == HomeScreenUiEvent.RetryLoad) {
-            viewModelScope.launch {
-                repository.dropDatabase()
-            }
-        }
-    }
-
     override fun getCharacters() {
         repository
             .getHomeCarouselCharacters()
