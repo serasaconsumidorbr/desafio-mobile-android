@@ -14,6 +14,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- region Home Fragment-->
+    <style name="HomeRecyclerStyle">
+        <item name="android:clipToPadding">false</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:paddingTop">@dimen/dimen_4</item>
+    </style>
+
     <style name="homeHeroNameStyle">
         <item name="android:textAlignment">center</item>
     </style>
@@ -21,6 +28,14 @@
     <style name="homeHeroDescriptionStyle">
         <item name="android:textAlignment">viewStart</item>
         <item name="android:layout_marginTop">@dimen/dimen_4</item>
+    </style>
+
+    <style name="heroNameStyle">
+        <item name="android:textSize">@dimen/hero_name_size</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_marginTop">@dimen/dimen_16</item>
     </style>
 
     <style name="homeHeroThumbnailStyle">
@@ -71,4 +86,5 @@
     <dimen name="max_size_thumbnail">100dp</dimen>
     <dimen name="min_size_thumbnail">100dp</dimen>
     <dimen name="dimen_4">4dp</dimen>
+    <dimen name="hero_name_size">40sp</dimen>
 </resources>
