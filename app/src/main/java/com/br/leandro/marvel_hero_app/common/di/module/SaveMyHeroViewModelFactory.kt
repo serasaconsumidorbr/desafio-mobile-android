@@ -1,5 +1,9 @@
 package com.br.leandro.marvel_hero_app.common.di.module
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import dagger.Binds
+import dagger.MapKey
 import dagger.Module
 import dagger.Provides
 import okhttp3.*
@@ -7,72 +11,47 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.security.MessageDigest
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
+import javax.inject.Provider
 import javax.inject.Singleton
+import kotlin.reflect.KClass
 
-@Module
-object NetworkModule {
-
-    @Singleton
-    @Provides
-    @JvmStatic
-    fun provideRetrofit(okHttpClient: OkHttpClient): MarvelService {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
-            .client(okHttpClient)
-            .build()
-            .create(MarvelService::class.java)
-    }
-
-    @Singleton
-    @Provides
-    @JvmStatic
-    fun provideOkHttp(): OkHttpClient {
-        return OkHttpClient()
-            .newBuilder()
-            .connectTimeout(60L, TimeUnit.SECONDS)
-            .readTimeout(60L, TimeUnit.SECONDS)
-            .addInterceptor(ApiInterceptor())
-            .build()
-    }
-
-    private class ApiInterceptor : Interceptor {
-
-        override fun intercept(chain: Interceptor.Chain): Response {
-            val request = chain.request()
-            val urlBuilder = request.url().newBuilder()
-
-            val currentTime = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toString()
-            val privateApiKey = BuildConfig.API_PRIVATE
-            val publicApiKey = BuildConfig.API_PUBLIC
-            val hash = generateHash(currentTime, privateApiKey, publicApiKey)
-            val newUrl = urlBuilder
-                .addQueryParameter("apikey", publicApiKey)
-                .addQueryParameter("hash", hash)
-                .addQueryParameter("ts", currentTime)
-                .build()
-
-            val newRequest = request.buildNewUrl(newUrl)
-
-            return chain.proceed(newRequest)
+class SaveMyHeroViewModelFactory @Inject constructor(
+    private val creators: @JvmSuppressWildcards Map<Class<out ViewModel>, Provider<ViewModel>>
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        var creator: Provider<out ViewModel>? = creators[modelClass]
+        if (creator == null) {
+            for ((key, value) in creators) {
+                if (modelClass.isAssignableFrom(key)) {
+                    creator = value
+                    break
+                }
+            }
         }
-
-        private fun Request.buildNewUrl(newUrl: HttpUrl): Request {
-            return this.newBuilder().url(newUrl).build()
+        if (creator == null) {
+            throw IllegalArgumentException("Unknown model class: $modelClass")
         }
-
-        private fun String.toMD5(): String {
-            val md = MessageDigest.getInstance("MD5")
-            val digested = md.digest(toByteArray())
-            return digested.joinToString("") { String.format("%02x", it) }
-        }
-
-        private fun generateHash(
-            currentTime: String,
-            privateApiKey: String,
-            publicApiKey: String
-        ): String {
-            return (currentTime.toString() + privateApiKey + publicApiKey).toMD5()
+        try {
+            @Suppress("UNCHECKED_CAST")
+            return creator.get() as T
+        } catch (e: Exception) {
+            throw RuntimeException(e)
         }
     }
 }
+
+@Module
+internal abstract class ViewModelProviderFactory {
+    @Binds
+    abstract fun bindViewModelFactory(factory: SaveMyHeroViewModelFactory): ViewModelProvider.Factory
+}
+
+@Target(
+    AnnotationTarget.FUNCTION,
+    AnnotationTarget.PROPERTY_GETTER,
+    AnnotationTarget.PROPERTY_SETTER
+)
+@Retention(AnnotationRetention.RUNTIME)
+@MapKey
+annotation class ViewModelKey(val value: KClass<out ViewModel>)

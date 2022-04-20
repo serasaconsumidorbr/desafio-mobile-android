@@ -1,5 +1,7 @@
 package com.br.leandro.marvel_hero_app.common.di.module
 
+import com.br.leandro.marvel_hero_app.BuildConfig
+import com.br.leandro.marvel_hero_app.data.remote.MarvelService
 import dagger.Module
 import dagger.Provides
 import okhttp3.*

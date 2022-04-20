@@ -3,6 +3,8 @@ package com.br.leandro.marvel_hero_app.domain.hero
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.br.leandro.marvel_hero_app.domain.hero.Hero.Companion.TABLE_NAME
+import kotlinx.android.parcel.Parcelize
 
 
 @Parcelize

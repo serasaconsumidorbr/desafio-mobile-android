@@ -1,9 +1,13 @@
 package com.br.leandro.marvel_hero_app.common.di.ui
 
 import androidx.lifecycle.ViewModel
+import com.br.leandro.marvel_hero_app.common.di.module.ViewModelKey
+import com.br.leandro.marvel_hero_app.common.di.module.ViewModelProviderFactory
 import com.br.leandro.marvel_hero_app.ui.favorite.FavoriteFragment
 import com.br.leandro.marvel_hero_app.ui.hero.HeroFragment
 import com.br.leandro.marvel_hero_app.ui.hero.HeroViewModel
+import com.br.leandro.marvel_hero_app.ui.home.HomeFragment
+import com.br.leandro.marvel_hero_app.ui.home.HomeViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

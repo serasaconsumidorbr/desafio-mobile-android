@@ -1,6 +1,7 @@
 package com.br.leandro.marvel_hero_app.common.di.module
 
 import android.app.Application
+import com.br.leandro.marvel_hero_app.data.local.SaveMyHeroDatabase
 import com.bumptech.glide.Glide
 import dagger.Module
 import dagger.Provides
