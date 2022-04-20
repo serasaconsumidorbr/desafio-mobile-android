@@ -5,5 +5,5 @@ import com.example.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface HomeCarouselRepository {
-    fun getHomeCarouselCharacters(): Flow<Resource<List<CharacterHomeUiModel>>>
+    suspend fun getHomeCarouselCharacters(): List<CharacterHomeUiModel>?
 }

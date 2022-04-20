@@ -2,6 +2,7 @@ package com.example.home_presentation.components.carousel
 
 import androidx.lifecycle.viewModelScope
 import com.example.home_domain.repository.HomeCarouselRepository
+import com.example.home_domain.usecase.GetHomeCarouselUseCase
 import com.example.home_presentation.HomeBaseViewModel
 import com.example.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeCarouselViewModel @Inject constructor(
-    private val repository: HomeCarouselRepository,
+    private val getHomeCarousel: GetHomeCarouselUseCase,
 ) : HomeBaseViewModel<HomeCarouselUiState>(
     HomeCarouselUiState.Loading
 ) {
@@ -21,19 +22,16 @@ class HomeCarouselViewModel @Inject constructor(
     }
 
     override fun getCharacters() {
-        repository
-            .getHomeCarouselCharacters()
-            .onEach { result ->
-                updateUiState {
-                    when (result) {
-                        is Resource.Success -> result.data.let { characters ->
-                            HomeCarouselUiState.Success(data = characters)
-                        }
-                        is Resource.Error -> HomeCarouselUiState.Error
-                        is Resource.Loading -> HomeCarouselUiState.Loading
+        getHomeCarousel().onEach { result ->
+            updateUiState {
+                when (result) {
+                    is Resource.Success -> result.data.let { characters ->
+                        HomeCarouselUiState.Success(data = characters)
                     }
+                    is Resource.Error -> HomeCarouselUiState.Error
+                    is Resource.Loading -> HomeCarouselUiState.Loading
                 }
             }
-            .launchIn(viewModelScope)
+        }.launchIn(viewModelScope)
     }
 }

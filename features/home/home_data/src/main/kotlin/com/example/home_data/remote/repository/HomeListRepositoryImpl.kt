@@ -14,8 +14,8 @@ class HomeListRepositoryImpl @Inject constructor(
     private val pageSize: Int,
 ) : HomeListRepository {
 
-    override fun getCharactersList(): Flow<PagingData<CharacterHomeUiModel>> = Pager(
+    override fun getCharactersList(): Pager<Int, CharacterHomeUiModel> = Pager(
         config = PagingConfig(pageSize),
         pagingSourceFactory = { homeListDataSource }
-    ).flow
+    )
 }

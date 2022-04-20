@@ -20,34 +20,22 @@ class HomeCarouselRepositoryImpl @Inject constructor(
     private val carouselConfig: CarouselConfig,
 ) : HomeCarouselRepository {
 
-    override fun getHomeCarouselCharacters(): Flow<Resource<List<CharacterHomeUiModel>>> = flow {
-        emit(value = Resource.Loading())
-        loadFromRemote()
-    }
-
-    private suspend fun FlowCollector<Resource<List<CharacterHomeUiModel>>>.loadFromRemote() {
+    override suspend fun getHomeCarouselCharacters(): List<CharacterHomeUiModel>? {
         val remoteCharacters = try {
             api.getCharacters(
                 limit = carouselConfig.quantity,
                 offset = carouselConfig.startIndex
             )
         } catch (e: IOException) {
-            emit(Resource.Error("Couldn't load data"))
             null
         } catch (e: HttpException) {
-            emit(Resource.Error("Couldn't load data"))
             null
         }
-        remoteCharacters?.data?.let {
-            val uiCharacters = charactersDataDtoToCharacters.mapFrom(
+        return remoteCharacters?.data?.let {
+            charactersDataDtoToCharacters.mapFrom(
                 dto = it,
                 imageVariant = ImageVariant.Standard,
                 imageType = ImageVariant.Type.MEDIUM
-            )
-            emit(
-                Resource.Success(
-                    data = uiCharacters
-                )
             )
         }
     }
