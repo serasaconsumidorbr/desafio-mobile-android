@@ -14,17 +14,19 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.home_domain.model.CharacterHomeUiModel
-import com.example.home_presentation.carousel.HomeCarouselComponent
-import com.example.home_presentation.carousel.HomeCarouselUiState
-import com.example.home_presentation.carousel.HomeCarouselViewModel
-import com.example.home_presentation.list.HomeListUiState
-import com.example.home_presentation.list.HomeListViewModel
-import com.example.home_presentation.list.homeInfinityListComponent
+import com.example.home_presentation.components.carousel.HomeCarouselComponent
+import com.example.home_presentation.components.carousel.HomeCarouselUiState
+import com.example.home_presentation.components.carousel.HomeCarouselViewModel
+import com.example.home_presentation.components.list.HomeListUiState
+import com.example.home_presentation.components.list.HomeListViewModel
+import com.example.home_presentation.components.list.homeInfinityListComponent
 import com.example.ui.components.LoadingComponent
 import com.example.ui.components.RetryButtonComponent
 import com.example.ui.components.spacers.VerticalSpacer
 import com.example.ui.theme.Dimensions
 import com.example.ui.theme.LocalSpacing
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -34,11 +36,15 @@ fun HomeScreen(
 ) {
     val homeListUiState by homeListViewModel.uiState.collectAsState()
     val carouselUiState by carouselViewModel.uiState.collectAsState()
-    val retryAction = { homeListViewModel.dispatchEvent(HomeScreenUiEvent.RetryLoad) }
     HomeScreen(
         carouselUiState = carouselUiState,
-        retryAction = retryAction,
-        homeListUiState = homeListUiState
+        homeListUiState = homeListUiState,
+        retryAction = {
+            homeListViewModel.dispatchEvent(HomeScreenUiEvent.RetryLoad)
+            carouselViewModel.dispatchEvent(HomeScreenUiEvent.RetryLoad)
+        },
+        carouselCardClick = { carouselViewModel.dispatchEvent(HomeScreenUiEvent.CardClick {}) },
+        listCardClick = { homeListViewModel.dispatchEvent(HomeScreenUiEvent.CardClick {}) }
     )
 }
 
@@ -46,30 +52,41 @@ fun HomeScreen(
 private fun HomeScreen(
     carouselUiState: HomeCarouselUiState,
     retryAction: () -> Unit,
+    carouselCardClick: () -> Unit,
+    listCardClick: () -> Unit,
     homeListUiState: HomeListUiState,
 ) {
     val lazyCharacters = (homeListUiState as? HomeListUiState.Success)
         ?.data?.collectAsLazyPagingItems()
     val dimensions = LocalSpacing.current
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
-        item {
-            VerticalSpacer()
-        }
-        item {
-            CarouselComponent(
-                state = carouselUiState,
-                retryAction = retryAction
-            )
-        }
-        item {
-            VerticalSpacer()
-        }
-        lazyCharacters?.let {
-            infinityListComponent(
-                lazyCharacters = it,
-                dimensions = dimensions,
-                retryAction = retryAction
-            )
+    SwipeRefresh(
+        state = rememberSwipeRefreshState(
+            isRefreshing = false
+        ),
+        onRefresh = retryAction
+    ) {
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            item {
+                VerticalSpacer()
+            }
+            item {
+                CarouselComponent(
+                    state = carouselUiState,
+                    retryAction = retryAction,
+                    openCharacterDetails = carouselCardClick
+                )
+            }
+            item {
+                VerticalSpacer()
+            }
+            lazyCharacters?.let {
+                infinityListComponent(
+                    lazyCharacters = it,
+                    dimensions = dimensions,
+                    retryAction = retryAction,
+                    listCardClick = listCardClick
+                )
+            }
         }
     }
 }
@@ -78,9 +95,14 @@ private fun HomeScreen(
 private fun CarouselComponent(
     state: HomeCarouselUiState,
     retryAction: () -> Unit,
+    openCharacterDetails: () -> Unit,
 ) {
     (state as? HomeCarouselUiState.Success)?.let {
-        HomeCarouselComponent(it.data)
+        HomeCarouselComponent(
+            characters = it.data,
+            openCharacterDetails = openCharacterDetails,
+            contentPadding = LocalSpacing.current.medium
+        )
     } ?: (state as? HomeCarouselUiState.Loading)?.let {
         LoadingComponent()
     } ?: (state as? HomeCarouselUiState.Error)?.let {
@@ -92,10 +114,12 @@ private fun LazyListScope.infinityListComponent(
     lazyCharacters: LazyPagingItems<CharacterHomeUiModel>,
     dimensions: Dimensions,
     retryAction: () -> Unit,
+    listCardClick: () -> Unit,
 ) = homeInfinityListComponent(
     lazyCharacters = lazyCharacters,
     dimensions = dimensions,
-    retryAction = retryAction
+    retryAction = retryAction,
+    listCardClick = listCardClick
 )
 
 @Composable

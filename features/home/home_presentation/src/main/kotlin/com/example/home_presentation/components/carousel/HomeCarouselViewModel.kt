@@ -1,14 +1,12 @@
-package com.example.home_presentation.carousel
+package com.example.home_presentation.components.carousel
 
 import androidx.lifecycle.viewModelScope
 import com.example.home_domain.repository.HomeCarouselRepository
 import com.example.home_presentation.HomeBaseViewModel
-import com.example.home_presentation.screen.HomeScreenUiEvent
 import com.example.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

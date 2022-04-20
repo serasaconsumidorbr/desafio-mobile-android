@@ -1,4 +1,4 @@
-package com.example.home_presentation.carousel
+package com.example.home_presentation.components.carousel
 
 import com.example.home_domain.model.CharacterHomeUiModel
 

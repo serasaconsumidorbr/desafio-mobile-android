@@ -1,4 +1,4 @@
-package com.example.home_presentation.list
+package com.example.home_presentation.components.list
 
 import androidx.paging.PagingData
 import com.example.home_domain.model.CharacterHomeUiModel

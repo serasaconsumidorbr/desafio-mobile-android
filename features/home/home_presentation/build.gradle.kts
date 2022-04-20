@@ -14,4 +14,7 @@ dependencies {
 
     // Coil
     "implementation"(Coil.coilCompose)
+
+    // Swipe Refresh
+    "implementation"(Accompanist.swipeRefresh)
 }

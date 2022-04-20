@@ -1,12 +1,10 @@
-package com.example.home_presentation.list
+package com.example.home_presentation.components.list
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import androidx.paging.cachedIn
 import com.example.home_domain.repository.HomeListRepository
 import com.example.home_presentation.HomeBaseViewModel
-import com.example.home_presentation.screen.HomeScreenUiEvent
-import com.example.view_model.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
