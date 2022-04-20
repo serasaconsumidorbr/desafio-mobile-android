@@ -14,7 +14,21 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="homeHeroNameStyle">
+        <item name="android:textAlignment">center</item>
+    </style>
 
+    <style name="homeHeroDescriptionStyle">
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:layout_marginTop">@dimen/dimen_4</item>
+    </style>
+
+    <style name="homeHeroThumbnailStyle">
+        <item name="android:maxWidth">@dimen/max_size_thumbnail</item>
+        <item name="android:maxHeight">@dimen/max_size_thumbnail</item>
+        <item name="android:minWidth">@dimen/min_size_thumbnail</item>
+        <item name="android:minHeight">@dimen/min_size_thumbnail</item>
+    </style>
 
     <!--   region Hero Fragment-->
     <style name="heroImageStyle">
@@ -45,8 +59,16 @@
         <item name="android:layout_marginTop">@dimen/dimen_16</item>
     </style>
 
+    <style name="homeHeroContainerStyle">
+        <item name="android:layout_margin">@dimen/dimen_8</item>
+    </style>
+
     <color name="colorPrimaryDark">#7F0F0B</color>
     <dimen name="hero_look_hint_size">28sp</dimen>
     <dimen name="dimen_16">16dp</dimen>
     <dimen name="hero_description_size">28sp</dimen>
+    <dimen name="dimen_8">8dp</dimen>
+    <dimen name="max_size_thumbnail">100dp</dimen>
+    <dimen name="min_size_thumbnail">100dp</dimen>
+    <dimen name="dimen_4">4dp</dimen>
 </resources>
