@@ -2,15 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.br.leandro.marvel_hero_app">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
+        android:name="com.br.leandro.marvel_hero_app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Marvel_hero_app">
+
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.br.leandro.marvel_hero_app.features.main.MainActivity"
+            android:configChanges="screenSize|orientation"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>

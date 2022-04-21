@@ -13,4 +13,9 @@
     <string name="hero_missing_data">NO DATA</string>
     <string name="input_your_hero_name">Input Your hero name</string>
     <string name="detail_save_favorite_hero_button">You saved your hero! Go to the favorite section</string>
+    <string name="characters_title">Marvel Heros</string>
+    <string name="characters_placeholder_message">Something is wrong. \n\nCheck your internet connection.</string>
+    <string name="details_comics_title">Comics</string>
+    <string name="details_placeholder_message">Something is wrong. \n\nCheck your internet connection.</string>
+    <string name="details_series_title">Series</string>
 </resources>

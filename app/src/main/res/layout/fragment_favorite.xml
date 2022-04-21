@@ -51,6 +51,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/hero_item_list" />
+        tools:listitem="@layout/list_item_details_info" />
 
 </ViewFlipper>

@@ -9,7 +9,7 @@
         android:id="@+id/mainFragment"
         android:name="com.br.leandro.marvel_hero_app.features.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_main" >
 
         <action
             android:id="@+id/mainToCharacters"
@@ -24,19 +24,19 @@
 
     <fragment
         android:id="@+id/charactersFragment"
-        android:name="com.rafaelfelipeac.marvelapp.features.characters.presentation.CharactersFragment"
+        android:name="com.br.leandro.marvel_hero_app.features.characters.presentation.CharactersFragment"
         android:label="fragment_characters"
         tools:layout="@layout/fragment_characters" />
 
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.rafaelfelipeac.marvelapp.features.favorites.presentation.FavoriteFragment"
+        android:name="com.br.leandro.marvel_hero_app.features.favorites.presentation.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
 
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.rafaelfelipeac.marvelapp.features.details.presentation.DetailsFragment"
+        android:name="com.br.leandro.marvel_hero_app.features.details.presentation.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
 
