@@ -6,44 +6,44 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.br.leandro.marvel_hero_app.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home">
+        android:id="@+id/mainFragment"
+        android:name="com.br.leandro.marvel_hero_app.features.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_home" >
+
         <action
-            android:id="@+id/action_navigation_home_to_navigation_hero"
-            app:destination="@id/navigation_hero"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit"
-            app:launchSingleTop="true"/>
+            android:id="@+id/mainToCharacters"
+            app:destination="@id/charactersFragment" />
+        <action
+            android:id="@+id/mainToFavorite"
+            app:destination="@id/favoriteFragment" />
+        <action
+            android:id="@+id/mainToDetail"
+            app:destination="@id/detailsFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_hero"
-        android:name="com.br.leandro.marvel_hero_app.ui.hero.HeroFragment"
-        android:label="@string/title_hero"
-        tools:layout="@layout/fragment_hero" />
+        android:id="@+id/charactersFragment"
+        android:name="com.rafaelfelipeac.marvelapp.features.characters.presentation.CharactersFragment"
+        android:label="fragment_characters"
+        tools:layout="@layout/fragment_characters" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.br.leandro.marvel_hero_app.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" >
+        android:id="@+id/favoriteFragment"
+        android:name="com.rafaelfelipeac.marvelapp.features.favorites.presentation.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.rafaelfelipeac.marvelapp.features.details.presentation.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+
         <argument
-            android:name="heroDetail"
-            app:argType="com.br.leandro.marvel_hero_app.domain.hero.Hero" />
-    </fragment>
+            android:name="characterId"
+            android:defaultValue="0L"
+            app:argType="long" />
 
-    <fragment
-        android:id="@+id/navigation_favorites"
-        android:name="com.br.leandro.marvel_hero_app.ui.favorite.FavoriteFragment"
-        android:label="@string/title_favorite"
-        tools:layout="@layout/fragment_favorite">
-        <action
-            android:id="@+id/action_navigation_favorites_to_navigation_hero"
-            app:destination="@id/navigation_hero"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit"
-            app:launchSingleTop="true" />
     </fragment>
 </navigation>
