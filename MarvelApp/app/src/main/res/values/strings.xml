@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Marvel</string>
+
+    <!--    Main-->
+    <string name="main_toolbar_title">Bem-vindo ao Universo Marvel</string>
+
+    <!--    Characters-->
+    <string name="characters_toolbar_title">Personagens</string>
+    <string name="characters_message_error_isempty">Ops... ocorreu um erro. Por favor, tente novamente mais tarde!</string>
+    <string name="characters_message_error_return_api">Ops...</string>
+
+    <!--    Common Project-->
+    <string name="project_try_catch_error">Ops... ocorreu um erro. Tente novamente mais tarde!</string>
+</resources>
