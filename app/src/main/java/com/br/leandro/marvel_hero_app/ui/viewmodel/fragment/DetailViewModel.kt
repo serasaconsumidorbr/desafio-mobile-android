@@ -7,7 +7,7 @@ import com.br.leandro.marvel_hero_app.datasource.MarvelRepository
 import com.br.leandro.marvel_hero_app.datasource.network.model.Character
 import com.br.leandro.marvel_hero_app.datasource.network.model.Comics
 import com.br.leandro.marvel_hero_app.ui.viewmodel.BaseViewModel
-import com.br.leandro.marvel_hero_app.AndroidSchedulers
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class DetailViewModel(private val repository: MarvelRepository) : BaseViewModel() {

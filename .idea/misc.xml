@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Nova pasta/RXJava-marvel-squad-master/app/src/main/res/layout/activity_main.xml" value="0.34479166666666666" />
+        <entry key="..\:/Nova pasta/RXJava-marvel-squad-master/app/src/main/res/layout/fragment_detail.xml" value="0.34479166666666666" />
+        <entry key="..\:/Nova pasta/RXJava-marvel-squad-master/app/src/main/res/layout/fragment_root.xml" value="0.34479166666666666" />
         <entry key="..\:/Nova pasta/RXJava-marvel-squad-master/app/src/main/res/layout/item_character_horizontal.xml" value="0.18229166666666666" />
+        <entry key="..\:/Nova pasta/RXJava-marvel-squad-master/app/src/main/res/layout/item_character_vertical.xml" value="0.34479166666666666" />
       </map>
     </option>
   </component>

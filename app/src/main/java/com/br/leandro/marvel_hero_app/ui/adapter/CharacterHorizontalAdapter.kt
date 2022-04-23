@@ -11,7 +11,7 @@ import com.br.leandro.marvel_hero_app.databinding.ItemCharacterHorizontalBinding
 import com.br.leandro.marvel_hero_app.datasource.db.model.CharacterEntity
 import com.br.leandro.marvel_hero_app.extensions.loadCircleCrop
 import com.br.leandro.marvel_hero_app.ui.fragment.RootFragmentDirections
-import com.fernandohbrasil.marvelsquad.databinding.ItemCharacterHorizontalBinding
+
 
 class CharacterHorizontalAdapter : ListAdapter<CharacterEntity, ViewHolder>(CharacterEntityDiffCallback()) {
 

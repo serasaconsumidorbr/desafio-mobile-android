@@ -1,4 +1,4 @@
-package com.fernandohbrasil.marvelsquad.ui.adapter
+package com.br.leandro.marvel_hero_app.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View

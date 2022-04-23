@@ -1,4 +1,4 @@
-package com.fernandohbrasil.marvelsquad.ui.fragment
+package com.br.leandro.marvel_hero_app.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +12,9 @@ import androidx.lifecycle.Observer
 import com.br.leandro.marvel_hero_app.databinding.FragmentRootBinding
 import com.br.leandro.marvel_hero_app.datasource.db.model.CharacterEntity
 import com.br.leandro.marvel_hero_app.ui.adapter.CharacterHorizontalAdapter
-import com.br.leandro.marvel_hero_app.ui.adapter.CharacterVerticalAdapter
 import com.br.leandro.marvel_hero_app.ui.viewmodel.activity.SharedViewModel
 import com.br.leandro.marvel_hero_app.ui.viewmodel.fragment.*
+import com.br.leandro.marvel_hero_app.ui.adapter.CharacterVerticalAdapter
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 

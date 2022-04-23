@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import androidx.paging.RxPagedListBuilder
-import com.fernandohbrasil.marvelsquad.datasource.MarvelRepository
-import com.fernandohbrasil.marvelsquad.datasource.db.model.CharacterEntity
+import com.br.leandro.marvel_hero_app.datasource.MarvelRepository
+import com.br.leandro.marvel_hero_app.datasource.db.model.CharacterEntity
 
-import com.fernandohbrasil.marvelsquad.datasource.network.model.Character
-import com.fernandohbrasil.marvelsquad.ui.paging.CharactersDataSourceFactory
-import com.fernandohbrasil.marvelsquad.ui.viewmodel.BaseViewModel
+import com.br.leandro.marvel_hero_app.datasource.network.model.Character
+import com.br.leandro.marvel_hero_app.ui.paging.CharactersDataSourceFactory
+import com.br.leandro.marvel_hero_app.ui.viewmodel.BaseViewModel
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers

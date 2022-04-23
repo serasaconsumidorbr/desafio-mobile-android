@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import com.br.leandro.marvel_hero_app.R
 import com.br.leandro.marvel_hero_app.databinding.FragmentDetailBinding
 import com.br.leandro.marvel_hero_app.extensions.getValueOrDefault
 import com.br.leandro.marvel_hero_app.extensions.load
@@ -17,7 +18,7 @@ import com.br.leandro.marvel_hero_app.datasource.network.model.Comics
 import com.br.leandro.marvel_hero_app.ui.viewmodel.activity.SharedViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-import com.fernandohbrasil.marvelsquad.ui.viewmodel.fragment.*
+import com.br.leandro.marvel_hero_app.ui.viewmodel.fragment.*
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.viewModel
 

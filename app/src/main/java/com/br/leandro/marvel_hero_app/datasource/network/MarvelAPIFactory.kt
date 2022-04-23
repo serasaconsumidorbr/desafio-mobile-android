@@ -1,6 +1,6 @@
 package com.br.leandro.marvel_hero_app.datasource.network
 
-import com.fernandohbrasil.marvelsquad.extensions.md5
+import com.br.leandro.marvel_hero_app.extensions.md5
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

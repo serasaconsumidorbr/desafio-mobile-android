@@ -1,10 +1,10 @@
-package com.fernandohbrasil.marvelsquad.ui.activity
+package com.br.leandro.marvel_hero_app.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import com.fernandohbrasil.marvelsquad.databinding.ActivityMainBinding
-import com.fernandohbrasil.marvelsquad.ui.viewmodel.activity.SharedViewModel
+import com.br.leandro.marvel_hero_app.databinding.ActivityMainBinding
+import com.br.leandro.marvel_hero_app.ui.viewmodel.activity.SharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {

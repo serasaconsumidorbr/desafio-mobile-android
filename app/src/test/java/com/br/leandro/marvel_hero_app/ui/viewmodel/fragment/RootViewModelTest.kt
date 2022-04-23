@@ -1,9 +1,9 @@
-package com.fernandohbrasil.marvelsquad.ui.viewmodel.fragment
+package com.br.leandro.marvel_hero_app.ui.viewmodel.fragment
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.fernandohbrasil.marvelsquad.RxImmediateSchedulerRule
-import com.fernandohbrasil.marvelsquad.datasource.MarvelRepository
-import com.fernandohbrasil.marvelsquad.datasource.db.model.CharacterEntity
+import com.br.leandro.marvel_hero_app.RxImmediateSchedulerRule
+import com.br.leandro.marvel_hero_app.datasource.MarvelRepository
+import com.br.leandro.marvel_hero_app.datasource.db.model.CharacterEntity
 import io.reactivex.Flowable
 import org.junit.Assert.assertEquals
 import org.junit.Before

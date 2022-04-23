@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Superhero Squad Maker</string>
+    <string name="app_name">Superhero CAROUSEL</string>
     <string name="last_appeared_in">Last appeared in</string>
-    <string name="hire_to_squad">💪 Hire to Squad</string>
-    <string name="fire_from_squad">🔥 Fire from Squad</string>
+    <string name="hire_to_squad">💪 ADD to slides</string>
+    <string name="fire_from_squad">🔥 Fire from Carousel</string>
     <string name="no_description_found">No description found!</string>
     <string name="no_comic_found">No comic found!</string>
     <string name="no_comic_title_found">No comic title found!</string>

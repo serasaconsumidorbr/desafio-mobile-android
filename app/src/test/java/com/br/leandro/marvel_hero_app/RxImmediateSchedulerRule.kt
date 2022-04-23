@@ -1,4 +1,4 @@
-package com.fernandohbrasil.marvelsquad
+package com.br.leandro.marvel_hero_app
 
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins

@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Marvel Squad"
+rootProject.name = "marvel_hero_app"
