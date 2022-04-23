@@ -1,14 +1,22 @@
 package com.br.leandro.marvel_hero_app
 
 import android.app.Application
-import com.br.leandro.marvel_hero_app.core.di.AppComponent
-import com.br.leandro.marvel_hero_app.core.di.AppComponentProvider
+import com.br.leandro.marvel_hero_app.di.*
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+import org.koin.core.module.Module
 
-class App : Application(), AppComponentProvider {
+class App : Application() {
 
-    override val appComponent: AppComponent by lazy {
-        DaggerAppComponent.factory()
-            .create(application = this)
+    private val appComponent: MutableList<Module> =
+        mutableListOf(networkModule, databaseModule, viewModelModule, repositoryModule)
+
+    override fun onCreate() {
+        super.onCreate()
+
+        startKoin {
+            androidContext(this@App)
+            modules(appComponent)
+        }
     }
-
 }

@@ -1,21 +1,15 @@
 <resources>
-    <string name="app_name">marvel_hero_app</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="look_for_heroes">Start</string>
-    <string name="title_hero">Hero</string>
-    <string name="no_hero_selected">No hero selected</string>
-    <string name="select_a_hero_in_the_home_page_or_favorite_page">Select a hero in the Home page or Favorite page</string>
-    <string name="no_hero_saved">No hero saved</string>
-    <string name="select_a_hero_in_the_home_page">Save a hero in the Home page</string>
-    <string name="title_favorite">Favorite</string>
-    <string name="hero_missing_data">NO DATA</string>
-    <string name="input_your_hero_name">Input Your hero name</string>
-    <string name="detail_save_favorite_hero_button">You saved your hero! Go to the favorite section</string>
-    <string name="characters_title">Marvel Heros</string>
-    <string name="characters_placeholder_message">Something is wrong. \n\nCheck your internet connection.</string>
-    <string name="details_comics_title">Comics</string>
-    <string name="details_placeholder_message">Something is wrong. \n\nCheck your internet connection.</string>
-    <string name="details_series_title">Series</string>
+    <string name="app_name">Superhero Squad Maker</string>
+    <string name="last_appeared_in">Last appeared in</string>
+    <string name="hire_to_squad">💪 Hire to Squad</string>
+    <string name="fire_from_squad">🔥 Fire from Squad</string>
+    <string name="no_description_found">No description found!</string>
+    <string name="no_comic_found">No comic found!</string>
+    <string name="no_comic_title_found">No comic title found!</string>
+    <string name="my_squad">My Squad</string>
+
+    <plurals name="numberOfComicsAvailable">
+        <item quantity="one">and %d other comic</item>
+        <item quantity="other">and %d other comics</item>
+    </plurals>
 </resources>

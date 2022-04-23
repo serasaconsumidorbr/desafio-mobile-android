@@ -1,42 +1,20 @@
-plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'kotlin-parcelize'
-    id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs'
-
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
-    compileSdk 31
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
 
     defaultConfig {
-        applicationId "com.br.leandro.marvel_hero_app"
-        minSdk 21
-        targetSdk 30
+        applicationId "com.fernandohbrasil.marvelsquad"
+        minSdkVersion 23
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        buildConfigField 'String', 'BASE_URL', '"https://gateway.marvel.com:443/v1/public/"'
-        buildConfigField 'String', 'API_PRIVATE', '"d6d16713cfd2ba7aee39a6a5ed03fb2be1b3313c"'
-        buildConfigField 'String', 'API_PUBLIC', '"4d61c99bc5708b7da816aa78e4cbb4d3"'
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [
-                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
-                        "room.incremental"     : "true",
-                        "room.expandProjection": "true"]
-            }
-        }
-
-    }
-    allprojects {
-        configurations.all {
-            resolutionStrategy.force 'org.objenesis:objenesis:2.6'
-        }
     }
 
     buildTypes {
@@ -49,130 +27,81 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
 }
 
 dependencies {
-
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
-    implementation 'androidx.navigation:navigation-testing:2.4.2'
+
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
+
+    //Koin
+    def koinVersion = '2.1.6'
+    implementation "org.koin:koin-android-scope:$koinVersion"
+    implementation "org.koin:koin-android-viewmodel:$koinVersion"
+
+    //LifeCycle
+    def lifecycleVersion = '2.4.1'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+    //RxJava
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
+
+    //Retrofit
+    def retrofitVersion = '2.9.0'
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    //OkHTTP
+    def okhttpVersion = '4.9.3'
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:$okhttpVersion"
+    implementation 'org.conscrypt:conscrypt-android:2.4.0'
+
+    //ROOM
+    def roomVersion = '2.4.2'
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-rxjava2:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    //Pagination
+    def paging_version = "3.1.0"
+    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation "androidx.paging:paging-rxjava2:$paging_version"
+
+    //Glide
+    def glideVersion = '4.12.0'
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+
+    //Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
-    //Swiperefreshlayout
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-
-    testImplementation "com.squareup.okhttp3:mockwebserver:4.9.0"
-
-    def androidx_test_version = '1.3.0'
-    implementation "androidx.test:runner:$androidx_test_version"
-
-    def androidx_test_ext_version = '1.1.1'
-    implementation "androidx.test.ext:junit:$androidx_test_ext_version"
-
-    def annotations_version = '1.1.0'
-    implementation "androidx.annotation:annotation:$annotations_version"
-
-    def appcompat_version = '1.1.0'
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-
-    def constraint_layout_version = '1.1.3'
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
-
-    def coroutines_android_version = '1.6.0'
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_android_version"
-
-    def expresso_version = '3.2.0'
-    implementation "androidx.test.espresso:espresso-core:$expresso_version"
-    implementation "androidx.test.espresso:espresso-contrib:$expresso_version"
-    implementation "androidx.test.espresso:espresso-intents:$expresso_version"
-
-    def glide_version = '4.12.0'
-    def junit_version = '4.12'
-    implementation "junit:junit:$junit_version"
-    def lifecycle_version = '2.3.0'
-    def livedata_version = '2.2.0-rc02'
-    "androidx.lifecycle:lifecycle-livedata-ktx:$livedata_version"
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    def material_version = '1.3.0'
-
-    def retrofit_version = '2.9.0'
-
-
-    def room_version = '2.2.5'
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
-    def truth_version = '1.0'
-    implementation "com.google.truth:truth:$truth_version"
-    def work_version = '2.2.0'
-    implementation "androidx.work:work-testing:$work_version"
-    def dagger_version = '2.27'
-    implementation "com.google.dagger:dagger:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
-    def moshi_version = '1.9.2'
-    implementation "com.squareup.moshi:moshi:$moshi_version"
-    def moshi_converter_version = '2.8.1'
-    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
-
-    def navigation_version = '2.3.0-alpha06'
-    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
-    def mockk_version = '1.10.0'
-    implementation "io.mockk:mockk:$mockk_version"
-    def arch_core_test_version = '2.1.0'
-    implementation "androidx.arch.core:core-testing:$arch_core_test_version"
-    def paging_version = "2.1.2"
-    implementation "androidx.paging:paging-runtime:$paging_version"
-    def fragment_version = "1.4.1"
-    implementation "androidx.fragment:fragment:$fragment_version"
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:$navigation_version"
-
-    implementation "androidx.fragment:fragment-ktx:$fragment_version"
-    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
-
-
-
-
-    //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-
-    //glide
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
-
-    //lifecycle
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-
-    //material_version
-    implementation "com.google.android.material:material:$material_version"
-
-    // Coil
-    implementation 'io.coil-kt:coil:1.1.1'
-
-    // Dagger 2
-    def daggerVer = 2.27 // or latest version
-
-    implementation "com.google.dagger:dagger:$daggerVer"
-    implementation "com.google.dagger:dagger-android-support:$daggerVer"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVer"
-    kapt "com.google.dagger:dagger-compiler:$daggerVer"
-
-
-
-
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
 }

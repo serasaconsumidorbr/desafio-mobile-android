@@ -16,35 +16,13 @@ Marvel - Hero is based on the MVVM architecture and the Repository pattern.
 
 # Main Features
 
-#### Dependency injection & Test Modules
-+ Koin
-+ KoinTest
-
-#### Unit tests
-+ Junit & Mockk
-
-#### User interface tests
-+ Espresso
-
-#### Android Jetpack
-+ Paging3
-+ Navigation - safeargs
-+ LiveData & Flow
-+ Cache with Room (coming soon)
-
-#### Another APIs
-+ Kotlin Coroutines
-+ Youtube
-+ Glide
-+ Lottie
-+ Google AdMob
-+ MotionLayout
-
-#### Http Request
-+ Retrofit 2
-
-#### Languages
-+ English - default
-+ Portuguese - PT-BR
-+ Spanish
-
+* [Koin](https://insert-koin.io/)
+* [Retrofit](https://square.github.io/retrofit/) 
+* [Moshi](https://github.com/square/moshi)
+* [JetPack Navigation](https://developer.android.com/guide/navigation/)
+* [Glide](https://bumptech.github.io/glide/)
+* [Jetpack Paging](https://developer.android.com/topic/libraries/architecture/paging)
+* [ROOM](https://developer.android.com/topic/libraries/architecture/room).
+* [Live Data](https://developer.android.com/topic/libraries/architecture/livedata)
+* [RXJava](https://github.com/ReactiveX/RxJava)
+* [MVVM](https://developer.android.com/jetpack/docs/guide)
