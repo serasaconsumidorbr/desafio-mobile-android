@@ -14,6 +14,12 @@ Marvel - Hero is based on the MVVM architecture and the Repository pattern.
 + Clean Architecture
 + MVVM
 
+# Imagens 
+![Captura de ecrã 2022-04-23 010527](https://user-images.githubusercontent.com/49800137/164874686-90e76ff6-c83e-43ff-a494-adb6090212fc.jpg)
+![Captura de ecrã 2022-04-23 010645](https://user-images.githubusercontent.com/49800137/164874688-14c934ce-f697-4a2a-bcaf-59d793cd51fa.jpg)
+![Captura de ecrã 2022-04-23 010709](https://user-images.githubusercontent.com/49800137/164874690-3b6760af-46b1-42cd-8e28-f6d85d555576.jpg)
+
+
 # Main Features
 
 * [Koin](https://insert-koin.io/)
