@@ -5,6 +5,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import dev.ribeiro.bruno.desafioandroid.data.service.MarvelService
 import dev.ribeiro.bruno.desafioandroid.data.source.PageDataSource
+import dev.ribeiro.bruno.desafioandroid.domain.entities.CharacterDetail
+import dev.ribeiro.bruno.desafioandroid.domain.repository.MarvelRepository
 import kotlinx.coroutines.flow.Flow
 import java.lang.Exception
 

@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
 import dev.ribeiro.bruno.desafioandroid.data.repository.MarvelRepositoryImpl
 import dev.ribeiro.bruno.desafioandroid.data.service.MarvelService
+import dev.ribeiro.bruno.desafioandroid.domain.repository.MarvelRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.context.loadKoinModules

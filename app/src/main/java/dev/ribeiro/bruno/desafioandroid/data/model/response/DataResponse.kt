@@ -1,6 +1,5 @@
 package dev.ribeiro.bruno.desafioandroid.data.model.response
 
-import com.example.marvelix.data.model.response.ResultResponse
 import com.google.gson.annotations.SerializedName
 
 data class DataResponse(
