@@ -14,3 +14,5 @@
 .cxx
 local.properties
 /app/src/main/java/dev/ribeiro/bruno/desafioandroid/core/ApiKeys.kt
+/ApiKeys.kt
+ApiKeys.kt
