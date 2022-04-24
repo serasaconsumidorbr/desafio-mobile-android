@@ -3,6 +3,8 @@ package dev.ribeiro.bruno.desafioandroid.data.source
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import dev.ribeiro.bruno.desafioandroid.data.service.MarvelService
+import dev.ribeiro.bruno.desafioandroid.data.toEntity
+import dev.ribeiro.bruno.desafioandroid.domain.entities.CharacterDetail
 
 class PageDataSource(
     private val marvelService: MarvelService
@@ -11,7 +13,7 @@ class PageDataSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CharacterDetail> {
         try {
             val currentLoadingPageKey = params.key ?: 0
-            val response = dev.ribeiro.bruno.desafioandroid.data.toEntity()
+            val response = marvelService.getMarvelCharacters(offset = currentLoadingPageKey).toEntity()
             val responseData = mutableListOf<CharacterDetail>()
             val data = response.results ?: emptyList()
             responseData.addAll(data)

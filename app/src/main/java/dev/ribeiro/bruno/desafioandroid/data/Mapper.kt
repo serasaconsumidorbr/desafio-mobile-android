@@ -3,6 +3,9 @@ package dev.ribeiro.bruno.desafioandroid.data
 import dev.ribeiro.bruno.desafioandroid.data.model.response.CharacterResponse
 import dev.ribeiro.bruno.desafioandroid.data.model.response.ResultResponse
 import dev.ribeiro.bruno.desafioandroid.data.model.response.ThumbnailResponse
+import dev.ribeiro.bruno.desafioandroid.domain.entities.CharacterDetail
+import dev.ribeiro.bruno.desafioandroid.domain.entities.ListInformation
+import dev.ribeiro.bruno.desafioandroid.domain.entities.Thumbnail
 
 fun CharacterResponse.toEntity(): ListInformation = ListInformation().apply {
     count = this@toEntity.data.count
