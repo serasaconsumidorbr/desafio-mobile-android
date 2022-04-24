@@ -2,9 +2,9 @@ package dev.ribeiro.bruno.desafioandroid.presentation.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dev.ribeiro.bruno.desafioandroid.presentation.ui.fragment.HomeFragment
 import dev.ribeiro.bruno.desafioandroid.R
 import dev.ribeiro.bruno.desafioandroid.databinding.ActivityMainBinding
-import dev.ribeiro.bruno.desafioandroid.presentation.ui.fragment.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 
