@@ -1,63 +1,76 @@
-<!-- Header-->
-<br />
+<h1 align="center"> Desafio - Android Developer </h1>
+
+- Aplicação desenvolvida para mostrar detalhes sobre diversos personagens da Marvel Comics.
+- Endpoint  <strong>/v1/public/characters</strong>.
+- Mais informações sobre a API disponíveis em https://developer.marvel.com/documentation/.
+
+## :hammer: Tecnologias do projeto
+
+- `Scroll Infinito`: Foi criada uma classe para gerenciamento de paginação através da biblioteca Paging 3 que ajuda a carregar e exibir páginas de um conjunto de dados maior do armazenamento local ou da rede.
+- `Carousel`: Implementação feita através da Biblioteca MotionLayout que gerencia o movimento e widget de animação em apps.
+- `Retrofit`: Implementação do serviço utilizando a Biblioteca Retrofit. para simplificar o código que é executado de forma assíncrona.
+- `Coroutines`: Para simplificar o código que é executado de forma assíncrona.
+- `Testes Unitários`: Implementação de Testes através da Biblioteca JUnit4.
+- `Injeção de dependência`: Utilização da Biblioteca Koin para DI.
+- `Arquitetura`: App Desenvolvido utilizando Clean Architecture, MVVM e Design Pattern Sealed.
+
+<h1 align="center"> Demonstração </h1>
 <p align="center">
-  <a href="https://github.com/serasaconsumidorbr/desafio-mobile-iOS">
-    <img src="https://turismoemfoco.com.br/v1/wp-content/uploads/2020/05/serasa-logo-nova22.png" alt="Logo" width="180" height="80">
-  </a>
-
-  <h3 align="center">Desafio - Android Developer </h3>
-
-  <p align="center">
-    O nosso aplicativo é uma das nossas soluções para mudar a vida financeira de milhões de brasileiros. <b>Venha fazer parte desse time</b> muito engajado que
-  trabalha para que esse aplicativo chegue da melhor forma na mão dos consumidores.
-  </p>
+  <img src="https://user-images.githubusercontent.com/67174577/164967345-0381ee14-77de-4796-8f34-2f18ed102090.gif" alt="animated" />
 </p>
 
-## Sobre
-<p> Utilizamos este desafio para avaliar a qualidade do seu código, arquitetura, a forma que você organiza os seus pensamentos dentro do git e muitas outras coisas, por isso, sinta-se a vontade e dê o seu melhor! O tempo médio para a entrega deste desafio é de uma semana.</p>
+<h1 align="center"> Proximas Features </h1>
 
-<p>Neste desafio você irá desenvolver um app que deverá mostrar os <b>personagens</b> da <a href="https://www.marvel.com/characters">Marvel</a>. 
-  
-<p>Para começar a fazer requests utilizando este serviço, siga esta <a href="https://developer.marvel.com/documentation/authorization">documentação</a>. O endpoint que deverá ser utilizado para popular as listas do app será a <b><a href="https://developer.marvel.com/docs#!/public/getCreatorCollection_get_0">/v1/public/characters</a></b>. </p>
+- [ ] Adicionar Personagem favorito ao carousel.
+- [ ] Barra de pesquisa.
+- [ ] Tela de Splash.
+- [ ] Detalhes de personagens e suas referencias.
+- [ ] Botão "Mostrar mais" para cards com descrições mais longas.
+- [ ] Filtro de personagens.
+- [ ] Implementação Offline.
 
+<h1 align="center"> Outras Tecnologias e Bibliotecas </h1>
 
-## Requisitos
-<p>Estes requisitos básicos são utilizados para ver como você lida com cada um desses itens. A falta de qualquer um desses requisitos compromete a sua avaliação no final.</p>
+<h3> Coroutines </h3>
 
+```
+ implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+```
 
-- Versão mínima do SDK: 21
-- Tela deve ajustar em devices menores.
-- Utilizar Kotlin
-- Boa arquitetura, pode ser (mvc, mvp, mvvm, clean etc)
-- RxJava ou Coroutines
-- Testes unitários
-- Cache de imagens
-- Tratamentos de erros
-- Padrão de Projeto e boas práticas de Orientação a Objetos.
-- Google AAC (Android Architecture Components)
+<h3> Navigation </h3>
 
-## Será um diferencial 
-- Construir layouts com Constraints
-- Trabalhar offline (cache dos dados)
-- Injeção de dependência (dagger, koin, kodein)
+```
+ implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
+ implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
+```
 
-## O projeto deverá conter
-* Carrossel superior com **5** personagens
-* Uma lista **vertical** abaixo do carrossel **com os personagens seguintes, sem repetir**
-* Scroll infinito
+<h3> Retrofit - Gson </h3>
 
-<b>Atente-se aos detalhes que ache interessante mostrar, por exemplo, nome, descrição, imagens ou outras informações dos personagens</b>
+```
+ implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+ implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+ implementation 'com.google.code.gson:gson:2.9.0'
+ implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+ implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+```
 
-## Importante
-* **Sua criatividade:** Utilize as considerações acima para criar o projeto do seu jeito, **utilizando as dependências que quiser**. Apenas saiba explicar o motivo das suas escolhas. 
+<h3> Glide </h3>
 
-* **Documentação:** Ao finalizar o projeto, não se esqueça de documenta-lo. É Muito importante escrever o seu fluxo de pensamentos, **anexar imagens do aplicativo**, inserir as **bibliotecas** e versões que estão sendo utilizadas, **roadmap** de features que você gostaria de colocar e **melhorias que gostaria de fazer**...
+```
+  implementation 'com.github.bumptech.glide:glide:4.13.0'
+```
 
-## Por fim, envie seu teste!
-* Crie um `fork`, de preferencia público, desse repositório.
-* Tente seguir o <b><a href="https://imasters.com.br/agile/fluxo-de-desenvolvimento-com-gitflow#:~:text=Como%20afirma%20Vincent%20Driessen%20(2010,o%20trunk%20e%20o%20branch.">gitflow</a></b> para o seu fluxo de desenvolvimento.
-* Ao finalizar, faça o **pull request** para este repositório
+<h3> Koin </h3>
 
-Agora é só torcer!
+```
+  implementation "io.insert-koin:koin-android:3.1.3"
+  testImplementation "io.insert-koin:koin-test:3.1.3"
+```
 
-**Ultimo recadinho:** não utilize o nome da Serasa dentro de seu projeto 😉
+<h3> Motion e Paging </h3>
+
+```
+  implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+  implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
+```
+
