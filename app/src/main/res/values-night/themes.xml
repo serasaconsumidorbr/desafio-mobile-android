@@ -1,0 +1,16 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.DesafioMarvel" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryVariant">@color/red_dark</item>
+        <item name="colorOnPrimary">@color/red_light</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/colorVariantLight</item>
+        <item name="colorSecondaryVariant">@color/colorVariantLight</item>
+        <item name="colorOnSecondary">@color/colorVariantLight</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>
