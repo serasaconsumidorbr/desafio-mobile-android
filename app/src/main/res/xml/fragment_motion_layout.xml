@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        android:id="@+id/forward"
+        motion:constraintSetEnd="@+id/next"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000"
+        motion:staggered="0.1">
+        <OnSwipe
+            motion:dragDirection="dragLeft"
+            motion:maxAcceleration="20"
+            motion:maxVelocity="20"
+            motion:touchAnchorSide="left" />
+    </Transition>
+
+    <Transition
+        android:id="@+id/backward"
+        motion:constraintSetEnd="@+id/previous"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="1000"
+        motion:staggered="0.1">
+        <OnSwipe
+            motion:dragDirection="dragRight"
+            motion:maxAcceleration="20"
+            motion:maxVelocity="20"
+            motion:touchAnchorSide="right" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/previous">
+        <Constraint android:id="@+id/imageView1">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint android:id="@+id/imageView2">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint android:id="@+id/imageView3">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint android:id="@+id/imageView4">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+        <Constraint android:id="@+id/imageView5">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/next">
+        <Constraint android:id="@+id/imageView1">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintStart_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint android:id="@+id/imageView2">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint android:id="@+id/imageView3">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint android:id="@+id/imageView4">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint android:id="@+id/imageView5">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+        <Constraint
+            android:layout_height="60dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_width="60dp"
+            motion:layout_constraintStart_toStartOf="@+id/topAppBar"
+            android:id="@+id/logo_marvel" />
+    </ConstraintSet>
+
+</MotionScene>
