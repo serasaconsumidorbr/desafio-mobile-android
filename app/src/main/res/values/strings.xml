@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">desafio-mobile-android</string>
+    <string name="first_screen">First Screen</string>
 </resources>
