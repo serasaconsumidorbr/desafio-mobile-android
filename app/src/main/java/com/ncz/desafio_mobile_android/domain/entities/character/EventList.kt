@@ -1,4 +1,4 @@
-package com.ncz.desafio_mobile_android.domain.entities
+package com.ncz.desafio_mobile_android.domain.entities.character
 
 data class EventList(
     val available: Int,
