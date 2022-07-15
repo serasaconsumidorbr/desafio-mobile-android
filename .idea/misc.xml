@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/layout/activity_base.xml" value="0.31875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14322916666666666" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.31875" />
+        <entry key="app/src/main/res/layout/card_hero.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.31875" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.31875" />
       </map>
