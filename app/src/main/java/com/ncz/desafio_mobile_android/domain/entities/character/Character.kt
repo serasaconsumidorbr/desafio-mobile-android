@@ -1,6 +1,6 @@
 package com.ncz.desafio_mobile_android.domain.entities.character
 
-import java.util.*
+import java.util.Date
 import kotlin.collections.ArrayList
 
 data class Character(
