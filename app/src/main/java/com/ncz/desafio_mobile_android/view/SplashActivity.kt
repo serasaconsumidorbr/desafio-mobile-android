@@ -1,4 +1,4 @@
-package com.ncz.desafio_mobile_android
+package com.ncz.desafio_mobile_android.view
 
 import android.content.Intent
 import android.os.Bundle
