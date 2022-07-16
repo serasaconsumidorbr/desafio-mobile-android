@@ -6,17 +6,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class RetrofitInstance {
-     private val base: Settings = Settings()
-
-     val baseUrl = base.baseUrl
-     val publicKey = base.publicKey
-     val timestamp = base.timestamp
-     val hash = base.md5()
+object RetrofitInstance {
 
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("$baseUrl/v1/public/characters?ts=$timestamp&apikey=$publicKey&hash=$hash")
+            .baseUrl("http://gateway.marvel.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(initOkHttpClient())
             .build()
