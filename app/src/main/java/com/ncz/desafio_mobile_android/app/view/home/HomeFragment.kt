@@ -1,4 +1,4 @@
-package com.ncz.desafio_mobile_android.view.home
+package com.ncz.desafio_mobile_android.app.view.home
 
 import androidx.fragment.app.Fragment
 import com.ncz.desafio_mobile_android.R

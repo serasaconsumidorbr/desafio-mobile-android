@@ -7,11 +7,11 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.ncz.desafio_mobile_android.view.detail.DetailFragment"
+        android:name="com.ncz.desafio_mobile_android.app.view.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.ncz.desafio_mobile_android.view.home.HomeFragment"
+        android:name="com.ncz.desafio_mobile_android.app.view.home.HomeFragment"
         android:label="HomeFragment" />
 </navigation>

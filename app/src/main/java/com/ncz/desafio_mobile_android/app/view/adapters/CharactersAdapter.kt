@@ -1,4 +1,4 @@
-package com.ncz.desafio_mobile_android.view.adapters
+package com.ncz.desafio_mobile_android.app.view.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
