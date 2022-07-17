@@ -21,7 +21,7 @@ class HomeViewModel : ViewModel() {
 
     private val useCases = CharacterUseCases(repository)
 
-    private val liveData: MutableLiveData<State<List<Character>>> by lazy { MutableLiveData() }
+    val liveData: MutableLiveData<State<List<Character>>> by lazy { MutableLiveData() }
 
     fun getCharacter() {
         viewModelScope.launch {
