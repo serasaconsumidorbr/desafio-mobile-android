@@ -45,17 +45,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         homeViewModel.liveData.observe(viewLifecycleOwner) { character ->
             when (character.status) {
                 Status.LOADING -> {
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.shimmerView.shimmerViewContainer.startShimmer()
                 }
                 Status.SUCCESS -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.shimmerView.shimmerViewContainer.stopShimmer()
                     character.data?.let { setCharacters(it) }
                 }
                 Status.ERROR -> {
+                    binding.shimmerView.shimmerViewContainer.stopShimmer()
                     //Alert de erro
                     print("${character.data}")
                 }
                 else -> {
+                    binding.shimmerView.shimmerViewContainer.stopShimmer()
                     //Alert de erro
                     print("${character.data}")
                 }
