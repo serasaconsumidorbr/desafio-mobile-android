@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ncz.desafio_mobile_android.databinding.CardCharacterItemBinding
 import com.ncz.desafio_mobile_android.domain.entities.character.Character
+import com.squareup.picasso.Picasso
 
 class CharactersAdapter(private val characterList: List<Character>) :
     RecyclerView.Adapter<CharactersAdapter.ViewHolderCharacter>() {
@@ -21,6 +22,12 @@ class CharactersAdapter(private val characterList: List<Character>) :
     override fun onBindViewHolder(holder: ViewHolderCharacter, position: Int) {
       holder.name.text = characterList[position].name
         holder.description.text = characterList[position].description
+        val baseUrl = characterList[position].thumbnail.let {
+            "${it.path}/portrait_fantastic.${it.extension}"
+        }
+
+        Picasso.get().load(baseUrl).into(holder.image)
+
     }
 
     override fun getItemCount() = characterList.size
@@ -29,6 +36,7 @@ class CharactersAdapter(private val characterList: List<Character>) :
         RecyclerView.ViewHolder(binding.root) {
         val name = binding.txtName
         val description = binding.txtDescription
+        val image = binding.imgIcon
     }
 
 }
