@@ -13,5 +13,13 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.ncz.desafio_mobile_android.app.view.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/splashActivity"
+        android:name="com.ncz.desafio_mobile_android.app.view.SplashActivity"
+        android:label="SplashActivity" />
 </navigation>
