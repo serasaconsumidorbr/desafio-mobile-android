@@ -19,7 +19,7 @@
         <entry key="app/src/main/res/layout/card_hero.xml" value="0.5" />
         <entry key="app/src/main/res/layout/card_hero_item.xml" value="0.5" />
         <entry key="app/src/main/res/layout/card_hero_item_shimmer.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.31875" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.420532319391635" />
         <entry key="app/src/main/res/layout/fragment_home_shimmer.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recycler_characters.xml" value="0.375" />
