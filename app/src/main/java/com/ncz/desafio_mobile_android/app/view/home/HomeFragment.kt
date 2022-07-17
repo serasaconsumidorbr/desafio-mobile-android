@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ncz.desafio_mobile_android.R
 import com.ncz.desafio_mobile_android.app.view.adapters.HomeAdapter
 import com.ncz.desafio_mobile_android.app.viewmodel.HomeViewModel
 import com.ncz.desafio_mobile_android.databinding.FragmentHomeBinding
@@ -13,7 +15,7 @@ import com.ncz.desafio_mobile_android.domain.entities.HomeList
 import com.ncz.desafio_mobile_android.domain.entities.character.Character
 import com.ncz.desafio_mobile_android.domain.utils.Status
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(R.layout.fragment_home) {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -39,14 +41,15 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    private fun observableCharacters() {
+     fun observableCharacters() {
         homeViewModel.liveData.observe(viewLifecycleOwner) { character ->
             when (character.status) {
                 Status.LOADING -> {
                     binding.progressBar.visibility = View.VISIBLE
                 }
                 Status.SUCCESS -> {
-                    character.data?.let { data -> setCharacters(data) }
+                    binding.progressBar.visibility = View.GONE
+                    character.data?.let { setCharacters(it) }
                 }
                 Status.ERROR -> {
                     //Alert de erro
@@ -60,11 +63,14 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setCharacters(character: List<Character>) {
+     private fun setCharacters(character: List<Character>) {
         val heroes = homeViewModel.getFiveHeroes(character)
         val characters = homeViewModel.getCharacters(character)
-        val homeAdapter = HomeAdapter(HomeList(heroes, characters))
-        binding.recyclerHome.adapter = homeAdapter
+
+        binding.recyclerHome.layoutManager = LinearLayoutManager(requireContext(),
+            LinearLayoutManager.VERTICAL,false)
+
+        binding.recyclerHome.adapter = HomeAdapter(HomeList(heroes, characters))
     }
 
 
