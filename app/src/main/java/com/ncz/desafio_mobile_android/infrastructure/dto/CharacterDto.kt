@@ -14,10 +14,10 @@ data class CharacterDto(
     @SerializedName("resourceURI") val resourceURI: String,
     @SerializedName("urls") val urls: ArrayList<Url>,
     @SerializedName("thumbnail") val thumbnail: Image,
-    @SerializedName("comics") val comics: List<ComicList>,
-    @SerializedName("stories") val stories: List<StoryList>,
-    @SerializedName("events") val events: List<EventList>,
-    @SerializedName("series") val series: List<SeriesList>
+    @SerializedName("comics") val comics: ComicList,
+    @SerializedName("stories") val stories: StoryList,
+    @SerializedName("events") val events: EventList,
+    @SerializedName("series") val series: SeriesList
 
 ) : Serializable {
     fun mapToEntity(): Character = Character(
@@ -28,9 +28,9 @@ data class CharacterDto(
         resourceURI = this.resourceURI,
         urls = this.urls,
         thumbnail = this.thumbnail,
-        comics = this.comics,
-        stories = this.stories,
-        events = this.events,
-        series = this.series
+        comics = listOf(this.comics),
+        stories = listOf(this.stories),
+        events = listOf(this.events),
+        series = listOf(this.series)
     )
 }
