@@ -1,8 +1,8 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.Desafiomobileandroid" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Desafiomobileandroid" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/second_color</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -22,9 +22,4 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowContentTransitions">true</item>
     </style>
-
-    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
-        <item name="cornerSize">10%</item>
-    </style>
-
 </resources>
