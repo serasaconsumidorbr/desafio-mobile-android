@@ -13,6 +13,7 @@ import com.ncz.desafio_mobile_android.app.viewmodel.HomeViewModel
 import com.ncz.desafio_mobile_android.databinding.FragmentHomeBinding
 import com.ncz.desafio_mobile_android.domain.entities.HomeList
 import com.ncz.desafio_mobile_android.domain.entities.character.Character
+import com.ncz.desafio_mobile_android.domain.utils.Alert
 import com.ncz.desafio_mobile_android.domain.utils.Status
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -41,7 +42,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         _binding = null
     }
 
-     fun observableCharacters() {
+    fun observableCharacters() {
         homeViewModel.liveData.observe(viewLifecycleOwner) { character ->
             when (character.status) {
                 Status.LOADING -> {
@@ -53,24 +54,36 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
                 Status.ERROR -> {
                     binding.shimmerView.shimmerViewContainer.stopShimmer()
-                    //Alert de erro
+                    Alert().alertError(
+                        requireActivity(),
+                        "Aviso",
+                        "Ops Parece que ocorreu uma falha inesparada, tente novamente daqui alguns minutos :)",
+                        "OK"
+                    ) { _, _ -> }
                     print("${character.data}")
                 }
                 else -> {
                     binding.shimmerView.shimmerViewContainer.stopShimmer()
-                    //Alert de erro
+                    Alert().alertError(
+                        requireActivity(),
+                        "Ops",
+                        "Ops Parece que ocorreu uma falha.Tente novamente daqui alguns minutos :)",
+                        "OK"
+                    ) { _, _ -> }
                     print("${character.data}")
                 }
             }
         }
     }
 
-     private fun setCharacters(character: List<Character>) {
+    private fun setCharacters(character: List<Character>) {
         val heroes = homeViewModel.getFiveHeroes(character)
         val characters = homeViewModel.getCharacters(character)
 
-        binding.recyclerHome.layoutManager = LinearLayoutManager(requireContext(),
-            LinearLayoutManager.VERTICAL,false)
+        binding.recyclerHome.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.VERTICAL, false
+        )
 
         binding.recyclerHome.adapter = HomeAdapter(HomeList(heroes, characters))
     }
