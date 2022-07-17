@@ -9,7 +9,7 @@ import com.ncz.desafio_mobile_android.databinding.CardCharacterItemBinding
 import com.ncz.desafio_mobile_android.databinding.CardHeroItemBinding
 import com.ncz.desafio_mobile_android.domain.entities.HomeList
 
-class HomeAdapter(private val homeList: List<HomeList> = listOf()) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HomeAdapter(private val homeList: HomeList) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -37,7 +37,7 @@ class HomeAdapter(private val homeList: List<HomeList> = listOf()) : RecyclerVie
                     LinearLayoutManager.HORIZONTAL, false
                 )
                 setHasFixedSize(true)
-                adapter = homeList[position].heroes?.let { heroes -> HeroesAdapter(heroes) }
+                adapter = homeList.heroes?.let { heroes -> HeroesAdapter(heroes) }
             }
         } else {
             holder as ViewHolderCharacters
@@ -47,7 +47,7 @@ class HomeAdapter(private val homeList: List<HomeList> = listOf()) : RecyclerVie
                     LinearLayoutManager.VERTICAL, false
                 )
                 setHasFixedSize(true)
-                adapter = homeList[position].character?.let { character -> CharactersAdapter(character) }
+                adapter = homeList.character?.let { character -> CharactersAdapter(character) }
             }
         }
     }
