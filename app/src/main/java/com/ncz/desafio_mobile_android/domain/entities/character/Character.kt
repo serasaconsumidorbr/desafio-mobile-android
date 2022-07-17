@@ -1,11 +1,12 @@
 package com.ncz.desafio_mobile_android.domain.entities.character
 
+import java.io.Serializable
 import java.util.Date
 import kotlin.collections.ArrayList
 
 data class Character(
     val id: Int,
-    val name: String,
+    var name: String,
     val description: String,
     val modified: Date,
     val resourceURI: String,
@@ -15,4 +16,4 @@ data class Character(
     val stories: List<StoryList>,
     val events: List<EventList>,
     val series: List<SeriesList>
-)
+):Serializable
