@@ -49,23 +49,9 @@
             android:textAlignment="textStart"
             android:textColor="@color/second_color"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgIcon"
             app:layout_constraintTop_toBottomOf="@+id/txtName" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/roboto_black_italic"
-            android:text="@string/more_info"
-            android:textColor="@color/primary_color"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/txtDescription" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
