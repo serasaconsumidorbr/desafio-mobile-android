@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,18 +43,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         _binding = null
     }
 
-    fun observableCharacters() {
+    private fun observableCharacters() {
         homeViewModel.liveData.observe(viewLifecycleOwner) { character ->
             when (character.status) {
                 Status.LOADING -> {
-                    binding.shimmerView.shimmerViewContainer.startShimmer()
+                    showLoading()
                 }
                 Status.SUCCESS -> {
-                    binding.shimmerView.shimmerViewContainer.stopShimmer()
+                    hideLoading()
                     character.data?.let { setCharacters(it) }
                 }
                 Status.ERROR -> {
-                    binding.shimmerView.shimmerViewContainer.stopShimmer()
+                    hideLoading()
                     Alert().alertError(
                         requireActivity(),
                         "Aviso",
@@ -63,7 +64,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     print("${character.data}")
                 }
                 else -> {
-                    binding.shimmerView.shimmerViewContainer.stopShimmer()
+                    hideLoading()
                     Alert().alertError(
                         requireActivity(),
                         "Ops",
@@ -88,5 +89,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.recyclerHome.adapter = HomeAdapter(HomeList(heroes, characters))
     }
 
+    private fun showLoading() {
+        binding.shimmerView.shimmerViewContainer.isVisible = true
+        binding.shimmerView.shimmerViewContainer.startShimmer()
+    }
+
+    private fun hideLoading() {
+        binding.shimmerView.shimmerViewContainer.stopShimmer()
+        binding.shimmerView.shimmerViewContainer.isVisible = false
+    }
 
 }
