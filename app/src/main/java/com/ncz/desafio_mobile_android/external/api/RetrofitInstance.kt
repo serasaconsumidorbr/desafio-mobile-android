@@ -1,5 +1,4 @@
 package com.ncz.desafio_mobile_android.external.api
-import com.ncz.desafio_mobile_android.external.config.Settings
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
