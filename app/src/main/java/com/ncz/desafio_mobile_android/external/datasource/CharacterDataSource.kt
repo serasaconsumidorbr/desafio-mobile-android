@@ -14,7 +14,7 @@ open class CharacterDataSource : InterfaceCharacterDataSource {
         publicKey: String,
         hash: String
     ): List<CharacterDto> {
-        return characterService.getCharacter(limit, ts, publicKey, hash)
-            .map { character -> character.data.results?.first()!! }
+        val response = characterService.getCharacter(limit, ts, publicKey, hash)
+        return response.data.results!!
     }
 }
