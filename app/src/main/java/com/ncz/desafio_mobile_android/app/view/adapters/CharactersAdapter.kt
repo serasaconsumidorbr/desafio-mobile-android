@@ -20,6 +20,7 @@ class CharactersAdapter(private val characterList: List<Character>) :
 
     override fun onBindViewHolder(holder: ViewHolderCharacter, position: Int) {
       holder.name.text = characterList[position].name
+        holder.description.text = characterList[position].description
     }
 
     override fun getItemCount() = characterList.size
@@ -27,6 +28,7 @@ class CharactersAdapter(private val characterList: List<Character>) :
     inner class ViewHolderCharacter(binding: CardCharacterItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val name = binding.txtName
+        val description = binding.txtDescription
     }
 
 }
