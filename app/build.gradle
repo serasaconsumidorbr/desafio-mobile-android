@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
 }
+apply plugin: 'kotlin-android'
 
 android {
     compileSdk 32
@@ -73,4 +74,6 @@ dependencies {
     testImplementation "com.squareup.okhttp3:mockwebserver:4.9.0"
     androidTestImplementation "com.schibsted.spain:barista:$baristaVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
