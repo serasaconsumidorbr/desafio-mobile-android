@@ -11,12 +11,12 @@ class CharacterRepository(
     private val dataSource: InterfaceCharacterDataSource
 ) : InterfaceCharacterRepository {
 
-    val publicKey = "468f291338a63b4e512fa3d0be729577"
-    val privateKey = "704e950dfa830be865737e26ac480214cfccdce9"
-    val timestamp = System.currentTimeMillis().toString()
+    private val publicKey = "468f291338a63b4e512fa3d0be729577"
+    private val privateKey = "704e950dfa830be865737e26ac480214cfccdce9"
+    private val timestamp = System.currentTimeMillis().toString()
 
 
-    fun md5(): String {
+    private fun md5(): String {
         val hash = "$timestamp$privateKey$publicKey"
         var m: MessageDigest? = null
         try {
@@ -25,8 +25,7 @@ class CharacterRepository(
             e.printStackTrace()
         }
         m?.update(hash.toByteArray(), 0, hash.length)
-        val md5 = BigInteger(1, m?.digest()).toString(16)
-        return md5
+        return BigInteger(1, m?.digest()).toString(16)
     }
 
     override suspend fun getCharacter(): List<Character> {
