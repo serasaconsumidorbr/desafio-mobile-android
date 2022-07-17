@@ -19,9 +19,9 @@ class HomeViewModel : ViewModel() {
 
     private val repository: InterfaceCharacterRepository = CharacterRepository(dataSource)
 
-    val useCases = CharacterUseCases(repository)
+    private val useCases = CharacterUseCases(repository)
 
-    val liveData: MutableLiveData<State<List<Character>>> by lazy { MutableLiveData() }
+    private val liveData: MutableLiveData<State<List<Character>>> by lazy { MutableLiveData() }
 
     fun getCharacter() {
         viewModelScope.launch {
@@ -34,5 +34,13 @@ class HomeViewModel : ViewModel() {
                 liveData.postValue(State.error())
             }
         }
+    }
+
+    fun getFiveHeroes(heroes: List<Character>): List<Character> {
+        return heroes.filterIndexed { index, _ -> index < 5 }
+    }
+
+    fun getCharacters(characters: List<Character>): List<Character> {
+        return characters.filterIndexed { index, _ -> index > 4 }
     }
 }
