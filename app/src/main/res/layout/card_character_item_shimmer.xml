@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="9dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/shimmer_imgIcon"
+            android:layout_width="150dp"
+            android:layout_height="0dp"
+            android:background="#dddddd"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/shimmer_txtName"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_margin="8dp"
+            android:background="#dddddd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/shimmer_imgIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/shimmer_txtDescription"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_margin="8dp"
+            android:background="#dddddd"
+            app:layout_constraintBottom_toTopOf="@+id/shimmer_textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/shimmer_imgIcon"
+            app:layout_constraintTop_toBottomOf="@+id/shimmer_txtName" />
+
+        <View
+            android:id="@+id/shimmer_textView"
+            android:layout_width="62dp"
+            android:layout_height="24dp"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="2dp"
+            android:background="#dddddd"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/shimmer_txtDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
