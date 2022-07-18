@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2985" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2985" />
+        <entry key="app/src/main/res/drawable/ic_marvel_logo.xml" value="0.166" />
+        <entry key="app/src/main/res/drawable/shape.xml" value="0.2985" />
+        <entry key="app/src/main/res/drawable/teste.xml" value="0.2985" />
+        <entry key="app/src/main/res/font-v26/font.xml" value="0.40520833333333334" />
+        <entry key="app/src/main/res/font/font.xml" value="0.40625" />
+        <entry key="app/src/main/res/font/marvel_font.xml" value="0.40520833333333334" />
+        <entry key="app/src/main/res/layout/activity_base.xml" value="0.31875" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.14322916666666666" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.31875" />
+        <entry key="app/src/main/res/layout/card_character_item.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/card_character_item_shimmer.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/card_hero.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/card_hero_item.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/card_hero_item_shimmer.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.420532319391635" />
+        <entry key="app/src/main/res/layout/fragment_home_shimmer.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/recycler_characters.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/recycler_heroes.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/shape.xml" value="0.375" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
