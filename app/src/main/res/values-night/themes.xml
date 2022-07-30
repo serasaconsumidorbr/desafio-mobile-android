@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Marvel" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/md_theme_dark_primary</item>
+        <item name="colorPrimaryVariant">@color/md_theme_dark_primaryContainer</item>
+        <item name="colorOnPrimary">@color/md_theme_dark_onSecondary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/md_theme_dark_secondary</item>
+        <item name="colorSecondaryVariant">@color/md_theme_dark_secondaryContainer</item>
+        <item name="colorOnSecondary">@color/md_theme_dark_onSecondary</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.Marvel.Fullscreen" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="statusBarBackground">@color/md_theme_dark_secondary</item>
+        <item name="statusBarForeground">@color/md_theme_dark_onSecondary</item>
+        <item name="android:windowBackground">@color/md_theme_dark_onSecondary</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+</resources>
