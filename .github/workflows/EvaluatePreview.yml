@@ -1,0 +1,49 @@
+name: Firebase Deploy
+on:
+  workflow_dispatch:
+    inputs:
+      description:
+        description: "Descrição da release"
+        required: true
+      email:
+        description: "E-mail para enviar o convite"
+        required: false
+
+jobs:
+  analyze:
+    name: Firebase Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Ruby 2.7.1
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ruby-full
+          sudo apt-get install -y curl g++ gcc autoconf automake bison libc6-dev libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libtool libyaml-dev make pkg-config sqlite3 zlib1g-dev libgmp-dev libreadline-dev libssl-dev
+          curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+          curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+          curl -sSL https://get.rvm.io | bash -s stable
+          source /home/runner/.rvm/scripts/rvm
+          rvm install 2.7.1
+          rvm use 2.7.1 --default
+          sudo gem install bundler
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Setup fastlane
+        run: |
+          bundle install
+          bundle exec fastlane update_plugins
+
+      - name: Distribute app to Firebase 🚀
+        run: >-
+          bundle exec fastlane beta
+          notes:"${{ github.event.inputs.description }}"
+          testers:"${{ github.event.inputs.email }}"
+
+        env:
+          APP_ID: ${{ secrets.APP_ID }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
