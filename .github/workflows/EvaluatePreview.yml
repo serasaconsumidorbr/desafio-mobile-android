@@ -1,4 +1,4 @@
-name: Firebase Deploy
+name: Evaluate Preview
 on:
   workflow_dispatch:
     inputs:
