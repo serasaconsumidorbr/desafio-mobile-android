@@ -35,6 +35,7 @@ jobs:
 
       - name: Setup fastlane
         run: |
+          sudo gem install fastlane
           bundle install
           bundle exec fastlane update_plugins
 
