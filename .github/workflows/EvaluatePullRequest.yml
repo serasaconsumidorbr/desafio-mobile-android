@@ -32,9 +32,8 @@ jobs:
 
       - name: Setup fastlane
         run: |
-          sudo gem install fastlane
           bundle install
-          FASTLANE_OPT_OUT_USAGE=YES bundle exec fastlane update_plugins
+          bundle exec fastlane update_plugins
 
       - name: Unit tests
-        run: FASTLANE_OPT_OUT_USAGE=YES bundle exec fastlane test
+        run: bundle exec fastlane test

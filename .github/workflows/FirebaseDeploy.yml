@@ -30,13 +30,12 @@ jobs:
 
       - name: Setup fastlane
         run: |
-          sudo gem install fastlane
           bundle install
-          FASTLANE_OPT_OUT_USAGE=YES bundle exec fastlane update_plugins
+          bundle exec fastlane update_plugins
 
       - name: Distribute app to Firebase 🚀
         run: >-
-          FASTLANE_OPT_OUT_USAGE=YES bundle exec fastlane beta
+          bundle exec fastlane beta
           notes:"${{ github.event.pull_request.title }}"
 
         env:
