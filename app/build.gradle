@@ -18,10 +18,41 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+
+        }
+
+        debug {
+
+        }
+    }
+
     buildTypes {
         release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            signingConfig signingConfigs.release
+
+            buildConfigField "String", "BASE_URL", "\"http://gateway.marvel.com/\""
+            buildConfigField "String", "API_PUBLIC_KEY", "\"7af4fe65b2b3b3e4c6b8d1d3922e4290\""
+            buildConfigField "String", "API_PRIVATE_KEY", "\"d8ded1f6f600408cc5e111cecf90322b54f25112\""
+        }
+
+        debug {
+            testCoverageEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable true
+            signingConfig signingConfigs.debug
+
+            buildConfigField "String", "BASE_URL", "\"http://gateway.marvel.com/\""
+            buildConfigField "String", "API_PUBLIC_KEY", "\"7af4fe65b2b3b3e4c6b8d1d3922e4290\""
+            buildConfigField "String", "API_PRIVATE_KEY", "\"d8ded1f6f600408cc5e111cecf90322b54f25112\""
+
+            versionNameSuffix ".debug"
         }
     }
 
@@ -58,9 +89,9 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
 
     //Tests
-    testImplementation "junit:junit:4.13.2"
-    androidTestImplementation "androidx.test.ext:junit:1.1.3"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
 
     testImplementation "org.mockito:mockito-core:$mockito_version"
     testImplementation "org.mockito:mockito-inline:$mockito_version"
