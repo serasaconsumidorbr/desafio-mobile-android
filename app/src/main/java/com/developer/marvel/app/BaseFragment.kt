@@ -1,4 +1,4 @@
-package com.developer.marvel.app.home
+package com.developer.marvel.app
 
 import androidx.fragment.app.Fragment
 
