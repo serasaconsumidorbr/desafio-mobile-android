@@ -4,5 +4,5 @@ import com.developer.marvel.infrastructure.dto.CharacterDto
 
 interface CharacterDataSource{
 
-    suspend fun getCharacters(limit: Int): List<CharacterDto>
+    suspend fun getCharacters(page: Int, limit: Int): List<CharacterDto>
 }

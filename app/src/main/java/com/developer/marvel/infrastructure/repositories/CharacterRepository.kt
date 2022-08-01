@@ -8,8 +8,8 @@ class CharacterRepositoryImpl(
     private val dataSource: CharacterDataSource
 ) : CharacterRepository {
 
-    override suspend fun getCharacters(): List<Character> {
-        val characters = dataSource.getCharacters(100)
+    override suspend fun getCharacters(page: Int, limit: Int): List<Character> {
+        val characters = dataSource.getCharacters(page, limit)
         return characters.map { it.mapperToEntity() }
     }
 

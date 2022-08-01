@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.Marvel" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/md_theme_dark_onTertiary</item>
-        <item name="colorPrimaryVariant">@color/md_theme_dark_tertiaryContainer</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/md_theme_light_onSecondary</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/md_theme_light_secondary</item>
@@ -19,7 +19,7 @@
     </style>
 
     <style name="Theme.Marvel.Fullscreen" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="statusBarBackground">@color/md_theme_light_secondary</item>
+        <item name="statusBarBackground">@color/black</item>
         <item name="statusBarForeground">@color/md_theme_light_onSecondary</item>
         <item name="android:windowBackground">@color/md_theme_light_onSecondary</item>
         <item name="windowActionBar">false</item>
@@ -49,7 +49,7 @@
         <item name="android:textStyle">normal</item>
         <item name="android:fontFamily">@font/comic_family</item>
         <item name="colorPrimary">@color/transparent</item>
-        <item name="colorPrimaryDark">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/md_theme_light_secondary</item>
         <item name="colorControlNormal">@color/md_theme_light_secondary</item>
         <item name="windowActionBar">false</item>

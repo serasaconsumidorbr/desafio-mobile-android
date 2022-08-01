@@ -12,6 +12,11 @@ class SplashViewModel: ViewModel() {
         R.mipmap.splash_4,
         R.mipmap.splash_5,
         R.mipmap.splash_6,
+        R.mipmap.splash_10,
+        R.mipmap.splash_11,
+        R.mipmap.splash_12,
+        R.mipmap.splash_13,
+        R.mipmap.splash_14,
     )
 
     fun getRandomBackground(): Int {

@@ -18,6 +18,7 @@ class MarvelApplication: Application() {
             modules(
                 listOf(
                     appModule,
+                    viewModelModule,
                     usecasesModule,
                     repositoryModule,
                     datasourceModule,
