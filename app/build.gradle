@@ -89,6 +89,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
 
+    //Koin
+    implementation "io.insert-koin:koin-android:$koin_version"
+
     //Firebase
     implementation platform("com.google.firebase:firebase-bom:$firebase_version")
     implementation 'com.google.firebase:firebase-analytics'
@@ -104,6 +107,10 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$arch_core_testing_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$courotines_test_version"
     testImplementation "com.squareup.okhttp3:mockwebserver:$mockweb_server_version"
+
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
+
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_version"
     androidTestImplementation "com.schibsted.spain:barista:$barista_version"
