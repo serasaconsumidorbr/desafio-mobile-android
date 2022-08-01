@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Marvel</string>
+    <string name="title_home">Home</string>
+    <string name="title_discover">Descobrir</string>
+    <string name="title_search">Procurar</string>
+    <string name="title_notification">Notificações</string>
+    <string name="title_library">Biblioteca</string>
+
+
 </resources>

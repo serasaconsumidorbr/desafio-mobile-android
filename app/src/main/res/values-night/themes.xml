@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Marvel" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Marvel" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/md_theme_dark_primary</item>
-        <item name="colorPrimaryVariant">@color/md_theme_dark_primaryContainer</item>
+        <item name="colorPrimary">@color/md_theme_dark_onTertiary</item>
+        <item name="colorPrimaryVariant">@color/md_theme_dark_tertiaryContainer</item>
         <item name="colorOnPrimary">@color/md_theme_dark_onSecondary</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/md_theme_dark_secondary</item>
@@ -12,6 +12,24 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/comic_family</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="android:fontFamily">@font/comic_family</item>
+        <item name="titleTextStyle">@style/MyTitleTextStyle</item>
+    </style>
+
+    <style name="MyTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/comic_family</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Theme.Marvel.Fullscreen" parent="Theme.MaterialComponents.NoActionBar">
@@ -21,5 +39,6 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowContentTransitions">true</item>
+        <item name="android:fontFamily">@font/comic_family</item>
     </style>
 </resources>
