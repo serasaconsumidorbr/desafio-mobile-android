@@ -10,9 +10,9 @@ open class CharacterDataSourceImpl(private val retrofit: Retrofit) : CharacterDa
     private val characterService by lazy { retrofit.create(CharacterService::class.java) }
 
     override suspend fun getCharacters(
-        limit: Int,
+        page: Int, limit: Int
     ): List<CharacterDto> {
-        val response = characterService.getCharacters(limit)
+        val response = characterService.getCharacters(offset = limit * (page - 1), limit = limit)
         return response.data.results ?: emptyList()
     }
 }

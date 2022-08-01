@@ -89,6 +89,11 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
 
+    //Picasso
+    implementation "com.squareup.picasso:picasso:$picasso_version"
+    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
+    implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:$scrollingpagerindicator_version"
+
     //Koin
     implementation "io.insert-koin:koin-android:$koin_version"
 

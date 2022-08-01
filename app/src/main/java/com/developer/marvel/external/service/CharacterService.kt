@@ -9,6 +9,7 @@ interface CharacterService {
 
     @GET("/v1/public/characters")
     suspend fun getCharacters(
+        @Query("offset") offset: Int,
         @Query("limit") limit: Int,
     ): ResponseDto<CharacterDto>
 }

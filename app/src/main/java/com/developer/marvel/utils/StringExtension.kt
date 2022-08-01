@@ -27,7 +27,7 @@ fun String.toDatetime(): Date {
     if (this.isBlank()) return Date()
 
     return try {
-        val simpleDateFormat = SimpleDateFormat("yyyy-MM-ddTHH:mm:ssZ")
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
         simpleDateFormat.parse(this) as Date
     } catch (e: ParseException) {
         throw RuntimeException(e)
