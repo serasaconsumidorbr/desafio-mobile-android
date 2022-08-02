@@ -1,0 +1,131 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs'
+    id 'com.google.gms.google-services'
+}
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdk marvel_compile_sdk.toInteger()
+
+    defaultConfig {
+        applicationId "com.developer.marvel"
+        minSdk marvel_min_sdk.toInteger()
+        targetSdk marvel_target_sdk.toInteger()
+        versionCode marvel_version_code.toInteger()
+        versionName marvel_version_name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+
+        }
+
+        debug {
+        }
+    }
+
+    buildTypes {
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            signingConfig signingConfigs.release
+
+            buildConfigField "String", "BASE_URL", "\"http://gateway.marvel.com/\""
+            buildConfigField "String", "API_PUBLIC_KEY", "\"7af4fe65b2b3b3e4c6b8d1d3922e4290\""
+            buildConfigField "String", "API_PRIVATE_KEY", "\"d8ded1f6f600408cc5e111cecf90322b54f25112\""
+        }
+
+        debug {
+            testCoverageEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.debug
+
+            buildConfigField "String", "BASE_URL", "\"http://gateway.marvel.com/\""
+            buildConfigField "String", "API_PUBLIC_KEY", "\"7af4fe65b2b3b3e4c6b8d1d3922e4290\""
+            buildConfigField "String", "API_PRIVATE_KEY", "\"d8ded1f6f600408cc5e111cecf90322b54f25112\""
+
+            versionNameSuffix ".debug"
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+}
+
+dependencies {
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+
+    // Navigation
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedata_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$livedata_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
+    implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:$scrollingpagerindicator_version"
+    implementation "com.google.code.gson:gson:$gson_version"
+
+
+    //Koin
+    implementation "io.insert-koin:koin-android:$koin_version"
+
+    //Firebase
+    implementation platform("com.google.firebase:firebase-bom:$firebase_version")
+    implementation 'com.google.firebase:firebase-analytics'
+
+
+    //Tests
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
+
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.mockito:mockito-inline:$mockito_version"
+    testImplementation "androidx.arch.core:core-testing:$arch_core_testing_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$courotines_test_version"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mockweb_server_version"
+
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
+
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_version"
+    androidTestImplementation "com.schibsted.spain:barista:$barista_version"
+
+}

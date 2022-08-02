@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Marvel</string>
+    <string name="title_home">Home</string>
+    <string name="title_search">Procurar</string>
+    <string name="title_library">Biblioteca</string>
+    <string name="title_account">Conta</string>
+    <string name="popular_in_marvel">Popular na Marvel</string>
+    <string name="no_response_description">Nenhuma descrição foi inserida</string>
+    <string name="name">Nome</string>
+    <string name="last_modified">Última atualização</string>
+    <string name="description">Descrição</string>
+
+
+</resources>

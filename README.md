@@ -1,63 +1,90 @@
-<!-- Header-->
-<br />
-<p align="center">
-  <a href="https://github.com/serasaconsumidorbr/desafio-mobile-iOS">
-    <img src="https://turismoemfoco.com.br/v1/wp-content/uploads/2020/05/serasa-logo-nova22.png" alt="Logo" width="180" height="80">
-  </a>
+# Marvel
 
-  <h3 align="center">Desafio - Android Developer </h3>
+Desafio técnico para Serasa, cuja proposta é desenvolver um aplicativo que realiza a listagem de personagens da Marvel.
 
-  <p align="center">
-    O nosso aplicativo é uma das nossas soluções para mudar a vida financeira de milhões de brasileiros. <b>Venha fazer parte desse time</b> muito engajado que
-  trabalha para que esse aplicativo chegue da melhor forma na mão dos consumidores.
-  </p>
-</p>
+😀 Thiago Ribeiro Filadelfo - thiago.filadelfo@gmail.com
 
-## Sobre
-<p> Utilizamos este desafio para avaliar a qualidade do seu código, arquitetura, a forma que você organiza os seus pensamentos dentro do git e muitas outras coisas, por isso, sinta-se a vontade e dê o seu melhor! O tempo médio para a entrega deste desafio é de uma semana.</p>
+📅 Entregue em 02/08/2022
 
-<p>Neste desafio você irá desenvolver um app que deverá mostrar os <b>personagens</b> da <a href="https://www.marvel.com/characters">Marvel</a>. 
+## Atividades
+- [x] Criação do repositório
+- [-] [Wireframe de baixa fidelidade](https://www.figma.com/file/dBwqzILYichLDF5F2xHXSo/MarvelApp?node-id=0%3A1)
+    - [x] Lista de personagens top 5
+    - [x] Lista de personagens populares 
+    - [x] Detalhamento do personagem selecionado
+
+## Minhas considerações
+Para a execução deste desafio técnico escolhi utilizar algumas abordagens mais contemporâneas, com a arquitetura limpa, com o pattern do MVVM, binding e Coroutines. E para o meu espanto eu codifiquei bem menos do que estava imaginando, gostei muito do resultado.
+
+Também me desafiei para tentar colocar o máximo possivel de animação e pensar bastante em usabilidade, mais especificamente na inclusão de acessibilidade.
+
+Durante o desenvolvimento pratiquei o modelo de DDD para desenvolver a feature, gostei bastante do resultado e observei que é possivel garantir a qualidade do desenvolvimento sem ter ao menos um teste de tela.
+
+Em suma esse desafio encarei como um hackton individual cujo o objetivo final da jornada ter insumo para apresentar e validar os conceitos utilizados.
+
+
+## Como executar?
+- Pré-requisito:
+    - Git/Github instalador
+    - Ter Android Studio instalado: 2021.1.1 ou maior
+    - Utilizar Gradle na versão: 7.2 ou maior
+    - BuildTools na versão: 31.0.0 ou maior
+    - Aplicativo compatível com o Sistema operacional Android API 21 ou maior
+
+- Instalação do projeto:
+    ```
+    $ git clone https://github.com/trfiladelfo/desafio-mobile-android.git
+    ```
+    - Abrir o Android Studio na pasta onde foi realizado o clone
+    - Clique em Run -> App
+
+## Bibliotecas usadas
+- [Android X - Jetpack](https://developer.android.com/jetpack)
+    - Navigation: Manipulador de navegar entre fragments e activities
+- [Firebase](https://firebase.google.com/?hl=pt-br): Biblioteca ampla de recursos, o principal dele é o crash analytics
+- [Retrofit2](https://square.github.io/retrofit/): Biblioteca para realizar requisições Rest
+- [Glide](https://bumptech.github.io/glide/): Biblioteca para manipular imagens
+- [Koin](https://insert-koin.io/): Biblioteca para injeção de dependência
+- Bibliotecas diversas
+    - [Scrollingpagerindicator](https://github.com/Tinkoff/ScrollingPagerIndicator): Componente controlador para exibir os indicadores do slide
+    - [Shimmer](http://facebook.github.io/shimmer-android/): Componente gráfico para realizar o placeholder de uma lista
+
+## Para testar
+- Teste da execução do aplicativo:
+Adicione o seu e-mail cadastrado no Google Play no endereço do [App Distribution](https://appdistribution.firebase.dev/i/53266552557d043d) e verifique na caixa de entrada um e-mail com as seguintes informações:
+ - titulo: Confirm your email to test Marvel for Android
+ - remetente: Marvel (via Firebase App Distribution) <firebase-noreply@google.com>
+
+![Primeiro Passo](docs/firebase_step1.png)
+![Segundo Passo](docs/firebase_step2.png)
+![Terceiro Passo](docs/firebase_step3.png)
+
+Realize os procedimentos descritos no e-mail
+
+- Teste para execução dos testes unitários
+  ```
+   $ ./gradlew test -p
+  ```
+  ou
+  ```
+    $ bundle exec fastlane android test
+  ```
   
-<p>Para começar a fazer requests utilizando este serviço, siga esta <a href="https://developer.marvel.com/documentation/authorization">documentação</a>. O endpoint que deverá ser utilizado para popular as listas do app será a <b><a href="https://developer.marvel.com/docs#!/public/getCreatorCollection_get_0">/v1/public/characters</a></b>. </p>
+- Teste realizar uma distribuição
+  ```
+   $ bundle exec fastlane android beta app_id:"1:41836561468:android:bd422822350b0707daaf39" notes:"Teste de Distribuição" firebase_token:"1//0h_ciribHjLbUCgYIARAAGBESNwF-L9IrrRmiweamnFW3xo_tH8kYwmFbZTkXIrLp3KFFr4WJ8USIjSKIR5fz9lG1IPTF9CQ32uQ"
+  ```
+  Para mais informações, deixei um documento detalhando o processo, neste [link](fastlane/README.md)
+
+Obs: 
+1. Cada commit realizado foi "trigado" a cada PR no Github Actions o script de validação do commit e posteriormente o PR
+2. Pelo Github action é possivel também realizar um release 
+![Procedimento para Release](docs/github_action_release.png)
+
+## Prévia
+
+https://user-images.githubusercontent.com/3305437/182471662-010475eb-e12f-4a94-a4f5-3c45c80a2dde.mp4
 
 
-## Requisitos
-<p>Estes requisitos básicos são utilizados para ver como você lida com cada um desses itens. A falta de qualquer um desses requisitos compromete a sua avaliação no final.</p>
-
-
-- Versão mínima do SDK: 21
-- Tela deve ajustar em devices menores.
-- Utilizar Kotlin
-- Boa arquitetura, pode ser (mvc, mvp, mvvm, clean etc)
-- RxJava ou Coroutines
-- Testes unitários
-- Cache de imagens
-- Tratamentos de erros
-- Padrão de Projeto e boas práticas de Orientação a Objetos.
-- Google AAC (Android Architecture Components)
-
-## Será um diferencial 
-- Construir layouts com Constraints
-- Trabalhar offline (cache dos dados)
-- Injeção de dependência (dagger, koin, kodein)
-
-## O projeto deverá conter
-* Carrossel superior com **5** personagens
-* Uma lista **vertical** abaixo do carrossel **com os personagens seguintes, sem repetir**
-* Scroll infinito
-
-<b>Atente-se aos detalhes que ache interessante mostrar, por exemplo, nome, descrição, imagens ou outras informações dos personagens</b>
-
-## Importante
-* **Sua criatividade:** Utilize as considerações acima para criar o projeto do seu jeito, **utilizando as dependências que quiser**. Apenas saiba explicar o motivo das suas escolhas. 
-
-* **Documentação:** Ao finalizar o projeto, não se esqueça de documenta-lo. É Muito importante escrever o seu fluxo de pensamentos, **anexar imagens do aplicativo**, inserir as **bibliotecas** e versões que estão sendo utilizadas, **roadmap** de features que você gostaria de colocar e **melhorias que gostaria de fazer**...
-
-## Por fim, envie seu teste!
-* Crie um `fork`, de preferencia público, desse repositório.
-* Tente seguir o <b><a href="https://imasters.com.br/agile/fluxo-de-desenvolvimento-com-gitflow#:~:text=Como%20afirma%20Vincent%20Driessen%20(2010,o%20trunk%20e%20o%20branch.">gitflow</a></b> para o seu fluxo de desenvolvimento.
-* Ao finalizar, faça o **pull request** para este repositório
-
-Agora é só torcer!
-
-**Ultimo recadinho:** não utilize o nome da Serasa dentro de seu projeto 😉
+## Obrigado!
+Agradeço muito pela oportunidade e ficarei muito grato pelo retorno de vocês acerca da minha execução independentemente do resultado final, isso nos engrandece como pessoa e mais ainda como um melhoramento profissional.
