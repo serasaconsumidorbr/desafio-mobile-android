@@ -1,4 +1,4 @@
-# TheMovies
+# Marvel
 
 Desafio técnico para Serasa, cuja proposta é desenvolver um aplicativo que realiza a listagem de personagens da Marvel.
 
