@@ -27,6 +27,8 @@ class HomeViewModel(
             try {
                 val topNumber = 5
 
+                _popularCharacters.postValue(Snapshot.Loading())
+
                 val characters = characterUseCases.getCharacters(page, limit)
 
                 if (page == 1)
