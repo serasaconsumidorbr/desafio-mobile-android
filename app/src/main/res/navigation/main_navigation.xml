@@ -9,6 +9,35 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.developer.marvel.app.modules.home.HomeFragment"
-        tools:layout="@layout/fragment_home"
-        android:label="HomeFragment" />
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.developer.marvel.app.modules.detail.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail" >
+        <argument android:name="character"
+            app:argType="com.developer.marvel.domain.entities.Character" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.developer.marvel.app.modules.account.AccountFragment"
+        tools:layout="@layout/fragment_maintenance"
+        android:label="AccountFragment" />
+    <fragment
+        android:id="@+id/libraryFragment"
+        android:name="com.developer.marvel.app.modules.library.LibraryFragment"
+        tools:layout="@layout/fragment_maintenance"
+        android:label="LibraryFragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.developer.marvel.app.modules.search.SearchFragment"
+        tools:layout="@layout/fragment_maintenance"
+        android:label="SearchFragment" />
 </navigation>

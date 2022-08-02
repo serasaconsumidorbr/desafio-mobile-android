@@ -12,6 +12,7 @@ class CharactersAdapter :
     RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
 
     private val characters: ArrayList<Character> = arrayListOf()
+    private var onClickItemListener: ((Character) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
@@ -33,6 +34,10 @@ class CharactersAdapter :
         }
 
         Picasso.get().load(baseUrl).into(holder.binding.imageCharacter)
+
+        holder.itemView.setOnClickListener {
+            onClickItemListener?.invoke(character)
+        }
     }
 
     override fun getItemCount() = characters.size
@@ -49,6 +54,10 @@ class CharactersAdapter :
         val newSize = this.characters.size
 
         notifyItemRangeChanged(oldSize, newSize)
+    }
+
+    fun setOnClickItemListener(listener: (Character) -> Unit) {
+        this.onClickItemListener = listener
     }
 
     inner class ViewHolder(val binding: HomeTopItemBinding) :

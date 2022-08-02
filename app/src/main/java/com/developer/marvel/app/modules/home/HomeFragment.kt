@@ -16,6 +16,8 @@ import com.developer.marvel.app.modules.home.helper.MarginItemDecoration
 import com.developer.marvel.app.utils.Snapshot
 import com.developer.marvel.databinding.FragmentHomeBinding
 import com.developer.marvel.domain.entities.Character
+import com.developer.marvel.utils.showError
+import com.developer.marvel.utils.showInfo
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -78,6 +80,11 @@ class HomeFragment : BaseFragment() {
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.recyclerTopCharacters.itemAnimator = DefaultItemAnimator()
         binding.indicatorTopCharacters.attachToRecyclerView(binding.recyclerTopCharacters)
+
+        topCharactersAdapter.setOnClickItemListener {
+            val directions = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it)
+            navController.navigate(directions)
+        }
     }
 
     private fun setupUIPopularCharacters() {
@@ -85,6 +92,11 @@ class HomeFragment : BaseFragment() {
         binding.recyclerPopularCharacters.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerPopularCharacters.addItemDecoration(MarginItemDecoration(8))
         binding.recyclerPopularCharacters.itemAnimator = DefaultItemAnimator()
+
+        popularCharactersAdapter.setOnClickItemListener {
+            val directions = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it)
+            navController.navigate(directions)
+        }
 
         binding.nestedScrollView.viewTreeObserver.addOnScrollChangedListener {
             val scrollView = binding.nestedScrollView
@@ -107,10 +119,7 @@ class HomeFragment : BaseFragment() {
     private fun observeTopCharacters() {
         homeViewModel.topCharacters.observe(viewLifecycleOwner) {
             when (it) {
-                is Snapshot.Loading -> if(page == 1) showShimmerLoading() else showLoading()
-
                 is Snapshot.Success -> {
-                    if(page == 1) hideShimmerLoading() else hideLoading()
                     setupTopCharacters(it.data)
                 }
             }
@@ -133,19 +142,7 @@ class HomeFragment : BaseFragment() {
 
                     page--
 
-                    val snackbar = Snackbar.make(
-                        requireView(), it.exception.message ?: "Houve uma falha inesperada",
-                        Snackbar.LENGTH_LONG
-                    )
-
-                    val snackBarView = snackbar.view
-                    snackBarView.setBackgroundColor(
-                        ContextCompat.getColor(
-                            requireContext(),
-                            R.color.ic_launcher_background
-                        )
-                    )
-                    snackbar.show()
+                    showError(requireView(), it.exception.message)
                 }
             }
         }
@@ -174,19 +171,7 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun showLoading() {
-        loadingProgressView = Snackbar.make(
-            requireView(), "Estamos trabalhando...",
-            Snackbar.LENGTH_LONG
-        )
-
-        val snackBarView = loadingProgressView?.view
-        snackBarView?.setBackgroundColor(
-            ContextCompat.getColor(
-                requireContext(),
-                R.color.md_theme_light_secondary,
-            )
-        )
-        loadingProgressView?.show()
+        loadingProgressView = showInfo(requireView(), "Estamos trabalhando...")
     }
 
     private fun hideLoading() {
