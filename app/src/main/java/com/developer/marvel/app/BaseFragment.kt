@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 
-open class BaseFragment: Fragment() {
+open class BaseFragment : Fragment() {
 
     internal val navController: NavController by lazy {
         findNavController()

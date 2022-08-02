@@ -6,12 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.developer.marvel.app.utils.Snapshot
 import com.developer.marvel.domain.entities.Character
+import com.developer.marvel.domain.failures.MarvelFailures
 import com.developer.marvel.domain.usecases.CharacterUseCases
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val characterUseCases: CharacterUseCases
-): ViewModel() {
+) : ViewModel() {
 
     private val limit = 20
 
@@ -28,12 +29,19 @@ class HomeViewModel(
 
                 val characters = characterUseCases.getCharacters(page, limit)
 
-                if(page == 1)
+                if (page == 1)
                     _topCharacters.postValue(Snapshot.Success(characters.subList(0, topNumber)))
 
-                _popularCharacters.postValue(Snapshot.Success(characters.subList(topNumber, characters.size)))
+                _popularCharacters.postValue(
+                    Snapshot.Success(
+                        characters.subList(
+                            topNumber,
+                            characters.size
+                        )
+                    )
+                )
 
-            } catch (e: Exception) {
+            } catch (e: MarvelFailures) {
                 _topCharacters.postValue(Snapshot.Failure(e))
             }
         }

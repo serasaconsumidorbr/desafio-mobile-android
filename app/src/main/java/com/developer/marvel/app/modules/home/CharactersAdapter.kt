@@ -8,7 +8,7 @@ import com.developer.marvel.databinding.HomeTopItemBinding
 import com.developer.marvel.domain.entities.Character
 import com.squareup.picasso.Picasso
 
-class CharactersAdapter:
+class CharactersAdapter :
     RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
 
     private val characters: ArrayList<Character> = arrayListOf()
@@ -17,7 +17,8 @@ class CharactersAdapter:
         val binding =
             HomeTopItemBinding.inflate(
                 LayoutInflater.from(parent.context),
-                parent, false)
+                parent, false
+            )
         return ViewHolder(binding)
     }
 

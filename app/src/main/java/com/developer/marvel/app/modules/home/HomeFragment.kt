@@ -4,20 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.NestedScrollView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.developer.marvel.R
 import com.developer.marvel.app.BaseFragment
 import com.developer.marvel.app.modules.home.helper.MarginItemDecoration
 import com.developer.marvel.app.utils.Snapshot
 import com.developer.marvel.databinding.FragmentHomeBinding
 import com.developer.marvel.domain.entities.Character
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
-class HomeFragment: BaseFragment() {
+
+class HomeFragment : BaseFragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -68,7 +71,8 @@ class HomeFragment: BaseFragment() {
 
     private fun setupUITopCharacters() {
         binding.recyclerTopCharacters.adapter = topCharactersAdapter
-        binding.recyclerTopCharacters.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        binding.recyclerTopCharacters.layoutManager =
+            LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.recyclerTopCharacters.itemAnimator = DefaultItemAnimator()
         binding.indicatorTopCharacters.attachToRecyclerView(binding.recyclerTopCharacters)
     }
@@ -97,13 +101,12 @@ class HomeFragment: BaseFragment() {
 
     private fun observeTopCharacters() {
         homeViewModel.topCharacters.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is Snapshot.Loading -> TODO()
+
                 is Snapshot.Success -> {
                     setupTopCharacters(it.data)
                 }
-                is Snapshot.Failure -> TODO()
-
             }
         }
     }
@@ -111,12 +114,30 @@ class HomeFragment: BaseFragment() {
 
     private fun observePopularCharacters() {
         homeViewModel.popularCharacters.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is Snapshot.Loading -> TODO()
+
                 is Snapshot.Success -> {
                     setupPopularCharacters(it.data)
                 }
-                is Snapshot.Failure -> TODO()
+
+                is Snapshot.Failure -> {
+                    page--
+
+                    val snackbar = Snackbar.make(
+                        requireView(), it.exception.message ?: "Houve uma falha inesperada",
+                        Snackbar.LENGTH_LONG
+                    )
+
+                    val snackBarView = snackbar.view
+                    snackBarView.setBackgroundColor(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.ic_launcher_background
+                        )
+                    )
+                    snackbar.show()
+                }
             }
         }
     }
@@ -135,11 +156,11 @@ class HomeFragment: BaseFragment() {
 
     private fun startCarousel(
         recyclerTopCharacters: RecyclerView,
-        adapter:  RecyclerView.Adapter<*>
+        adapter: RecyclerView.Adapter<*>
     ) {
-        if(timer != null) return
+        if (timer != null) return
 
-        timerTask = object: TimerTask() {
+        timerTask = object : TimerTask() {
             override fun run() {
                 activity?.runOnUiThread {
                     if (topCharactersCurrentIndex == adapter.itemCount) {

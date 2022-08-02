@@ -2,7 +2,7 @@ package com.developer.marvel.infrastructure.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class PresentationDto<T> (
+data class PresentationDto<T>(
     @SerializedName("available")
     val available: String,
 

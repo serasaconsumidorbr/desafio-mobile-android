@@ -93,6 +93,8 @@ dependencies {
     implementation "com.squareup.picasso:picasso:$picasso_version"
     implementation "com.facebook.shimmer:shimmer:$shimmer_version"
     implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:$scrollingpagerindicator_version"
+    implementation "com.google.code.gson:gson:$gson_version"
+
 
     //Koin
     implementation "io.insert-koin:koin-android:$koin_version"

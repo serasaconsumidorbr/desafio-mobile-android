@@ -1,7 +1,6 @@
 package com.developer.marvel.utils
 
 import android.annotation.SuppressLint
-import java.lang.RuntimeException
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
