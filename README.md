@@ -14,11 +14,11 @@ Desafio técnico para Serasa, cuja proposta é desenvolver um aplicativo que rea
     - [x] Detalhamento do personagem selecionado
 
 ## Minhas considerações
-Para a execução deste desafio técnico escolhi utilizar algumas abordagens mais contemporâneas, com a arquitetura limpa com pattern do MVVM, binding e Coroutines. E para o meu espanto eu codifiquei bem menos do que estava imaginando, gostei muito do resultado.
+Para a execução deste desafio técnico escolhi utilizar algumas abordagens mais contemporâneas, com a arquitetura limpa, com o pattern do MVVM, binding e Coroutines. E para o meu espanto eu codifiquei bem menos do que estava imaginando, gostei muito do resultado.
 
 Também me desafiei para tentar colocar o máximo possivel de animação e pensar bastante em usabilidade, mais especificamente na inclusão de acessibilidade.
 
-Durante o desenvolvimento tive pratiquei o modelo de DDD para desenvolver a feature, gostei bastante do resultado e observei que é possivel garantir a qualidade do desenvolvimento sem ter ao menos um teste de tela.
+Durante o desenvolvimento pratiquei o modelo de DDD para desenvolver a feature, gostei bastante do resultado e observei que é possivel garantir a qualidade do desenvolvimento sem ter ao menos um teste de tela.
 
 Em suma esse desafio encarei como um hackton individual cujo o objetivo final da jornada ter insumo para apresentar e validar os conceitos utilizados.
 
@@ -41,7 +41,7 @@ Em suma esse desafio encarei como um hackton individual cujo o objetivo final da
 ## Bibliotecas usadas
 - [Android X - Jetpack](https://developer.android.com/jetpack)
     - Navigation: Manipulador de navegar entre fragments e activities
-- [Firebase](https://firebase.google.com/?hl=pt-br): Biblioteca ampla de recursos, o principal dele é o crash analytics e autheticator
+- [Firebase](https://firebase.google.com/?hl=pt-br): Biblioteca ampla de recursos, o principal dele é o crash analytics
 - [Retrofit2](https://square.github.io/retrofit/): Biblioteca para realizar requisições Rest
 - [Glide](https://bumptech.github.io/glide/): Biblioteca para manipular imagens
 - [Koin](https://insert-koin.io/): Biblioteca para injeção de dependência
@@ -74,7 +74,7 @@ Realize os procedimentos descritos no e-mail
   ```
    $ bundle exec fastlane android beta app_id:"1:41836561468:android:bd422822350b0707daaf39" notes:"Teste de Distribuição" firebase_token:"1//0h_ciribHjLbUCgYIARAAGBESNwF-L9IrrRmiweamnFW3xo_tH8kYwmFbZTkXIrLp3KFFr4WJ8USIjSKIR5fz9lG1IPTF9CQ32uQ"
   ```
-  Para mais informações, deixei um documento detalhando o processo neste [link](fastlane/README.md)
+  Para mais informações, deixei um documento detalhando o processo, neste [link](fastlane/README.md)
 
 Obs: 
 1. Cada commit realizado foi "trigado" a cada PR no Github Actions o script de validação do commit e posteriormente o PR
@@ -82,7 +82,9 @@ Obs:
 ![Procedimento para Release](docs/github_action_release.png)
 
 ## Prévia
-[Previa](docs/desafio.gif)
+
+https://user-images.githubusercontent.com/3305437/182471662-010475eb-e12f-4a94-a4f5-3c45c80a2dde.mp4
+
 
 ## Obrigado!
 Agradeço muito pela oportunidade e ficarei muito grato pelo retorno de vocês acerca da minha execução independentemente do resultado final, isso nos engrandece como pessoa e mais ainda como um melhoramento profissional.
