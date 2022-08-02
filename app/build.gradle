@@ -25,7 +25,6 @@ android {
         }
 
         debug {
-
         }
     }
 
@@ -54,6 +53,12 @@ android {
             buildConfigField "String", "API_PRIVATE_KEY", "\"d8ded1f6f600408cc5e111cecf90322b54f25112\""
 
             versionNameSuffix ".debug"
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
         }
     }
 
@@ -89,8 +94,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
 
-    //Picasso
-    implementation "com.squareup.picasso:picasso:$picasso_version"
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
     implementation "com.facebook.shimmer:shimmer:$shimmer_version"
     implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:$scrollingpagerindicator_version"
     implementation "com.google.code.gson:gson:$gson_version"
