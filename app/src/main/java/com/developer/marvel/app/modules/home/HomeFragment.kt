@@ -99,13 +99,15 @@ class HomeFragment : BaseFragment() {
         }
 
         binding.nestedScrollView.viewTreeObserver.addOnScrollChangedListener {
-            val scrollView = binding.nestedScrollView
-            if(loadingProgressView == null) {
-                if (scrollView.getChildAt(0).bottom <= (scrollView.height + scrollView.scrollY)) {
-                    page++
-                    homeViewModel.getCharacters(page = page)
+            try{
+                val scrollView = binding.nestedScrollView
+                if(loadingProgressView == null) {
+                    if (scrollView.getChildAt(0).bottom <= (scrollView.height + scrollView.scrollY)) {
+                        page++
+                        homeViewModel.getCharacters(page = page)
+                    }
                 }
-            }
+            }catch (e: NullPointerException){}
         }
     }
     //endregion
@@ -123,6 +125,7 @@ class HomeFragment : BaseFragment() {
                     if(page == 1) hideShimmerLoading() else hideLoading()
                     setupTopCharacters(it.data)
                 }
+                else -> {}
             }
         }
     }
@@ -145,6 +148,8 @@ class HomeFragment : BaseFragment() {
 
                     showError(requireView(), it.exception.message)
                 }
+
+                else -> {}
             }
         }
     }
