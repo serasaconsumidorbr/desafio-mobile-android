@@ -13,7 +13,7 @@ enum class StoriesItemType(private val type: String) {
     }
 }
 
-data class StoriesItem (
+data class StoriesItem(
     val resourceURI: String,
     val name: String,
     val type: StoriesItemType

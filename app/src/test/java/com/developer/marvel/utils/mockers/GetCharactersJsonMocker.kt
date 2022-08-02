@@ -4003,4 +4003,21 @@ object GetCharactersJsonMocker {
         }
     }
 
+    object `409` {
+        fun getCharactersResponseMissingParameters(): String {
+            return """{
+  "code": "MissingParameter",
+  "message": "You must provide a user key."
+}"""
+        }
+    }
+
+    object `401` {
+        fun getCharactersResponseInvalidCredentials(): String {
+            return """{
+  "code": "InvalidCredentials",
+  "message": "You must provide a user key."
+}"""
+        }
+    }
 }

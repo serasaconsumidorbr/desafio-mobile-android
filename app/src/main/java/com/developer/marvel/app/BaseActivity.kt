@@ -7,14 +7,12 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.developer.marvel.R
 import com.developer.marvel.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class BaseActivity: AppCompatActivity() {
+class BaseActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 

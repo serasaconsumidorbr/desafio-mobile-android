@@ -1,7 +1,11 @@
 package com.developer.marvel.usecases
 
+import com.developer.marvel.domain.failures.InvalidCredentialsFailure
+import com.developer.marvel.domain.failures.MissingParameterFailure
 import com.developer.marvel.domain.repositories.CharacterRepository
 import com.developer.marvel.domain.usecases.CharacterUseCases
+import com.developer.marvel.infrastructure.exceptions.InvalidCredentialsException
+import com.developer.marvel.infrastructure.exceptions.MissingParameterException
 import com.developer.marvel.utils.mockers.GetCharactersMocker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -24,12 +28,42 @@ class CharacterUseCasesTest {
             val testDispatcher = UnconfinedTestDispatcher(this.testScheduler)
             Dispatchers.setMain(testDispatcher)
 
-            Mockito.`when`(repository.getCharacters())
+            Mockito.`when`(repository.getCharacters(Mockito.anyInt(), Mockito.anyInt()))
                 .thenReturn(GetCharactersMocker.getCharactersMocker())
 
             Assert.assertNotNull(useCases.getCharacters(1, 10))
-            // FIXME quando terminar de fazer o usecase fazer o teste aqui
-            //Mockito.verify(repository, Mockito.times(1)).getCharacters()
+
+            Mockito.verify(repository, Mockito.times(1)).getCharacters(1, 10)
+        }
+    }
+
+    @Test(expected = MissingParameterFailure::class)
+    fun `deve retornar failure Missing Parameters`() {
+        runTest {
+            val testDispatcher = UnconfinedTestDispatcher(this.testScheduler)
+            Dispatchers.setMain(testDispatcher)
+
+            Mockito.`when`(repository.getCharacters(Mockito.anyInt(), Mockito.anyInt()))
+                .thenThrow(MissingParameterFailure::class.java)
+
+            Assert.assertNotNull(useCases.getCharacters(1, 10))
+
+            Mockito.verify(repository, Mockito.times(1)).getCharacters(1, 10)
+        }
+    }
+
+    @Test(expected = InvalidCredentialsFailure::class)
+    fun `deve retornar failure Invalid Credentials`() {
+        runTest {
+            val testDispatcher = UnconfinedTestDispatcher(this.testScheduler)
+            Dispatchers.setMain(testDispatcher)
+
+            Mockito.`when`(repository.getCharacters(Mockito.anyInt(), Mockito.anyInt()))
+                .thenThrow(InvalidCredentialsFailure::class.java)
+
+            Assert.assertNotNull(useCases.getCharacters(1, 10))
+
+            Mockito.verify(repository, Mockito.times(1)).getCharacters(1, 10)
         }
     }
 }

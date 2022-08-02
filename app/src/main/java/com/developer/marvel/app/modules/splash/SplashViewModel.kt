@@ -3,7 +3,7 @@ package com.developer.marvel.app.modules.splash
 import androidx.lifecycle.ViewModel
 import com.developer.marvel.R
 
-class SplashViewModel: ViewModel() {
+class SplashViewModel : ViewModel() {
 
     private val backgrounds = listOf(
         R.mipmap.splash_3,

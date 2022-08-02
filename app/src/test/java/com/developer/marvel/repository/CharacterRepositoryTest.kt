@@ -1,6 +1,10 @@
 package com.developer.marvel.repository
 
+import com.developer.marvel.domain.failures.InvalidCredentialsFailure
+import com.developer.marvel.domain.failures.MissingParameterFailure
 import com.developer.marvel.infrastructure.datasources.CharacterDataSource
+import com.developer.marvel.infrastructure.exceptions.InvalidCredentialsException
+import com.developer.marvel.infrastructure.exceptions.MissingParameterException
 import com.developer.marvel.infrastructure.repositories.CharacterRepositoryImpl
 import com.developer.marvel.utils.mockers.GetCharactersDtoMocker
 import kotlinx.coroutines.Dispatchers
@@ -25,13 +29,47 @@ class CharacterRepositoryTest {
             Dispatchers.setMain(testDispatcher)
 
 
-            Mockito.`when`(datasource.getCharacters(Mockito.anyInt()))
+            Mockito.`when`(datasource.getCharacters(Mockito.anyInt(), Mockito.anyInt()))
                 .thenReturn(GetCharactersDtoMocker.getCharactersMocker())
 
-            Assert.assertNotNull(repository.getCharacters())
+            Assert.assertNotNull(repository.getCharacters(Mockito.anyInt(), Mockito.anyInt()))
 
             Mockito.verify(datasource, Mockito.times(1))
-                .getCharacters(Mockito.anyInt())
+                .getCharacters(Mockito.anyInt(), Mockito.anyInt())
+        }
+    }
+
+    @Test(expected = MissingParameterFailure::class)
+    fun `deve retornar failure Missing Parameters`() {
+        runTest {
+            val testDispatcher = UnconfinedTestDispatcher(this.testScheduler)
+            Dispatchers.setMain(testDispatcher)
+
+
+            Mockito.`when`(datasource.getCharacters(Mockito.anyInt(), Mockito.anyInt()))
+                .thenThrow(MissingParameterException(""))
+
+            Assert.assertNotNull(repository.getCharacters(Mockito.anyInt(), Mockito.anyInt()))
+
+            Mockito.verify(datasource, Mockito.times(1))
+                .getCharacters(Mockito.anyInt(), Mockito.anyInt())
+        }
+    }
+
+    @Test(expected = InvalidCredentialsFailure::class)
+    fun `deve retornar failure Invalid Credentials`() {
+        runTest {
+            val testDispatcher = UnconfinedTestDispatcher(this.testScheduler)
+            Dispatchers.setMain(testDispatcher)
+
+
+            Mockito.`when`(datasource.getCharacters(Mockito.anyInt(), Mockito.anyInt()))
+                .thenThrow(InvalidCredentialsException::class.java)
+
+            Assert.assertNotNull(repository.getCharacters(Mockito.anyInt(), Mockito.anyInt()))
+
+            Mockito.verify(datasource, Mockito.times(1))
+                .getCharacters(Mockito.anyInt(), Mockito.anyInt())
         }
     }
 }

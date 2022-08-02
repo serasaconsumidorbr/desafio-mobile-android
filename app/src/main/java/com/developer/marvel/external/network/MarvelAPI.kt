@@ -1,7 +1,6 @@
 package com.developer.marvel.external.network
 
 import com.developer.marvel.BuildConfig
-import com.developer.marvel.utils.md5
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -26,7 +25,7 @@ object MarvelAPI {
             .readTimeout(60, TimeUnit.SECONDS)
             .connectTimeout(60, TimeUnit.SECONDS)
 
-        if(BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG) {
             client.addInterceptor(loggingInterceptor())
         }
 

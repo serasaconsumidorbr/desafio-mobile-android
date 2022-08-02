@@ -15,4 +15,4 @@ data class Character(
     val stories: Stories,
     val events: Events,
     val series: Series
-):Serializable
+) : Serializable
