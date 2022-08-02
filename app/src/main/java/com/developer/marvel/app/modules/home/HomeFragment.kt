@@ -120,6 +120,7 @@ class HomeFragment : BaseFragment() {
         homeViewModel.topCharacters.observe(viewLifecycleOwner) {
             when (it) {
                 is Snapshot.Success -> {
+                    if(page == 1) hideShimmerLoading() else hideLoading()
                     setupTopCharacters(it.data)
                 }
             }
