@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,6 +35,8 @@ class HomeFragment : BaseFragment() {
     private var timer: Timer? = null
     private var topCharactersCurrentIndex = -1
     private var page = 1
+
+    private var loadingProgressView: Snackbar? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -85,9 +88,11 @@ class HomeFragment : BaseFragment() {
 
         binding.nestedScrollView.viewTreeObserver.addOnScrollChangedListener {
             val scrollView = binding.nestedScrollView
-            if (scrollView.getChildAt(0).bottom <= (scrollView.height + scrollView.scrollY)) {
-                page++
-                homeViewModel.getCharacters(page = page)
+            if(loadingProgressView == null) {
+                if (scrollView.getChildAt(0).bottom <= (scrollView.height + scrollView.scrollY)) {
+                    page++
+                    homeViewModel.getCharacters(page = page)
+                }
             }
         }
     }
@@ -102,9 +107,10 @@ class HomeFragment : BaseFragment() {
     private fun observeTopCharacters() {
         homeViewModel.topCharacters.observe(viewLifecycleOwner) {
             when (it) {
-                is Snapshot.Loading -> TODO()
+                is Snapshot.Loading -> if(page == 1) showShimmerLoading() else showLoading()
 
                 is Snapshot.Success -> {
+                    if(page == 1) hideShimmerLoading() else hideLoading()
                     setupTopCharacters(it.data)
                 }
             }
@@ -115,13 +121,16 @@ class HomeFragment : BaseFragment() {
     private fun observePopularCharacters() {
         homeViewModel.popularCharacters.observe(viewLifecycleOwner) {
             when (it) {
-                is Snapshot.Loading -> TODO()
+                is Snapshot.Loading -> if(page == 1) showShimmerLoading() else showLoading()
 
                 is Snapshot.Success -> {
+                    if(page == 1) hideShimmerLoading() else hideLoading()
                     setupPopularCharacters(it.data)
                 }
 
                 is Snapshot.Failure -> {
+                    if(page == 1) hideShimmerLoading() else hideLoading()
+
                     page--
 
                     val snackbar = Snackbar.make(
@@ -153,6 +162,37 @@ class HomeFragment : BaseFragment() {
         popularCharactersAdapter.addAllCharacters(characters)
     }
     //endregion
+
+    private fun showShimmerLoading() {
+        binding.shimmerHomeView.shimmerHomeContainer.isVisible = true
+        binding.shimmerHomeView.shimmerHomeContainer.startShimmer()
+    }
+
+    private fun hideShimmerLoading() {
+        binding.shimmerHomeView.shimmerHomeContainer.isVisible = false
+        binding.shimmerHomeView.shimmerHomeContainer.stopShimmer()
+    }
+
+    private fun showLoading() {
+        loadingProgressView = Snackbar.make(
+            requireView(), "Estamos trabalhando...",
+            Snackbar.LENGTH_LONG
+        )
+
+        val snackBarView = loadingProgressView?.view
+        snackBarView?.setBackgroundColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.md_theme_light_secondary,
+            )
+        )
+        loadingProgressView?.show()
+    }
+
+    private fun hideLoading() {
+        loadingProgressView?.dismiss()
+        loadingProgressView = null
+    }
 
     private fun startCarousel(
         recyclerTopCharacters: RecyclerView,

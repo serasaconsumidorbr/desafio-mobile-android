@@ -24,8 +24,8 @@
                 android:id="@+id/recyclerTopCharacters"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -38,9 +38,9 @@
                 android:layout_marginBottom="12dp"
                 app:layout_constraintBottom_toBottomOf="@+id/recyclerTopCharacters"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:spi_dotColor="@color/md_theme_light_onPrimary"
-                app:spi_dotSelectedColor="@color/md_theme_light_primary"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:spi_dotSelectedColor="@color/md_theme_light_primary" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -72,6 +72,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/shimmerHomeView"
+        layout="@layout/shimmer_fragment_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
