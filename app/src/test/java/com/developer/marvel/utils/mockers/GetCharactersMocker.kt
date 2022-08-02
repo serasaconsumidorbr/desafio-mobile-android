@@ -13,17 +13,16 @@ object GetCharactersMocker {
         val characters: ArrayList<Character> = arrayListOf()
         for (i in 0..10) {
             val characterDto = Character(
-                i,
-                "",
-                "",
-                Date(),
-                "",
-                listOf(Url("", "")),
-                Thumbnail("", ""),
-                Comics("", "", "", emptyList()),
-                Stories("", "", "", emptyList()),
-                Events("", "", "", emptyList()),
-                Series("", "", "", emptyList()),
+                id = i,
+                name ="",
+                description = "",
+                modified =  Date(),
+                urls = listOf(Url("", "")),
+                thumbnail = Thumbnail("", ""),
+                comics = Job(JobType.COMICS, 1, emptyList()),
+                stories = Job(JobType.STORIES, 2, emptyList()),
+                events = Job(JobType.EVENTS, 3, emptyList()),
+                series = Job(JobType.SERIES,4, emptyList()),
             )
 
             characters.add(characterDto)

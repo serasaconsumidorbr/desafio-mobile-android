@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.developer.marvel.databinding.HomeTopItemBinding
 import com.developer.marvel.domain.entities.Character
-import com.squareup.picasso.Picasso
+import com.developer.marvel.utils.loadImage
 
 class CharactersAdapter :
     RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
@@ -32,8 +32,7 @@ class CharactersAdapter :
         val baseUrl = character.thumbnail.let {
             "${it.path}/portrait_fantastic.${it.extension}"
         }
-
-        Picasso.get().load(baseUrl).into(holder.binding.imageCharacter)
+        holder.binding.imageCharacter.loadImage(baseUrl)
 
         holder.itemView.setOnClickListener {
             onClickItemListener?.invoke(character)

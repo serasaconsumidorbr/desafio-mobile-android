@@ -23,7 +23,6 @@ data class CharacterDto(
         name = this.name,
         description = this.description,
         modified = this.modified.toDatetime(),
-        resourceURI = this.resourceURI,
         urls = this.urls.map { it.mapperToEntity() },
         thumbnail = this.thumbnail.mapperToEntity(),
         comics = mapperToComicsEntity(this.comics),
@@ -32,45 +31,41 @@ data class CharacterDto(
         series = mapperToSeriesEntity(this.series)
     )
 
-    private fun mapperToComicsEntity(comicsDto: PresentationDto<PresentationItemDto>): Comics =
-        Comics(
+    private fun mapperToComicsEntity(comicsDto: PresentationDto<PresentationItemDto>): Job =
+        Job(
+            type = JobType.COMICS,
             available = comicsDto.available,
-            returned = comicsDto.returned,
-            collectionURI = comicsDto.collectionURI,
-            items = comicsDto.items.map { ComicsItem(resourceURI = it.resourceURI, name = it.name) }
+            items = comicsDto.items.map { JobItem(resourceURI = it.resourceURI, name = it.name) }
         )
 
-    private fun mapperToEventsEntity(eventsDto: PresentationDto<PresentationItemDto>): Events =
-        Events(
+    private fun mapperToEventsEntity(eventsDto: PresentationDto<PresentationItemDto>): Job =
+        Job(
+            type = JobType.EVENTS,
             available = eventsDto.available,
-            returned = eventsDto.returned,
-            collectionURI = eventsDto.collectionURI,
-            items = eventsDto.items.map { EventsItem(resourceURI = it.resourceURI, name = it.name) }
+            items = eventsDto.items.map { JobItem(resourceURI = it.resourceURI, name = it.name) }
         )
 
-    private fun mapperToSeriesEntity(serriesDto: PresentationDto<PresentationItemDto>): Series =
-        Series(
-            available = serriesDto.available,
-            returned = serriesDto.returned,
-            collectionURI = serriesDto.collectionURI,
-            items = serriesDto.items.map {
-                SeriesItem(
+    private fun mapperToSeriesEntity(seriesDto: PresentationDto<PresentationItemDto>): Job =
+        Job(
+            type = JobType.SERIES,
+            available = seriesDto.available,
+            items = seriesDto.items.map {
+                JobItem(
                     resourceURI = it.resourceURI,
                     name = it.name
                 )
             }
         )
 
-    private fun mapperToStoriesEntity(storiesDto: PresentationDto<StoriesItemDto>): Stories =
-        Stories(
+    private fun mapperToStoriesEntity(storiesDto: PresentationDto<StoriesItemDto>): Job =
+        Job(
+            type = JobType.STORIES,
             available = storiesDto.available,
-            returned = storiesDto.returned,
-            collectionURI = storiesDto.collectionURI,
             items = storiesDto.items.map {
-                StoriesItem(
+                JobItem(
                     resourceURI = it.resourceURI,
                     name = it.name,
-                    type = StoriesItemType.toTypeObject(it.type)
+                    type = JobItemType.toTypeObject(it.type)
                 )
             },
         )

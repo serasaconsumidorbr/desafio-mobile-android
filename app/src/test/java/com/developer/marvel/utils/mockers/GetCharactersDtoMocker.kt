@@ -18,10 +18,10 @@ object GetCharactersDtoMocker {
                 "",
                 listOf(UrlDto("", "")),
                 ThumbnailDto("", ""),
-                PresentationDto("", "", "", emptyList()),
-                PresentationDto("", "", "", emptyList()),
-                PresentationDto("", "", "", emptyList()),
-                PresentationDto("", "", "", emptyList()),
+                PresentationDto(1, "", "", emptyList()),
+                PresentationDto(2, "", "", emptyList()),
+                PresentationDto(3, "", "", emptyList()),
+                PresentationDto(4, "", "", emptyList()),
             )
 
             charactersDto.add(characterDto)
