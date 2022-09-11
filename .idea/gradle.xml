@@ -23,7 +23,6 @@
             <option value="$PROJECT_DIR$/features/home/home_presentation" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

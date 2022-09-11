@@ -1,7 +1,7 @@
 package com.example.util.api
 
 object Api {
-    const val BASE_URL = "http://gateway.marvel.com"
+    const val BASE_URL = "https://gateway.marvel.com"
 
     object Keys {
         const val PUBLIC = "69508b104a06be810e15e94a4b844736"
