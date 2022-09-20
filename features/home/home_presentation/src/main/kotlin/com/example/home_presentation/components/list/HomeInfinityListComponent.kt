@@ -41,16 +41,12 @@ fun LazyListScope.homeInfinityListComponent(
                 .padding(horizontal = dimensions.medium),
             contentAlignment = Alignment.Center
         ) {
-            lazyCharacters.apply {
+            lazyCharacters.loadState.apply {
                 when {
-                    loadState.refresh is LoadState.Loading -> LoadingComponent()
-                    loadState.append is LoadState.Loading -> LoadingComponent()
-                    loadState.refresh is LoadState.Error -> RetryButtonComponent(
-                        onClick = retryAction
-                    )
-                    loadState.append is LoadState.Error -> RetryButtonComponent(
-                        onClick = retryAction
-                    )
+                    refresh is LoadState.Loading -> LoadingComponent()
+                    append is LoadState.Loading -> LoadingComponent()
+                    refresh is LoadState.Error -> RetryButtonComponent(onClick = retryAction)
+                    append is LoadState.Error -> RetryButtonComponent(onClick = retryAction)
                 }
             }
         }

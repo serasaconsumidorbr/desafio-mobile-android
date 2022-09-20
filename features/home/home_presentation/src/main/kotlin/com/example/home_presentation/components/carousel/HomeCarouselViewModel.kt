@@ -1,7 +1,8 @@
 package com.example.home_presentation.components.carousel
 
 import androidx.lifecycle.viewModelScope
-import com.example.home_domain.repository.HomeCarouselRepository
+import com.example.home_domain.mapper.ResultHomeCarouselToUiStateMapper
+import com.example.home_domain.model.HomeCarouselUiState
 import com.example.home_domain.usecase.GetHomeCarouselUseCase
 import com.example.home_presentation.HomeBaseViewModel
 import com.example.util.Resource
@@ -13,9 +14,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeCarouselViewModel @Inject constructor(
     private val getHomeCarousel: GetHomeCarouselUseCase,
-) : HomeBaseViewModel<HomeCarouselUiState>(
-    HomeCarouselUiState.Loading
-) {
+    private val resultHomeCarouselToUiState: ResultHomeCarouselToUiStateMapper
+) : HomeBaseViewModel<HomeCarouselUiState>(HomeCarouselUiState.Loading) {
 
     init {
         getCharacters()
@@ -23,15 +23,7 @@ class HomeCarouselViewModel @Inject constructor(
 
     override fun getCharacters() {
         getHomeCarousel().onEach { result ->
-            updateUiState {
-                when (result) {
-                    is Resource.Success -> result.data.let { characters ->
-                        HomeCarouselUiState.Success(data = characters)
-                    }
-                    is Resource.Error -> HomeCarouselUiState.Error
-                    is Resource.Loading -> HomeCarouselUiState.Loading
-                }
-            }
+            updateUiState { resultHomeCarouselToUiState.map(result) }
         }.launchIn(viewModelScope)
     }
 }

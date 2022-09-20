@@ -11,32 +11,26 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 object HomeDataModule {
 
     @Provides
-    @Singleton
-    fun providesHomeApi(retrofit: Retrofit): HomeApi = retrofit.create(
-        HomeApi::class.java
-    )
+    fun providesHomeApi(retrofit: Retrofit): HomeApi = retrofit.create(HomeApi::class.java)
 
     @Provides
-    @Singleton
     fun providesCarouselComponentConfig(): CarouselConfig = CarouselConfig(
         startIndex = 0,
         quantity = 5
     )
 
     @Provides
-    @Singleton
-    fun providesHomePageConfig(
-        carouselConfig: CarouselConfig,
-    ): HomePageConfig = HomePageConfig(
+    fun providesHomePageConfig(carouselConfig: CarouselConfig): HomePageConfig = HomePageConfig(
         size = 20,
         startingIndex = carouselConfig.quantity,
         incrementValue = 1
@@ -44,18 +38,12 @@ object HomeDataModule {
 }
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 abstract class HomeDataModuleBinder {
 
     @Binds
-    @Singleton
-    abstract fun bindsHomeListDataSource(
-        homeListDataSourceImpl: HomeListDataSourceImpl,
-    ): HomeListDataSource
+    abstract fun bindsHomeListDataSource(homeListDataSourceImpl: HomeListDataSourceImpl): HomeListDataSource
 
     @Binds
-    @Singleton
-    abstract fun bindsOffsetCalculator(
-        offsetCalculatorImpl: OffsetCalculatorImpl,
-    ): OffsetCalculator
+    abstract fun bindsOffsetCalculator(offsetCalculatorImpl: OffsetCalculatorImpl): OffsetCalculator
 }

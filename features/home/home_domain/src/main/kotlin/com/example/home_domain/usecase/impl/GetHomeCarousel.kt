@@ -9,12 +9,19 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class GetHomeCarousel @Inject constructor(
-    private val repository: HomeCarouselRepository
-): GetHomeCarouselUseCase {
+    private val repository: HomeCarouselRepository,
+) : GetHomeCarouselUseCase {
+
+    companion object {
+        private const val COULD_NOT_LOAD_DATA_MESSAGE = "Couldn't load data"
+    }
+
     override fun invoke(): Flow<Resource<List<CharacterHomeUiModel>>> = flow {
         emit(Resource.Loading())
-        repository.getHomeCarouselCharacters()?.let {
-            emit(Resource.Success(it))
-        } ?: emit(Resource.Error("Couldn't load data"))
+        emit(getPosLoadingResource())
     }
+
+    private suspend fun getPosLoadingResource() = repository.getHomeCarouselCharacters()?.let {
+        Resource.Success(it)
+    } ?: Resource.Error(COULD_NOT_LOAD_DATA_MESSAGE)
 }

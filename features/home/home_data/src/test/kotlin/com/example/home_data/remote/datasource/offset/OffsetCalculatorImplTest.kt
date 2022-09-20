@@ -2,6 +2,7 @@ package com.example.home_data.remote.datasource.offset
 
 import com.example.home_data.remote.configs.HomePageConfig
 import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
 internal class OffsetCalculatorImplTest {
@@ -13,20 +14,19 @@ internal class OffsetCalculatorImplTest {
     private val calculator = OffsetCalculatorImpl(configs)
 
     @Test
-    fun calculator_currentIndexLessThanStartIndex_returnsStartIndex() = Truth.assertThat(
+    fun calculator_currentIndexLessThanStartIndex_returnsStartIndex() = assertThat(
         calculator(configs.startingIndex - 1)
     ).isEqualTo(configs.startingIndex)
 
     @Test
-    fun calculator_currentIndexEqualsToStartIndex_returnsStartIndex() = Truth.assertThat(
+    fun calculator_currentIndexEqualsToStartIndex_returnsStartIndex() = assertThat(
         calculator(configs.startingIndex)
     ).isEqualTo(configs.startingIndex)
 
     @Test
     fun calculator_currentIndexBiggerThanStartIndex_returnsOperation() {
         val currentKey = configs.startingIndex + 4
-        Truth.assertThat(
-            calculator(currentKey)
-        ).isEqualTo((currentKey - configs.startingIndex) * configs.size + configs.startingIndex)
+        assertThat(calculator(currentKey))
+            .isEqualTo((currentKey - configs.startingIndex) * configs.size + configs.startingIndex)
     }
 }

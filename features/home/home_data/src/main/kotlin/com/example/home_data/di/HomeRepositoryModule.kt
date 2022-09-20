@@ -12,15 +12,15 @@ import com.example.home_domain.repository.HomeListRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 object HomeRepositoryModule {
 
     @Provides
-    @Singleton
     fun providesHomeListRepository(
         homeListDataSource: HomeListDataSource,
         homePageConfig: HomePageConfig,
@@ -30,7 +30,6 @@ object HomeRepositoryModule {
     )
 
     @Provides
-    @Singleton
     fun providesHomeCarouselRepository(
         api: HomeApi,
         charactersDataDtoToCharacters: CharactersDataDtoToCharactersMapper,

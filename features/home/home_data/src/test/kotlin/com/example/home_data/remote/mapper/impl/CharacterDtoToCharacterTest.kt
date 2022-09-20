@@ -6,6 +6,7 @@ import com.example.home_data.remote.mapper.CharacterThumbnailToImageUrlMapper
 import com.example.home_domain.model.CharacterHomeUiModel
 import com.example.util.api.ImageVariant
 import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Test
@@ -27,7 +28,7 @@ internal class CharacterDtoToCharacterTest {
         val safeString = "safe string"
         every { thumbnailToImageUrlMapper.mapFrom(any(), any(), any()) } returns thumbUrl
         every { safeStringMapper.mapFrom(any(), any()) } returns safeString
-        Truth.assertThat(
+        assertThat(
             mapper.mapFrom(
                 dto = CharacterDtoFactory.make(),
                 imageType = ImageVariant.Type.MEDIUM,

@@ -2,36 +2,39 @@ package com.example.home_data.di
 
 import android.content.Context
 import com.example.home_data.R
-import com.example.home_data.remote.mapper.*
-import com.example.home_data.remote.mapper.impl.*
+import com.example.home_data.remote.mapper.CharacterDtoToCharacterMapper
+import com.example.home_data.remote.mapper.CharacterSafeStringMapper
+import com.example.home_data.remote.mapper.CharacterThumbnailToImageUrlMapper
+import com.example.home_data.remote.mapper.CharactersDataDtoToCharactersMapper
+import com.example.home_data.remote.mapper.SslPathMapper
+import com.example.home_data.remote.mapper.impl.CharacterDtoToCharacter
+import com.example.home_data.remote.mapper.impl.CharacterSafeString
+import com.example.home_data.remote.mapper.impl.CharacterThumbnailToImageUrl
+import com.example.home_data.remote.mapper.impl.CharactersDataDtoToCharacters
+import com.example.home_data.remote.mapper.impl.SslPathMapperImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 object HomeMappersModule {
 
     @Provides
-    @Singleton
-    fun providesCharacterThumbnailToImageUrlMapper(): CharacterThumbnailToImageUrlMapper =
-        CharacterThumbnailToImageUrl()
+    fun providesCharacterSafeStringMapper(): CharacterSafeStringMapper = CharacterSafeString()
 
     @Provides
-    @Singleton
-    fun providesCharacterSafeStringMapper(): CharacterSafeStringMapper =
-        CharacterSafeString()
+    fun providesSslPathMapper(): SslPathMapper = SslPathMapperImpl()
 
     @Provides
-    @Singleton
     fun providesCharacterMapperDtoToCharacterMapper(
         @ApplicationContext appContext: Context,
         charStringMapper: CharacterSafeStringMapper,
-        thumbnailToImageUrlMapper: CharacterThumbnailToImageUrlMapper
+        thumbnailToImageUrlMapper: CharacterThumbnailToImageUrlMapper,
     ): CharacterDtoToCharacterMapper = CharacterDtoToCharacter(
         thumbnailMapper = thumbnailToImageUrlMapper,
         nullNameMessage = appContext.getString(R.string.no_name),
@@ -43,12 +46,16 @@ object HomeMappersModule {
 }
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 abstract class HomeMappersModuleBinder {
 
     @Binds
-    @Singleton
     abstract fun bindsCharacterDataDtoToCharactersMapper(
         characterDataDtoToCharacter: CharactersDataDtoToCharacters,
     ): CharactersDataDtoToCharactersMapper
+
+    @Binds
+    abstract fun bindsSslPathMapper(
+        characterThumbnailToImageUrl: CharacterThumbnailToImageUrl,
+    ): CharacterThumbnailToImageUrlMapper
 }

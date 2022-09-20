@@ -7,6 +7,7 @@ import com.example.home_data.remote.configs.CarouselConfig
 import com.example.home_data.remote.dto.CharactersDto
 import com.example.home_data.remote.mapper.CharactersDataDtoToCharactersMapper
 import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
@@ -35,7 +36,7 @@ class HomeCarouselRepositoryImplTest {
     @Test
     fun repository_IOException_returnsNull() = runTest {
         coEvery { api.getCharacters(any(), any()) } throws IOException()
-        Truth.assertThat(
+        assertThat(
             repository.getHomeCarouselCharacters()
         ).isNull()
     }
@@ -43,7 +44,7 @@ class HomeCarouselRepositoryImplTest {
     @Test
     fun repository_HttpException_returnsNull() = runTest {
         coEvery { api.getCharacters(any(), any()) } throws HttpException(Response.success(null))
-        Truth.assertThat(
+        assertThat(
             repository.getHomeCarouselCharacters()
         ).isNull()
     }
@@ -55,7 +56,7 @@ class HomeCarouselRepositoryImplTest {
         )
         val mappedResult = listOf(CharacterHomeUiModelFactory.make())
         every { charactersDataDtoToCharacters.mapFrom(any(), any(), any()) } returns mappedResult
-        Truth.assertThat(
+        assertThat(
             repository.getHomeCarouselCharacters()
         ).isEqualTo(mappedResult)
     }

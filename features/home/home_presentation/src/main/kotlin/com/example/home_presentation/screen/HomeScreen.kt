@@ -3,7 +3,6 @@ package com.example.home_presentation.screen
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -21,7 +20,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.home_domain.model.CharacterHomeUiModel
 import com.example.home_presentation.components.carousel.HomeCarouselComponent
-import com.example.home_presentation.components.carousel.HomeCarouselUiState
+import com.example.home_domain.model.HomeCarouselUiState
 import com.example.home_presentation.components.carousel.HomeCarouselViewModel
 import com.example.home_presentation.components.list.HomeListUiState
 import com.example.home_presentation.components.list.HomeListViewModel
@@ -121,7 +120,7 @@ private fun HomeScreenContent(
                 VerticalSpacer()
             }
             lazyCharacters?.let {
-                infinityListComponent(
+                homeInfinityListComponent(
                     lazyCharacters = it,
                     dimensions = dimensions,
                     retryAction = retryAction,
@@ -138,30 +137,16 @@ private fun CarouselComponent(
     retryAction: () -> Unit,
     openCharacterDetails: () -> Unit,
 ) {
-    (state as? HomeCarouselUiState.Success)?.let {
-        HomeCarouselComponent(
-            characters = it.data,
+    when (state) {
+        is HomeCarouselUiState.Success -> HomeCarouselComponent(
+            characters = state.data,
             openCharacterDetails = openCharacterDetails,
             contentPadding = LocalSpacing.current.medium
         )
-    } ?: (state as? HomeCarouselUiState.Loading)?.let {
-        LoadingComponent()
-    } ?: (state as? HomeCarouselUiState.Error)?.let {
-        HomeRetryComponent(retryAction)
+        is HomeCarouselUiState.Loading -> LoadingComponent()
+        is HomeCarouselUiState.Error -> HomeRetryComponent(retryAction)
     }
 }
-
-private fun LazyListScope.infinityListComponent(
-    lazyCharacters: LazyPagingItems<CharacterHomeUiModel>,
-    dimensions: Dimensions,
-    retryAction: () -> Unit,
-    listCardClick: () -> Unit,
-) = homeInfinityListComponent(
-    lazyCharacters = lazyCharacters,
-    dimensions = dimensions,
-    retryAction = retryAction,
-    listCardClick = listCardClick
-)
 
 @Composable
 private fun HomeRetryComponent(retryAction: () -> Unit) {
