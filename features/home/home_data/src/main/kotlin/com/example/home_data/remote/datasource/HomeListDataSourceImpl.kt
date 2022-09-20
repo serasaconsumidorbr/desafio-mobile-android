@@ -15,7 +15,7 @@ class HomeListDataSourceImpl @Inject constructor(
     private val api: HomeApi,
     private val mapper: CharactersDataDtoToCharactersMapper,
     private val homePageConfig: HomePageConfig,
-    private val offsetCalculator: OffsetCalculator
+    private val offsetCalculator: OffsetCalculator,
 ) : HomeListDataSource() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CharacterHomeUiModel> =
@@ -49,12 +49,12 @@ class HomeListDataSourceImpl @Inject constructor(
         }
 
     override fun getRefreshKey(state: PagingState<Int, CharacterHomeUiModel>): Int? =
-        state.anchorPosition
-            ?.let { anchorPosition ->
-                state.closestPageToPosition(anchorPosition)?.prevKey?.plus(
-                    homePageConfig.incrementValue
-                ) ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(
-                    homePageConfig.incrementValue
-                )
+        state.run {
+            anchorPosition?.let { anchorPosition ->
+                closestPageToPosition(anchorPosition)?.run {
+                    prevKey?.plus(homePageConfig.incrementValue)
+                        ?: nextKey?.minus(homePageConfig.incrementValue)
+                }
             }
+        }
 }
