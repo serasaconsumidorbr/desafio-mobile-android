@@ -14,5 +14,5 @@ object RetrofitBuilder {
             .build()
     }
 
-    val comicsAPI: MarvelAPI = getRetrofit().create(MarvelAPI::class.java)
+    val marvelAPI: MarvelAPI = getRetrofit().create(MarvelAPI::class.java)
 }

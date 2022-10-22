@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/catalogFragment"
+    android:id="@+id/catalognav">
+
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="com.example.marvel_characters.presentation.catalog.CatalogPage">
+        <action
+            android:id="@+id/action_catalogFragment_to_detailsFragment"
+            app:destination="@+id/detailsFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.marvel_characters.presentation.details.DetailsPage">
+        <argument
+            android:name="character"
+            app:argType="com.example.marvel_characters.domain.models.Characters"/>
+    </fragment>
+
+
+</navigation>

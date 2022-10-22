@@ -4,6 +4,6 @@ import com.example.marvel_characters.domain.models.Characters
 
 interface CharactersRepository {
 
-    suspend fun getCharacters(): List<Characters>
+    suspend fun getCharacters(): Pair<List<Characters>, Boolean>
 
 }
