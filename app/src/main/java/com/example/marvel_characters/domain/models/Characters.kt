@@ -6,5 +6,7 @@ data class Characters(
     val description: String,
     val thumbnail: CharacterImage
 ): java.io.Serializable {
-    val image = thumbnail.path + thumbnail.extension
+    val image = thumbnail.path.substring(0, 4) + "s" +
+            thumbnail.path.substring(4) +
+            "." + thumbnail.extension
 }

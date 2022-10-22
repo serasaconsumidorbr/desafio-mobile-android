@@ -14,7 +14,7 @@ interface CharactersDao {
     @Query("SELECT * FROM characters")
     suspend fun getCharacters(): List<CharacterEntity>
 
-    @Query("DELETE FROM characters WHERE id = :id")
-    suspend fun deleteCharacter(id: Long)
+    @Query("DELETE FROM characters")
+    suspend fun deleteCharacters()
 
 }

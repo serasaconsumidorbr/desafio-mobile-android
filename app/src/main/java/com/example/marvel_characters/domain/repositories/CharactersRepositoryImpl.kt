@@ -6,6 +6,8 @@ import com.example.marvel_characters.data.remote.MarvelAPI
 import com.example.marvel_characters.domain.converters.CharactersConverter
 import com.example.marvel_characters.domain.models.Characters
 import com.example.marvel_characters.service.CheckNetworkConnection
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 
 class CharactersRepositoryImpl(
     private val api: MarvelAPI,
@@ -13,28 +15,29 @@ class CharactersRepositoryImpl(
     private val connection: CheckNetworkConnection
     ) : CharactersRepository {
 
-    override suspend fun getCharacters(): Pair<List<Characters>, Boolean> {
+    override suspend fun getCharacters(): Pair<List<Characters>, Boolean> = coroutineScope {
         val isNetworkAvailable = connection.isNetworkAvailable()
-
-        return if(isNetworkAvailable){
+        if(isNetworkAvailable){
             try {
-                getCharactersFromAPIToDatabase()
-                Pair(getCharactersFromDatabase(), true)
+                async { db.deleteCharacters() }.await()
+                async { getCharactersFromAPIToDatabase() }.await()
+                Pair(async { getCharactersFromDatabase() }.await(), true)
             } catch (e: Exception){
                 print(e.toString())
-                Pair(getCharactersFromDatabase(), false)
+                Pair(async { getCharactersFromDatabase() }.await(), false)
             }
         } else {
-            Pair(getCharactersFromDatabase(), false)
+            Pair(async { getCharactersFromDatabase() }.await(), false)
         }
     }
 
-    private suspend fun getCharactersFromAPIToDatabase(){
-        api.getCharacters(
+    private suspend fun getCharactersFromAPIToDatabase() {
+        val resultFromAPI = api.getCharacters(
             apikey = HTTPRequest.PUBLIC_KEY,
             timestamp = HTTPRequest.ts.toString(),
             hash = HTTPRequest.hash
-        ).data.results.forEach {
+        )
+        resultFromAPI.data.results.forEach {
             try {
                 db.insert(CharactersConverter.toEntity(it))
             } catch (e: Exception){

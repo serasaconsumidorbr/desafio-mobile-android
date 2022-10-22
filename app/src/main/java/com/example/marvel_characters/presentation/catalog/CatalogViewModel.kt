@@ -13,7 +13,12 @@ class CatalogViewModel(
 ) : ViewModel() {
 
     private val _charactersList = mutableStateListOf<Characters>()
-    val charactersList: List<Characters> = _charactersList
+
+    private val _headerList = mutableStateListOf<Characters>()
+    val headerList: List<Characters> = _headerList
+
+    private val _bodyList = mutableStateListOf<Characters>()
+    val bodyList: List<Characters> = _bodyList
 
     private val _isNetworkAvailable = mutableStateOf(true)
     val isNetworkAvailable = _isNetworkAvailable
@@ -24,6 +29,22 @@ class CatalogViewModel(
             val (listResult, isNetworkAvailable) = charactersRepository.getCharacters()
             _charactersList.addAll(listResult)
             _isNetworkAvailable.value = isNetworkAvailable
+            updateLists()
+        }
+    }
+
+    private fun updateLists(){
+        _headerList.clear()
+        _bodyList.clear()
+        _charactersList.forEach {
+            for (index in _charactersList.indices){
+                if(index < 5 && _headerList.size < 5){
+                    _headerList.add(it)
+                }
+                if(index > 4 && _bodyList.size < 16){
+                    _bodyList.add(it)
+                }
+            }
         }
     }
 

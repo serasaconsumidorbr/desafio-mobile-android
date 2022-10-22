@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
@@ -24,8 +24,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class CatalogPage: Fragment() {
 
     private val viewModel: CatalogViewModel by viewModel()
-    private lateinit var charactersList: List<Characters>
     private var isNetworkAvailable = true
+    private lateinit var headerList: List<Characters>
+    private lateinit var bodyList: List<Characters>
 
     @OptIn(ExperimentalPagerApi::class)
     override fun onCreateView(
@@ -34,43 +35,46 @@ class CatalogPage: Fragment() {
         savedInstanceState: Bundle?
     ): View = ComposeView(inflater.context).apply {
 
+        viewModel.getAllCharacters()
         setContent {
-            viewModel.getAllCharacters()
-            charactersList = viewModel.charactersList
+            headerList = viewModel.headerList
+            bodyList = viewModel.bodyList
 
             val state = rememberPagerState()
 
-            Column {
-                HorizontalPager(count = 5, state = state) { page ->
+            LazyColumn(modifier = Modifier.background(color = Color.Black)) {
 
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        if(charactersList.size > page){
-                            AsyncImage(model = charactersList[page].image,
-                                contentDescription = charactersList[page].name)
-                        }
-                    }
-
-                }
-
-                Spacer(modifier = Modifier.padding(4.dp))
-
-                DotsIndicator(
-                    totalDots = 5,
-                    selectedIndex = state.currentPage,
-                )
-
-                LazyColumn {
-                    if(charactersList.size > 5){
-                        items(charactersList.size - 5){ index ->
-                            if(index > 4){
-                                AsyncImage(model = charactersList[index].image,
-                                    contentDescription = charactersList[index].name)
+                item {
+                    HorizontalPager(count = 5, state = state) { page ->
+                        Column(horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier.padding(25.dp)) {
+                            if(headerList.size > page){
+                                AsyncImage(model = headerList[page].image,
+                                    contentDescription = headerList[page].name)
                             }
                         }
                     }
                 }
-            }
 
+                item {
+                    Row(horizontalArrangement = Arrangement.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp)) {
+                        DotsIndicator(
+                            totalDots = 5,
+                            selectedIndex = state.currentPage,
+                        )
+                    }
+                }
+
+                items(bodyList.size){ index ->
+                    AsyncImage(model = bodyList[index].image,
+                        contentDescription = bodyList[index].name,
+                        modifier = Modifier.padding(10.dp))
+                }
+
+            }
         }
     }
 }
