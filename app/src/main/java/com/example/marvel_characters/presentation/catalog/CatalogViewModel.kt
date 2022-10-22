@@ -39,10 +39,10 @@ class CatalogViewModel(
         _charactersList.forEach {
             for (index in _charactersList.indices){
                 if(index < 5 && _headerList.size < 5){
-                    _headerList.add(it)
+                    _headerList.add(_charactersList[index])
                 }
                 if(index > 4 && _bodyList.size < 16){
-                    _bodyList.add(it)
+                    _bodyList.add(_charactersList[index])
                 }
             }
         }
