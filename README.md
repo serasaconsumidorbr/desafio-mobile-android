@@ -1,63 +1,38 @@
-<!-- Header-->
-<br />
-<p align="center">
-  <a href="https://github.com/serasaconsumidorbr/desafio-mobile-iOS">
-    <img src="https://turismoemfoco.com.br/v1/wp-content/uploads/2020/05/serasa-logo-nova22.png" alt="Logo" width="180" height="80">
-  </a>
+# Marvel Characters 🦸
+Um aplicativo de listagens de personagens da Marvel utilizando princípios de Clean Architecture com Jetpack Compose para construção da UI.
 
-  <h3 align="center">Desafio - Android Developer </h3>
-
-  <p align="center">
-    O nosso aplicativo é uma das nossas soluções para mudar a vida financeira de milhões de brasileiros. <b>Venha fazer parte desse time</b> muito engajado que
-  trabalha para que esse aplicativo chegue da melhor forma na mão dos consumidores.
-  </p>
-</p>
-
-## Sobre
-<p> Utilizamos este desafio para avaliar a qualidade do seu código, arquitetura, a forma que você organiza os seus pensamentos dentro do git e muitas outras coisas, por isso, sinta-se a vontade e dê o seu melhor! O tempo médio para a entrega deste desafio é de uma semana.</p>
-
-<p>Neste desafio você irá desenvolver um app que deverá mostrar os <b>personagens</b> da <a href="https://www.marvel.com/characters">Marvel</a>. 
-  
-<p>Para começar a fazer requests utilizando este serviço, siga esta <a href="https://developer.marvel.com/documentation/authorization">documentação</a>. O endpoint que deverá ser utilizado para popular as listas do app será a <b><a href="https://developer.marvel.com/docs#!/public/getCreatorCollection_get_0">/v1/public/characters</a></b>. </p>
+## Contexto
+Super heróis é algo muito legal, não é mesmo? Quem nunca pensou em quais poderes teria caso fosse um super herói, ou então qual seria o super herói com a história mais interessante?
 
 
-## Requisitos
-<p>Estes requisitos básicos são utilizados para ver como você lida com cada um desses itens. A falta de qualquer um desses requisitos compromete a sua avaliação no final.</p>
+https://user-images.githubusercontent.com/49538805/164180291-314bd190-306b-4236-bf3e-a9b117739019.mp4
 
 
-- Versão mínima do SDK: 21
-- Tela deve ajustar em devices menores.
-- Utilizar Kotlin
-- Boa arquitetura, pode ser (mvc, mvp, mvvm, clean etc)
-- RxJava ou Coroutines
-- Testes unitários
-- Cache de imagens
-- Tratamentos de erros
-- Padrão de Projeto e boas práticas de Orientação a Objetos.
-- Google AAC (Android Architecture Components)
+Pensando nisso escolhi desenvolver uma aplicação de listagem de personagens da Marvel utilizando a nova lib de construção de UI's da Google para desenvolvimento Android Nativo, o [Jetpack Compose](https://developer.android.com/jetpack/compose?hl=pt-br). 🥰
 
-## Será um diferencial 
-- Construir layouts com Constraints
-- Trabalhar offline (cache dos dados)
-- Injeção de dependência (dagger, koin, kodein)
+A api utilizada foi a [Marvel Comics API](https://developer.marvel.com/docs).
 
-## O projeto deverá conter
-* Carrossel superior com **5** personagens
-* Uma lista **vertical** abaixo do carrossel **com os personagens seguintes, sem repetir**
-* Scroll infinito
+## Como o app está estruturado? 🤔
 
-<b>Atente-se aos detalhes que ache interessante mostrar, por exemplo, nome, descrição, imagens ou outras informações dos personagens</b>
+O app é modularizado por feature, e cada feature contém outros 3 sub-módulos: 
+- Data: Contém tudo que seja de relevante para dados, como por exemplo o acesso a API e banco de dados;
+- Domain: Um tipo de camada de conexão, contém as nossas regras de negócio (divididas em use cases), como por exemplo a lógica de obtenção dos personagens, definição abstrata de repositórios e modelo de classes (como entidades de bancos de dados);
+- Presentation: Contém a representação de UI: estados de carregamento, erro e demais componentes.
 
-## Importante
-* **Sua criatividade:** Utilize as considerações acima para criar o projeto do seu jeito, **utilizando as dependências que quiser**. Apenas saiba explicar o motivo das suas escolhas. 
+## Como o app funciona hoje?
+Ao entrar no app a primeira tela a carregar será a home com 2 componentes principais, um carrossel com 5 personagens e logo após uma lista "infinita" de personagens da Marvel (sem repetir);
 
-* **Documentação:** Ao finalizar o projeto, não se esqueça de documenta-lo. É Muito importante escrever o seu fluxo de pensamentos, **anexar imagens do aplicativo**, inserir as **bibliotecas** e versões que estão sendo utilizadas, **roadmap** de features que você gostaria de colocar e **melhorias que gostaria de fazer**...
+## Caso de erro
+É possível que o app abra sem internet, nesse caso um botão para tentar novamente irá aparecer, também você pode simplesmente fazer um [swipe refresh](https://media.geeksforgeeks.org/wp-content/uploads/20200811000954/swipedowntorefresh-660x251.png) que a uma nova requisição será feita
 
-## Por fim, envie seu teste!
-* Crie um `fork`, de preferencia público, desse repositório.
-* Tente seguir o <b><a href="https://imasters.com.br/agile/fluxo-de-desenvolvimento-com-gitflow#:~:text=Como%20afirma%20Vincent%20Driessen%20(2010,o%20trunk%20e%20o%20branch.">gitflow</a></b> para o seu fluxo de desenvolvimento.
-* Ao finalizar, faça o **pull request** para este repositório
 
-Agora é só torcer!
+## E os testes? 🤔
+- O app contém testes unitários ✔
 
-**Ultimo recadinho:** não utilize o nome da Serasa dentro de seu projeto 😉
+## O que vem pro futuro?
+- Buscar personagem;
+- Favoritar personagem;
+- Filtrar o carregamento da home com base nas opções disponível na API;
+- Login com firebase mantendo os personagens favoritos remotamente;
+- Dark theme;
+- Testes de interface.

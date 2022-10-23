@@ -1,0 +1,27 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "MarvelCharacters"
+
+// Include Modules
+include ':app'
+
+// Core
+include ':core'
+include ':core:ui'
+include ':core:util'
+include ':core:view_model'
+
+// Features
+include ':features'
+
+// Home
+include ':features:home'
+include ':features:home:home_data'
+include ':features:home:home_domain'
+include ':features:home:home_presentation'
