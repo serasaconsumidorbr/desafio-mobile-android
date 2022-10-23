@@ -6,8 +6,9 @@ import com.example.marvel_characters.data.remote.MarvelAPI
 import com.example.marvel_characters.domain.converters.CharactersConverter
 import com.example.marvel_characters.domain.models.Characters
 import com.example.marvel_characters.service.CheckNetworkConnection
-import kotlinx.coroutines.async
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.withContext
 
 class CharactersRepositoryImpl(
     private val api: MarvelAPI,
@@ -19,15 +20,17 @@ class CharactersRepositoryImpl(
         val isNetworkAvailable = connection.isNetworkAvailable()
         if(isNetworkAvailable){
             try {
-                async { db.deleteCharacters() }.await()
-                async { getCharactersFromAPIToDatabase() }.await()
-                Pair(async { getCharactersFromDatabase() }.await(), true)
+                withContext(Dispatchers.Default) {
+                    db.deleteCharacters()
+                    getCharactersFromAPIToDatabase()
+                }
+                Pair(withContext(Dispatchers.Default) { getCharactersFromDatabase() }, true)
             } catch (e: Exception){
                 print(e.toString())
-                Pair(async { getCharactersFromDatabase() }.await(), false)
+                Pair(withContext(Dispatchers.Default) { getCharactersFromDatabase() }, false)
             }
         } else {
-            Pair(async { getCharactersFromDatabase() }.await(), false)
+            Pair(withContext(Dispatchers.Default) { getCharactersFromDatabase() }, false)
         }
     }
 

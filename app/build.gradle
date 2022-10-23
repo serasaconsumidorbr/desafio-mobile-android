@@ -48,6 +48,8 @@ dependencies {
     def koin_version = "3.2.2"
     def compose_version = "1.2.1"
     def nav_version = "2.5.2"
+    def mockk_version = "1.13.2"
+    def coroutines_version = "1.6.4"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -83,4 +85,10 @@ dependencies {
 
     //Coin
     implementation("io.coil-kt:coil-compose:2.2.2")
+
+    //Mockk
+    testImplementation "io.mockk:mockk:${mockk_version}"
+
+    //Coroutines
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
 }
