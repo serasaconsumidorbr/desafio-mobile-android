@@ -39,7 +39,7 @@ class DetailsPage: Fragment() {
                     Icon(painter = painterResource(id = R.drawable.ic_baseline_arrow_back_24),
                         contentDescription = "Voltar", Modifier.size(30.dp))
                 }
-                AsyncImage(model = character.image,
+                AsyncImage(model = character.image(),
                     contentDescription = character.name,
                     modifier = Modifier.padding(30.dp))
                 Text(text = character.name, color = Color.Black,

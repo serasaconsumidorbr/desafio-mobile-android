@@ -17,12 +17,12 @@ class CharactersRepositoryImpl(
     ) : CharactersRepository {
 
     override suspend fun getCharacters(): Pair<List<Characters>, Boolean> = coroutineScope {
-        val isNetworkAvailable = connection.isNetworkAvailable()
-        if(isNetworkAvailable){
+        connection.isNetworkAvailable()
+        if(connection.isNetworkAvailable()){
             try {
                 withContext(Dispatchers.Default) {
                     db.deleteCharacters()
-                    getCharactersFromAPIToDatabase()
+                    insertCharactersInDatabase(getListCharactersFromAPI())
                 }
                 Pair(withContext(Dispatchers.Default) { getCharactersFromDatabase() }, true)
             } catch (e: Exception){
@@ -34,13 +34,17 @@ class CharactersRepositoryImpl(
         }
     }
 
-    private suspend fun getCharactersFromAPIToDatabase() {
+    private suspend fun getListCharactersFromAPI(): List<Characters>{
         val resultFromAPI = api.getCharacters(
             apikey = HTTPRequest.PUBLIC_KEY,
             timestamp = HTTPRequest.ts.toString(),
             hash = HTTPRequest.hash
         )
-        resultFromAPI.data.results.forEach {
+        return resultFromAPI.data.results
+    }
+
+    private suspend fun insertCharactersInDatabase(charactersList: List<Characters>){
+        charactersList.forEach {
             try {
                 db.insert(CharactersConverter.toEntity(it))
             } catch (e: Exception){
@@ -55,5 +59,14 @@ class CharactersRepositoryImpl(
             listResult.add(CharactersConverter.fromEntity(it))
         }
         return listResult
+    }
+
+    override suspend fun loadNewCharacters(): List<Characters> {
+        val resultFromAPI = arrayListOf<Characters>()
+        if(connection.isNetworkAvailable()){
+            resultFromAPI.addAll(getListCharactersFromAPI())
+            insertCharactersInDatabase(resultFromAPI)
+        }
+        return resultFromAPI
     }
 }

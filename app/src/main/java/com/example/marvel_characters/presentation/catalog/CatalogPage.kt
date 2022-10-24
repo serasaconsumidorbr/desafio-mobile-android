@@ -54,7 +54,7 @@ class CatalogPage: Fragment() {
                         Column(horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier.padding(25.dp)) {
                             if(headerList.size > page){
-                                AsyncImage(model = headerList[page].image,
+                                AsyncImage(model = headerList[page].image(),
                                     contentDescription = headerList[page].name,
                                 modifier = Modifier.clickable {
                                     goToDetailsPage(headerList[page])
@@ -82,13 +82,24 @@ class CatalogPage: Fragment() {
                 }
 
                 items(bodyList.size){ index ->
-                    AsyncImage(model = bodyList[index].image,
+                    AsyncImage(model = bodyList[index].image(),
                         contentDescription = bodyList[index].name,
                         modifier = Modifier
                             .padding(10.dp)
                             .clickable {
                                 goToDetailsPage(bodyList[index])
                             })
+                    if(index == bodyList.size -1){
+                        viewModel.getNewCharacters()
+                    }
+                }
+                item {
+                    Row(modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp),
+                    horizontalArrangement = Arrangement.Center){
+                        CircularProgressIndicator(modifier = Modifier.size(50.dp),
+                            color = Color.Red)
+                    }
+
                 }
             }
 

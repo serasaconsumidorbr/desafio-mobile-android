@@ -48,4 +48,9 @@ class CatalogViewModel(
         }
     }
 
+    fun getNewCharacters(){
+        viewModelScope.launch {
+            _bodyList.addAll(charactersRepository.loadNewCharacters())
+        }
+    }
 }
