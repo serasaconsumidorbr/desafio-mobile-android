@@ -1,63 +1,39 @@
-<!-- Header-->
-<br />
-<p align="center">
-  <a href="https://github.com/serasaconsumidorbr/desafio-mobile-iOS">
-    <img src="https://turismoemfoco.com.br/v1/wp-content/uploads/2020/05/serasa-logo-nova22.png" alt="Logo" width="180" height="80">
-  </a>
+Projeto para apresentar personagens Marvel!
 
-  <h3 align="center">Desafio - Android Developer </h3>
+Arquitetura: 
+construcao de 4 camadas, as duas primeiras responsaveis por coisas externas ao app:
+data -> dados utilizados pelo app, podendo ser vindos do banco de dados local ou consumidos por
+uma API.
+services -> servicos do dispositivo
+A terceira camada domain, eh onde ficam as regras da aplicacao. Os modelos de negocio e o
+repository que faz a gestao dos data sources locais ou externos e faz uso dos servicos.
+A ultima camada presentation eh onde ficam as views e controles de estado das views.
 
-  <p align="center">
-    O nosso aplicativo é uma das nossas soluções para mudar a vida financeira de milhões de brasileiros. <b>Venha fazer parte desse time</b> muito engajado que
-  trabalha para que esse aplicativo chegue da melhor forma na mão dos consumidores.
-  </p>
-</p>
+Bibliotecas:
+para consumo da API foi utlizado o Retrofit, e para controle do banco de dados o Room.
+Utilizamos coroutines para gerenciamento das threads de execucao.
+Utilizamos viewmodel para gerenciamento de views, utilizando mutablestatelist do Jetpack Compose,
+que tambem foi a ferramenta utlizada para construcao da UI, substituindo o XML.
+Para injecao de dependencias utilizamos o koin, para reproducao das imagens utlizamos o coin.
+O app foi construido no modelo single activity, onde as views ficam em fragments,
+sendo utilizado o Navigation Component para navegacao das telas.
+Para os testes unitarios utilizamos JUnit 4 + mockK do kotlin.
 
-## Sobre
-<p> Utilizamos este desafio para avaliar a qualidade do seu código, arquitetura, a forma que você organiza os seus pensamentos dentro do git e muitas outras coisas, por isso, sinta-se a vontade e dê o seu melhor! O tempo médio para a entrega deste desafio é de uma semana.</p>
+Funcionamento:
+As views apenas observam as alteracoes dos valores nos viewmodels e sao responsaveis por
+interagir com o usuario, fazendo navegacoes ou acionando os viewmodels.
+Os viewmodels sao responsaveis pelas informacoes, solicitando ao repository e emitindo
+para a UI.
+O repository por sua vez, ao ser solicitado, envia as informacoes ao viewmodel, 
+utilizando os servicos e os data sources segundo a logica necessaria,
+inclusive realizando as conversoes dos modelos quando necessario.
+Os services e data sources apenas realizam o que lhes solicitam.
 
-<p>Neste desafio você irá desenvolver um app que deverá mostrar os <b>personagens</b> da <a href="https://www.marvel.com/characters">Marvel</a>. 
-  
-<p>Para começar a fazer requests utilizando este serviço, siga esta <a href="https://developer.marvel.com/documentation/authorization">documentação</a>. O endpoint que deverá ser utilizado para popular as listas do app será a <b><a href="https://developer.marvel.com/docs#!/public/getCreatorCollection_get_0">/v1/public/characters</a></b>. </p>
-
-
-## Requisitos
-<p>Estes requisitos básicos são utilizados para ver como você lida com cada um desses itens. A falta de qualquer um desses requisitos compromete a sua avaliação no final.</p>
-
-
-- Versão mínima do SDK: 21
-- Tela deve ajustar em devices menores.
-- Utilizar Kotlin
-- Boa arquitetura, pode ser (mvc, mvp, mvvm, clean etc)
-- RxJava ou Coroutines
-- Testes unitários
-- Cache de imagens
-- Tratamentos de erros
-- Padrão de Projeto e boas práticas de Orientação a Objetos.
-- Google AAC (Android Architecture Components)
-
-## Será um diferencial 
-- Construir layouts com Constraints
-- Trabalhar offline (cache dos dados)
-- Injeção de dependência (dagger, koin, kodein)
-
-## O projeto deverá conter
-* Carrossel superior com **5** personagens
-* Uma lista **vertical** abaixo do carrossel **com os personagens seguintes, sem repetir**
-* Scroll infinito
-
-<b>Atente-se aos detalhes que ache interessante mostrar, por exemplo, nome, descrição, imagens ou outras informações dos personagens</b>
-
-## Importante
-* **Sua criatividade:** Utilize as considerações acima para criar o projeto do seu jeito, **utilizando as dependências que quiser**. Apenas saiba explicar o motivo das suas escolhas. 
-
-* **Documentação:** Ao finalizar o projeto, não se esqueça de documenta-lo. É Muito importante escrever o seu fluxo de pensamentos, **anexar imagens do aplicativo**, inserir as **bibliotecas** e versões que estão sendo utilizadas, **roadmap** de features que você gostaria de colocar e **melhorias que gostaria de fazer**...
-
-## Por fim, envie seu teste!
-* Crie um `fork`, de preferencia público, desse repositório.
-* Tente seguir o <b><a href="https://imasters.com.br/agile/fluxo-de-desenvolvimento-com-gitflow#:~:text=Como%20afirma%20Vincent%20Driessen%20(2010,o%20trunk%20e%20o%20branch.">gitflow</a></b> para o seu fluxo de desenvolvimento.
-* Ao finalizar, faça o **pull request** para este repositório
-
-Agora é só torcer!
-
-**Ultimo recadinho:** não utilize o nome da Serasa dentro de seu projeto 😉
+Melhorias futuras:
+- A interface como um todo precisa ser ajustada (principamente o enquadramento das imagens). 
+- Falta tratativa de erro no caso da falta de internet durante o scroll infinito. 
+- A construcao de telas de erro para melhorar a exp do usuario.
+- Scroll infinito tambem para consumo de dados armazenados no banco de dados local.
+- Loading individual das imagens
+- Search view superior para busca de personagens
+- Botao de reload para fazer uma nova chamada de API
