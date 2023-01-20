@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdk appCompileSdkVersion
+
+    defaultConfig {
+        applicationId "com.example.desafio_android"
+        minSdk appMinSdkVersion
+        targetSdk appTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation kotlinLibrary.stdlib
+
+    implementation library.fragmentKtx
+    testImplementation testLibrary.jUnitTest
+    implementation library.liveDataKtx
+    implementation library.viewModelKtx
+    implementation library.coreKtx
+    implementation daggerHilt.main
+    kapt daggerHilt.androidCompiler
+    kapt daggerHilt.compiler
+    implementation daggerHilt.viewModel
+    implementation library.navFragment
+    implementation library.navFragmentKtx
+
+    api database.room
+    kapt database.roomCompiler
+    api database.roomKtx
+
+
+}
