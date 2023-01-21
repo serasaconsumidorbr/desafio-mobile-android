@@ -6,17 +6,6 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdk appCompileSdkVersion
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        debug{
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -26,6 +15,7 @@ android {
 dependencies {
 
     implementation project(":domain:heroes")
+    implementation project(":utils")
 
     implementation kotlinLibrary.stdlib
     implementation library.coreKtx

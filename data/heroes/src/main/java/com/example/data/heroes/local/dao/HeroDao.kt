@@ -16,7 +16,7 @@ interface HeroDao {
     suspend fun deleteAll()
 
     @Query("Select * From Hero LIMIT :limit OFFSET :offset")
-    suspend fun getPagedList(limit: Int, offset: Int) : List<HeroEntity>
+    suspend fun getPagedList( offset: Int, limit: Int) : List<HeroEntity>
 
 
 }

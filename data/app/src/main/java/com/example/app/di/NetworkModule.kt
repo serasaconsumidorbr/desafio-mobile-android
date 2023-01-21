@@ -1,6 +1,7 @@
 package com.example.app.di
 
 import android.content.Context
+import com.example.app.http.ApiKeyInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,6 +21,7 @@ import javax.inject.Qualifier
 class NetworkModule {
     @Provides
     fun provideOkHttpClient(
+        apiKeyInterceptor: ApiKeyInterceptor
     ): OkHttpClient {
 
 
@@ -30,7 +32,7 @@ class NetworkModule {
 
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        builder.addInterceptor(loggingInterceptor)
+        builder.addInterceptor(apiKeyInterceptor).addInterceptor(loggingInterceptor)
         return builder.build()
     }
 
