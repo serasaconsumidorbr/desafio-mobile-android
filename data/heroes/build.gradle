@@ -25,13 +25,25 @@ android {
 
 dependencies {
 
+    implementation project(":domain:heroes")
+
     implementation kotlinLibrary.stdlib
+    implementation library.coreKtx
     implementation library.coroutines
+
+    api networking.retrofit
+    api networking.gson
+    api networking.okHttp
+
+    implementation daggerHilt.main
+    testImplementation testLibrary.jUnitTest
     testImplementation testLibrary.mockitoKotlin
     testImplementation testLibrary.mockito
     testImplementation testLibrary.turbine
     testImplementation testLibrary.mockWebServer
-    testImplementation testLibrary.truth
-    implementation daggerHilt.main
     kapt daggerHilt.compiler
+
+    api database.room
+    kapt database.roomCompiler
+    api database.roomKtx
 }
