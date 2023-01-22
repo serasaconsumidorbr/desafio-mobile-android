@@ -33,6 +33,11 @@ android {
 
 dependencies {
 
+    implementation project(":data:app")
+    implementation project(":data:heroes")
+    implementation project(":domain:heroes")
+    implementation project(":utils")
+
     implementation kotlinLibrary.stdlib
 
     implementation library.fragmentKtx
