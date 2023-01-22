@@ -35,8 +35,8 @@ dependencies {
 
     implementation project(":data:app")
     implementation project(":data:heroes")
-    implementation project(":domain:heroes")
     implementation project(":utils")
+    implementation project(":feature:hero_list")
 
     implementation kotlinLibrary.stdlib
 

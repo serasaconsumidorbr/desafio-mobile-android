@@ -1,0 +1,67 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdk 31
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug{
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    viewBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    implementation project(":domain")
+
+    implementation kotlinLibrary.stdlib
+    implementation library.coreKtx
+    testImplementation testLibrary.jUnitTest
+    implementation library.liveDataKtx
+    implementation library.viewModelKtx
+    implementation library.lifecycleRuntimeKtx
+    implementation library.fragmentKtx
+    implementation daggerHilt.main
+    testImplementation testLibrary.mockitoKotlin
+    testImplementation testLibrary.mockito
+    testImplementation testLibrary.turbine
+    testImplementation testLibrary.mockWebServer
+    testImplementation testLibrary.truth
+    testImplementation testLibrary.coroutinesKotlin
+    testImplementation testLibrary.coreTesting
+    kapt daggerHilt.androidCompiler
+    kapt daggerHilt.compiler
+    implementation daggerHilt.viewModel
+    implementation library.navFragment
+    implementation library.navFragmentKtx
+
+
+    implementation designLibrary.appCompat
+    implementation designLibrary.material
+
+}
