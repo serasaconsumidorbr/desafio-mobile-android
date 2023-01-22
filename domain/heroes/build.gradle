@@ -1,20 +1,26 @@
-apply plugin: 'java-library'
-apply plugin: 'kotlin'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
+android {
+    compileSdk appCompileSdkVersion
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
 }
 
 dependencies {
     implementation kotlinLibrary.stdlib
     implementation library.coroutines
-    implementation daggerHilt.javaX
     testImplementation testLibrary.mockitoKotlin
     testImplementation testLibrary.mockito
     testImplementation testLibrary.turbine
     testImplementation testLibrary.mockWebServer
     testImplementation testLibrary.truth
+    implementation daggerHilt.main
+    kapt daggerHilt.androidCompiler
+    kapt daggerHilt.compiler
 }

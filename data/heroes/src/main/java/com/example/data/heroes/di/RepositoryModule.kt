@@ -5,6 +5,7 @@ import com.example.domain.heroes.repository.HeroRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -14,6 +15,6 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun provideHeroesRepositoryModule(repository: HeroRepositoryImpl): HeroRepository
+    abstract fun provideHeroRepository(repository: HeroRepositoryImpl): HeroRepository
 
 }

@@ -49,7 +49,7 @@ class NetworkModule {
 
     companion object {
 
-        const val BASE_URL = "http://gateway.marvel.com"
+        const val BASE_URL = "https://gateway.marvel.com"
 
     }
 }

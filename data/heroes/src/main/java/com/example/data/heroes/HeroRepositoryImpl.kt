@@ -8,15 +8,15 @@ import com.example.domain.heroes.model.Hero
 import com.example.domain.heroes.model.Page
 import com.example.domain.heroes.repository.HeroRepository
 import com.example.utils.networkCall
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 
 class HeroRepositoryImpl @Inject internal constructor(
     private val remoteDataSource: HeroesApi,
-    private val localDataSource: HeroDao
+    private val localDataSource: HeroDao,
+    val dispatcher: CoroutineDispatcher
 ) : HeroRepository {
 
     private val limit = 20
@@ -24,23 +24,24 @@ class HeroRepositoryImpl @Inject internal constructor(
 
     override fun getHeroes(page: Int): Flow<Page> = flow {
 
-        val offset = if (totalCount > limit * page || totalCount == 0) limit * page else totalCount - limit
+        val offset =
+            if (totalCount > limit * page || totalCount == 0) limit * page else totalCount - limit
 
         networkCall {
             remoteDataSource.getCharacters(offset = offset, limit = 20)
-        }.catch {
+        }.flowOn(dispatcher).catch {
 
             val list = localDataSource.getPagedList(offset = offset, limit = 20)
-            if(list.isEmpty())
+            if (list.isEmpty())
                 throw Exception("")
             else
-            emit(
-                Page(
-                    page = page,
-                    nextPage = if (totalCount < limit * page) -1 else page + 1,
-                    list.toDomain()
+                emit(
+                    Page(
+                        page = page,
+                        nextPage = if (totalCount < limit * page) -1 else page + 1,
+                        list.toDomain()
+                    )
                 )
-            )
         }.collect {
             totalCount = it.data.total.toInt()
             localDataSource.insert(it.data.results.toEntity())
@@ -53,6 +54,7 @@ class HeroRepositoryImpl @Inject internal constructor(
                 )
             )
         }
+
 
     }
 

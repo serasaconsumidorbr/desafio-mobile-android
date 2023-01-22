@@ -37,7 +37,7 @@ android {
 
 dependencies {
 
-    implementation project(":domain")
+    implementation project(":domain:heroes")
 
     implementation kotlinLibrary.stdlib
     implementation library.coreKtx
@@ -63,5 +63,7 @@ dependencies {
 
     implementation designLibrary.appCompat
     implementation designLibrary.material
+    implementation designLibrary.pullToRefresh
+    implementation designLibrary.coil
 
 }

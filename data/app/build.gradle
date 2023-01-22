@@ -33,6 +33,7 @@ dependencies {
     testImplementation testLibrary.mockito
     testImplementation testLibrary.turbine
     testImplementation testLibrary.mockWebServer
+    kapt daggerHilt.androidCompiler
     kapt daggerHilt.compiler
 
     api database.room
