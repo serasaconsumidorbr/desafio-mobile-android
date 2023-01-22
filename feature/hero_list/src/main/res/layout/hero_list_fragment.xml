@@ -1,48 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/topAppBar"
+
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.Material3.AppBarLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true"
+        android:fillViewport="true">
 
-        <com.google.android.material.appbar.MaterialToolbar
-
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            style="@style/Widget.MaterialComponents.Toolbar"
-            app:title="Desafio Android" />
+            android:layout_height="match_parent">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/topAppBar"
+                style="@style/Widget.Material3.AppBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/hero_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/heroes_progressbar"
-        app:layout_constraintTop_toBottomOf="@+id/topAppBar" />
+                <com.google.android.material.appbar.MaterialToolbar
 
-    <ProgressBar
-        android:id="@+id/heroes_progressbar"
-        style="@style/Widget.AppCompat.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hero_list" />
+                    style="@style/Widget.MaterialComponents.Toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:title="Desafio Android" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.AppBarLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/carousel_hero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/topAppBar" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/hero_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@id/heroes_progressbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/carousel_hero" />
+
+
+            <ProgressBar
+                android:id="@+id/heroes_progressbar"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </layout>

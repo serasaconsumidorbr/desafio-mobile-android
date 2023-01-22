@@ -13,17 +13,25 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HeroListViewModel @Inject constructor(private val loadCharactersUseCase: LoadCharactersUseCase) : ViewModel() {
+class HeroListViewModel @Inject constructor(private val loadCharactersUseCase: LoadCharactersUseCase) :
+    ViewModel() {
 
     private val _uiState = MutableStateFlow<HeroViewState>(HeroViewState.Loading)
+
     // The UI collects from this StateFlow to get its state updates
     val uiState: StateFlow<HeroViewState> = _uiState
 
 
     init {
+        loadHeroes(0)
+    }
+
+    fun loadHeroes(page: Int) {
+        _uiState.value = HeroViewState.Loading
         viewModelScope.launch {
-            loadCharactersUseCase.invoke(0).catch {  }.collect {
-                _uiState.value = HeroViewState.Success(it)
+            loadCharactersUseCase.invoke(page).catch { }.collect {
+                _uiState.value =
+                    HeroViewState.Success(it.copy(hero = it.hero.distinctBy { it.name }))
             }
         }
     }

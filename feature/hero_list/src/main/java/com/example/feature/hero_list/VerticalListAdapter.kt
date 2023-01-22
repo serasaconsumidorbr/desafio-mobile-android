@@ -1,26 +1,31 @@
 package com.example.feature.hero_list
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.domain.heroes.model.Hero
-import com.example.feature.hero_list.databinding.CarouselItemBinding
+import com.example.feature.hero_list.databinding.VerticalListItemBinding
 
-class CarouselAdapter : RecyclerView.Adapter<CarouselAdapter.ViewHolder>() {
+class VerticalListAdapter  : RecyclerView.Adapter<VerticalListAdapter.ViewHolder>() {
 
     private var items: List<Hero> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = CarouselItemBinding.inflate(inflater)
+        val binding = VerticalListItemBinding.inflate(inflater,parent, false)
+        val lp = RecyclerView.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         return ViewHolder(binding)
     }
 
     override fun getItemCount() = items.size
 
 
-    inner class ViewHolder(private val binding: CarouselItemBinding) :
+    inner class ViewHolder(private val binding: VerticalListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Hero) {
             binding.item = item
