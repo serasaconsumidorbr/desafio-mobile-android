@@ -24,14 +24,17 @@ class HeroRepositoryImpl @Inject internal constructor(
 
     override fun getHeroes(page: Int): Flow<Page> = flow {
 
-        val offset =
+        var offset =
             if (totalCount > limit * page || totalCount == 0) limit * page else totalCount - limit
 
         networkCall {
             remoteDataSource.getCharacters(offset = offset, limit = 20)
         }.flowOn(dispatcher).catch {
 
-            val list = localDataSource.getPagedList(offset = offset, limit = 20)
+            offset =
+                if (totalCount > limit * page || totalCount == 0) limit * (page+ 1) else totalCount - limit
+            val list = localDataSource.getPagedList(offset = offset)
+            totalCount = localDataSource.getAll().size
             if (list.isEmpty())
                 throw Exception("")
             else
@@ -45,7 +48,8 @@ class HeroRepositoryImpl @Inject internal constructor(
         }.collect {
             totalCount = it.data.total.toInt()
             localDataSource.insert(it.data.results.toEntity())
-            val list = localDataSource.getPagedList(offset = offset, limit = 20)
+            val list =
+                localDataSource.getAll()
             emit(
                 Page(
                     page = page,
