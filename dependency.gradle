@@ -3,8 +3,8 @@ ext {
     appTargetSdkVersion = 32
     appCompileSdkVersion = 32
     navVersion = "2.3.5"
-    kotlinVersion = "1.6.0"
-    roomVersion = "2.3.0"
+    kotlinVersion = "1.6.20"
+    roomVersion = "2.4.3"
     lifecycleVersion = "2.4.1"
 
 

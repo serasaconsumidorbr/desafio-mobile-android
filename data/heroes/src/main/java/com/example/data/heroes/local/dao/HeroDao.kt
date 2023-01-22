@@ -10,10 +10,10 @@ import com.example.data.heroes.local.entity.HeroEntity
 interface HeroDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(monsters: List<HeroEntity>)
+    suspend fun insert(hero: List<HeroEntity>)
 
     @Query("Delete from Hero")
-    suspend fun deleteAll()
+    suspend fun deleteAll() : Int
 
     @Query("Select * From Hero LIMIT :limit OFFSET :offset")
     suspend fun getPagedList( offset: Int, limit: Int) : List<HeroEntity>
