@@ -1,19 +1,20 @@
 package com.example.app.local
 
 import android.app.Application
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 import com.example.data.heroes.local.dao.HeroDao
 import com.example.data.heroes.local.entity.HeroEntity
+import com.example.data.heroes.local.entity.Thumbnail
+import com.google.gson.Gson
 
 private const val DATABASE_NAME = "app_database.db"
 private const val DATABASE_VERSION = 1
 
 @Database(entities = [HeroEntity::class], version = DATABASE_VERSION)
-abstract class AppDatabase : RoomDatabase(){
+@TypeConverters(ThumbnailConverter::class)
+abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun heroDao() : HeroDao
+    abstract fun heroDao(): HeroDao
 
 
     class Builder(private val application: Application) {
@@ -26,5 +27,20 @@ abstract class AppDatabase : RoomDatabase(){
 
         fun build(): AppDatabase = builder.build()
 
+    }
+
+
+}
+
+
+object ThumbnailConverter {
+    @TypeConverter
+    fun thumbnailtoJson(value: Thumbnail): String {
+        return Gson().toJson(value)
+    }
+
+    @TypeConverter
+    fun jsonToThumbnail(value: String): Thumbnail {
+        return Gson().fromJson(value, Thumbnail::class.java)
     }
 }

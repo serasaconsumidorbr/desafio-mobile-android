@@ -52,9 +52,12 @@ dependencies {
     implementation library.navFragment
     implementation library.navFragmentKtx
 
-    api database.room
+    implementation database.room
     kapt database.roomCompiler
-    api database.roomKtx
+    implementation database.roomKtx
+
+    implementation designLibrary.appCompat
+    implementation designLibrary.material
 
 
 }

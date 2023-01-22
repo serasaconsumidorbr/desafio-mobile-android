@@ -19,9 +19,3 @@ data class Thumbnail (
     val extension: String
 )
 
-/*
-@TypeConverter
-fun campoToJson(value : Campo) : String = Gson().toJson(value)
-
-fun jsonToCampo(value : String) = Gson().fromJson(value, Campo>::class.java)
- */
