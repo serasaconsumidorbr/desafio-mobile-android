@@ -22,7 +22,7 @@ interface HeroDao {
     @Delete
     suspend fun delete (hero : List<HeroEntity>)
 
-    @Query("Select * From Hero LIMIT :offset")
+    @Query("Select * From Hero order by name LIMIT :offset ")
     suspend fun getPagedList(offset: Int) : List<HeroEntity>
 
 
