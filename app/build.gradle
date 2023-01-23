@@ -17,8 +17,12 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -30,6 +34,9 @@ android {
         jvmTarget = '1.8'
     }
     dataBinding {
+        enabled = true
+    }
+    viewBinding {
         enabled = true
     }
 }

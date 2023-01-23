@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -46,6 +47,30 @@ class HeroListFragment : Fragment(R.layout.hero_list_fragment) {
         bindVerticalList(
             uiState = uiState
         )
+        bindErrorDisplay(
+            uiState = uiState
+        )
+    }
+
+    private fun HeroListFragmentBinding.bindErrorDisplay(uiState: StateFlow<HeroViewState>) {
+
+        val erroData = uiState.filter {
+            it is HeroViewState.Failure
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                erroData.collectLatest {
+                    textException.visibility = View.VISIBLE
+                    heroesProgressbar.visibility = View.GONE
+                    heroList.updatePadding(bottom = 16)
+                    textException.text = (it as HeroViewState.Failure).e.message
+
+                }
+            }
+        }
+
+
     }
 
     private fun HeroListFragmentBinding.bindCarousel(uiState: StateFlow<HeroViewState>) {
@@ -93,6 +118,7 @@ class HeroListFragment : Fragment(R.layout.hero_list_fragment) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 isLoading.collectLatest {
                     heroesProgressbar.visibility = View.VISIBLE
+                    textException.visibility = View.GONE
                 }
             }
         }
@@ -109,6 +135,8 @@ class HeroListFragment : Fragment(R.layout.hero_list_fragment) {
                     size = result.page.hero.drop(5).size
                     adapter.updateItems(result.page.hero.drop(5))
                     heroesProgressbar.visibility = View.GONE
+                    textException.visibility = View.GONE
+                    heroList.updatePadding(bottom = 0)
                 }
             }
         }

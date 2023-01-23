@@ -4,6 +4,7 @@ import com.example.data.heroes.local.dao.HeroDao
 import com.example.data.heroes.local.mapper.toDomain
 import com.example.data.heroes.local.mapper.toEntity
 import com.example.data.heroes.remote.HeroesApi
+import com.example.domain.heroes.exception.LocalDataSourceEmptyException
 import com.example.domain.heroes.model.Hero
 import com.example.domain.heroes.model.Page
 import com.example.domain.heroes.repository.HeroRepository
@@ -36,7 +37,7 @@ class HeroRepositoryImpl @Inject internal constructor(
             val list = localDataSource.getPagedList(offset = offset)
             totalCount = localDataSource.getAll().size
             if (list.isEmpty())
-                throw Exception("")
+                throw LocalDataSourceEmptyException()
             else
                 emit(
                     Page(

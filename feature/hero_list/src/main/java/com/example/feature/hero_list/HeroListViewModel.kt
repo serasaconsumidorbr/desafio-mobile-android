@@ -2,6 +2,7 @@ package com.example.feature.hero_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.heroes.exception.LocalDataSourceEmptyException
 import com.example.domain.heroes.usecase.LoadCharactersUseCase
 import com.example.feature.hero_list.state.HeroViewState
 import com.example.utils.CoroutineContextProvider
@@ -34,7 +35,12 @@ class HeroListViewModel @Inject constructor(
     fun loadHeroes(page: Int) {
         _uiState.value = HeroViewState.Loading
         viewModelScope.launch(ioContext) {
-            loadCharactersUseCase.invoke(page).catch { }.collect {
+            loadCharactersUseCase.invoke(page).catch {
+                if(it is LocalDataSourceEmptyException){
+                    _uiState.value = HeroViewState.Failure(it)
+                }
+                else _uiState.value = HeroViewState.Failure(Exception("Erro interno"))
+            }.collect {
                 _uiState.value =
                     HeroViewState.Success(it.copy(hero = it.hero))
             }

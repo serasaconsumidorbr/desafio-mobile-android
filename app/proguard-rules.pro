@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep public class com.example.domain.heroes.model.** { *; }
+
+-keep public class com.example.data.heroes.local.entity.** { *; }
+
+-keep public class com.example.data.heroes.remote.model.** { *; }
