@@ -1,7 +1,6 @@
-package com.example.feature.hero_list
+package com.example.feature.hero_list.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load

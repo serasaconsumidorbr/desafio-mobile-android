@@ -66,11 +66,16 @@ class HeroRepositoryTest {
 
 
         dao.stub {
-            onBlocking { getPagedList(0, 20) }.thenReturn(
+            onBlocking { getPagedList(20) }.thenReturn(
+                listHeroes.toEntity()
+            )
+            onBlocking { getAll() }.thenReturn(
                 listHeroes.toEntity()
             )
             onBlocking {
-                insert(listHeroes.toEntity())
+                listHeroes.forEach {
+                    insert(it.toEntity())
+                }
             }.thenReturn(Unit)
         }
 
@@ -82,7 +87,7 @@ class HeroRepositoryTest {
     fun `Should return heroes list cache when server error`() = runBlocking {
         mockWebServer.enqueue(MockResponse().setResponseCode(500))
 
-        val flow: Flow<Page> = repository.getHeroes(1)
+        val flow: Flow<Page> = repository.getHeroes(0)
         flow.test {
             assert(awaitItem().hero.size == 1)
             awaitComplete()
@@ -96,7 +101,7 @@ class HeroRepositoryTest {
         mockWebServer.enqueue(MockResponse().setBody(Gson().toJson(response)))
 
         val flow: Flow<Page> = repository.getHeroes(0)
-        flow.test(timeout = Duration.parse("30s")) {
+        flow.test {
             assert(awaitItem().hero.size == 1)
             awaitComplete()
         }

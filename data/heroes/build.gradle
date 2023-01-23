@@ -26,11 +26,13 @@ dependencies {
     api networking.okHttp
 
     implementation daggerHilt.main
-    testImplementation testLibrary.jUnitTest
     testImplementation testLibrary.mockitoKotlin
     testImplementation testLibrary.mockito
     testImplementation testLibrary.turbine
     testImplementation testLibrary.mockWebServer
+    testImplementation testLibrary.truth
+    testImplementation testLibrary.coroutinesKotlin
+    testImplementation testLibrary.coreTesting
     kapt daggerHilt.androidCompiler
     kapt daggerHilt.compiler
 

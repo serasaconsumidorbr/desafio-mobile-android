@@ -1,4 +1,4 @@
-package com.example.feature.hero_list
+package com.example.feature.hero_list.util
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

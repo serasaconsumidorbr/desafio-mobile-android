@@ -7,6 +7,7 @@ import com.example.data.heroes.remote.HeroesApi
 import com.example.domain.heroes.model.Hero
 import com.example.domain.heroes.model.Page
 import com.example.domain.heroes.repository.HeroRepository
+import com.example.utils.CoroutineContextProvider
 import com.example.utils.networkCall
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.*
@@ -16,7 +17,6 @@ import javax.inject.Inject
 class HeroRepositoryImpl @Inject internal constructor(
     private val remoteDataSource: HeroesApi,
     private val localDataSource: HeroDao,
-    val dispatcher: CoroutineDispatcher
 ) : HeroRepository {
 
     private val limit = 20
@@ -29,7 +29,7 @@ class HeroRepositoryImpl @Inject internal constructor(
 
         networkCall {
             remoteDataSource.getCharacters(offset = offset, limit = 20)
-        }.flowOn(dispatcher).catch {
+        }.catch {
 
             offset =
                 if (totalCount > limit * page || totalCount == 0) limit * (page + 1) else totalCount - limit

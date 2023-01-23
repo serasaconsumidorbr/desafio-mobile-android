@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.NonNull
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -14,7 +12,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.feature.hero_list.adapter.CarouselAdapter
+import com.example.feature.hero_list.adapter.VerticalListAdapter
 import com.example.feature.hero_list.databinding.HeroListFragmentBinding
+import com.example.feature.hero_list.state.HeroViewState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -42,7 +43,9 @@ class HeroListFragment : Fragment(R.layout.hero_list_fragment) {
         bindCarousel(
             uiState = uiState
         )
-        bindVerticalList(uiState = uiState)
+        bindVerticalList(
+            uiState = uiState
+        )
     }
 
     private fun HeroListFragmentBinding.bindCarousel(uiState: StateFlow<HeroViewState>) {
@@ -58,7 +61,7 @@ class HeroListFragment : Fragment(R.layout.hero_list_fragment) {
 
         val carouselData = uiState.filter {
             it is HeroViewState.Success
-        }.distinctUntilChanged()
+        }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -112,9 +115,6 @@ class HeroListFragment : Fragment(R.layout.hero_list_fragment) {
         list.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-
-                //findLastCompletelyVisibleItemPostition() returns position of last fully visible view.
-                ////It checks, fully visible view is the last one.
                 val rvSize = layoutManager.findLastCompletelyVisibleItemPosition()
                 if (rvSize == size - 1) {
                     viewModel.loadHeroes(page)

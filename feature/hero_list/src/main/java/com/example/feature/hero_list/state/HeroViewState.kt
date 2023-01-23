@@ -1,4 +1,4 @@
-package com.example.feature.hero_list
+package com.example.feature.hero_list.state
 
 import com.example.domain.heroes.model.Page
 

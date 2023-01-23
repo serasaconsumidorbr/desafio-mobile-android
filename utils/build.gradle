@@ -12,6 +12,7 @@ dependencies {
 
     implementation kotlinLibrary.stdlib
     implementation library.coroutines
+    implementation daggerHilt.javax
 
     api networking.retrofit
     api networking.okHttp
