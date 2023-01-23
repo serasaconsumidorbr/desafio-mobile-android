@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
+android {
+    compileSdk appCompileSdkVersion
+    defaultConfig {
+        buildConfigField("String", "PRIVATE_KEY", apikeyProperties['PRIVATE_KEY'])
+        buildConfigField("String", "PUBLIC_KEY", apikeyProperties['PUBLIC_KEY'])
+    }
+}
+
+dependencies {
+
+    implementation project(':data:heroes')
+    implementation project(':utils')
+
+    implementation kotlinLibrary.stdlib
+    implementation library.coreKtx
+    implementation library.coroutines
+
+    api networking.retrofit
+    api networking.gson
+    api networking.okHttp
+
+    implementation daggerHilt.main
+    testImplementation testLibrary.jUnitTest
+    testImplementation testLibrary.mockitoKotlin
+    testImplementation testLibrary.mockito
+    testImplementation testLibrary.turbine
+    testImplementation testLibrary.mockWebServer
+    kapt daggerHilt.androidCompiler
+    kapt daggerHilt.compiler
+
+    api database.room
+    kapt database.roomCompiler
+    api database.roomKtx
+}

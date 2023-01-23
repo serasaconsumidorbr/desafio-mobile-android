@@ -1,0 +1,64 @@
+ext {
+    appMinSdkVersion = 21
+    appTargetSdkVersion = 32
+    appCompileSdkVersion = 32
+    navVersion = "2.3.5"
+    kotlinVersion = "1.6.20"
+    roomVersion = "2.4.3"
+    lifecycleVersion = "2.4.1"
+
+
+    library = [
+            navFragment        : "androidx.navigation:navigation-fragment-ktx:$navVersion",
+            navFragmentKtx     : "androidx.navigation:navigation-ui-ktx:$navVersion",
+            fragmentKtx        : "androidx.fragment:fragment-ktx:1.2.5",
+            coreKtx            : "androidx.core:core-ktx:1.6.0",
+            viewModelKtx       : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
+            liveDataKtx        : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",
+            lifecycleRuntimeKtx: "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion",
+            coroutines         : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9',
+            dataBindingCompiler: 'com.android.databinding:compiler:3.5.0',
+    ]
+
+    designLibrary = [
+            material     : "com.google.android.material:material:1.6.1",
+            appCompat    : "androidx.appcompat:appcompat:1.4.0",
+            coil               : "io.coil-kt:coil:2.0.0",
+    ]
+
+    kotlinLibrary = [
+            stdlib: "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    ]
+
+    networking = [
+            retrofit: 'com.squareup.retrofit2:retrofit:2.9.0',
+            gson    : 'com.squareup.retrofit2:converter-gson:2.9.0',
+            okHttp  : 'com.squareup.okhttp3:logging-interceptor:4.8.0'
+    ]
+
+    daggerHilt = [
+            main           : "com.google.dagger:hilt-android:2.38.1",
+            androidCompiler: "com.google.dagger:hilt-android-compiler:2.38.1",
+            viewModel      : 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03',
+            compiler       : 'androidx.hilt:hilt-compiler:1.0.0-alpha03',
+            javax : "javax.inject:javax.inject:1"
+    ]
+
+    database = [
+            room        : "androidx.room:room-runtime:$roomVersion",
+            roomCompiler: "androidx.room:room-compiler:$roomVersion",
+            roomKtx     : "androidx.room:room-ktx:$roomVersion",
+            roomCommon  : "androidx.room:room-common:$roomVersion"
+    ]
+
+    testLibrary = [
+            jUnitTest       : "junit:junit:4.12",
+            mockitoKotlin   : "org.mockito.kotlin:mockito-kotlin:3.2.0",
+            mockito         : 'org.mockito:mockito-inline:3.11.2',
+            turbine         : 'app.cash.turbine:turbine:0.7.0',
+            coroutinesKotlin: 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3',
+            mockWebServer   : 'com.squareup.okhttp3:mockwebserver:4.9.3',
+            truth           : "com.google.truth:truth:1.1.3",
+            coreTesting     : 'androidx.arch.core:core-testing:2.1.0'
+    ]
+}

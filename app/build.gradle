@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdk appCompileSdkVersion
+
+    defaultConfig {
+        applicationId "com.example.desafio_android"
+        minSdk appMinSdkVersion
+        targetSdk appTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    dataBinding {
+        enabled = true
+    }
+    viewBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    implementation project(":data:app")
+    implementation project(":data:heroes")
+    implementation project(":domain:heroes")
+    implementation project(":utils")
+    implementation project(":feature:hero_list")
+
+    implementation kotlinLibrary.stdlib
+
+    implementation library.fragmentKtx
+    testImplementation testLibrary.jUnitTest
+    implementation library.liveDataKtx
+    implementation library.viewModelKtx
+    implementation library.coreKtx
+    implementation daggerHilt.main
+    kapt daggerHilt.androidCompiler
+    kapt daggerHilt.compiler
+    implementation daggerHilt.viewModel
+    implementation library.navFragment
+    implementation library.navFragmentKtx
+
+    implementation database.room
+    kapt database.roomCompiler
+    implementation database.roomKtx
+
+
+    implementation designLibrary.appCompat
+    implementation designLibrary.material
+    implementation designLibrary.coil
+
+
+}
