@@ -8,7 +8,7 @@ import com.example.data.heroes.local.entity.Thumbnail
 import com.google.gson.Gson
 
 private const val DATABASE_NAME = "app_database.db"
-private const val DATABASE_VERSION = 1
+private const val DATABASE_VERSION = 2
 
 @Database(entities = [HeroEntity::class], version = DATABASE_VERSION)
 @TypeConverters(ThumbnailConverter::class)

@@ -31,7 +31,7 @@ class HeroListViewModel @Inject constructor(private val loadCharactersUseCase: L
         viewModelScope.launch {
             loadCharactersUseCase.invoke(page).catch { }.collect {
                 _uiState.value =
-                    HeroViewState.Success(it.copy(hero = it.hero.distinctBy { it.name }))
+                    HeroViewState.Success(it.copy(hero = it.hero))
             }
         }
     }

@@ -32,7 +32,7 @@ class HeroRepositoryImpl @Inject internal constructor(
         }.flowOn(dispatcher).catch {
 
             offset =
-                if (totalCount > limit * page || totalCount == 0) limit * (page+ 1) else totalCount - limit
+                if (totalCount > limit * page || totalCount == 0) limit * (page + 1) else totalCount - limit
             val list = localDataSource.getPagedList(offset = offset)
             totalCount = localDataSource.getAll().size
             if (list.isEmpty())
@@ -46,10 +46,15 @@ class HeroRepositoryImpl @Inject internal constructor(
                     )
                 )
         }.collect {
+            if (page == 0) {
+                localDataSource.delete(localDataSource.getAll())
+            }
             totalCount = it.data.total.toInt()
-            localDataSource.insert(it.data.results.toEntity())
+            it.data.results.toEntity().forEach {
+                localDataSource.insert(it)
+            }
             val list =
-                localDataSource.getAll()
+                localDataSource.getAll().sortedBy { it.name }
             emit(
                 Page(
                     page = page,
