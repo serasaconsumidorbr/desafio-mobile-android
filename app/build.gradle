@@ -1,0 +1,105 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'welias.marvel'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "welias.marvel"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "BASE_URL", '"https://gateway.marvel.com:443/"'
+        buildConfigField "String", "PUBLIC_KEY", '"1d3a96983457e4cf69602c0cf06a10d5"'
+        buildConfigField "String", "PRIVATE_KEY", '"9205a8e45c92322b41042cef560d5a6a60cabd8b"'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    // Default
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+    implementation "androidx.appcompat:appcompat:$app_compat_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
+    testImplementation "androidx.arch.core:core-testing:$core_testing_version"
+
+
+    //  Activity ViewModel extensions
+    implementation "androidx.activity:activity-ktx:$activity_version"
+
+    // Circle View
+    implementation "de.hdodenhof:circleimageview:$circle_view_version"
+
+    // Coroutines Test
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+
+    // Faker
+    implementation "io.github.serpro69:kotlin-faker:$faker_version"
+
+    // Fragment
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+
+    // Gson
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    // JUnit
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$junit_ui_version"
+    androidTestImplementation "androidx.test:core:$androidx_test_version"
+    androidTestImplementation "androidx.test:runner:$androidx_test_version"
+    androidTestImplementation "androidx.test:rules:$androidx_test_version"
+
+    // Koin
+    implementation "io.insert-koin:koin-core:$koin_core_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+    testImplementation "io.insert-koin:koin-test:$koin_test_version"
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_test_junit_version"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+
+    // Lottie
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
+    // Mockk
+    testImplementation "io.mockk:mockk:$mockk_version"
+
+    // OKHttp
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // Picasso
+    implementation "com.squareup.picasso:picasso:$picasso_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // Truth
+    testImplementation "androidx.test.ext:truth:$truth_version"
+}

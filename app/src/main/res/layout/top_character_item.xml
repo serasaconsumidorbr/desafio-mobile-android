@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/spacing_normal">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/image_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/main_characters_item"
+            android:layout_height="@dimen/main_characters_item"
+            app:layout_constraintBottom_toBottomOf="@id/image_container"
+            app:layout_constraintEnd_toEndOf="@id/image_container"
+            app:layout_constraintStart_toStartOf="@id/image_container"
+            app:layout_constraintTop_toTopOf="@id/image_container" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_initial"
+            android:layout_width="@dimen/main_characters_item"
+            android:layout_height="@dimen/main_characters_item"
+            android:src="@drawable/circle_image_default"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/image_container"
+            app:layout_constraintEnd_toEndOf="@id/image_container"
+            app:layout_constraintStart_toStartOf="@id/image_container"
+            app:layout_constraintTop_toTopOf="@id/image_container"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_middle"
+        android:fontFamily="@font/dm_sans_medium"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_title_normal"
+        tools:text="Black Widow" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
