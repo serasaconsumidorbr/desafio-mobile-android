@@ -48,7 +48,6 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
     testImplementation "androidx.arch.core:core-testing:$core_testing_version"
 
-
     //  Activity ViewModel extensions
     implementation "androidx.activity:activity-ktx:$activity_version"
 
@@ -58,11 +57,20 @@ dependencies {
     // Coroutines Test
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
 
+    // Espresso
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.5.1'
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.5.1"
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.5.1'
+
     // Faker
     implementation "io.github.serpro69:kotlin-faker:$faker_version"
 
     // Fragment
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    implementation 'androidx.fragment:fragment:1.6.0-alpha04'
+    debugImplementation 'androidx.fragment:fragment-testing:1.6.0-alpha04'
 
     // Gson
     implementation "com.google.code.gson:gson:$gson_version"
@@ -70,9 +78,9 @@ dependencies {
     // JUnit
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$junit_ui_version"
-    androidTestImplementation "androidx.test:core:$androidx_test_version"
-    androidTestImplementation "androidx.test:runner:$androidx_test_version"
-    androidTestImplementation "androidx.test:rules:$androidx_test_version"
+    androidTestImplementation "androidx.test:core:$androidx_rules_version"
+    androidTestImplementation "androidx.test:runner:$androidx_runner_version"
+    androidTestImplementation "androidx.test:rules:$androidx_rules_version"
 
     // Koin
     implementation "io.insert-koin:koin-core:$koin_core_version"

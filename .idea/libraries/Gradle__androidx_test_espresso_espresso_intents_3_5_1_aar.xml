@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: androidx.test.espresso:espresso-intents:3.5.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/23d1a9d47081d05395e36c09b7c8c841/transformed/espresso-intents-3.5.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/23d1a9d47081d05395e36c09b7c8c841/transformed/espresso-intents-3.5.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.test.espresso/espresso-intents/3.5.1/55523659f4864f9b520c5f89d71840615f649e9e/espresso-intents-3.5.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.test.espresso/espresso-intents/3.5.1/a56a46de53b9823ed22cc64d2e08d8ef75a9af9a/espresso-intents-3.5.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
