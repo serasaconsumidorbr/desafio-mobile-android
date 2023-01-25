@@ -34,13 +34,16 @@
 - Custom Views (Criação de componentes internos para facilitar e desacoplar reponsabilidade da UI e deixar com os proprios componentes.)
 - Layouts de fragments, activitys e custom view construidos com Constraint Layout.
 - DTO Pattern (Data Transfer Object, design pattern que fala que cada camada da arquitetura deve ter seu próprio modelo, com isso, qualquer alteração que ocorrer no banco de dados ou resposta da API, a UI do usuário não é impactada devido a separação de modelos por camadas e utilização de mappers.)
-- Criação de extensions e tratamento de erro 
+- Criação de extensions e tratamento de erro
+- Single Activity Pattern (O app é composto por activitys e fragments, porém separado por contexto, cada contexto existirá um container maior, activity que será populada por vários fragments, resultando em uma fonte maior de verdade, um container maior do contexto e deixando o app mais fluido já que fragment é menos custoso para construir que uma activity, compensando a utilização do Koin e facilitando animações)
 
 ## Novas Features
 - Criação da tela Details (Uma tela que mostrará todos os detalhes de cada usuário clicado)
 - Search de personagens
 - Utilização do Paging 3 (Inicialmente foi desenvolvido com Paging 3, porém como ele trabalha assincrono não existia uma forma de capturar a lista retornada da API pois o objeto de retorno era um PagingData que o único momento que existia uma lista era no adapter. Com isso não daria para separar uma lista em duas para dois adapters diferentes)
 - Finalizar os testes de interface
+- Migrar para Jetpack Compose (A única razão para não ser desenvolvido em Jetpack Compose foi um dos requisitos utilizar constraints, porém ainda foi pensado em usar constraint em compose)
+
 
 
 
