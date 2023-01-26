@@ -10,11 +10,11 @@ import welias.marvel.presentation.di.PresentationModule
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        setupProvider()
+        setupContextProvider()
         setupKoin()
     }
 
-    private fun setupProvider() {
+    private fun setupContextProvider() {
         ContextProvider.initialContext(this.applicationContext)
     }
 

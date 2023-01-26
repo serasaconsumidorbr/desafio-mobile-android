@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import welias.marvel.core.constants.OPEN_DELAY
 import welias.marvel.databinding.ActivitySplashBinding
 import welias.marvel.presentation.ui.activity.main.MainActivity
 
@@ -26,9 +27,5 @@ class SplashActivity : AppCompatActivity() {
                 Intent(baseContext, MainActivity::class.java)
             )
         }, OPEN_DELAY)
-    }
-
-    companion object {
-        private const val OPEN_DELAY = 2500L
     }
 }

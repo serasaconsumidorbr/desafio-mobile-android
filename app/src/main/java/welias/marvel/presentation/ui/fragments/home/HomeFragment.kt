@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
 
     private fun setupObserver() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.uiState.collect { uiState ->
+            viewModel.homeState.collect { uiState ->
                 showState(uiState)
             }
         }
@@ -86,18 +86,18 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun isLastPage(): Boolean {
-                    return viewModel.uiState.value.characters?.size == viewModel.uiState.value.dataApi.totalItems
+                    return viewModel.homeState.value.characters?.size == viewModel.homeState.value.dataApi.totalItems
                 }
 
                 override fun isLoading(): Boolean {
-                    return viewModel.uiState.value.isLoading
+                    return viewModel.homeState.value.isLoading
                 }
             })
     }
 
-    private fun updateList(uiState: UiState) {
-        uiState.characters?.let { characters -> submitList(characters) }
-        uiState.listTopCharacters?.let { topCharacters -> submitTopList(topCharacters) }
+    private fun updateList(homeState: HomeState) {
+        homeState.characters?.let { characters -> submitList(characters) }
+        homeState.listTopCharacters?.let { topCharacters -> submitTopList(topCharacters) }
     }
 
     private fun submitList(characters: List<CharacterUI>) {
@@ -110,47 +110,47 @@ class HomeFragment : Fragment() {
     }
 
     // Region State
-    private fun showState(uiState: UiState) {
-        if (uiState.isLoading) {
-            if (uiState.isFirstRequisition) {
-                showLoadingState(true)
+    private fun showState(homeState: HomeState) {
+        if (homeState.isLoading) {
+            if (homeState.isFirstRequisition) {
+                showLoadingState()
             } else {
-                showCharactersState(uiState)
+                showCharactersState(homeState)
             }
-        } else if (uiState.error != null) {
-            showErrorState(uiState)
+        } else if (homeState.error != null) {
+            showErrorState(homeState)
         } else {
-            showCharactersState(uiState)
+            showCharactersState(homeState)
         }
     }
 
-    private fun showLoadingState(showLoading: Boolean) {
-        setupLoadingVisibility(showLoading)
-        setupCharactersVisibility(!showLoading)
-        setupErrorNoConnectionVisibility(!showLoading)
+    private fun showLoadingState() {
+        setupLoadingVisibility(true)
+        setupCharactersVisibility(false)
+        setupErrorNoConnectionVisibility(false)
     }
 
-    private fun showCharactersState(uiState: UiState) {
-        val showCharacters = !uiState.characters.isNullOrEmpty()
+    private fun showCharactersState(homeState: HomeState) {
+        val showCharacters = !homeState.characters.isNullOrEmpty()
         setupLoadingVisibility(!showCharacters)
         setupCharactersVisibility(showCharacters)
         setupErrorNoConnectionVisibility(!showCharacters)
-        updateList(uiState = uiState)
+        updateList(homeState = homeState)
     }
 
-    private fun showErrorState(uiState: UiState) {
-        val showError = uiState.error != null
-        val charactersIsNullOrEmpty = uiState.characters.isNullOrEmpty()
+    private fun showErrorState(homeState: HomeState) {
+        val showError = homeState.error != null
+        val charactersIsNullOrEmpty = homeState.characters.isNullOrEmpty()
 
         setupLoadingVisibility(!showError)
         setupCharactersVisibility(!showError)
 
-        showError(uiState = uiState, charactersIsNullOrEmpty = charactersIsNullOrEmpty)
+        showError(homeState = homeState, charactersIsNullOrEmpty = charactersIsNullOrEmpty)
     }
 
     // Region Error
-    private fun showError(uiState: UiState, charactersIsNullOrEmpty: Boolean) {
-        with(uiState) {
+    private fun showError(homeState: HomeState, charactersIsNullOrEmpty: Boolean) {
+        with(homeState) {
             if (error != null) {
                 when (error) {
                     is ErrorException.NoConnectionError -> showServerError(charactersIsNullOrEmpty)

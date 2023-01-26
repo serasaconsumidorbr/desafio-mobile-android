@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import welias.marvel.core.constants.FOUR
 import welias.marvel.core.constants.STEP_OFFSET
 import welias.marvel.core.exception.ErrorException
 import welias.marvel.core.exception.ErrorException.NoConnectionError
@@ -17,12 +18,12 @@ class HomeViewModel(
 ) : ViewModel() {
 
     private val characters = mutableListOf<CharacterUI>()
-    private val _uiState = MutableStateFlow(UiState())
-    val uiState: StateFlow<UiState> get() = _uiState
+    private val _homeState = MutableStateFlow(HomeState())
+    val homeState: StateFlow<HomeState> get() = _homeState
 
     fun getListCharacters() {
         viewModelScope.launch {
-            val offset = _uiState.value.dataApi.nextOffset
+            val offset = _homeState.value.dataApi.nextOffset
 
             useCase.execute(offset)
                 .onStart { handleLoading(true) }
@@ -36,7 +37,7 @@ class HomeViewModel(
     }
 
     private fun handleLoading(value: Boolean) {
-        _uiState.update { it.copy(isLoading = value) }
+        _homeState.update { it.copy(isLoading = value) }
     }
 
     private fun handleUI(charactersUI: List<CharacterUI>) {
@@ -44,11 +45,11 @@ class HomeViewModel(
         val mainCharacterUI = mutableListOf<CharacterUI>()
 
         sumList(charactersUI).forEachIndexed { index, characterUI ->
-            if (index <= 4) topCharacterUI.add(characterUI)
+            if (index <= FOUR) topCharacterUI.add(characterUI)
             else mainCharacterUI.add(characterUI)
         }
 
-        _uiState.update { state ->
+        _homeState.update { state ->
             state.copy(
                 dataApi = DataApi(nextOffset = state.dataApi.nextOffset.plus(STEP_OFFSET)),
                 characters = mainCharacterUI.toList(),
@@ -70,7 +71,7 @@ class HomeViewModel(
     }
 
     private fun handleError(error: ErrorException) {
-        _uiState.update {
+        _homeState.update {
             it.copy(error = error)
         }
     }

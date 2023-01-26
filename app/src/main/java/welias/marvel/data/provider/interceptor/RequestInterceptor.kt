@@ -2,16 +2,7 @@ package welias.marvel.data.provider.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Request
-import okhttp3.Response
 import welias.marvel.data.provider.NetworkProvider
-
-class RequestInterceptor : Interceptor {
-    override fun intercept(chain: Interceptor.Chain): Response {
-        val builder = chain.request()
-            .newBuilder()
-        return chain.proceed(builder.build())
-    }
-}
 
 var offlineInterceptor = Interceptor { chain ->
     var request: Request = chain.request()

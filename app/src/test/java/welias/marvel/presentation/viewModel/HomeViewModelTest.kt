@@ -19,7 +19,7 @@ import welias.marvel.domain.usecase.GetCharactersUseCase
 import welias.marvel.presentation.mapper.toCharacterUi
 import welias.marvel.presentation.ui.fragments.home.DataApi
 import welias.marvel.presentation.ui.fragments.home.HomeViewModel
-import welias.marvel.presentation.ui.fragments.home.UiState
+import welias.marvel.presentation.ui.fragments.home.HomeState
 import kotlin.test.assertEquals
 
 @ExperimentalCoroutinesApi
@@ -44,7 +44,7 @@ class HomeViewModelTest {
         runTestViewModel(testDispatcher) {
             // Given
             val viewModel = setupViewModel()
-            val offset = viewModel.uiState.value.dataApi.nextOffset
+            val offset = viewModel.homeState.value.dataApi.nextOffset
 
             // When
             viewModel.getListCharacters()
@@ -62,9 +62,9 @@ class HomeViewModelTest {
             val charactersUI = charactersDomain.map { it.toCharacterUi() }
 
             val viewModel = setupViewModel()
-            val offset = viewModel.uiState.value.dataApi.nextOffset
-            val uiStateInitial = UiState()
-            val uiStateLoading = uiStateInitial.copy(isLoading = true)
+            val offset = viewModel.homeState.value.dataApi.nextOffset
+            val homeStateInitial = HomeState()
+            val uiStateLoading = homeStateInitial.copy(isLoading = true)
             val uiStateLoaded =
                 uiStateLoading.copy(
                     characters = emptyList(),
@@ -72,14 +72,14 @@ class HomeViewModelTest {
                     isLoading = false,
                     error = null,
                     isFirstRequisition = false,
-                    dataApi = DataApi(uiStateInitial.dataApi.nextOffset.plus(STEP_OFFSET))
+                    dataApi = DataApi(homeStateInitial.dataApi.nextOffset.plus(STEP_OFFSET))
                 )
             val listUiStates = listOf(
-                uiStateInitial,
+                homeStateInitial,
                 uiStateLoaded
             )
             val flowScope = CoroutineScope(testDispatcher)
-            val statesFlow = viewModel.uiState.shareIn(
+            val statesFlow = viewModel.homeState.shareIn(
                 scope = flowScope,
                 replay = listUiStates.size,
                 started = SharingStarted.Eagerly
