@@ -1,7 +1,7 @@
 package welias.marvel.data.service
 
 import retrofit2.http.GET
-import retrofit2.http.Header
+import retrofit2.http.Query
 import welias.marvel.BuildConfig
 import welias.marvel.core.constants.API_KEY
 import welias.marvel.core.constants.HASH
@@ -15,9 +15,9 @@ interface AppService {
 
     @GET("v1/public/characters")
     suspend fun getListCharacters(
-        @Header(TIME_STAMP) ts: String = getTimeStamp(),
-        @Header(API_KEY) apikey: String = BuildConfig.PUBLIC_KEY,
-        @Header(HASH) hash: String = generateMD5Hash(),
-        @Header(OFFSET) offset: Int? = 0
+        @Query(TIME_STAMP) ts: String = getTimeStamp(),
+        @Query(API_KEY) apikey: String = BuildConfig.PUBLIC_KEY,
+        @Query(HASH) hash: String = generateMD5Hash(),
+        @Query(OFFSET) offset: Int? = 0
     ): CharacterDataWrapperResponse
 }
