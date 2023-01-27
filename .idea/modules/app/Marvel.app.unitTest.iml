@@ -30,8 +30,6 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
-                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar</arg>
-                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_app_classes_jar/debug/classes.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/a4c947e93969ac27d56672584103a1ed/transformed/jetified-viewbinding-7.3.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/030d00668d38bd3945992b43151a18f8/transformed/jetified-koin-android-3.2.2-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/e79af924e8ff11a271236e2119fa9796/transformed/jetified-logging-interceptor-4.10.0.jar</arg>

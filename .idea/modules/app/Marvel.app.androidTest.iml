@@ -30,8 +30,6 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
-                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debugAndroidTest/R.jar</arg>
-                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_app_classes_jar/debug/classes.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/7b54501516bec2cda0f9f8b2e5fb1b0e/transformed/espresso-contrib-3.5.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/e1293c67165367a0a113e49e95b53d51/transformed/espresso-intents-3.5.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/2db1520dc0c5acfbcf396e79cae817f1/transformed/espresso-core-3.5.1-api.jar</arg>

@@ -3,7 +3,9 @@
     <!-- Custom size -->
     <dimen name="image_height">240dp</dimen>
     <dimen name="image_width">164dp</dimen>
+    <dimen name="image_size_details">343dp</dimen>
     <dimen name="main_characters_item">100dp</dimen>
+    <dimen name="height_line_toolbar">1dp</dimen>
 
     <!-- region Spacings -->
     <dimen name="spacing_bigger">56dp</dimen>
