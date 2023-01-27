@@ -50,3 +50,12 @@
 
 https://user-images.githubusercontent.com/59460244/214677329-03774bdf-924d-4bd5-8d2d-ebc4391e9266.mp4
 
+
+## Observações
+Caso o aplicativo não seja permitido executar, siga esses passos:
+
+- Run -> Edit configurations... -> Add new configuration
+- Select Android App -> Escolha um nome (Pode ser "app")
+- Em General -> Module -> Escolha Marvel.app.main
+
+DONE! AGORA É SÓ EXECUTAR
