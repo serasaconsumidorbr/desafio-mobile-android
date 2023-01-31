@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Marvel</string>
+    <string name="first_characters">Primeiros Personagens</string>
+    <string name="all_heroes">Todos os personagens</string>
+    <string name="try_again">Recarregar</string>
+    <string name="no_connection_error">Ops! Parece que você está sem internet... Verifique sua conexão.</string>
+    <string name="lose_connection">Você perdeu a sua conexão!</string>
+</resources>
