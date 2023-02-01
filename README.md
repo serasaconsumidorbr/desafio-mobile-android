@@ -1,29 +1,9 @@
 <!-- Header-->
 <br />
-<p align="center">
-  <a href="https://github.com/serasaconsumidorbr/desafio-mobile-iOS">
-    <img src="https://turismoemfoco.com.br/v1/wp-content/uploads/2020/05/serasa-logo-nova22.png" alt="Logo" width="180" height="80">
-  </a>
-
   <h3 align="center">Desafio - Android Developer </h3>
-
-  <p align="center">
-    O nosso aplicativo é uma das nossas soluções para mudar a vida financeira de milhões de brasileiros. <b>Venha fazer parte desse time</b> muito engajado que
-  trabalha para que esse aplicativo chegue da melhor forma na mão dos consumidores.
-  </p>
-</p>
-
-## Sobre
-<p> Utilizamos este desafio para avaliar a qualidade do seu código, arquitetura, a forma que você organiza os seus pensamentos dentro do git e muitas outras coisas, por isso, sinta-se a vontade e dê o seu melhor! O tempo médio para a entrega deste desafio é de uma semana.</p>
-
-<p>Neste desafio você irá desenvolver um app que deverá mostrar os <b>personagens</b> da <a href="https://www.marvel.com/characters">Marvel</a>. 
-  
-<p>Para começar a fazer requests utilizando este serviço, siga esta <a href="https://developer.marvel.com/documentation/authorization">documentação</a>. O endpoint que deverá ser utilizado para popular as listas do app será a <b><a href="https://developer.marvel.com/docs#!/public/getCreatorCollection_get_0">/v1/public/characters</a></b>. </p>
-
 
 ## Requisitos
 <p>Estes requisitos básicos são utilizados para ver como você lida com cada um desses itens. A falta de qualquer um desses requisitos compromete a sua avaliação no final.</p>
-
 
 - Versão mínima do SDK: 21
 - Tela deve ajustar em devices menores.
