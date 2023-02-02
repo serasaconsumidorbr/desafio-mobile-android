@@ -23,9 +23,18 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "MARVEL_URL", "\"" + "https://gateway.marvel.com" + "\""
+            buildConfigField "String", "PUBLIC_KEY_MARVEL", "\"" + "853f44e003e2d58e82c205144d2ff349" + "\""
+            buildConfigField "String", "PRIVATE_KEY_MARVEL", "\"" + "2b5109d6665411aab1e6dc7b266de14cc96f49c4" + "\""
+        }
         release {
+            buildConfigField "String", "PUBLIC_KEY_MARVEL", "\"" + "853f44e003e2d58e82c205144d2ff349" + "\""
+            buildConfigField "String", "PRIVATE_KEY_MARVEL", "\"" + "2b5109d6665411aab1e6dc7b266de14cc96f49c4" + "\""
+            buildConfigField "String", "MARVEL_URL", "\"" + "https://gateway.marvel.com" + "\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
     }
     compileOptions {
