@@ -1,4 +1,4 @@
-package com.example.marvelheroes.presentation.extensions
+package com.example.marvelheroes.data.extensions
 
 inline fun <reified T> Any.safeHeritage(): T? =
     if (this is T) {

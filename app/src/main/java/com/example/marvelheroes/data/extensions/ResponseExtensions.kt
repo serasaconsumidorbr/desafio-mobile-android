@@ -1,4 +1,4 @@
-package com.example.marvelheroes.presentation.extensions
+package com.example.marvelheroes.data.extensions
 
 import okhttp3.ResponseBody
 import okhttp3.ResponseBody.Companion.asResponseBody

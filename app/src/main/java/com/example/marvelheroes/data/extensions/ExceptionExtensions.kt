@@ -1,4 +1,4 @@
-package com.example.marvelheroes.presentation.extensions
+package com.example.marvelheroes.data.extensions
 
 import com.example.marvelheroes.data.retrofit.ErrorModel
 import retrofit2.HttpException

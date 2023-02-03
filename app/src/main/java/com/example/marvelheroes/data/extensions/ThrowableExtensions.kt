@@ -1,4 +1,4 @@
-package com.example.marvelheroes.presentation.extensions
+package com.example.marvelheroes.data.extensions
 
 private fun createThrowable(message: String): Throwable {
     return Throwable(message)

@@ -3,9 +3,10 @@ package com.example.marvelheroes.data.datasource
 import com.example.marvelheroes.BuildConfig
 import com.example.marvelheroes.data.api.CharactersServiceApi
 import com.example.marvelheroes.data.retrofit.ServiceGenerator
+import javax.inject.Inject
 
 
-object CharactersRemoteDataSource {
+class CharactersRemoteDataSource @Inject constructor() {
 
     private var mService = ServiceGenerator.createServiceCoroutine(
         serviceClass = CharactersServiceApi::class.java,

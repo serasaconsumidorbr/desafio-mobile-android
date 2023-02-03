@@ -1,6 +1,6 @@
 package com.example.marvelheroes.data.retrofit
 
-import com.example.marvelheroes.presentation.extensions.asErrorObjectByJson
+import com.example.marvelheroes.data.extensions.asErrorObjectByJson
 import retrofit2.HttpException
 
 const val CODE_EXCEPTION_INIT = 0

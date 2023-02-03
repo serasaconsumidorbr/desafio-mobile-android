@@ -1,4 +1,4 @@
-package com.example.marvelheroes.presentation.extensions
+package com.example.marvelheroes.data.extensions
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

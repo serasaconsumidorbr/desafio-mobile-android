@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.marvelheroes.presentation.ui.home.HomeScreen
 import com.example.marvelheroes.ui.theme.MarvelHeroesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +25,9 @@ class Navigation : ComponentActivity() {
                     navController = navController,
                     startDestination = "heroes_list_screen"
                 ) {
-                    composable(route = "heroes_list_screen") {}
+                    composable(route = "heroes_list_screen") {
+                        HomeScreen(navController = navController)
+                    }
                     composable(
                         route = "heroes_detail_screen/{dominantColor}/{heroName}",
                         arguments = listOf(
