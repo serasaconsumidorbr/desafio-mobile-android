@@ -2,7 +2,6 @@ package com.example.marvelheroes.presentation.ui.home.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -15,10 +14,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.example.marvelheroes.domain.characters.Character
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(
+    ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class
+)
 @Composable
 fun ContentHome(
     modifier: Modifier = Modifier,
@@ -35,48 +42,80 @@ fun ContentHome(
         stickyHeader {
             LazyRow {
                 items(listHeroesHorizontally) { item ->
-                    Card(
+                    Box(
                         modifier = Modifier
-                            .height(200.dp)
-                            .padding(12.dp),
-                        onClick = {
-                            onClickHorizontal(item)
-                        },
-                        colors = CardDefaults.cardColors(
-                            containerColor = Color.Black.copy(0.5f)
-                        ),
+                            .fillMaxSize()
+                            .background(Color.Black)
                     ) {
-                        Box(
+                        Card(
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .fillMaxHeight()
-                                .background(Color.Black.copy(alpha = 0.7f))
+                                .size(200.dp)
+                                .padding(12.dp),
+                            onClick = {
+                                onClickHorizontal(item)
+                            }
                         ) {
-                            Text(
-                                text = item.name,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .fillMaxHeight()
-                                    .padding(20.dp)
-                                    .height(48.dp)
-                                    .background(Color.Red)
-                            )
+                            Box {
+                                AsyncImage(
+                                    model = "${item.thumbnail.path}.${item.thumbnail.extension}",
+                                    contentDescription = item.description,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier
+                                        .size(200.dp)
+                                )
+
+                                Text(
+                                    text = item.name,
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(Color.Black.copy(alpha = .3f))
+                                        .padding(10.dp),
+                                    style = TextStyle(
+                                        fontSize = 18.sp,
+                                        color = Color.White,
+                                        fontWeight = FontWeight.Bold,
+                                        textAlign = TextAlign.Justify
+                                    )
+                                )
+                            }
                         }
                     }
                 }
             }
-
         }
+
         items(listHeroesVertically) { item ->
-            Text(
-                text = item.name,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-                    .background(Color.Red)
-                    .clickable { onClickVertical(item) }
-            )
+            Box(
+                modifier = Modifier.background(Color.Black)
+            ) {
+                Card(
+                    modifier = Modifier
+                        .height(48.dp)
+                        .padding(5.dp),
+                    onClick = {
+                        onClickVertical(item)
+                    },
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color.Black.copy(0.5f)
+                    ),
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        Text(
+                            text = item.name,
+                            style = TextStyle(
+                                fontSize = 18.sp,
+                                color = Color.White,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        )
+                    }
+                }
+            }
         }
     }
-
 }

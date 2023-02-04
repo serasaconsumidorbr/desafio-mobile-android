@@ -1,8 +1,8 @@
 package com.example.marvelheroes.presentation.ui.home
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
@@ -14,11 +14,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.marvelheroes.domain.characters.*
+import coil.compose.AsyncImage
+import com.example.marvelheroes.R
 import com.example.marvelheroes.presentation.ui.home.components.ContentHome
 import java.util.*
 
@@ -29,23 +35,42 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 
 ) {
-
     val stateUi = viewModel.state.collectAsState()
     val changeScreen = remember {
         mutableStateOf(false)
     }
-    val paramsScreen = remember {
+    val paramsScreenName = remember {
+        mutableStateOf("")
+    }
+    val paramsScreenImage = remember {
+        mutableStateOf("")
+    }
+    val paramsScreenDescription = remember {
         mutableStateOf("")
     }
 
     Scaffold(
         topBar = {
-            SearchBar(
-                hint = "Search...",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) { }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier.background(Color.Black)
+
+            ) {
+                Spacer(modifier = Modifier.height(20.dp))
+                Image(
+                    painter = painterResource(id = R.drawable.),
+                    contentDescription = "Marvel",
+                    contentScale = ContentScale.Fit,
+                )
+                SearchBar(
+                    hint = "Search...",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                ) { }
+            }
+
         }
     ) { it ->
         Box(
@@ -55,10 +80,17 @@ fun HomeScreen(
 
         ) {
             AnimatedVisibility(visible = stateUi.value.isLoading) {
-                CircularProgressIndicator(
+                Row(
                     modifier = Modifier
-                        .size(40.dp)
-                )
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .size(40.dp)
+                    )
+                }
             }
 
             AnimatedVisibility(visible = !stateUi.value.isLoading && !changeScreen.value) {
@@ -67,24 +99,59 @@ fun HomeScreen(
                     listHeroesHorizontally = stateUi.value.listHeroesHorizontally,
                     onClickHorizontal = {
                         changeScreen.value = true
-                        paramsScreen.value = it.name
+                        paramsScreenName.value = it.name
+                        paramsScreenImage.value = "${it.thumbnail.path}.${it.thumbnail.extension}"
+                        paramsScreenDescription.value = it.description
                     },
                     onClickVertical = {
                         changeScreen.value = true
-                        paramsScreen.value = it.name
+                        paramsScreenName.value = it.name
+                        paramsScreenImage.value = "${it.thumbnail.path}.${it.thumbnail.extension}"
+                        paramsScreenDescription.value = it.description
                     }
                 )
             }
 
             AnimatedVisibility(visible = changeScreen.value) {
-                Text(
-                    text = paramsScreen.value,
+                Box(
                     modifier = Modifier
-                        .size(80.dp)
-                        .padding(20.dp)
-                        .background(Color.Red)
-                        .clickable { changeScreen.value = false }
-                )
+                        .fillMaxSize()
+                        .background(Color.Black)
+                ) {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(12.dp),
+                        onClick = {
+                            changeScreen.value = false
+                        }
+                    ) {
+                        Box {
+                            AsyncImage(
+                                model = paramsScreenImage.value,
+                                contentDescription = paramsScreenDescription.value,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .fillMaxHeight()
+                            )
+
+                            Text(
+                                text = paramsScreenName.value,
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .background(Color.Black.copy(alpha = .3f))
+                                    .padding(10.dp),
+                                style = TextStyle(
+                                    fontSize = 18.sp,
+                                    color = Color.White,
+                                    fontWeight = FontWeight.Bold,
+                                    textAlign = TextAlign.Justify
+                                )
+                            )
+                        }
+                    }
+                }
             }
         }
 
