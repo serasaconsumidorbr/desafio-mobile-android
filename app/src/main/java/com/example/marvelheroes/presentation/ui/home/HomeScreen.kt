@@ -59,9 +59,12 @@ fun HomeScreen(
             ) {
                 Spacer(modifier = Modifier.height(20.dp))
                 Image(
-                    painter = painterResource(id = R.drawable.),
+                    painter = painterResource(id = R.drawable.marvel_logo_svg),
                     contentDescription = "Marvel",
                     contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .height(60.dp)
+                        .width(200.dp)
                 )
                 SearchBar(
                     hint = "Search...",
