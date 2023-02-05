@@ -1,15 +1,15 @@
-package com.example.marvelheroes.domain.characters
+package com.example.marvelheroes.domain.models.characters
 
 import java.io.Serializable
 
-data class Comic(
+data class Series(
     val available: Int,
     val returned: Int,
     val collectionURI: String,
-    val items: List<ComicSummary>
+    val items: List<SeriesSummary>
 ) : Serializable
 
-data class ComicSummary(
+data class SeriesSummary(
     val resourceURI: String,
     val name: String,
 ) : Serializable

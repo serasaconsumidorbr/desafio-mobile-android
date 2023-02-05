@@ -1,6 +1,6 @@
 package com.example.marvelheroes.data.dto
 
-import com.example.marvelheroes.domain.characters.*
+import com.example.marvelheroes.domain.models.characters.*
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.util.*

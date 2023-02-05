@@ -70,8 +70,6 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 
@@ -104,5 +102,10 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:1.0.0"
     implementation 'androidx.hilt:hilt-navigation-compose:1.1.0-alpha01'
 
-
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.mockito:mockito-junit-jupiter:$mockito_version"
+    // Dependência do Mockito para testes no Android
+    androidTestImplementation "org.mockito:mockito-android:$mockito_version"
+    // Dependência do Mockito para ser possível mockar classes e métodos constantes
+    testImplementation "org.mockito:mockito-inline:$mockito_version"
 }

@@ -21,7 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.example.marvelheroes.domain.characters.Character
+import com.example.marvelheroes.domain.models.characters.Character
 
 @OptIn(
     ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class

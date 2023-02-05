@@ -1,4 +1,4 @@
-package com.example.marvelheroes.domain.characters
+package com.example.marvelheroes.domain.models.characters
 
 import java.io.Serializable
 

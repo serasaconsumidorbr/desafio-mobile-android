@@ -1,10 +1,9 @@
 package com.example.marvelheroes.domain.services
 
 import com.example.marvelheroes.BuildConfig
-import com.example.marvelheroes.data.dto.ApiResponse
 import com.example.marvelheroes.data.retrofit.RetrofitServiceGeneric
 import com.example.marvelheroes.domain.repositories.ICharactersRepository
-import com.example.marvelheroes.domain.characters.Character
+import com.example.marvelheroes.domain.models.characters.Character
 import dagger.hilt.android.scopes.ActivityScoped
 import java.math.BigInteger
 import java.security.MessageDigest
