@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.*
@@ -25,6 +26,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.marvelheroes.R
+import com.example.marvelheroes.presentation.ui.heroDetails.HeroDetailScreen
 import com.example.marvelheroes.presentation.ui.home.components.ContentHome
 import java.util.*
 
@@ -115,51 +117,16 @@ fun HomeScreen(
                 )
             }
 
-            AnimatedVisibility(visible = changeScreen.value) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.Black)
-                ) {
-                    Card(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(12.dp),
-                        onClick = {
-                            changeScreen.value = false
-                        }
-                    ) {
-                        Box {
-                            AsyncImage(
-                                model = paramsScreenImage.value,
-                                contentDescription = paramsScreenDescription.value,
-                                contentScale = ContentScale.Crop,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .fillMaxHeight()
-                            )
-
-                            Text(
-                                text = paramsScreenName.value,
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .background(Color.Black.copy(alpha = .3f))
-                                    .padding(10.dp),
-                                style = TextStyle(
-                                    fontSize = 18.sp,
-                                    color = Color.White,
-                                    fontWeight = FontWeight.Bold,
-                                    textAlign = TextAlign.Justify
-                                )
-                            )
-                        }
-                    }
-                }
+            HeroDetailScreen(
+                paramsScreenName = paramsScreenName.value,
+                paramsScreenImage = paramsScreenImage.value,
+                paramsScreenDescription = paramsScreenDescription.value,
+                changeScreen = changeScreen.value
+            ) {
+                changeScreen.value = it
             }
         }
-
     }
-
 }
 
 @Composable
