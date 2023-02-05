@@ -6,7 +6,7 @@ data class Event(
     val available: Int,
     val returned: Int,
     val collectionURI: String,
-    val items: ArrayList<EventSummary>,
+    val items: List<EventSummary>,
 ) : Serializable
 
 data class EventSummary(

@@ -1,9 +1,5 @@
 package com.example.marvelheroes.data.mock
 
-import com.example.marvelheroes.domain.models.characters.Event
-import com.example.marvelheroes.domain.models.characters.Series
-import com.example.marvelheroes.domain.models.characters.Story
-
 data class MockCharactersResponse(
     val id: Int =1011334,
     val name: String ="3-D Man",
