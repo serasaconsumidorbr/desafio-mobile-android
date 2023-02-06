@@ -2,7 +2,7 @@ package com.example.marvelheroes.presentation.ui.baseViewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.blackbook.v2.data.DispatchersProvider
+import com.example.marvelheroes.data.retrofit.DispatchersProvider
 import com.example.marvelheroes.data.retrofit.ErrorObject
 import com.example.marvelheroes.data.retrofit.MessageGenericObject
 import com.example.marvelheroes.data.retrofit.ResultWrapper
