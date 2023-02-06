@@ -1,4 +1,4 @@
-package com.example.marvelheroes.domain
+package com.example.marvelheroes.data.repositories
 
 import com.example.marvelheroes.data.mock.MockCharactersResponse
 import com.example.marvelheroes.data.mock.generateApiResponseMock
@@ -14,7 +14,7 @@ const val TS_MOCK = "TS_MOCK"
 const val KEY_MOCK = "KEY_MOCK"
 const val HASH_MOCK = "HASH_MOCK"
 
-class HeroesServiceTest {
+class HeroesRepositoryTest {
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
@@ -27,10 +27,10 @@ class HeroesServiceTest {
         val charactersRepository = Mockito.mock(ICharactersRepository::class.java)
         val apiResponse = generateApiResponseMock()
 
-        Mockito.`when`(charactersRepository.getCharactersAsync(1, TS_MOCK, KEY_MOCK, HASH_MOCK))
+         Mockito.`when`(charactersRepository.getCharactersAsync(1, TS_MOCK, KEY_MOCK, HASH_MOCK))
             .thenReturn(apiResponse)
 
-        val charactersResult = generateApiResponseMock().data
+        val charactersResult = charactersRepository.getCharactersAsync(1, TS_MOCK, KEY_MOCK, HASH_MOCK).data
 
         Assert.assertEquals(1, charactersResult.results?.count())
 

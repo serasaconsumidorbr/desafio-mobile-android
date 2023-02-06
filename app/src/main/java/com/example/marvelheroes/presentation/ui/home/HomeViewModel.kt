@@ -40,7 +40,9 @@ class HomeViewModel @Inject constructor(
             onError = { _, error, _ ->
                 error?.let {
                     message.value = Event(error)
-                    reportErrorWarning()
+                    _state.update {
+                        it.copy(isError = true, isLoading = false)
+                    }
                 }
                 error
             })
@@ -50,6 +52,6 @@ class HomeViewModel @Inject constructor(
         return characters.subList(0, 5)
     }
 
-    private fun filterListCharacters(characters: List<Character>) : List<Character> =
+    private fun filterListCharacters(characters: List<Character>): List<Character> =
         characters.toSet().toList()
 }

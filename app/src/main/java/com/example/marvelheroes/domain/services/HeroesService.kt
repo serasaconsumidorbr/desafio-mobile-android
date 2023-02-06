@@ -10,7 +10,7 @@ import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import javax.inject.Inject
 
-const val HERO_LIMIT = 10
+const val HERO_LIMIT = 100
 
 abstract class Heroes : RetrofitServiceGeneric<Unit, List<Character>>()
 
