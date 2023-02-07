@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Desafio Android</string>
+
+    <!--    General-->
+    <string name="general_error">Error</string>
+    <string name="general_ok">OK</string>
+    <string name="general_characters">Characters</string>
+    <string name="general_comics">Comics</string>
+    <string name="general_series">Series</string>
+    <string name="general_events">Events</string>
+    <string name="general_stories">Stories</string>
+</resources>
