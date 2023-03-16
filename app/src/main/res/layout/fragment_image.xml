@@ -16,7 +16,7 @@
         android:background="?attr/fullscreenBackgroundColor"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.MarvelCharacters.FullscreenContainer"
-        tools:context=".ImageFragment">
+        tools:context=".ui.details.ImageFragment">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="0dp"

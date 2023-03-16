@@ -1,4 +1,4 @@
-package com.cajusoftware.marvelcharacters
+package com.cajusoftware.marvelcharacters.ui.details
 
 import android.os.Build
 import android.os.Bundle

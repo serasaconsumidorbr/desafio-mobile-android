@@ -1,63 +1,97 @@
 <!-- Header-->
-<br />
+<br/>
 <p align="center">
-  <a href="https://github.com/serasaconsumidorbr/desafio-mobile-iOS">
-    <img src="https://turismoemfoco.com.br/v1/wp-content/uploads/2020/05/serasa-logo-nova22.png" alt="Logo" width="180" height="80">
-  </a>
+    <a href="https://github.com/serasaconsumidorbr/desafio-mobile-iOS">
+        <img src="https://i.pinimg.com/originals/6d/c3/43/6dc3434f2716cb47130a3551f74c7a43.png"
+             alt="Logo" width="80" height="80">
+    </a>
 
-  <h3 align="center">Desafio - Android Developer </h3>
+<h3 align="center">Jhoanes Freitas - Android Developer </h3>
 
-  <p align="center">
-    O nosso aplicativo é uma das nossas soluções para mudar a vida financeira de milhões de brasileiros. <b>Venha fazer parte desse time</b> muito engajado que
-  trabalha para que esse aplicativo chegue da melhor forma na mão dos consumidores.
-  </p>
+<p align="left">
+    O aplicativo consiste na apresentação dos personagens da Marvel. Para isso, é feito uma consulta
+    à Api que a empresa disponibiliza.
+    A Marvel Comics API é uma ferramenta que ajuda os desenvolvedores a criar aplicativos e sites
+    incríveis usando dados dos mais de 70 anos da era dos quadrinhos da Marvel.
+    </br>
+    </br>
+</p>
+
+<p align="center">
+    <img src="https://firebasestorage.googleapis.com/v0/b/contas-app-70e8c.appspot.com/o/home-marvel-characters.png?alt=media&token=bc89f9ba-1625-47d9-903d-d3ab6d7585f9"
+         alt="Logo" width="100" height="200">
 </p>
 
 ## Sobre
-<p> Utilizamos este desafio para avaliar a qualidade do seu código, arquitetura, a forma que você organiza os seus pensamentos dentro do git e muitas outras coisas, por isso, sinta-se a vontade e dê o seu melhor! O tempo médio para a entrega deste desafio é de uma semana.</p>
+<p> O Marvel Characters é um aplicativo que exibe algumas informações dos personagens da Marvel.</p>
 
-<p>Neste desafio você irá desenvolver um app que deverá mostrar os <b>personagens</b> da <a href="https://www.marvel.com/characters">Marvel</a>. 
-  
-<p>Para começar a fazer requests utilizando este serviço, siga esta <a href="https://developer.marvel.com/documentation/authorization">documentação</a>. O endpoint que deverá ser utilizado para popular as listas do app será a <b><a href="https://developer.marvel.com/docs#!/public/getCreatorCollection_get_0">/v1/public/characters</a></b>. </p>
+<p>Ele foi desenvolvido em Kotlin, utilizando os padrões de desenvolvimentos recomendados pela
+    comunidade.</p>
 
+<p>A tela inicial contém uma carrossel superior infinito e que exibe 5 personagens aleatórios.</p>
+
+<p align="center">
+    <img src="https://firebasestorage.googleapis.com/v0/b/contas-app-70e8c.appspot.com/o/home-marvel-characters.jpg?alt=media&token=52a64b40-17e7-4a99-b976-2b18a20b90b0"
+         alt="Logo" width="110" height="100">
+</p>
+
+<p>Abaixo do carrossel, encontra-se um ListView com os demais personagens da Marvel.</p>
+
+<p align="center">
+    <img src="https://firebasestorage.googleapis.com/v0/b/contas-app-70e8c.appspot.com/o/down-list-marvel-characters.png?alt=media&token=c9925c54-13fa-42b3-89a8-ab1d4ae9e2cf"
+         alt="Logo" width="100" height="200">
+</p>
+
+<p>Ao clicar em algum desses ítens ou em algum dos ítens do carrossel, abre-se a tela de
+    detalhes.</p>
+
+<p align="center">
+    <img src="https://firebasestorage.googleapis.com/v0/b/contas-app-70e8c.appspot.com/o/detail-marvel-character.png?alt=media&token=279604c2-288e-4960-80dd-9d09469974d9"
+         alt="Logo" width="100" height="200">
+</p>
+
+<p>A tela de detalhes exibe, no momento, o nome dado ao personagem, a quantidade de quadrinhos
+    disponíveis, os detalhes sobre o personagem e uma foto que pode ser ampliada ao clicada.</p>
+
+<p align="center">
+    <img src="https://firebasestorage.googleapis.com/v0/b/contas-app-70e8c.appspot.com/o/marvel-image-screen.png?alt=media&token=abe4f407-f067-4484-9f5f-65a11ae9a6b7"
+         alt="Logo" width="100" height="200">
+</p>
 
 ## Requisitos
-<p>Estes requisitos básicos são utilizados para ver como você lida com cada um desses itens. A falta de qualquer um desses requisitos compromete a sua avaliação no final.</p>
 
+<p>Conforme solicitado, o applicativo foi desenvolvido seguindo:</p>
 
-- Versão mínima do SDK: 21
-- Tela deve ajustar em devices menores.
-- Utilizar Kotlin
-- Boa arquitetura, pode ser (mvc, mvp, mvvm, clean etc)
-- RxJava ou Coroutines
-- Testes unitários
-- Cache de imagens
-- Tratamentos de erros
-- Padrão de Projeto e boas práticas de Orientação a Objetos.
-- Google AAC (Android Architecture Components)
+- Versão mínima do SDK: 21 ✓
+- Tela deve ajustar em devices menores. ✓
+- Utilizar Kotlin ✓
+- MVVM ✓
+- Coroutines ✓
+- Testes unitários ✓
+- Cache de imagens ✓
+- Tratamentos de erros ✓
+- Padrão de Projeto e boas práticas de Orientação a Objetos ✓
+- Google AAC (Android Architecture Components) ✓
 
-## Será um diferencial 
-- Construir layouts com Constraints
-- Trabalhar offline (cache dos dados)
-- Injeção de dependência (dagger, koin, kodein)
+## Adicionais
 
-## O projeto deverá conter
-* Carrossel superior com **5** personagens
-* Uma lista **vertical** abaixo do carrossel **com os personagens seguintes, sem repetir**
-* Scroll infinito
+- ConstraintLayouts
+- Repository Pattern
+- Room database
+- Koin
+- Modules
+- Navigation
+- BindingAdapter
+- PagingSource
+- RemoteMediator
+- Interceptors
+- CustomView
+- NetworkListener
 
-<b>Atente-se aos detalhes que ache interessante mostrar, por exemplo, nome, descrição, imagens ou outras informações dos personagens</b>
+## Melhorias
+* **Tela de detalhes:** A tela de detalhes poderá conter mais elementos, tais como um listView horizontal com os quadrinhos do personagem, outro com os eventos e assim sucessivamente.
 
-## Importante
-* **Sua criatividade:** Utilize as considerações acima para criar o projeto do seu jeito, **utilizando as dependências que quiser**. Apenas saiba explicar o motivo das suas escolhas. 
+* **Animation:** A animação da transição da imagem na tela de detalhes para a tela fullscreen da imagem não está a mais adequada. Pode-se acrescentar uma transição de fragmentos conforme encontramos
+<a href="https://developer.android.com/guide/fragments/animate#shared">nesta documentação</a>.
 
-* **Documentação:** Ao finalizar o projeto, não se esqueça de documenta-lo. É Muito importante escrever o seu fluxo de pensamentos, **anexar imagens do aplicativo**, inserir as **bibliotecas** e versões que estão sendo utilizadas, **roadmap** de features que você gostaria de colocar e **melhorias que gostaria de fazer**...
-
-## Por fim, envie seu teste!
-* Crie um `fork`, de preferencia público, desse repositório.
-* Tente seguir o <b><a href="https://imasters.com.br/agile/fluxo-de-desenvolvimento-com-gitflow#:~:text=Como%20afirma%20Vincent%20Driessen%20(2010,o%20trunk%20e%20o%20branch.">gitflow</a></b> para o seu fluxo de desenvolvimento.
-* Ao finalizar, faça o **pull request** para este repositório
-
-Agora é só torcer!
-
-**Ultimo recadinho:** não utilize o nome da Serasa dentro de seu projeto 😉
+<p>Por fim, o projeto trabalha bem as melhores práticas utilizadas entre a comunidade Android. 🙋💻📲 </p>

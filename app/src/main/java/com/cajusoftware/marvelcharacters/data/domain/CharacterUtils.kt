@@ -34,7 +34,9 @@ data class Comics(
     val collectionUri: String?,
     val items: List<ComicSummary>?,
     val returned: Int?
-)
+) {
+    val comicsAvailable = "${available ?: 0} comics available"
+}
 
 data class ComicSummary(
     val name: String?,
