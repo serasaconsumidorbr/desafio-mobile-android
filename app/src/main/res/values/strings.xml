@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Marvel Characters</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="comics_title">Comics</string>
+    <string name="events_title">Events</string>
+    <string name="series_title">Series</string>
+    <string name="stories_title">Stories</string>
+    <string name="others_characters">All marvel characters</string>
+    <string name="no_connection_title">No Connection</string>
+    <string name="back_online">Back online!</string>
+    <string name="error_not_found">We\'re sorry, but an unidentified error occurred and we had to restart the application.</string>
+    <string name="external_link_description">See more information here</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>

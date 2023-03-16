@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/list_root_margin_padding">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/list_root_margin_padding"
+            android:id="@+id/item_root"
+            android:background="@drawable/bg_carousel_character"
+            android:clickable="true"
+            android:elevation="2dp"
+            android:focusable="true"
+            android:padding="@dimen/default_card_margin">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/character_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:elevation="2dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/goldengate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/Theme.MarvelCharacters.ImageRounded.Circle" />
+
+            <TextView
+                android:id="@+id/character_name"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/default_card_margin"
+                android:gravity="bottom"
+                android:textAppearance="@style/MaterialAlertDialog.Material3.Title.Panel"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/character_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/character_image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/app_name" />
+
+            <TextView
+                android:id="@+id/character_description"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/events_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/character_name"
+                app:layout_constraintTop_toBottomOf="@+id/character_name"
+                tools:text="@string/app_name" />
+
+            <TextView
+                android:id="@+id/comics_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_top"
+                android:text="@string/comics_title"
+                app:layout_constraintEnd_toStartOf="@+id/events_title"
+                app:layout_constraintStart_toStartOf="@+id/character_image"
+                app:layout_constraintTop_toBottomOf="@+id/character_image" />
+
+            <TextView
+                android:id="@+id/events_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/events_title"
+                app:layout_constraintBaseline_toBaselineOf="@+id/comics_title"
+                app:layout_constraintEnd_toStartOf="@+id/series_title"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/comics_title" />
+
+            <TextView
+                android:id="@+id/series_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/series_title"
+                app:layout_constraintBaseline_toBaselineOf="@+id/events_title"
+                app:layout_constraintEnd_toStartOf="@+id/stories_title"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/events_title" />
+
+            <TextView
+                android:id="@+id/stories_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stories_title"
+                app:layout_constraintBaseline_toBaselineOf="@+id/series_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/series_title" />
+
+            <TextView
+                android:id="@+id/comics_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/comics_title"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/comics_title"
+                app:layout_constraintTop_toBottomOf="@+id/comics_title"
+                tools:text="2" />
+
+            <TextView
+                android:id="@+id/events_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBaseline_toBaselineOf="@+id/comics_amount"
+                app:layout_constraintEnd_toEndOf="@+id/events_title"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/events_title"
+                tools:text="3" />
+
+            <TextView
+                android:id="@+id/series_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBaseline_toBaselineOf="@+id/events_amount"
+                app:layout_constraintEnd_toEndOf="@+id/series_title"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/series_title"
+                tools:text="4" />
+
+            <TextView
+                android:id="@+id/stories_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBaseline_toBaselineOf="@+id/series_amount"
+                app:layout_constraintEnd_toEndOf="@+id/stories_title"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/stories_title"
+                tools:text="2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

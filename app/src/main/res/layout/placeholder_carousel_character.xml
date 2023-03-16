@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/default_margin_top"
+    android:orientation="vertical"
+    android:padding="@dimen/list_root_margin_padding">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/list_root_margin_padding"
+        android:background="@drawable/bg_carousel_character">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/character_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:elevation="2dp"
+            android:src="@color/placeholder_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/Theme.MarvelCharacters.ImageRounded.Circle" />
+
+        <View
+            android:id="@+id/character_name"
+            style="@style/Theme.MarvelCharacters.ViewPlaceholder"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="@dimen/default_card_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/character_image"
+            app:layout_constraintStart_toEndOf="@+id/character_image"
+            app:layout_constraintTop_toTopOf="@+id/character_image" />
+
+        <View
+            android:id="@+id/character_description"
+            style="@style/Theme.MarvelCharacters.ViewPlaceholder"
+            android:layout_width="80dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@+id/character_name"
+            app:layout_constraintTop_toBottomOf="@+id/character_name" />
+
+        <View
+            android:id="@+id/comics_title"
+            style="@style/Theme.MarvelCharacters.ViewPlaceholder"
+            android:layout_width="60dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="@dimen/default_margin_top"
+            app:layout_constraintEnd_toStartOf="@+id/events_title"
+            app:layout_constraintStart_toStartOf="@+id/character_image"
+            app:layout_constraintTop_toBottomOf="@+id/character_image" />
+
+        <View
+            android:id="@+id/events_title"
+            style="@style/Theme.MarvelCharacters.ViewPlaceholder"
+            android:layout_width="60dp"
+            android:layout_height="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/series_title"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/comics_title"
+            app:layout_constraintTop_toTopOf="@+id/comics_title" />
+
+        <View
+            android:id="@+id/series_title"
+            style="@style/Theme.MarvelCharacters.ViewPlaceholder"
+            android:layout_width="60dp"
+            android:layout_height="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/stories_title"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/events_title"
+            app:layout_constraintTop_toTopOf="@id/events_title" />
+
+        <View
+            android:id="@+id/stories_title"
+            style="@style/Theme.MarvelCharacters.ViewPlaceholder"
+            android:layout_width="60dp"
+            android:layout_height="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/series_title"
+            app:layout_constraintTop_toTopOf="@+id/series_title" />
+
+        <View
+            android:id="@+id/comics_amount"
+            style="@style/Theme.MarvelCharacters.ViewPlaceholder"
+            android:layout_width="60dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/comics_title"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/comics_title"
+            app:layout_constraintTop_toBottomOf="@+id/comics_title" />
+
+        <View
+            android:id="@+id/events_amount"
+            style="@style/Theme.MarvelCharacters.ViewPlaceholder"
+            android:layout_width="60dp"
+            android:layout_height="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/events_title"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/events_title"
+            app:layout_constraintTop_toTopOf="@+id/comics_amount" />
+
+        <View
+            android:id="@+id/series_amount"
+            style="@style/Theme.MarvelCharacters.ViewPlaceholder"
+            android:layout_width="60dp"
+            android:layout_height="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/series_title"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/series_title"
+            app:layout_constraintTop_toTopOf="@+id/events_amount" />
+
+        <View
+            android:id="@+id/stories_amount"
+            style="@style/Theme.MarvelCharacters.ViewPlaceholder"
+            android:layout_width="60dp"
+            android:layout_height="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/stories_title"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/stories_title"
+            app:layout_constraintTop_toTopOf="@+id/series_amount" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

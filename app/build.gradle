@@ -1,0 +1,133 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    namespace rootProject.ext.marvel_application_id
+    compileSdk rootProject.ext.compile_sdk
+
+
+    defaultConfig {
+        applicationId rootProject.ext.marvel_application_id
+        minSdk rootProject.ext.min_sdk
+        targetSdk rootProject.ext.compile_sdk
+        versionCode rootProject.ext.marvel_version
+        versionName rootProject.ext.marvel_version_name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"http://gateway.marvel.com/v1/public/\""
+            buildConfigField "String", "API_KEY", "\"aa25ad40fd9b97c4381f568f22d19c84\""
+            buildConfigField "String", "PRIVATE_API_KEY", "\"db2fd844d072df12ced191b396c902923d507f09\""
+            buildConfigField "int", "PAGE_SIZE", "20"
+            buildConfigField "int", "SERVICE_PAGE_SIZE", "50"
+            buildConfigField "int", "PAGE_PREFETCH_DISTANCE", "2"
+        }
+
+        debug {
+            buildConfigField "String", "BASE_URL", "\"http://gateway.marvel.com/v1/public/\""
+            buildConfigField "String", "API_KEY", "\"aa25ad40fd9b97c4381f568f22d19c84\""
+            buildConfigField "String", "PRIVATE_API_KEY", "\"db2fd844d072df12ced191b396c902923d507f09\""
+            buildConfigField "int", "PAGE_SIZE", "20"
+            buildConfigField "int", "SERVICE_PAGE_SIZE", "100"
+            buildConfigField "int", "PAGE_PREFETCH_DISTANCE", "2"
+        }
+    }
+
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    packagingOptions {
+        exclude("META-INF/DEPENDENCIES")
+        exclude("META-INF/LICENSE")
+        exclude("META-INF/LICENSE.txt")
+        exclude("META-INF/license.txt")
+        exclude("META-INF/NOTICE")
+        exclude("META-INF/NOTICE.txt")
+        exclude("META-INF/notice.txt")
+        exclude("META-INF/ASL2.0")
+        exclude("META-INF/*.kotlin_module")
+        exclude("META-INF/*")
+    }
+}
+
+dependencies {
+
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+
+    //di
+    implementation "io.insert-koin:koin-android:$koin_version"
+
+    // Lifecycle libraries
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+    // Network
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "androidx.legacy:legacy-support-v4:$moshi_legacy_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlin_serialization_version"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$kotlin_serialization_converter_version"
+    implementation "com.localebro:okhttpprofiler:$ok_http_profiler_version"
+
+    // Room libraries
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-paging:$room_version"
+
+    //Paging
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    //ui
+    implementation "io.coil-kt:coil:$coil_version"
+    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+
+    debugImplementation("androidx.fragment:fragment-testing:$fragment_version")
+
+    //tests
+    testImplementation "junit:junit:$junit_version"
+    testImplementation project(path: ':marvel-tests')
+    testImplementation "androidx.arch.core:core-testing:$core_ktx__test_version"
+    testImplementation "io.mockk:mockk-android:${mockkVersion}"
+    testImplementation "io.mockk:mockk-agent:${mockkVersion}"
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_test_version"
+
+    androidTestImplementation project(path: ':marvel-tests')
+    androidTestImplementation "io.mockk:mockk-android:${mockkVersion}"
+    androidTestImplementation "io.mockk:mockk-agent:${mockkVersion}"
+    androidTestImplementation "io.insert-koin:koin-test:$koin_version"
+    androidTestImplementation "io.insert-koin:koin-test-junit4:$koin_version"
+    androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+}

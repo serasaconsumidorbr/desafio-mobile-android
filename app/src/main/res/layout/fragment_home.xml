@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.cajusoftware.marvelcharacters.ui.home.CharacterViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.home.HomeFragment">
+
+            <com.cajusoftware.marvelcharacters.ui.components.CarouselView
+                android:id="@+id/upper_carousel_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:items="@{viewModel.upperCarouselItems}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/other_characters_list_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_card_margin"
+                android:layout_marginTop="@dimen/default_margin_top"
+                android:gravity="start"
+                android:text="@string/others_characters"
+                android:textAppearance="@style/MaterialAlertDialog.Material3.Title.Panel"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/upper_carousel_view" />
+
+            <include
+                layout="@layout/shimmer_carousel_character"
+                app:viewModel="@{viewModel}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/brand_models_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_top"
+                android:clipToPadding="false"
+                android:fillViewport="false"
+                android:orientation="vertical"
+                app:items="@{viewModel.carouselItems}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/other_characters_list_title"
+                app:scope="@{viewModel.scope}" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

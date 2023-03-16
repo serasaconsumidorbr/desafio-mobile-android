@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="shouldBeVisible"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/motion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutDescription="@xml/upper_carousel_scene">
+
+        <include
+            android:id="@+id/shimmer"
+            layout="@layout/shimmer_upper_carousel"
+            app:shouldBeVisible="@{!shouldBeVisible}" />
+
+        <TextView
+            android:id="@+id/character_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/upper_carousel_title_margin_start"
+            android:layout_marginTop="@dimen/upper_carousel_title_margin_top"
+            android:textAppearance="@style/MaterialAlertDialog.Material3.Title.Panel"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibility="@{shouldBeVisible}"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/character_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/default_margin_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/character_name"
+            app:layout_constraintTop_toBottomOf="@+id/character_name"
+            app:visibility="@{shouldBeVisible}"
+            tools:text="@string/app_name" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/first_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/upper_carousel_margin_top"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/back_image"
+            app:layout_constraintTop_toBottomOf="@+id/character_description"
+            app:shapeAppearanceOverlay="@style/Theme.MarvelCharacters.ImageRounded"
+            app:visibility="@{shouldBeVisible}"
+            tools:src="@drawable/goldengate" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/back_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/upper_carousel_margin_top"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/main_image"
+            app:layout_constraintTop_toBottomOf="@+id/character_description"
+            app:shapeAppearanceOverlay="@style/Theme.MarvelCharacters.ImageRounded"
+            app:visibility="@{shouldBeVisible}"
+            tools:src="@drawable/bryce_canyon" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/main_image"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="@dimen/upper_carousel_margin_top"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/character_description"
+            app:shapeAppearanceOverlay="@style/Theme.MarvelCharacters.ImageRounded"
+            app:visibility="@{shouldBeVisible}"
+            tools:src="@drawable/fitzgerald_marine_reserve" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/forward_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/upper_carousel_margin_top"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/main_image"
+            app:layout_constraintTop_toBottomOf="@+id/character_description"
+            app:shapeAppearanceOverlay="@style/Theme.MarvelCharacters.ImageRounded"
+            app:visibility="@{shouldBeVisible}"
+            tools:src="@drawable/death_valley" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/last_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/upper_carousel_margin_top"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/forward_image"
+            app:layout_constraintTop_toBottomOf="@+id/character_description"
+            app:shapeAppearanceOverlay="@style/Theme.MarvelCharacters.ImageRounded"
+            app:visibility="@{shouldBeVisible}"
+            tools:src="@drawable/goldengate" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="100dp" />
+
+        <androidx.constraintlayout.helper.widget.Carousel
+            android:id="@+id/carousel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:carousel_backwardTransition="@+id/backward"
+            app:carousel_firstView="@+id/main_image"
+            app:carousel_forwardTransition="@+id/forward"
+            app:carousel_infinite="true"
+            app:carousel_nextState="@+id/next"
+            app:carousel_previousState="@+id/previous"
+            app:constraint_referenced_ids="first_image,back_image,main_image,forward_image,last_image" />
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

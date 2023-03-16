@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_margin_padding">4dp</dimen>
+    <dimen name="list_root_margin_padding">4dp</dimen>
+    <dimen name="default_margin_top">16dp</dimen>
+    <dimen name="default_card_margin">16dp</dimen>
+    <dimen name="upper_carousel_margin_top">26dp</dimen>
+    <dimen name="close_button_margin_top">48dp</dimen>
+    <dimen name="close_button_margin_end">28dp</dimen>
+    <dimen name="upper_carousel_title_margin_top">24dp</dimen>
+    <dimen name="upper_carousel_title_margin_start">36dp</dimen>
+</resources>
