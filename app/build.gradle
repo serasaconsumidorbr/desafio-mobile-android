@@ -43,8 +43,16 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
 
-    def koin_version= "3.2.2"
 
+    def retrofit_version = "2.9.0"
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    def okhttp_logger  = "4.9.2"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_logger"
+
+    def koin_version= "3.2.2"
     // Koin Core features
     // TODO remove integrated tests if they are not created
     implementation "io.insert-koin:koin-core:$koin_version"
