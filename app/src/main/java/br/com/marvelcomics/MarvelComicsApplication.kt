@@ -1,6 +1,7 @@
 package br.com.marvelcomics
 
 import android.app.Application
+import br.com.marvelcomics.di.AppModule
 import br.com.marvelcomics.di.DatabaseModule
 import br.com.marvelcomics.di.NetworkModule
 import org.koin.android.ext.koin.androidContext
@@ -12,7 +13,7 @@ class MarvelComicsApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MarvelComicsApplication)
-            modules(NetworkModule.dependencies, DatabaseModule.dependencies)
+            modules(AppModule.dependencies, NetworkModule.dependencies, DatabaseModule.dependencies)
         }
     }
 }
