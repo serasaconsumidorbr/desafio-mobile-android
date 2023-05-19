@@ -1,4 +1,4 @@
-package br.com.marvelcomics.feature.adapter
+package br.com.marvelcomics.feature.home.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,7 +8,8 @@ import br.com.marvelcomics.databinding.AdapterCarrouselCharItemViewBinding
 import br.com.marvelcomics.model.MarvelCharacter
 import com.bumptech.glide.Glide
 
-class FeatureMarvelCharacterAdapter : RecyclerView.Adapter<FeatureMarvelCharacterAdapter.FeatureMarvelCharacterViewHolder>() {
+class FeatureMarvelCharacterAdapter :
+    RecyclerView.Adapter<FeatureMarvelCharacterAdapter.FeatureMarvelCharacterViewHolder>() {
     var items = emptyList<MarvelCharacter>()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
@@ -17,7 +18,10 @@ class FeatureMarvelCharacterAdapter : RecyclerView.Adapter<FeatureMarvelCharacte
         }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeatureMarvelCharacterViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): FeatureMarvelCharacterViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = AdapterCarrouselCharItemViewBinding.inflate(inflater, parent, false)
         return FeatureMarvelCharacterViewHolder(binding)

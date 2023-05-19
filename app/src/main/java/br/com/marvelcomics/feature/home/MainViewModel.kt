@@ -1,4 +1,4 @@
-package br.com.marvelcomics.feature
+package br.com.marvelcomics.feature.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -12,7 +12,7 @@ import br.com.marvelcomics.model.MarvelCharacter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class HomeViewModel(
+class MainViewModel(
     private val marvelCharRepository: MarvelCharRepository
 ) : ViewModel() {
 

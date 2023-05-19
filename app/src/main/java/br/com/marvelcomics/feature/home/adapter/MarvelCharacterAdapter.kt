@@ -1,4 +1,4 @@
-package br.com.marvelcomics.feature.adapter
+package br.com.marvelcomics.feature.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

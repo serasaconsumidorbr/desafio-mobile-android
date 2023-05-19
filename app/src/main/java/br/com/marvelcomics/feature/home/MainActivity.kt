@@ -1,19 +1,18 @@
-package br.com.marvelcomics.feature
+package br.com.marvelcomics.feature.home
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.marvelcomics.base.util.PaginationScrollListener
 import br.com.marvelcomics.databinding.ActivityMainBinding
-import br.com.marvelcomics.feature.adapter.FeatureMarvelCharacterAdapter
-import br.com.marvelcomics.feature.adapter.MarvelCharacterAdapter
+import br.com.marvelcomics.feature.home.adapter.FeatureMarvelCharacterAdapter
+import br.com.marvelcomics.feature.home.adapter.MarvelCharacterAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: HomeViewModel by viewModel()
+    private val viewModel: MainViewModel by viewModel()
 
     private val marvelCharAdapter: MarvelCharacterAdapter by lazy {
         MarvelCharacterAdapter { viewModel.fetchMarvelChars() }
@@ -41,6 +40,11 @@ class MainActivity : AppCompatActivity() {
             })
         }
 
+        setupObservers()
+        viewModel.fetchMarvelChars()
+    }
+
+    private fun setupObservers() {
         viewModel.featureCharacters.observe(this) {
             pagerAdapter.items = it
         }
@@ -64,7 +68,5 @@ class MainActivity : AppCompatActivity() {
                 marvelCharAdapter.handleError(it)
             }
         }
-
-        viewModel.fetchMarvelChars()
     }
 }

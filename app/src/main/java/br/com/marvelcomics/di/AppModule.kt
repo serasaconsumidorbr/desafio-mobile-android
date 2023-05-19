@@ -2,7 +2,7 @@ package br.com.marvelcomics.di
 
 import br.com.marvelcomics.data.repository.MarvelCharRepository
 import br.com.marvelcomics.data.repository.MarvelCharRepositoryImpl
-import br.com.marvelcomics.feature.HomeViewModel
+import br.com.marvelcomics.feature.home.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -13,7 +13,7 @@ object AppModule {
     val dependencies = module {
         single<MarvelCharRepository> { MarvelCharRepositoryImpl(get(), get()) }
 
-        viewModel { HomeViewModel(get()) }
+        viewModel { MainViewModel(get()) }
     }
 
 }
