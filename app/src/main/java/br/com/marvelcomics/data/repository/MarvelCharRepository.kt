@@ -2,6 +2,7 @@ package br.com.marvelcomics.data.repository
 
 import br.com.marvelcomics.base.util.Resource
 import br.com.marvelcomics.data.local.dao.MarvelDao
+import br.com.marvelcomics.data.mapper.toMarvelCharLocal
 import br.com.marvelcomics.data.mapper.toMarvelCharacter
 import br.com.marvelcomics.data.remote.MarvelApi
 import br.com.marvelcomics.model.MarvelCharacter
@@ -34,7 +35,7 @@ class MarvelCharRepositoryImpl(
         }
 
         val response = marvelApi.fetchHeroes(offset = offset)
-        //dao.upsertAll(response.results.map { it.toMarvelCharLocal() })
+        dao.upsertAll(response.results.map { it.toMarvelCharLocal() })
         emit(Resource.Success(response.results.map { it.toMarvelCharacter() }))
     }.catch {
         emit(Resource.Error(Exception()))
