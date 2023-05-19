@@ -1,5 +1,8 @@
 package br.com.marvelcomics.data.dto
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 
 data class MarvelCharDto(
     val id: Long?,
@@ -15,4 +18,13 @@ data class MarvelCharListResponse(
 data class Thumbnail(
     val path: String?,
     val extension: String?,
+)
+
+@Entity(tableName = "marvel_character")
+data class MarvelCharLocal(
+    @PrimaryKey
+    val id: Long,
+    val name: String,
+    val description: String,
+    val thumbnail: String
 )

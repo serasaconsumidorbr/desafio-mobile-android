@@ -1,4 +1,4 @@
-package br.com.marvelcomics.base.resource
+package br.com.marvelcomics.base.util
 
 sealed class Resource<T>(var data: T? = null, exception: Exception? = null) {
 

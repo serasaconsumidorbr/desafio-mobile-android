@@ -9,7 +9,7 @@ interface MarvelApi {
     @GET("/v1/public/characters")
     suspend fun fetchHeroes(
         @Query("offset") offset: Int,
-        @Query("limit") limit: Int,
+        @Query("limit") limit: Int = 20,
         @Query("nameStartsWith") name: String? = null
     ) : MarvelCharListResponse
 }
