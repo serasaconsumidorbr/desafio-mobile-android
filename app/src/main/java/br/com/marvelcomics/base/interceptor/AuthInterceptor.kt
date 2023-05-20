@@ -14,7 +14,6 @@ class AuthInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
-        val marvelApiKey = BuildConfig.API_KEY
         val newUrl = buildString {
             append(request.url)
             append("$API_PARAM${BuildConfig.API_KEY}")

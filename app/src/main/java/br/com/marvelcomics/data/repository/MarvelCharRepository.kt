@@ -1,6 +1,5 @@
 package br.com.marvelcomics.data.repository
 
-import br.com.marvelcomics.R
 import br.com.marvelcomics.base.util.Resource
 import br.com.marvelcomics.base.util.UiException
 import br.com.marvelcomics.data.local.dao.MarvelDao
