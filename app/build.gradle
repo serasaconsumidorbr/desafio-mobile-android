@@ -15,7 +15,18 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "br.com.marvelcomics.CustomTestRunner"
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+        buildConfigField "String","API_KEY","\"${properties.getProperty("MARVEL_API_KEY")}\""
+        buildConfigField "String","HASH_KEY","\"${properties.getProperty("MARVEL_HASH_KEY")}\""
+        buildConfigField "String","TIMESTAMP_KEY","\"${properties.getProperty("MARVEL_TIMESTAMP_KEY")}\""
+    }
+
+    buildFeatures {
+        buildConfig true
     }
 
     buildTypes {
@@ -25,17 +36,29 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+
+    viewBinding {
+        enabled = true
+    }
+
+    testOptions {
+        animationsDisabled = true
     }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -43,19 +66,16 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-
-
     def retrofit_version = "2.9.0"
-    //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     def okhttp_logger  = "4.9.2"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_logger"
 
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+
     def koin_version= "3.2.2"
-    // Koin Core features
-    // TODO remove integrated tests if they are not created
     implementation "io.insert-koin:koin-core:$koin_version"
     implementation "io.insert-koin:koin-android:$koin_version"
     testImplementation "io.insert-koin:koin-test:$koin_version"
@@ -63,10 +83,21 @@ dependencies {
     androidTestImplementation "io.insert-koin:koin-test:$koin_version"
     androidTestImplementation "io.insert-koin:koin-test-junit5:$koin_version"
 
-    def room_version = "2.3.0"
+    def room_version = "2.5.1"
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     testImplementation "androidx.room:room-testing:$room_version"
     kapt("androidx.room:room-compiler:$room_version")
+
+    def mockk_version = "1.13.3"
+    testImplementation "io.mockk:mockk:${mockk_version}"
+    debugImplementation "io.mockk:mockk-android:1.13.3"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+
+    def arch_version = "2.2.0"
+    testImplementation "androidx.arch.core:core-testing:$arch_version"
+
+    implementation "androidx.window:window:1.0.0"
+    testImplementation 'com.jraska.livedata:testing-ktx:1.3.0'
 }

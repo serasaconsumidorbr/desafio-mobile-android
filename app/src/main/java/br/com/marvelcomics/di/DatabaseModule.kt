@@ -2,7 +2,8 @@ package br.com.marvelcomics.di
 
 import android.content.Context
 import androidx.room.Room
-import br.com.marvelcomics.data.db.MarvelComicsDatabase
+import br.com.marvelcomics.data.local.dao.MarvelDao
+import br.com.marvelcomics.data.local.db.MarvelComicsDatabase
 import org.koin.dsl.module
 
 object DatabaseModule {
@@ -11,6 +12,7 @@ object DatabaseModule {
 
     val dependencies = module {
         single<MarvelComicsDatabase> { provideDatabase(get()) }
+        single<MarvelDao> { get<MarvelComicsDatabase>().marvelDao }
     }
 
 
