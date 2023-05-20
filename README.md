@@ -15,7 +15,7 @@ Para executar o projeto, adicione sua chave da api("MARVEL_API_KEY"), sua chave 
 
 ### Model–view–viewmodel
 
-Arquitetura MVVM utilizando uma camada de repósitórios, foi utilizado livedatas na camada de viewmodels e kotlin flow na camada de repositório.
+Arquitetura MVVM utilizando uma camada de repósitórios, foi utilizado livedata na camada de viewmodel e kotlin flow na camada de repositório.
 
 ![image](https://user-images.githubusercontent.com/39884163/204395202-b3345bd0-0f4c-4185-9e76-0a54e79169be.png)
 
