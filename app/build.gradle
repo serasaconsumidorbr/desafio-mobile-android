@@ -32,6 +32,10 @@ android {
         jvmTarget = '17'
     }
 
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+
     viewBinding {
         enabled = true
     }

@@ -18,11 +18,10 @@ class MainViewModel(
 
     private val _charactersResource = MutableLiveData<Resource<List<MarvelCharacter>>>()
 
-    private val _featureCharacters = MediatorLiveData<List<MarvelCharacter>>()
-    val featureCharacters: LiveData<List<MarvelCharacter>> get() = _featureCharacters
+    private var pageSize: Int = 0
 
-    private val _characters = MediatorLiveData<MutableList<MarvelCharacter>>()
-    val characters: LiveData<MutableList<MarvelCharacter>> get() = _characters
+    private val _characters = MediatorLiveData<List<MarvelCharacter>>()
+    val characters: LiveData<List<MarvelCharacter>> get() = _characters
 
     val loading: LiveData<Boolean> = Transformations.map(_charactersResource) {
         it is Resource.Loading
@@ -33,24 +32,11 @@ class MainViewModel(
     }
 
     init {
-        _featureCharacters.addSource(_charactersResource) {
-            if (_featureCharacters.value?.isNotEmpty() == true) {
-                return@addSource
-            }
-            if (it is Resource.Success) {
-                _featureCharacters.postValue(it.data?.take(5))
-            }
-        }
-
         _characters.addSource(_charactersResource) {
-            val data = it.data ?: emptyList()
             if (it is Resource.Success) {
-                if (_characters.value.isNullOrEmpty()) {
-                    _characters.postValue(data.drop(5).toMutableList())
-                } else {
-                    val characters = _characters.value
-                    characters?.addAll(data)
-                    _characters.postValue(characters ?: mutableListOf())
+                it.data?.let { data ->
+                    pageSize += data.size
+                    _characters.postValue(data)
                 }
             }
         }
@@ -58,19 +44,12 @@ class MainViewModel(
 
     fun fetchMarvelChars() {
         viewModelScope.launch {
-            marvelCharRepository.fetchCharacters(getCurrentOffset()).collectLatest {
+            marvelCharRepository.fetchCharacters(pageSize).collectLatest {
                 _charactersResource.postValue(it)
             }
         }
     }
 
-    private fun getCurrentOffset(): Int {
-        val featureSize = _featureCharacters.value?.size ?: 0
-        val charSize = _characters.value?.size ?: 0
-        return featureSize + charSize
-    }
-
-    fun isInitialFetch(): Boolean =
-        _characters.value.isNullOrEmpty() && _featureCharacters.value.isNullOrEmpty()
+    fun isInitialFetch(): Boolean = pageSize == 0
 
 }

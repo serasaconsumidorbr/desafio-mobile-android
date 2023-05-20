@@ -66,7 +66,6 @@ class MainViewModelTest {
     fun `characters should have content when api returns success`() {
         val loading = viewModel.loading.test()
         val error = viewModel.error.test()
-        val featureCharacters = viewModel.featureCharacters.test()
         val characters = viewModel.characters.test()
 
         val mockedData = mockk<MarvelCharacter>()
@@ -79,8 +78,8 @@ class MainViewModelTest {
 
         loading.assertValue(false)
         error.assertValue(false)
-        featureCharacters.assertValue { it.size == 5 }
-        characters.assertValue { it.size == 15 }
+
+        characters.assertValue { it.isNotEmpty() }
 
         assert(!viewModel.isInitialFetch())
     }

@@ -2,24 +2,24 @@ package br.com.marvelcomics.feature.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
-import br.com.marvelcomics.R
 import br.com.marvelcomics.base.util.PageDataState
 import br.com.marvelcomics.databinding.AdapterCharItemViewBinding
+import br.com.marvelcomics.databinding.AdapterFeatureCharItemViewBinding
 import br.com.marvelcomics.databinding.AdapterPageLoadErrorStateBinding
-import br.com.marvelcomics.model.MarvelCharacter
-import com.bumptech.glide.Glide
+import br.com.marvelcomics.databinding.AdapterSeparatorBinding
+import br.com.marvelcomics.model.MarvelCharacterEntry
+import java.util.function.Predicate
 
 class MarvelCharacterAdapter(
     private val onRetry: () -> Unit
-) : RecyclerView.Adapter<MarvelCharacterAdapter.MarvelCharacterViewHolder<MarvelCharacter>>() {
+) : RecyclerView.Adapter<MarvelCharacterPageViewHolder>() {
 
-    private var items = mutableListOf<PageDataState<MarvelCharacter>>()
+    private var items = mutableListOf<MarvelCharacterEntry>()
 
     companion object {
+        private const val TITLE_VIEW_TYPE = 8
+        private const val FEATURE_VIEW_TYPE = 9
         private const val DATA_VIEW_TYPE = 10
         private const val LOADING_VIEW_TYPE = 11
         private const val ERROR_VIEW_TYPE = 12
@@ -28,10 +28,20 @@ class MarvelCharacterAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MarvelCharacterViewHolder<MarvelCharacter> {
+    ): MarvelCharacterPageViewHolder {
         val inflater = LayoutInflater.from(parent.context)
 
         val viewHolder = when (viewType) {
+            TITLE_VIEW_TYPE -> {
+                val binding = AdapterSeparatorBinding.inflate(inflater, parent, false)
+                TitleMarvelCharacterViewHolder(binding)
+            }
+
+            FEATURE_VIEW_TYPE -> {
+                val binding = AdapterFeatureCharItemViewBinding.inflate(inflater, parent, false)
+                FeatureEntryMarvelCharacterViewHolder(binding)
+            }
+
             DATA_VIEW_TYPE -> {
                 val binding = AdapterCharItemViewBinding.inflate(inflater, parent, false)
                 DataMarvelCharacterViewHolder(binding)
@@ -54,103 +64,69 @@ class MarvelCharacterAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (items[position]) {
-            is PageDataState.Data -> DATA_VIEW_TYPE
-            is PageDataState.Loading -> LOADING_VIEW_TYPE
-            is PageDataState.Error -> ERROR_VIEW_TYPE
+        val item = items[position]
+        return when {
+            item is MarvelCharacterEntry.FeatureItem -> FEATURE_VIEW_TYPE
+            item is MarvelCharacterEntry.Title -> TITLE_VIEW_TYPE
+            item is MarvelCharacterEntry.Item && item.item is PageDataState.Data -> DATA_VIEW_TYPE
+            item is MarvelCharacterEntry.Item && item.item is PageDataState.Loading -> LOADING_VIEW_TYPE
+            item is MarvelCharacterEntry.Item && item.item is PageDataState.Error -> ERROR_VIEW_TYPE
+            else -> throw IllegalArgumentException("Tipo inválido")
         }
     }
 
-    override fun onBindViewHolder(holder: MarvelCharacterViewHolder<MarvelCharacter>, position: Int) {
+    override fun onBindViewHolder(holder: MarvelCharacterPageViewHolder, position: Int) {
         holder.bind(items[position])
     }
 
     override fun getItemCount(): Int = items.size
 
-    fun submitData(list: List<MarvelCharacter>) {
+    fun isInitialData(): Boolean = itemCount == 0
+
+    fun submitDataWithFeatures(list: List<MarvelCharacterEntry>) {
         items.clear()
-        items.addAll(list.map { PageDataState.Data(it) })
+        items.addAll(list)
         notifyItemInserted(items.size - 1)
     }
 
-    fun handleLoading(isLoading : Boolean) {
+    fun submitData(list: List<MarvelCharacterEntry>) {
+        items.addAll(list)
+        notifyItemInserted(items.size - 1)
+    }
+
+    fun handleLoading(isLoading: Boolean) {
         if (isLoading) showLoading() else hideLoading()
     }
 
-    fun handleError(isError : Boolean) {
+    fun handleError(isError: Boolean) {
         if (isError) showError() else hideError()
     }
 
     private fun showLoading() {
-        items.add(PageDataState.Loading())
+        items.add(MarvelCharacterEntry.Item(PageDataState.Loading()))
         notifyItemInserted(items.size - 1)
     }
 
     private fun hideLoading() {
-        if (items.isNotEmpty() && items.last() is PageDataState.Loading) {
-            items.removeAt(items.size - 1)
-            notifyItemRemoved(items.size)
+        if (items.isEmpty()) return
+
+        items.removeAll {
+            it is MarvelCharacterEntry.Item && it.item is PageDataState.Loading
         }
+        notifyItemRemoved(items.size)
     }
 
     private fun showError() {
-        items.add(PageDataState.Error())
+        items.add(MarvelCharacterEntry.Item(PageDataState.Error()))
         notifyItemInserted(items.size - 1)
     }
 
     private fun hideError() {
-        if (items.isNotEmpty() && items.last() is PageDataState.Error) {
-            items.removeAt(items.size - 1)
-            notifyItemRemoved(items.size)
+        if (items.isEmpty()) return
+
+        items.removeAll {
+            it is MarvelCharacterEntry.Item && it.item is PageDataState.Error
         }
-    }
-
-    abstract class MarvelCharacterViewHolder<MarvelCharacter>(
-        private val binding: ViewBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-        abstract fun bind(dataState: PageDataState<MarvelCharacter>)
-    }
-
-    class DataMarvelCharacterViewHolder(private val binding: AdapterCharItemViewBinding) :
-        MarvelCharacterViewHolder<MarvelCharacter>(binding) {
-
-        override fun bind(dataState: PageDataState<MarvelCharacter>) {
-            val marvelCharacter = (dataState as PageDataState.Data).data
-            with(binding) {
-                Glide.with(thumbnail).load(marvelCharacter.thumbnail).into(thumbnail)
-                name.text = marvelCharacter.name
-                description.text = marvelCharacter.description.ifEmpty {
-                    itemView.context.getString(R.string.no_description)
-                }
-            }
-        }
-    }
-
-    class LoadingMarvelCharacterViewHolder(
-        private val binding: AdapterPageLoadErrorStateBinding
-    ) : MarvelCharacterViewHolder<MarvelCharacter>(binding) {
-
-        override fun bind(dataState: PageDataState<MarvelCharacter>) {
-            with(binding) {
-                pagingProgress.isVisible = true
-                btnTryAgain.isGone = true
-                pagingErrorMessage.isGone = true
-            }
-        }
-    }
-
-    class ErrorMarvelCharacterViewHolder(
-        private val binding: AdapterPageLoadErrorStateBinding,
-        private val onRetry: () -> Unit
-    ) : MarvelCharacterViewHolder<MarvelCharacter>(binding) {
-
-        override fun bind(dataState: PageDataState<MarvelCharacter>) {
-            with(binding) {
-                pagingProgress.isGone = true
-                btnTryAgain.isVisible = true
-                pagingErrorMessage.isVisible = true
-                btnTryAgain.setOnClickListener { onRetry.invoke() }
-            }
-        }
+        notifyItemRemoved(items.size)
     }
 }
