@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.marvelcomics.databinding.AdapterCarrouselCharItemViewBinding
+import br.com.marvelcomics.databinding.AdapterCarouselCharItemViewBinding
 import br.com.marvelcomics.model.MarvelCharacter
 import com.bumptech.glide.Glide
 
@@ -23,7 +23,7 @@ class FeatureMarvelCharacterAdapter :
         viewType: Int
     ): FeatureMarvelCharacterViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = AdapterCarrouselCharItemViewBinding.inflate(inflater, parent, false)
+        val binding = AdapterCarouselCharItemViewBinding.inflate(inflater, parent, false)
         return FeatureMarvelCharacterViewHolder(binding)
     }
 
@@ -34,7 +34,7 @@ class FeatureMarvelCharacterAdapter :
     override fun getItemCount(): Int = items.size
 
     class FeatureMarvelCharacterViewHolder(
-        private val binding: AdapterCarrouselCharItemViewBinding
+        private val binding: AdapterCarouselCharItemViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(marvelCharacter: MarvelCharacter) {

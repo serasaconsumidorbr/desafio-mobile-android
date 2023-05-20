@@ -11,6 +11,6 @@
         android:layout_height="200dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/adapter_carrousel_char_item_view" />
+        tools:listitem="@layout/adapter_carousel_char_item_view" />
 
 </LinearLayout>
