@@ -9,7 +9,6 @@ import br.com.marvelcomics.databinding.AdapterFeatureCharItemViewBinding
 import br.com.marvelcomics.databinding.AdapterPageLoadErrorStateBinding
 import br.com.marvelcomics.databinding.AdapterSeparatorBinding
 import br.com.marvelcomics.model.MarvelCharacterEntry
-import java.util.function.Predicate
 
 class MarvelCharacterAdapter(
     private val onRetry: () -> Unit
@@ -98,10 +97,6 @@ class MarvelCharacterAdapter(
         if (isLoading) showLoading() else hideLoading()
     }
 
-    fun handleError(isError: Boolean) {
-        if (isError) showError() else hideError()
-    }
-
     private fun showLoading() {
         items.add(MarvelCharacterEntry.Item(PageDataState.Loading()))
         notifyItemInserted(items.size - 1)
@@ -116,8 +111,12 @@ class MarvelCharacterAdapter(
         notifyItemRemoved(items.size)
     }
 
-    private fun showError() {
-        items.add(MarvelCharacterEntry.Item(PageDataState.Error()))
+    fun handleError(isError: Boolean, errorMessage: String) {
+        if (isError) showError(errorMessage) else hideError()
+    }
+
+    private fun showError(errorMessage: String) {
+        items.add(MarvelCharacterEntry.Item(PageDataState.Error(errorMessage)))
         notifyItemInserted(items.size - 1)
     }
 

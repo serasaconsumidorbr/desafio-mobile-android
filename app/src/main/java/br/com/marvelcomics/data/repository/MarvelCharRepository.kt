@@ -1,6 +1,8 @@
 package br.com.marvelcomics.data.repository
 
+import br.com.marvelcomics.R
 import br.com.marvelcomics.base.util.Resource
+import br.com.marvelcomics.base.util.UiException
 import br.com.marvelcomics.data.local.dao.MarvelDao
 import br.com.marvelcomics.data.mapper.toMarvelCharLocal
 import br.com.marvelcomics.data.mapper.toMarvelCharacter
@@ -9,6 +11,8 @@ import br.com.marvelcomics.model.MarvelCharacter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import retrofit2.HttpException
+import java.net.SocketTimeoutException
 
 interface MarvelCharRepository {
     fun fetchCharacters(offset: Int): Flow<Resource<List<MarvelCharacter>>>
@@ -25,7 +29,6 @@ class MarvelCharRepositoryImpl(
 
     override fun fetchCharacters(offset: Int): Flow<Resource<List<MarvelCharacter>>> = flow {
         emit(Resource.Loading())
-
         if (offset == START_OFFSET) {
             val local = dao.getMarvelCharacters()
             if (local.isNotEmpty()) {
@@ -38,7 +41,11 @@ class MarvelCharRepositoryImpl(
         dao.upsertAll(response.results.map { it.toMarvelCharLocal() })
         emit(Resource.Success(response.results.map { it.toMarvelCharacter() }))
     }.catch {
-        emit(Resource.Error(Exception()))
+        when (it) {
+            is SocketTimeoutException -> emit(Resource.Error(UiException.TimeoutException()))
+            is HttpException -> emit(Resource.Error(UiException.GenericApiException()))
+            else -> emit(Resource.Error(UiException.GenericUiException()))
+        }
     }
 
 

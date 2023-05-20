@@ -7,6 +7,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.marvelcomics.base.util.Resource
+import br.com.marvelcomics.base.util.UiException
 import br.com.marvelcomics.data.repository.MarvelCharRepository
 import br.com.marvelcomics.model.MarvelCharacter
 import kotlinx.coroutines.flow.collectLatest
@@ -27,8 +28,8 @@ class MainViewModel(
         it is Resource.Loading
     }
 
-    val error: LiveData<Boolean> = Transformations.map(_charactersResource) {
-        it is Resource.Error
+    val error: LiveData<Pair<Boolean,UiException?>> = Transformations.map(_charactersResource) {
+        Pair(it is Resource.Error,it.exception)
     }
 
     init {
@@ -40,6 +41,7 @@ class MainViewModel(
                 }
             }
         }
+        fetchMarvelChars()
     }
 
     fun fetchMarvelChars() {

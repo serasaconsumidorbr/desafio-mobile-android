@@ -83,10 +83,12 @@ class ErrorMarvelCharacterViewHolder(
 ) : MarvelCharacterPageViewHolder(binding) {
 
     override fun bind(entry: MarvelCharacterEntry) {
+        val errorMessage = ((entry as MarvelCharacterEntry.Item).item as PageDataState.Error).message
         with(binding) {
             pagingProgress.isGone = true
             btnTryAgain.isVisible = true
             pagingErrorMessage.isVisible = true
+            pagingErrorMessage.text = errorMessage
             btnTryAgain.setOnClickListener { onRetry.invoke() }
         }
     }

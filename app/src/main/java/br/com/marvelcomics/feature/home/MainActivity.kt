@@ -8,6 +8,7 @@ import br.com.marvelcomics.R
 import br.com.marvelcomics.base.extensions.asMarvelCharacterEntry
 import br.com.marvelcomics.base.extensions.asMarvelCharacterEntryWithFeatures
 import br.com.marvelcomics.base.util.PaginationScrollListener
+import br.com.marvelcomics.base.util.UiException
 import br.com.marvelcomics.databinding.ActivityMainBinding
 import br.com.marvelcomics.feature.home.adapter.MarvelCharacterAdapter
 import br.com.marvelcomics.model.MarvelCharacterEntry
@@ -41,12 +42,15 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override val isLoading: Boolean get() = viewModel.loading.value ?: false
-                override val isError: Boolean get() = viewModel.error.value ?: false
+                override val isError: Boolean get() = viewModel.error.value?.first ?: false
             })
+
+            btnTryAgain.setOnClickListener {
+                viewModel.fetchMarvelChars()
+            }
         }
 
         setupObservers()
-        viewModel.fetchMarvelChars()
     }
 
     private fun setupObservers() {
@@ -54,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             if (marvelCharAdapter.isInitialData() && characters.size > MINIMUM_CHAR_FEATURE_SIZE_LIST) {
                 marvelCharAdapter.submitDataWithFeatures(
                     characters.asMarvelCharacterEntryWithFeatures(
-                        featureTitle =  MarvelCharacterEntry.Title(R.string.feature),
+                        featureTitle = MarvelCharacterEntry.Title(R.string.feature),
                         characterTitle = MarvelCharacterEntry.Title(R.string.more),
                     )
                 )
@@ -73,9 +77,24 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.error.observe(this) { error ->
             if (!viewModel.isInitialFetch()) {
-                marvelCharAdapter.handleError(error)
+                marvelCharAdapter.handleError(error.first, getErrorMessage(error.second))
             }
-            binding.errorMessage.isVisible = error && viewModel.isInitialFetch()
+
+            binding.errorMessage.isVisible = error.first && viewModel.isInitialFetch()
+            binding.btnTryAgain.isVisible = error.first && viewModel.isInitialFetch()
+
+            if (error.first) {
+                binding.errorMessage.text = getErrorMessage(error.second)
+            }
         }
+    }
+
+    private fun getErrorMessage(uiException: UiException?): String {
+        val message = when (uiException) {
+            is UiException.GenericApiException -> R.string.generic_api_message
+            is UiException.TimeoutException -> R.string.timeout_message
+            else -> R.string.generic_error_message
+        }
+        return getString(message)
     }
 }
