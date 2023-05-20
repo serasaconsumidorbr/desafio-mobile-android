@@ -1,8 +1,10 @@
 package br.com.marvelcomics.base.extensions
 
+import android.widget.ImageView
 import br.com.marvelcomics.base.util.PageDataState
 import br.com.marvelcomics.model.MarvelCharacter
 import br.com.marvelcomics.model.MarvelCharacterEntry
+import com.bumptech.glide.Glide
 import retrofit2.Retrofit
 
 inline fun <reified T> resolveRetrofit(retrofit: Retrofit): T {
@@ -27,4 +29,12 @@ fun List<MarvelCharacter>.asMarvelCharacterEntryWithFeatures(
     characterList.asMarvelCharacterEntry().forEach { entryList.add(it) }
 
     return entryList
+}
+
+fun ImageView.loadCharacterThumbnail(thumbnail: String) {
+    if (this.scaleType == ImageView.ScaleType.FIT_XY) {
+        Glide.with(this).load(thumbnail).into(this)
+    } else {
+        Glide.with(this).load(thumbnail).circleCrop().into(this)
+    }
 }

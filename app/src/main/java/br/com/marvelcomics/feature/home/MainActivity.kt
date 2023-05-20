@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
                 viewModel.fetchMarvelChars()
             }
         }
-
         setupObservers()
     }
 

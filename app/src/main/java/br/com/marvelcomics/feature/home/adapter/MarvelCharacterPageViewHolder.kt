@@ -5,6 +5,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import br.com.marvelcomics.R
+import br.com.marvelcomics.base.extensions.loadCharacterThumbnail
 import br.com.marvelcomics.base.util.PageDataState
 import br.com.marvelcomics.databinding.AdapterCharItemViewBinding
 import br.com.marvelcomics.databinding.AdapterFeatureCharItemViewBinding
@@ -55,7 +56,7 @@ class DataMarvelCharacterViewHolder(
     override fun bind(entry: MarvelCharacterEntry) {
         val marvelCharacter = ((entry as MarvelCharacterEntry.Item).item as PageDataState.Data).data
         with(binding) {
-            Glide.with(thumbnail).load(marvelCharacter.thumbnail).into(thumbnail)
+            thumbnail.loadCharacterThumbnail(marvelCharacter.thumbnail)
             name.text = marvelCharacter.name
             description.text = marvelCharacter.description.ifEmpty {
                 itemView.context.getString(R.string.no_description)
