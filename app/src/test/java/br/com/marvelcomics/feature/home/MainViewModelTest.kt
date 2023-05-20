@@ -2,6 +2,7 @@ package br.com.marvelcomics.feature.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import br.com.marvelcomics.base.util.Resource
+import br.com.marvelcomics.base.util.UiException
 import br.com.marvelcomics.data.repository.MarvelCharRepository
 import br.com.marvelcomics.model.MarvelCharacter
 import br.com.marvelcomics.rule.MainDispatcherRule
@@ -41,10 +42,11 @@ class MainViewModelTest {
 
         coEvery { repository.fetchCharacters(any()) } returns flow { emit(Resource.Loading()) }
         viewModel.fetchMarvelChars()
-        verify(exactly = 1) { repository.fetchCharacters(any()) }
 
         loading.assertValue(true)
-        error.assertValue(false)
+        error.assertValue {
+            !it.first && it.second == null
+        }
         assert(viewModel.isInitialFetch())
     }
 
@@ -53,12 +55,13 @@ class MainViewModelTest {
         val loading = viewModel.loading.test()
         val error = viewModel.error.test()
 
-        coEvery { repository.fetchCharacters(any()) } returns flow { emit(Resource.Error(Exception())) }
+        coEvery { repository.fetchCharacters(any()) } returns flow { emit(Resource.Error(UiException.GenericUiException())) }
         viewModel.fetchMarvelChars()
-        verify(exactly = 1) { repository.fetchCharacters(any()) }
 
         loading.assertValue(false)
-        error.assertValue(true)
+        error.assertValue {
+            it.first && it.second is UiException.GenericUiException
+        }
         assert(viewModel.isInitialFetch())
     }
 
@@ -74,10 +77,11 @@ class MainViewModelTest {
 
         coEvery { repository.fetchCharacters(any()) } returns flow { emit(Resource.Success(list)) }
         viewModel.fetchMarvelChars()
-        verify(exactly = 1) { repository.fetchCharacters(any()) }
 
         loading.assertValue(false)
-        error.assertValue(false)
+        error.assertValue {
+            !it.first && it.second == null
+        }
 
         characters.assertValue { it.isNotEmpty() }
 

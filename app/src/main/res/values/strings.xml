@@ -6,7 +6,7 @@
     <string name="no_description">Nenhuma descrição fornecida</string>
     <string name="try_again">Tente novamente</string>
     <string name="feature">Em destaque</string>
-    <string name="more">Mais personagems</string>
+    <string name="more">Mais personagens</string>
     <string name="generic_api_message">Problema de conexão, tente novamente</string>
     <string name="timeout_message">Conexão expirada, tente novamente</string>
 </resources>
