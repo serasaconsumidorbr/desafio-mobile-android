@@ -1,4 +1,4 @@
-# desafio android
+# desafio android (importante, favor ler tudo !!)
 
 Os requisitos minimos do projeto foram cumpridos completamente. Algumas escolhas foram tomadas considerando o tempo bastante limitado que tive para trabalhar na aplicacao. Todas essas escolhas foram justificadas e tiveram melhorias sugeridas no readme a seguir.
 
@@ -57,4 +57,4 @@ Tambem é possível eliminar a visualizacao de um repositório, segurando por al
 
 Algumas strings da aplicacao e alguns outros campos (como parametros do request e url da api) estao hardcoded. Com o devido tempo, o ideal seria move-los
 para os parametros de entrada dos métodos, variaveis de Build e tambem para arquivos de resource. Os conceitos de Clean e MVVM utilizados, poderiam
-ser melhorados ainda mais, com uma separacao ainda maior das camadas. Há também alguns erros básicos no layout, que poderiam ter sido melhorados, tornando o design mais agradável. O ideal seria utilizar um MotionLayout combinado com um componente carousel nativo para criar o carousel, incluindo uma animacao suave de transicao. Isso nao foi incluido tambem pela limitacao de tempo. A nomenclatura e organizacao dos métodos tambem poderia ser melhorada, principalmente dentro da camada de Domain (manager files)e Model
+ser melhorados ainda mais, com uma separacao ainda maior das camadas. Há também alguns erros básicos no layout, que poderiam ter sido melhorados, tornando o design mais agradável. O ideal seria utilizar um MotionLayout combinado com um componente carousel nativo para criar o carousel, incluindo uma animacao suave de transicao. Isso nao foi incluido tambem pela limitacao de tempo. A nomenclatura e organizacao dos métodos tambem poderia ser melhorada, principalmente dentro da camada de Domain (manager files)e Model. O projeto foi concluido todo de uma vez em poucas horas, entao nao foi incluido uma estrutura de gitflow. O ideal seria que tivesse sido feito em partes, como sugerido no enunciado. 
