@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">testeApp</string>
+    <string name="carousel_title">Top 5 characters that most appeared in comics in the last scroll</string>
+    <string name="all_title">All title</string>
+    <string name="try_again">%s \n Click to try again</string>
+    <string name="all_loaded">You loaded all items !!!!</string>
+    <string name="description">Description: %s</string>
+    <string name="see_more">See more</string>
+    <string name="see_less">See less</string>
+</resources>
