@@ -24,8 +24,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "PUBLIC_KEY", "\"86fbd060c28b8796cd096fc98f7214c2\"")
-            buildConfigField("String", "PRIVATE_KEY", "\"b19ac6c7653109903d03f1677f642616d479f849\"")
         }
     }
     compileOptions {
