@@ -14,7 +14,7 @@ abstract class BaseActivity<UIData> : AppCompatActivity(), CoroutineScope {
     protected inline fun <reified T : ViewDataBinding> binding(@LayoutRes resId: Int): Lazy<T> =
         lazy { DataBindingUtil.setContentView(this, resId) }
 
-    abstract val viewModel: BaseViewModel<UIData>
+    protected abstract val viewModel: BaseViewModel<UIData>
 
     private lateinit var job: Job
 

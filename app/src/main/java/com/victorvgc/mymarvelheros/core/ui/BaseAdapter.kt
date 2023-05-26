@@ -8,6 +8,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.RecyclerView
+import com.victorvgc.mymarvelheros.BR
 import com.victorvgc.mymarvelheros.core.utils.setOnceClickListener
 
 open class BaseAdapter<T>(

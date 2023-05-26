@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyMarvelHeroes</string>
+
+    <string name="featured_heroes">Featured Hero!</string>
 </resources>
