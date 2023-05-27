@@ -10,6 +10,9 @@ android {
     namespace 'com.victorvgc.mymarvelheros'
     compileSdk 33
 
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
     defaultConfig {
         applicationId "com.victorvgc.mymarvelheros"
         minSdk 21
@@ -21,9 +24,23 @@ android {
     }
 
     buildTypes {
+        debug {
+            debuggable true
+
+            buildConfigField("String", "BASE_URL", '"http://gateway.marvel.com/"')
+            buildConfigField("String", "API_KEY", localProperties['apiKey'])
+            buildConfigField("String", "PRIVATE_KEY", localProperties['privateKey'])
+
+            versionNameSuffix '-debug'
+            minifyEnabled false
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField("String", "BASE_URL", '"http://gateway.marvel.com/"')
+            buildConfigField("String", "API_KEY", localProperties['apiKey'])
+            buildConfigField("String", "PRIVATE_KEY", localProperties['privateKey'])
         }
     }
     compileOptions {
@@ -36,6 +53,7 @@ android {
     buildFeatures {
         dataBinding true
         viewBinding true
+        buildConfig true
     }
 }
 
@@ -79,7 +97,7 @@ dependencies {
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.15.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
+    kapt 'com.github.bumptech.glide:compiler:4.15.1'
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

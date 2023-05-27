@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">MyMarvelHeroes</string>
 
-    <string name="featured_heroes">Featured Hero!</string>
+    <string name="featured_hero">Featured Hero!</string>
+    <string name="featured_heroes">Featured Heroes!</string>
+    <string name="list_hero">A Awesome Hero!</string>
+    <string name="list_heroes">A Awesome Heroes!</string>
+
+    <string name="generic_error">Ops! Something went wrong.</string>
 </resources>

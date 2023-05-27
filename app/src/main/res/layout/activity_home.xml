@@ -1,10 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <data>
+
+        <variable
+            name="errorMsg"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_awesome"
+            style="@style/BigText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/list_heroes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carouselView" />
+
+        <TextView
+            android:id="@+id/tv_featured"
+            style="@style/BigText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/featured_heroes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.jama.carouselview.CarouselView
             android:id="@+id/carouselView"
@@ -12,7 +44,7 @@
             android:layout_height="@dimen/carousel_height"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_featured" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_heroes"
@@ -21,7 +53,44 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carouselView" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_awesome" />
+
+        <LinearLayout
+            android:id="@+id/ll_screen_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/iv_error"
+                android:layout_width="@dimen/error_icon_size"
+                android:layout_height="@dimen/error_icon_size"
+                android:contentDescription="@{errorMsg}"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_error"
+                app:tint="@color/red" />
+
+            <TextView
+                android:id="@+id/tv_error"
+                style="@style/ErrorMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{errorMsg, default = @string/generic_error}"
+                android:visibility="gone" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

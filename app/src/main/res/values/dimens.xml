@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="carousel_height">250dp</dimen>
+    <dimen name="carousel_height">300dp</dimen>
+    <dimen name="hero_item_height">220dp</dimen>
 
     <dimen name="headlineSize">24sp</dimen>
+    <dimen name="itemHeadlineSize">18sp</dimen>
+
+    <dimen name="error_icon_size">150dp</dimen>
 </resources>
