@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.victorvgc.mymarvelheros.home.domain.domain.Hero" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/carousel_height">
+
+        <ImageView
+            android:id="@+id/iv_hero"
+            bindImage="@{item.imageUrl}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@{item.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/iv_overlay"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@{item.name}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_hero"
+            app:layout_constraintEnd_toEndOf="@+id/iv_hero"
+            app:layout_constraintStart_toStartOf="@+id/iv_hero"
+            app:layout_constraintTop_toTopOf="@+id/iv_hero"
+            app:srcCompat="@drawable/overlay_img" />
+
+        <TextView
+            android:id="@+id/tv_hero_name"
+            style="@style/CarouselHeadline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@{item.name, default=@string/featured_heroes}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
