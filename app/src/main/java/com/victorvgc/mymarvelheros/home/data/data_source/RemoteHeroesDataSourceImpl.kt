@@ -20,20 +20,24 @@ class RemoteHeroesDataSourceImpl(
         val pKey = BuildConfig.PRIVATE_KEY
         val hash = hashUtils.getMD5From(timestamp, pKey, key)
 
-        val response = heroesService.getCharacters(
-            apiKey = key,
-            timestamp = timestamp,
-            hash = hash,
-            offset = 0,
-            limit = HeroesPage.DEFAULT_INIT_PAGE_SIZE
-        )
+        try {
+            val response = heroesService.getCharacters(
+                apiKey = key,
+                timestamp = timestamp,
+                hash = hash,
+                offset = 0,
+                limit = HeroesPage.DEFAULT_INIT_PAGE_SIZE
+            )
 
-        if (response.isSuccessful) {
-            val body = response.body()
+            if (response.isSuccessful) {
+                val body = response.body()
 
-            if (body != null) {
-                return body.data.results.map { it.toModel() }
+                if (body != null) {
+                    return body.data.results.map { it.toModel() }
+                }
             }
+        } catch (e: Exception) {
+            // log error
         }
 
         return emptyList()
@@ -45,20 +49,24 @@ class RemoteHeroesDataSourceImpl(
         val pKey = BuildConfig.PRIVATE_KEY
         val hash = hashUtils.getMD5From(timestamp, pKey, key)
 
-        val response = heroesService.getCharacters(
-            apiKey = key,
-            timestamp = timestamp,
-            hash = hash,
-            offset = offset,
-            limit = HeroesPage.DEFAULT_PAGE_SIZE
-        )
+        try {
+            val response = heroesService.getCharacters(
+                apiKey = key,
+                timestamp = timestamp,
+                hash = hash,
+                offset = offset,
+                limit = HeroesPage.DEFAULT_PAGE_SIZE
+            )
 
-        if (response.isSuccessful) {
-            val body = response.body()
+            if (response.isSuccessful) {
+                val body = response.body()
 
-            if (body != null) {
-                return body.data.toModel()
+                if (body != null) {
+                    return body.data.toModel()
+                }
             }
+        } catch (e: Exception) {
+            // log error
         }
 
         return HeroesPage(
