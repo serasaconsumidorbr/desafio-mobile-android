@@ -1,63 +1,32 @@
-<!-- Header-->
-<br />
-<p align="center">
-  <a href="https://github.com/serasaconsumidorbr/desafio-mobile-iOS">
-    <img src="https://turismoemfoco.com.br/v1/wp-content/uploads/2020/05/serasa-logo-nova22.png" alt="Logo" width="180" height="80">
-  </a>
+# Marvel Comics
 
-  <h3 align="center">Desafio - Android Developer </h3>
+Para executar o projeto, adicione sua chave da api("MARVEL_API_KEY"), sua chave hash("MARVEL_HASH_KEY") e o timestamp("TS_PARAM") no arquivo local.properties
 
-  <p align="center">
-    O nosso aplicativo é uma das nossas soluções para mudar a vida financeira de milhões de brasileiros. <b>Venha fazer parte desse time</b> muito engajado que
-  trabalha para que esse aplicativo chegue da melhor forma na mão dos consumidores.
-  </p>
-</p>
+## Libs 
 
-## Sobre
-<p> Utilizamos este desafio para avaliar a qualidade do seu código, arquitetura, a forma que você organiza os seus pensamentos dentro do git e muitas outras coisas, por isso, sinta-se a vontade e dê o seu melhor! O tempo médio para a entrega deste desafio é de uma semana.</p>
+* Injeção de depêndencia com [Koin](https://insert-koin.io/)
+* Carregamento e cache de imagens com [Glide](https://bumptech.github.io/glide/)
+* Armazenamento de dados com [Room](https://developer.android.com/jetpack/androidx/releases/room?hl=pt-br)
+* Chamadas REST com [Retrofit](https://square.github.io/retrofit/)
+* Coroutines e Kotlin Flow
+* Mocks em cenários de testes com [Mockk](https://mockk.io/)
 
-<p>Neste desafio você irá desenvolver um app que deverá mostrar os <b>personagens</b> da <a href="https://www.marvel.com/characters">Marvel</a>. 
-  
-<p>Para começar a fazer requests utilizando este serviço, siga esta <a href="https://developer.marvel.com/documentation/authorization">documentação</a>. O endpoint que deverá ser utilizado para popular as listas do app será a <b><a href="https://developer.marvel.com/docs#!/public/getCreatorCollection_get_0">/v1/public/characters</a></b>. </p>
+## Arquitetura
 
+### Model–view–viewmodel
 
-## Requisitos
-<p>Estes requisitos básicos são utilizados para ver como você lida com cada um desses itens. A falta de qualquer um desses requisitos compromete a sua avaliação no final.</p>
+Arquitetura MVVM utilizando uma camada de repósitórios, foi utilizado livedata na camada de viewmodel e kotlin flow na camada de repositório.
 
+![image](https://user-images.githubusercontent.com/39884163/204395202-b3345bd0-0f4c-4185-9e76-0a54e79169be.png)
 
-- Versão mínima do SDK: 21
-- Tela deve ajustar em devices menores.
-- Utilizar Kotlin
-- Boa arquitetura, pode ser (mvc, mvp, mvvm, clean etc)
-- RxJava ou Coroutines
-- Testes unitários
-- Cache de imagens
-- Tratamentos de erros
-- Padrão de Projeto e boas práticas de Orientação a Objetos.
-- Google AAC (Android Architecture Components)
+## Imagens
 
-## Será um diferencial 
-- Construir layouts com Constraints
-- Trabalhar offline (cache dos dados)
-- Injeção de dependência (dagger, koin, kodein)
+<img src="https://github.com/dorfo1/marvel-comics/assets/39884163/2be97f75-f86b-411e-b4c5-9ab1ed80bcda" alt="Screenshot1" width="250"/>
 
-## O projeto deverá conter
-* Carrossel superior com **5** personagens
-* Uma lista **vertical** abaixo do carrossel **com os personagens seguintes, sem repetir**
-* Scroll infinito
+<img src="https://github.com/dorfo1/marvel-comics/assets/39884163/74462a93-b757-4bee-b99b-a76b6108aa30" alt="Screenshot2" width="250"/>
 
-<b>Atente-se aos detalhes que ache interessante mostrar, por exemplo, nome, descrição, imagens ou outras informações dos personagens</b>
+Exemplo em um dispositivo menor
 
-## Importante
-* **Sua criatividade:** Utilize as considerações acima para criar o projeto do seu jeito, **utilizando as dependências que quiser**. Apenas saiba explicar o motivo das suas escolhas. 
+<img src="https://github.com/dorfo1/marvel-comics/assets/39884163/c1e4b9e4-c082-4507-acf4-626fd234e6f8" alt="Screenshot3" width="250"/>
 
-* **Documentação:** Ao finalizar o projeto, não se esqueça de documenta-lo. É Muito importante escrever o seu fluxo de pensamentos, **anexar imagens do aplicativo**, inserir as **bibliotecas** e versões que estão sendo utilizadas, **roadmap** de features que você gostaria de colocar e **melhorias que gostaria de fazer**...
-
-## Por fim, envie seu teste!
-* Crie um `fork`, de preferencia público, desse repositório.
-* Tente seguir o <b><a href="https://imasters.com.br/agile/fluxo-de-desenvolvimento-com-gitflow#:~:text=Como%20afirma%20Vincent%20Driessen%20(2010,o%20trunk%20e%20o%20branch.">gitflow</a></b> para o seu fluxo de desenvolvimento.
-* Ao finalizar, faça o **pull request** para este repositório
-
-Agora é só torcer!
-
-**Ultimo recadinho:** não utilize o nome da Serasa dentro de seu projeto 😉
+<img src="https://github.com/dorfo1/marvel-comics/assets/39884163/5d958107-2c0f-458a-9c1c-08a72639883c" alt="Screenshot4" width="250"/>
