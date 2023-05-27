@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.marvelcomics.R
-import br.com.marvelcomics.base.extensions.asMarvelCharacterEntry
 import br.com.marvelcomics.base.extensions.asMarvelCharacterEntryWithFeatures
 import br.com.marvelcomics.base.util.PaginationScrollListener
 import br.com.marvelcomics.base.util.UiException
@@ -20,10 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     private val marvelCharAdapter: MarvelCharacterAdapter by lazy {
         MarvelCharacterAdapter { viewModel.fetchMarvelChars() }
-    }
-
-    companion object {
-        private const val MINIMUM_CHAR_FEATURE_SIZE_LIST = 5
     }
 
     private lateinit var binding: ActivityMainBinding
@@ -54,17 +49,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupObservers() {
         viewModel.characters.observe(this) { characters ->
-            if (marvelCharAdapter.isInitialData() && characters.size > MINIMUM_CHAR_FEATURE_SIZE_LIST) {
-                marvelCharAdapter.submitDataWithFeatures(
-                    characters.asMarvelCharacterEntryWithFeatures(
-                        featureTitle = MarvelCharacterEntry.Title(R.string.feature),
-                        characterTitle = MarvelCharacterEntry.Title(R.string.more),
-                    )
+            marvelCharAdapter.submitData(
+                characters.asMarvelCharacterEntryWithFeatures(
+                    featureTitle = MarvelCharacterEntry.Title(R.string.feature),
+                    characterTitle = MarvelCharacterEntry.Title(R.string.more),
                 )
-            } else {
-                marvelCharAdapter.submitData(characters.asMarvelCharacterEntry())
-            }
-
+            )
         }
 
         viewModel.loading.observe(this) { loading ->

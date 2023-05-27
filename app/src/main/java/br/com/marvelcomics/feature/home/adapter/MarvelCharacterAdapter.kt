@@ -2,6 +2,7 @@ package br.com.marvelcomics.feature.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import br.com.marvelcomics.base.util.PageDataState
 import br.com.marvelcomics.databinding.AdapterCharItemViewBinding
@@ -80,17 +81,12 @@ class MarvelCharacterAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    fun isInitialData(): Boolean = itemCount == 0
-
-    fun submitDataWithFeatures(list: List<MarvelCharacterEntry>) {
+    fun submitData(list: List<MarvelCharacterEntry>) {
+        val diffCallback = MarvelCharacterItemDiffUtil(items, list)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
         items.clear()
         items.addAll(list)
-        notifyItemInserted(items.size - 1)
-    }
-
-    fun submitData(list: List<MarvelCharacterEntry>) {
-        items.addAll(list)
-        notifyItemInserted(items.size - 1)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     fun handleLoading(isLoading: Boolean) {
@@ -127,5 +123,43 @@ class MarvelCharacterAdapter(
             it is MarvelCharacterEntry.Item && it.item is PageDataState.Error
         }
         notifyItemRemoved(items.size)
+    }
+
+
+    class MarvelCharacterItemDiffUtil(
+        private val oldList: List<MarvelCharacterEntry>,
+        private val newList: List<MarvelCharacterEntry>
+    ) : DiffUtil.Callback() {
+        override fun getOldListSize(): Int = oldList.size
+
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val newItem = newList[newItemPosition]
+            val oldItem = oldList[oldItemPosition]
+
+            return when {
+                oldItem is MarvelCharacterEntry.FeatureItem && newItem is MarvelCharacterEntry.FeatureItem -> true
+                oldItem is MarvelCharacterEntry.Title && newItem is MarvelCharacterEntry.Title -> true
+                oldItem is MarvelCharacterEntry.Item && newItem is MarvelCharacterEntry.Item && oldItem.item is PageDataState.Data && newItem.item is PageDataState.Data && oldItem.item.data.id == newItem.item.data.id -> true
+                oldItem is MarvelCharacterEntry.Item && newItem is MarvelCharacterEntry.Item && oldItem.item is PageDataState.Loading && newItem.item is PageDataState.Loading -> true
+                oldItem is MarvelCharacterEntry.Item && newItem is MarvelCharacterEntry.Item && oldItem.item is PageDataState.Error && newItem.item is PageDataState.Error -> true
+                else -> false
+            }
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val newItem = newList[newItemPosition]
+            val oldItem = oldList[oldItemPosition]
+
+            return when {
+                oldItem is MarvelCharacterEntry.FeatureItem && newItem is MarvelCharacterEntry.FeatureItem -> true
+                oldItem is MarvelCharacterEntry.Title && newItem is MarvelCharacterEntry.Title && oldItem.title == newItem.title -> true
+                oldItem is MarvelCharacterEntry.Item && newItem is MarvelCharacterEntry.Item && oldItem.item is PageDataState.Data && newItem.item is PageDataState.Data && oldItem.item.data.id == newItem.item.data.id -> true
+                oldItem is MarvelCharacterEntry.Item && newItem is MarvelCharacterEntry.Item && oldItem.item is PageDataState.Loading && newItem.item is PageDataState.Loading -> true
+                oldItem is MarvelCharacterEntry.Item && newItem is MarvelCharacterEntry.Item && oldItem.item is PageDataState.Error && newItem.item is PageDataState.Error && oldItem.item.message == newItem.item.message -> true
+                else -> false
+            }
+        }
     }
 }

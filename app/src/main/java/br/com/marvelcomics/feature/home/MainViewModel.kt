@@ -19,10 +19,8 @@ class MainViewModel(
 
     private val _charactersResource = MutableLiveData<Resource<List<MarvelCharacter>>>()
 
-    private var pageSize: Int = 0
-
-    private val _characters = MediatorLiveData<List<MarvelCharacter>>()
-    val characters: LiveData<List<MarvelCharacter>> get() = _characters
+    private val _characters = MediatorLiveData<MutableList<MarvelCharacter>>()
+    val characters: LiveData<MutableList<MarvelCharacter>> get() = _characters
 
     val loading: LiveData<Boolean> = Transformations.map(_charactersResource) {
         it is Resource.Loading
@@ -36,8 +34,9 @@ class MainViewModel(
         _characters.addSource(_charactersResource) {
             if (it is Resource.Success) {
                 it.data?.let { data ->
-                    pageSize += data.size
-                    _characters.postValue(data)
+                    val currentList = _characters.value ?: mutableListOf()
+                    currentList.addAll(data)
+                    _characters.postValue(currentList)
                 }
             }
         }
@@ -46,12 +45,14 @@ class MainViewModel(
 
     fun fetchMarvelChars() {
         viewModelScope.launch {
-            marvelCharRepository.fetchCharacters(pageSize).collectLatest {
+            marvelCharRepository.fetchCharacters(pageSize()).collectLatest {
                 _charactersResource.postValue(it)
             }
         }
     }
 
-    fun isInitialFetch(): Boolean = pageSize == 0
+    fun isInitialFetch(): Boolean = pageSize() == 0
+
+    private fun pageSize() = _characters.value?.size ?: 0
 
 }
