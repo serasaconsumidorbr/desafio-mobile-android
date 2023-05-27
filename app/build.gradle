@@ -1,11 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
     namespace 'com.victorvgc.mymarvelheros'
     compileSdk 33
+
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 
     defaultConfig {
         applicationId "com.victorvgc.mymarvelheros"
@@ -18,21 +24,53 @@ android {
     }
 
     buildTypes {
+        debug {
+            debuggable true
+
+            buildConfigField("String", "BASE_URL", '"http://gateway.marvel.com/"')
+            buildConfigField("String", "API_KEY", localProperties['apiKey'])
+            buildConfigField("String", "PRIVATE_KEY", localProperties['privateKey'])
+
+            versionNameSuffix '-debug'
+            minifyEnabled false
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField("String", "BASE_URL", '"http://gateway.marvel.com/"')
+            buildConfigField("String", "API_KEY", localProperties['apiKey'])
+            buildConfigField("String", "PRIVATE_KEY", localProperties['privateKey'])
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+        buildConfig true
     }
 }
 
 dependencies {
+    ext.paging_version = "3.1.1"
+
+    ext.room_version = "2.6.0-alpha01"
+
+    ext.junit_version = '4.13.2'
+    ext.junit_x_ext = '1.1.5'
+    ext.espresso_contrib = '3.5.1'
+    ext.mockk_version = "1.9.3"
+    ext.mockito_version = '5.3.1'
+    ext.coroutines_test = '1.7.1'
+    ext.mockk_version = '1.13.5'
+    ext.arch_testing = "1.1.1"
+    ext.arch_version = "2.1.0"
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -40,4 +78,44 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Room
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.8.20"
+
+    // Dependency Injection
+    implementation 'io.insert-koin:koin-android:3.4.0'
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    kapt 'com.github.bumptech.glide:compiler:4.15.1'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11'
+
+    // Paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+    // Carousel
+    implementation 'com.github.jama5262:CarouselView:1.2.2'
+
+    // Test
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$junit_x_ext"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_contrib"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
+    testImplementation "io.mockk:mockk:$mockk_version"
+    testImplementation "android.arch.core:core-testing:$arch_testing"
 }
