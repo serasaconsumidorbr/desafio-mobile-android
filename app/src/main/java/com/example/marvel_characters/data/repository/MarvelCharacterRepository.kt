@@ -6,6 +6,7 @@ import javax.inject.Inject
 
 class MarvelCharacterRepository @Inject constructor(
     private val service: MarvelService,
+    private val cache: CharacterCache,
 ) : CharacterRepository {
     private var total: Int? = null
 
@@ -16,9 +17,15 @@ class MarvelCharacterRepository @Inject constructor(
                 return Single.just(CharacterRepository.Response.EndOfList)
             }
         }
-
+        val cacheResult = cache.getPage(page)
+        if (cacheResult != null) {
+            return Single.just(CharacterRepository.Response.Success(cacheResult.data?.results.orEmpty()))
+        }
         return service.getCharacters(limit = LIMIT, offset = offset)
-            .doOnSuccess { total = it.data?.total ?: 0 }
+            .doOnSuccess {
+                total = it.data?.total ?: 0
+                cache.savePage(page, it)
+            }
             .map<CharacterRepository.Response> {
                 CharacterRepository.Response.Success(it.data?.results.orEmpty())
             }

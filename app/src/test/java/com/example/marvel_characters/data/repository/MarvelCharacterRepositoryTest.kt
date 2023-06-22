@@ -5,18 +5,21 @@ import com.example.marvel_characters.helper.Stub
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.Test
 
 class MarvelCharacterRepositoryTest {
     var service = mockk<MarvelService>(relaxUnitFun = true)
+    var cache = mockk<CharacterCache>(relaxUnitFun = true)
     private lateinit var repository: MarvelCharacterRepository
 
     @Before
     fun setup() {
         MockKAnnotations.init(this, relaxUnitFun = true)
-        repository = MarvelCharacterRepository(service)
+        every { cache.getPage(any()) } returns null
+        repository = MarvelCharacterRepository(service, cache)
     }
 
     @Test
@@ -32,6 +35,9 @@ class MarvelCharacterRepositoryTest {
             .assertValue(
                 CharacterRepository.Response.Success(Stub.characterDataContainerDTO.results.orEmpty())
             )
+
+        verify { cache.getPage(0) }
+        verify { cache.savePage(0, Stub.characterDataWrapperDTO) }
     }
 
     @Test
@@ -47,6 +53,10 @@ class MarvelCharacterRepositoryTest {
             .assertValue(
                 CharacterRepository.Response.Error
             )
+
+
+        verify { cache.getPage(0) }
+        verify(exactly = 0) { cache.savePage(0, Stub.characterDataWrapperDTO) }
     }
 
     @Test
