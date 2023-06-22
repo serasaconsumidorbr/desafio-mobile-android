@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-    app:spanCount="4"
+    app:spanCount="3"
+    android:paddingBottom="8dp"
+    android:clipToPadding="false"
     tools:itemCount="10"
     tools:listitem="@layout/item_character"/>

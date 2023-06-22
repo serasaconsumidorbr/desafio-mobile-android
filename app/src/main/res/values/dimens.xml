@@ -2,4 +2,5 @@
 <resources>
     <dimen name="image_item_header_size">100dp</dimen>
     <dimen name="item_header_size">110dp</dimen>
+    <dimen name="item_character_size">150dp</dimen>
 </resources>

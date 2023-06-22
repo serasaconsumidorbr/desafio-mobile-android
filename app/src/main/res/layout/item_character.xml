@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/item_header_size"
     android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/image_container"
-        app:layout_constraintDimensionRatio="H,3:2"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/item_character_size"
         app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,9 +20,9 @@
             android:id="@+id/character_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/character_background"
             android:importantForAccessibility="no"
             android:scaleType="centerCrop"
-            android:background="@color/character_background"
             tools:src="@drawable/character_placeholder" />
     </androidx.cardview.widget.CardView>
 

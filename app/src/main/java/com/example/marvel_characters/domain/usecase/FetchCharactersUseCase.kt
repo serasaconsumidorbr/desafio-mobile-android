@@ -1,6 +1,7 @@
 package com.example.marvel_characters.domain.usecase
 
 import com.example.marvel_characters.data.dto.CharacterDTO
+import com.example.marvel_characters.data.dto.ImageDTO
 import com.example.marvel_characters.data.repository.CharacterRepository
 import com.example.marvel_characters.domain.model.Character
 import io.reactivex.rxjava3.core.Single
@@ -41,10 +42,17 @@ class FetchCharactersUseCase @Inject constructor(
                     id = it.id,
                     name = it.name.orEmpty(),
                     description = it.description.orEmpty(),
-                    thumbnail = it.thumbnail?.path.orEmpty()
+                    thumbnail = mapImageUrl(it.thumbnail)
                 )
         }
         return Result.Success(items)
+    }
+
+    private fun mapImageUrl(image: ImageDTO?): String {
+        val path = if (image?.path?.startsWith("http") == true) {
+            image.path.replaceFirst("http", "https")
+        } else (image?.path.orEmpty())
+        return "$path.${image?.extension}"
     }
 
     sealed class Result {

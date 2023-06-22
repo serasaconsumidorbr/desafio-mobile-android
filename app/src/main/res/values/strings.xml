@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">marvel_characters</string>
+    <string name="app_name">Marvel Characters</string>
     <string name="error_generic_title">Something went wrong</string>
     <string name="error_generic_body">We couldn\'t complete this operation, pleas try again</string>
     <string name="error_button_title">Retry</string>
+    <string name="header_title">Top Characters</string>
+    <string name="character_list_title">Characters</string>
 </resources>
