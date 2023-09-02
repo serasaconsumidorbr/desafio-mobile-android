@@ -10,10 +10,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.example.marvel_app.databinding.FragmentCharactersBinding
 import com.example.marvel_app.features.characters.presentation.adapter.CharacterAdapter
 import com.example.marvel_app.features.characters.presentation.adapter.CharactersLoadStateAdapter
+import com.example.marvel_app.features.detail.args.DetailViewArg
 import com.example.marvel_app.framework.imageloader.ImageLoader
 import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_CHARACTERS
 import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_ERROR
@@ -62,7 +65,20 @@ class CharactersFragment : Fragment() {
     }
 
     private fun initCharacterAdapter() {
-        characterAdapter = CharacterAdapter(imageLoader)
+        characterAdapter = CharacterAdapter(imageLoader) {character, view ->
+            val extras = FragmentNavigatorExtras(
+                view to character.name
+            )
+
+            val directions = CharactersFragmentDirections
+                .actionCharactersFragmentToDetailFragment(
+                    character.name,
+                    DetailViewArg(character.name, character.imageUrl)
+                )
+
+            findNavController().navigate(directions, extras)
+        }
+
         binding.rcvCharacters.run {
             scrollToPosition(0)
             setHasFixedSize(true)

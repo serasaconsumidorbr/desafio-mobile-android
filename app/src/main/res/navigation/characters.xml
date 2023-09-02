@@ -21,10 +21,10 @@
         tools:layout="@layout/fragment_detail">
 
         <argument
-            android:name="detailViewArg"
-            app:argType="com.example.marvel_app.features.detail.args.DetailViewArg" />
-        <argument
             android:name="screenTitle"
             app:argType="string" />
+        <argument
+            android:name="detailViewArg"
+            app:argType="com.example.marvel_app.features.detail.args.DetailViewArg" />
     </fragment>
 </navigation>
