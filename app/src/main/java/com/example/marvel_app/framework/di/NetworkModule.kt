@@ -4,6 +4,7 @@ import com.example.marvel_app.BuildConfig
 import com.example.marvel_app.BuildConfig.BASE_URL
 import com.example.marvel_app.BuildConfig.PRIVATE_KEY
 import com.example.marvel_app.BuildConfig.PUBLIC_KEY
+import com.example.marvel_app.framework.di.qualifier.BaseUrl
 import com.example.marvel_app.framework.network.MarvelApi
 import com.example.marvel_app.framework.network.interceptor.AuthorizationInterceptor
 import dagger.Module
@@ -74,9 +75,10 @@ object NetworkModule {
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         converterFactory: GsonConverterFactory,
+        @BaseUrl baseUrl: String
     ): MarvelApi {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(baseUrl)
             .client(okHttpClient)
             .addConverterFactory(converterFactory)
             .build()
