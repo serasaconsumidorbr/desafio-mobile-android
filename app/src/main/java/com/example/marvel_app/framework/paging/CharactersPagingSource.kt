@@ -4,8 +4,8 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.core.features.characters.data.datasource.CharactersRemoteDatasource
 import com.example.core.features.characters.domain.model.Character
-import com.example.marvel_app.framework.network.response.characters.DataWrapperResponse
-import com.example.marvel_app.framework.network.response.characters.toCharacterModel
+import com.example.marvel_app.features.characters.response.characters.DataWrapperResponse
+import com.example.marvel_app.features.characters.response.characters.toCharacterModel
 import com.example.marvel_app.utils.Constants.LIMIT
 
 class CharactersPagingSource(

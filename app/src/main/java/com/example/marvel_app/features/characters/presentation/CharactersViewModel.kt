@@ -1,4 +1,4 @@
-package com.example.marvel_app.presentation.character
+package com.example.marvel_app.features.characters.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,7 +7,6 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.core.features.characters.domain.model.Character
 import com.example.core.features.characters.usecase.GetCharactersUseCase
-import com.example.marvel_app.utils.Constants.LIMIT
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

@@ -1,6 +1,5 @@
-package com.example.marvel_app.presentation.favorites
+package com.example.marvel_app.features.favorites.presentation
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

@@ -1,8 +1,8 @@
-package com.example.marvel_app.framework.network.remote.characters.datasource
+package com.example.marvel_app.features.characters.remote.datasource
 
 import com.example.core.features.characters.data.datasource.CharactersRemoteDatasource
 import com.example.marvel_app.framework.network.MarvelApi
-import com.example.marvel_app.framework.network.response.characters.DataWrapperResponse
+import com.example.marvel_app.features.characters.response.characters.DataWrapperResponse
 import javax.inject.Inject
 
 class CharactersRemoteDatasourceImpl @Inject constructor(

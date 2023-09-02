@@ -1,4 +1,4 @@
-package com.example.marvel_app.presentation.character
+package com.example.marvel_app.features.characters.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.marvel_app.databinding.FragmentCharactersBinding
 import com.example.marvel_app.framework.imageloader.ImageLoader
-import com.example.marvel_app.presentation.character.adapter.CharacterAdapter
+import com.example.marvel_app.features.characters.presentation.adapter.CharacterAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

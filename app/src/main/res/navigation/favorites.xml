@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="com.example.marvel_app.presentation.favorites.FavoritesFragment"
+        android:name="com.example.marvel_app.features.favorites.presentation.FavoritesFragment"
         android:label="@string/favorites_screen_title"
         tools:layout="@layout/fragment_favorites" />
 </navigation>

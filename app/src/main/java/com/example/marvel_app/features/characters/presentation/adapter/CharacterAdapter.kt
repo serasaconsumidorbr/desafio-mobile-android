@@ -1,12 +1,11 @@
-package com.example.marvel_app.presentation.character.adapter
+package com.example.marvel_app.features.characters.presentation.adapter
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import com.example.core.features.characters.domain.model.Character
 import com.example.marvel_app.framework.imageloader.ImageLoader
-import com.example.marvel_app.presentation.character.viewholder.CharactersViewHolder
+import com.example.marvel_app.features.characters.presentation.viewholder.CharactersViewHolder
 import javax.inject.Inject
 
 class CharacterAdapter @Inject constructor(

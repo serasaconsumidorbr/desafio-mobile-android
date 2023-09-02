@@ -1,4 +1,4 @@
-package com.example.marvel_app.presentation.favorites
+package com.example.marvel_app.features.favorites.presentation
 
 import androidx.lifecycle.ViewModel
 

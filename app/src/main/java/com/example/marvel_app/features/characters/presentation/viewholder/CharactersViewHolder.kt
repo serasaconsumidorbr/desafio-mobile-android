@@ -1,4 +1,4 @@
-package com.example.marvel_app.presentation.character.viewholder
+package com.example.marvel_app.features.characters.presentation.viewholder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
