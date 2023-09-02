@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:shimmer_repeat_mode="restart"
-    app:shimmer_shape="radial">
+    app:shimmer_shape="linear">
 
     <LinearLayout
         android:layout_width="match_parent"

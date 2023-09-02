@@ -17,7 +17,7 @@
             android:layout_width="@dimen/size_0dp"
             android:layout_height="@dimen/size_170dp"
             android:importantForAccessibility="no"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
