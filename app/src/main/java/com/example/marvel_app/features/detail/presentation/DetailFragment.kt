@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.marvel_app.databinding.FragmentDetailBinding
+import com.example.marvel_app.features.detail.presentation.adapter.DetailParentAdapter
 import com.example.marvel_app.framework.imageloader.ImageLoader
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -52,7 +53,15 @@ class DetailFragment : Fragment() {
         viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
             when (uiState) {
                 DetailViewModel.UiState.Loading -> {}
-                is DetailViewModel.UiState.Success -> {}
+                is DetailViewModel.UiState.Success -> {
+                    binding.recyclerParentDetail.run{
+                        setHasFixedSize(true)
+                        adapter = DetailParentAdapter(
+                            uiState.detailParentList,
+                            imageLoader
+                        )
+                    }
+                }
                 DetailViewModel.UiState.Error -> {}
             }
         }
