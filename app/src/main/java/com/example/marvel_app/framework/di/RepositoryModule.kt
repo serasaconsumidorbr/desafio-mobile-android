@@ -4,7 +4,6 @@ import com.example.core.features.characters.data.datasource.CharactersRemoteData
 import com.example.core.features.characters.data.repository.CharactersRepository
 import com.example.marvel_app.features.characters.remote.datasource.CharactersRemoteDatasourceImpl
 import com.example.marvel_app.features.characters.remote.repository.CharactersRepositoryImpl
-import com.example.marvel_app.features.characters.response.characters.DataWrapperResponse
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,5 +21,5 @@ interface RepositoryModule {
     @Binds
     fun bindCharactersRemoteDatasource(
         datasource: CharactersRemoteDatasourceImpl
-    ): CharactersRemoteDatasource<DataWrapperResponse>
+    ): CharactersRemoteDatasource
 }

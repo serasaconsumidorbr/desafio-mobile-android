@@ -4,12 +4,10 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.core.features.characters.data.datasource.CharactersRemoteDatasource
 import com.example.core.features.characters.domain.model.Character
-import com.example.marvel_app.features.characters.response.characters.DataWrapperResponse
-import com.example.marvel_app.features.characters.response.characters.toCharacterModel
 import com.example.marvel_app.utils.Constants.LIMIT
 
 class CharactersPagingSource(
-    private val charactersRemoteDatasource: CharactersRemoteDatasource<DataWrapperResponse>,
+    private val charactersRemoteDatasource: CharactersRemoteDatasource,
     private val query: String
 ) : PagingSource<Int, Character>() {
 
@@ -26,13 +24,13 @@ class CharactersPagingSource(
                 queries["nameStartsWith"] = query
             }
 
-            val response = charactersRemoteDatasource.fetchCharacters(queries)
+            val characterPaging = charactersRemoteDatasource.fetchCharacters(queries)
 
-            val responseOffset = response.data.offset
-            val totalCharacters = response.data.total
+            val responseOffset = characterPaging.offset
+            val totalCharacters = characterPaging.total
 
             LoadResult.Page(
-                data = response.data.results.map { it.toCharacterModel() },
+                data = characterPaging.character,
                 prevKey = null,
                 nextKey = if (responseOffset < totalCharacters) {
                     responseOffset + LIMIT

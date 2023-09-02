@@ -1,6 +1,8 @@
 package com.example.core.features.characters.data.datasource
 
-interface CharactersRemoteDatasource<T> {
+import com.example.core.features.characters.domain.model.CharacterPaging
 
-    suspend fun fetchCharacters(queries: Map<String, String>): T
+interface CharactersRemoteDatasource {
+
+    suspend fun fetchCharacters(queries: Map<String, String>): CharacterPaging
 }
