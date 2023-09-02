@@ -32,8 +32,23 @@ android {
     }
 
     buildTypes {
+        //buildType para desenvolvimento, precisa ser ágil e por esse motivo não podemos ativar ofuscação e minificação
+        debug {
+            applicationIdSuffix '.debug'
+            debuggable true
+        }
+
+        //buildType utilizada em pré-produção, ele imita o buildType de realease, porém é debugavel
+        staging{
+            initWith debug
+            applicationIdSuffix '.staging'
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
