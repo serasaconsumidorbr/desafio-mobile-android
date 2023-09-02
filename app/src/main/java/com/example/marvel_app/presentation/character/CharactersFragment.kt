@@ -45,7 +45,6 @@ class CharactersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initCharacterAdapter()
 
-        //faz o stop do flow assim que ele for background
         lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.charactersPagingData("").collect{ pagingData ->
