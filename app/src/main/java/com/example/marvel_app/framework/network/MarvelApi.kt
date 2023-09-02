@@ -1,7 +1,7 @@
 package com.example.marvel_app.framework.network
 
-import com.example.marvel_app.features.characters.response.characters.CharacterResponse
-import com.example.marvel_app.features.detail.response.comic.ComicResponse
+import com.example.marvel_app.features.characters.response.CharacterResponse
+import com.example.marvel_app.features.detail.response.ComicResponse
 import com.example.marvel_app.framework.network.response.DataWrapperResponse
 import retrofit2.http.GET
 import retrofit2.http.Path

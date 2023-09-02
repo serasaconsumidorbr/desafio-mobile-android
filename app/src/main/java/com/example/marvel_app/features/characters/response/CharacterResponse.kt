@@ -1,4 +1,4 @@
-package com.example.marvel_app.features.characters.response.characters
+package com.example.marvel_app.features.characters.response
 
 import com.example.core.features.characters.domain.model.Character
 import com.example.marvel_app.framework.network.response.ThumbnailResponse

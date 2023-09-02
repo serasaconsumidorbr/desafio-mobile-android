@@ -3,7 +3,7 @@ package com.example.marvel_app.features.characters.remote.datasource
 import com.example.core.features.characters.data.datasource.CharactersRemoteDatasource
 import com.example.core.features.characters.domain.model.CharacterPaging
 import com.example.marvel_app.framework.network.MarvelApi
-import com.example.marvel_app.features.characters.response.characters.toCharacterModel
+import com.example.marvel_app.features.characters.response.toCharacterModel
 import javax.inject.Inject
 
 class CharactersRemoteDatasourceImpl @Inject constructor(
