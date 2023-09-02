@@ -2,6 +2,7 @@ package com.example.marvel_app.features.characters.presentation
 
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.marvel_app.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -18,11 +19,11 @@ class CharactersFragmentTest {
 
     @Before
     fun setup() {
-        launchFragmentInContainer<CharactersFragment>()
+        launchFragmentInHiltContainer<CharactersFragment>()
     }
 
     @Test
-    fun shouldShowCharacters_whenViewCreated(){
+    fun shouldShowCharacters_whenViewCreated() {
 
     }
 }
