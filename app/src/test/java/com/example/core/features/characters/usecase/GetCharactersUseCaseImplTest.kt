@@ -44,15 +44,17 @@ class GetCharactersUseCaseImplTest {
     @Test
     fun `should validate the paging creation when invoke from use case is called`() =
         runTest {
+            //Arrange
             whenever(repository.getCharacters(""))
                 .thenReturn(fakePagingSource)
 
+            //Act
             val result = getCharactersUseCase.invoke(
                 GetCharactersUseCase.GetCharactersParams("", PagingConfig(20))
             )
 
+            //Assert
             verify(repository).getCharacters("")
-
             assertNotNull(result.first())
         }
 }

@@ -53,6 +53,7 @@ class CharactersViewModelTest {
     @Test
     fun `should validate the paging data object values when calling charactersPagingData`() =
         runTest {
+            //Arrange
             whenever(
                 getCharactersUseCase.invoke(any())
             ).thenReturn(
@@ -61,8 +62,10 @@ class CharactersViewModelTest {
                 )
             )
 
+            //Act
             val result = charactersViewModel.charactersPagingData("")
 
+            //Assert
             assertNotNull(result.first())
     }
 
