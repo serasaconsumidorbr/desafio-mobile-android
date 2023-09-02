@@ -43,7 +43,6 @@ class CharactersFragment : Fragment() {
         _binding = this
     }.root
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initCharacterAdapter()
@@ -78,7 +77,13 @@ class CharactersFragment : Fragment() {
                        setShimmerVisibility(false)
                        FLIPPER_CHILD_CHARACTERS
                    }
-                   is LoadState.Error -> FLIPPER_CHILD_ERROR
+                   is LoadState.Error -> {
+                       setShimmerVisibility(false)
+                       binding.includeViewCharacterErrorState.buttonRetry.setOnClickListener {
+                           characterAdapter.retry()
+                       }
+                       FLIPPER_CHILD_ERROR
+                   }
                 }
             }
         }
@@ -101,6 +106,6 @@ class CharactersFragment : Fragment() {
     companion object {
         private const val FLIPPER_CHILD_LOADING = 0
         private const val FLIPPER_CHILD_CHARACTERS = 1
-        private const val FLIPPER_CHILD_ERROR = 0
+        private const val FLIPPER_CHILD_ERROR = 2
     }
 }
