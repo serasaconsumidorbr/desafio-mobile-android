@@ -1,6 +1,7 @@
 package com.example.marvel_app.presentation.character.adapter
 
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.core.features.characters.domain.model.Character
@@ -10,7 +11,7 @@ import javax.inject.Inject
 
 class CharacterAdapter @Inject constructor(
     private val imageLoader: ImageLoader
-): ListAdapter<Character, CharactersViewHolder>(diffUtils) {
+): PagingDataAdapter<Character, CharactersViewHolder>(diffUtils) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
         return CharactersViewHolder.create(parent,imageLoader)

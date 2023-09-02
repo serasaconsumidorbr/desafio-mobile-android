@@ -1,14 +1,19 @@
 package com.example.marvel_app.presentation.character
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.marvel_app.databinding.FragmentCharactersBinding
 import com.example.marvel_app.framework.imageloader.ImageLoader
 import com.example.marvel_app.presentation.character.adapter.CharacterAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -16,6 +21,8 @@ class CharactersFragment : Fragment() {
 
     private var _binding: FragmentCharactersBinding? = null
     private val binding: FragmentCharactersBinding get() = _binding!!
+
+    private val viewModel: CharactersViewModel by viewModels()
 
     @Inject
     lateinit var imageLoader: ImageLoader
@@ -37,6 +44,15 @@ class CharactersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initCharacterAdapter()
+
+        //faz o stop do flow assim que ele for background
+        lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.charactersPagingData("").collect{ pagingData ->
+                    characterAdapter.submitData(pagingData)
+                }
+            }
+        }
     }
 
     private fun initCharacterAdapter() {

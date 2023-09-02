@@ -1,7 +1,7 @@
 package com.example.marvel_app.framework.di
 
-import BaseUrl
 import com.example.marvel_app.BuildConfig
+import com.example.marvel_app.BuildConfig.BASE_URL
 import com.example.marvel_app.BuildConfig.PRIVATE_KEY
 import com.example.marvel_app.BuildConfig.PUBLIC_KEY
 import com.example.marvel_app.framework.network.MarvelApi
@@ -17,7 +17,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Calendar
 import java.util.TimeZone
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -75,10 +74,9 @@ object NetworkModule {
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         converterFactory: GsonConverterFactory,
-        @BaseUrl baseUrl: String
     ): MarvelApi {
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(converterFactory)
             .build()
