@@ -25,6 +25,6 @@
             app:argType="string" />
         <argument
             android:name="detailViewArg"
-            app:argType="com.example.marvel_app.features.detail.args.DetailViewArg" />
+            app:argType="com.example.marvel_app.utils.args.DetailViewArg" />
     </fragment>
 </navigation>

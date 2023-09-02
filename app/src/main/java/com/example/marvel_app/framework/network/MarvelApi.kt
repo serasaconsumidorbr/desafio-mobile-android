@@ -1,7 +1,10 @@
 package com.example.marvel_app.framework.network
 
-import com.example.marvel_app.features.characters.response.characters.DataWrapperResponse
+import com.example.marvel_app.features.characters.response.characters.CharacterResponse
+import com.example.marvel_app.features.detail.response.comic.ComicResponse
+import com.example.marvel_app.framework.network.response.DataWrapperResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.QueryMap
 
 interface MarvelApi {
@@ -10,5 +13,11 @@ interface MarvelApi {
     suspend fun getCharacters(
         @QueryMap
         queries: Map<String, String>
-    ): DataWrapperResponse
+    ): DataWrapperResponse<CharacterResponse>
+
+    @GET("characters/{characterId}/comics")
+    suspend fun getComics(
+        @Path("characterId")
+        characterId: Int
+    ): DataWrapperResponse<ComicResponse>
 }

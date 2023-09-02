@@ -16,7 +16,7 @@ import androidx.paging.LoadState
 import com.example.marvel_app.databinding.FragmentCharactersBinding
 import com.example.marvel_app.features.characters.presentation.adapter.CharacterAdapter
 import com.example.marvel_app.features.characters.presentation.adapter.CharactersLoadStateAdapter
-import com.example.marvel_app.features.detail.args.DetailViewArg
+import com.example.marvel_app.utils.args.DetailViewArg
 import com.example.marvel_app.framework.imageloader.ImageLoader
 import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_CHARACTERS
 import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_ERROR

@@ -4,7 +4,7 @@ import androidx.datastore.preferences.protobuf.ExperimentalApi
 import androidx.paging.PagingSource
 import com.example.core.features.characters.data.datasource.CharactersRemoteDatasource
 import com.example.core.features.characters.domain.model.Character
-import com.example.marvel_app.features.characters.response.characters.DataWrapperResponse
+import com.example.marvel_app.framework.network.response.DataWrapperResponse
 import com.example.marvel_app.utils.MainCoroutineRule
 import com.example.marvel_app.utils.factory.CharacterFactory
 import com.example.marvel_app.utils.factory.DataWrapperResponseFactory

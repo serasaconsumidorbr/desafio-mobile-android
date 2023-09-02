@@ -1,9 +1,9 @@
 package com.example.marvel_app.utils.factory
 
 import com.example.marvel_app.features.characters.response.characters.CharacterResponse
-import com.example.marvel_app.features.characters.response.characters.DataContainerResponse
-import com.example.marvel_app.features.characters.response.characters.DataWrapperResponse
-import com.example.marvel_app.features.characters.response.characters.ThumbnailResponse
+import com.example.marvel_app.framework.network.response.DataContainerResponse
+import com.example.marvel_app.framework.network.response.DataWrapperResponse
+import com.example.marvel_app.framework.network.response.ThumbnailResponse
 
 class DataWrapperResponseFactory {
 
