@@ -16,6 +16,15 @@ android {
     namespace 'com.example.marvel_app'
     compileSdk 33
 
+    signingConfigs {
+        release {
+            storeFile file('/private/etc/dev/desafio-mobile-android/store/marvel_app_key_store')
+            storePassword 'marvel@123'
+            keyAlias 'marvel@123'
+            keyPassword 'marvel@123'
+        }
+    }
+
     defaultConfig {
         applicationId "com.example.marvel_app"
         minSdk 21
@@ -48,6 +57,7 @@ android {
         }
 
         release {
+            signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
