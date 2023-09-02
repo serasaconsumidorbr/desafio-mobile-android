@@ -64,6 +64,7 @@ class CharactersFragment : Fragment() {
     private fun initCharacterAdapter() {
         characterAdapter = CharacterAdapter(imageLoader)
         binding.rcvCharacters.run {
+            scrollToPosition(0)
             setHasFixedSize(true)
             adapter = characterAdapter.withLoadStateFooter(
                 footer = CharactersLoadStateAdapter(
