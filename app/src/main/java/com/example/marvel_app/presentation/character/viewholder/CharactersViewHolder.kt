@@ -3,7 +3,7 @@ package com.example.marvel_app.presentation.character.viewholder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.feature.character.domain.model.Character
+import com.example.core.features.characters.domain.model.Character
 import com.example.marvel_app.databinding.ItemCharacterBinding
 import com.example.marvel_app.framework.imageloader.ImageLoader
 

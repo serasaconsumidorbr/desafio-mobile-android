@@ -3,7 +3,7 @@ package com.example.marvel_app.presentation.character.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.core.feature.character.domain.model.Character
+import com.example.core.features.characters.domain.model.Character
 import com.example.marvel_app.framework.imageloader.ImageLoader
 import com.example.marvel_app.presentation.character.viewholder.CharactersViewHolder
 import javax.inject.Inject
