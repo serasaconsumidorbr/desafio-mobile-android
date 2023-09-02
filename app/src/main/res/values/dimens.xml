@@ -89,6 +89,7 @@
     <dimen name="size_180dp">180dp</dimen>
     <dimen name="size_200dp">200dp</dimen>
     <dimen name="size_215dp">215dp</dimen>
+    <dimen name="size_230dp">230dp</dimen>
     <dimen name="size_240dp">240dp</dimen>
     <dimen name="size_250dp">250dp</dimen>
     <dimen name="size_252dp">252dp</dimen>
