@@ -4,10 +4,9 @@ import androidx.datastore.preferences.protobuf.ExperimentalApi
 import androidx.paging.PagingSource
 import com.example.core.features.characters.data.datasource.CharactersRemoteDatasource
 import com.example.core.features.characters.domain.model.Character
-import com.example.marvel_app.framework.network.response.DataWrapperResponse
 import com.example.marvel_app.utils.MainCoroutineRule
 import com.example.marvel_app.utils.factory.CharacterFactory
-import com.example.marvel_app.utils.factory.DataWrapperResponseFactory
+import com.example.marvel_app.utils.factory.CharacterPagingFactory
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.test.runTest
@@ -27,9 +26,9 @@ class CharactersPagingSourceTest {
     var mainCoroutineRule = MainCoroutineRule()
 
     @Mock
-    lateinit var remoteDatasource: CharactersRemoteDatasource<DataWrapperResponse>
+    lateinit var remoteDatasource: CharactersRemoteDatasource
 
-    private val dataWrapperResponseFactory = DataWrapperResponseFactory()
+    private val characterPagingFactory = CharacterPagingFactory()
 
     private val characterFactory = CharacterFactory()
 
@@ -44,7 +43,7 @@ class CharactersPagingSourceTest {
     fun `should return a success load result when load is called`() = runTest {
         //Arrange
         whenever(remoteDatasource.fetchCharacters(any()))
-            .thenReturn(dataWrapperResponseFactory.create())
+            .thenReturn(characterPagingFactory.create())
 
         //Act
         val result = charactersPagingSource.load(
