@@ -1,4 +1,4 @@
-package com.example.marvel_app.framework.di.qualifier
+package com.example.marvel_app.framework.di
 
 import com.example.marvel_app.framework.imageloader.GlideImageLoader
 import com.example.marvel_app.framework.imageloader.ImageLoader
