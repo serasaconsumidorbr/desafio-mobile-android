@@ -11,20 +11,20 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-interface GetCategoriesComicsUseCase {
+interface GetCategoriesUseCase {
 
     operator fun invoke(params: GetCategoriesParams): Flow<ResultStatus<Pair<List<Comic>,List<Event>>>>
 
     data class GetCategoriesParams(val characterId: Int)
 }
 
-class GetComicsUseCaseImpl @Inject constructor(
+class GetCategoriesUseCaseImpl @Inject constructor(
     private val categoriesRepository: CategoriesRepository,
     private val dispatchers: AppCoroutinesDispatchers
-) : GetCategoriesComicsUseCase, UseCase<GetCategoriesComicsUseCase.GetCategoriesParams, Pair<List<Comic>,List<Event>>>() {
+) : GetCategoriesUseCase, UseCase<GetCategoriesUseCase.GetCategoriesParams, Pair<List<Comic>,List<Event>>>() {
 
     override suspend fun doWork(
-        params: GetCategoriesComicsUseCase.GetCategoriesParams
+        params: GetCategoriesUseCase.GetCategoriesParams
     ): ResultStatus<Pair<List<Comic>,List<Event>>> {
        return withContext(dispatchers.io){
             val comicsDeferred = async { categoriesRepository.getComics(params.characterId) }

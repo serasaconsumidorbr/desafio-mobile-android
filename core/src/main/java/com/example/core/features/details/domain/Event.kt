@@ -1,4 +1,6 @@
 package com.example.core.features.details.domain
 
-class Event {
-}
+data class Event(
+    val id: Int,
+    val imageUrl: String
+)
