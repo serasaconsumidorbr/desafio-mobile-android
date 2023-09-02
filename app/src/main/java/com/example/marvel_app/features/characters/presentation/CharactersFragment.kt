@@ -13,7 +13,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import com.example.marvel_app.databinding.FragmentCharactersBinding
 import com.example.marvel_app.features.characters.presentation.adapter.CharacterAdapter
+import com.example.marvel_app.features.characters.presentation.adapter.CharactersLoadStateAdapter
 import com.example.marvel_app.framework.imageloader.ImageLoader
+import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_CHARACTERS
+import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_ERROR
+import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_LOADING
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -61,7 +65,11 @@ class CharactersFragment : Fragment() {
         characterAdapter = CharacterAdapter(imageLoader)
         binding.rcvCharacters.run {
             setHasFixedSize(true)
-            adapter = characterAdapter
+            adapter = characterAdapter.withLoadStateFooter(
+                footer = CharactersLoadStateAdapter(
+                    characterAdapter::retry
+                )
+            )
         }
     }
 
@@ -101,11 +109,5 @@ class CharactersFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    companion object {
-        private const val FLIPPER_CHILD_LOADING = 0
-        private const val FLIPPER_CHILD_CHARACTERS = 1
-        private const val FLIPPER_CHILD_ERROR = 2
     }
 }

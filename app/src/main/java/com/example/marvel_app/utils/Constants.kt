@@ -10,4 +10,9 @@ object Constants {
     //Paging
     const val START_OFFSET = 0
     const val LIMIT = 20
+
+    //Flipper Child Characters State
+    const val FLIPPER_CHILD_LOADING = 0
+    const val FLIPPER_CHILD_CHARACTERS = 1
+    const val FLIPPER_CHILD_ERROR = 2
 }
