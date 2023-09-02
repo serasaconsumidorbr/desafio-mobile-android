@@ -7,6 +7,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "androidx.navigation.safeargs"
 apply plugin: 'kotlin-parcelize'
+apply plugin: 'com.google.gms.google-services'
 
 def apikeyPropertiesFile = rootProject.file("apikey.properties")
 def apikeyProperties = new Properties()
@@ -122,6 +123,10 @@ dependencies {
     // Other Libs
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'androidx.datastore:datastore-preferences:1.0.0'
+
+    // Firebase
+    implementation platform("com.google.firebase:firebase-bom:32.2.0")
+    implementation("com.google.firebase:firebase-analytics-ktx")
 
     // Unit tests
     testImplementation 'junit:junit:4.13.2'

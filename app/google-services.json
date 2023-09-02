@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1064251865462",
+    "project_id": "desafio-mobile-android",
+    "storage_bucket": "desafio-mobile-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064251865462:android:3beb7aadf63766bd98e257",
+        "android_client_info": {
+          "package_name": "com.example.marvel_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064251865462-f2n0mod3dvgkuuu940n4k2d4araudnou.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwLxRD3-xPgAOeoK-aqw0c2Ma1yqRtvhs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064251865462-f2n0mod3dvgkuuu940n4k2d4araudnou.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
