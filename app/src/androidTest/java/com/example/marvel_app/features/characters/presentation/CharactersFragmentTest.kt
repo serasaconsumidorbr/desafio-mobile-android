@@ -1,11 +1,15 @@
 package com.example.marvel_app.features.characters.presentation
 
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.example.marvel_app.R
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.marvel_app.features.characters.presentation.viewholder.CharactersViewHolder
 import com.example.marvel_app.framework.di.BaseUrlModule
 import com.example.marvel_app.launchFragmentInHiltContainer
 import com.example.marvel_app.utils.extensions.asJsonString
@@ -44,6 +48,38 @@ class CharactersFragmentTest {
         server.enqueue(MockResponse().setBody("characters_p1.json".asJsonString()))
         onView(
             withId(R.id.rcv_characters)
+        ).check(
+            matches(isDisplayed())
+        )
+    }
+
+    @Test
+    fun shouldLoadMoreCharacters_whenNewPageIsRequested() {
+       with(server) {
+           enqueue(MockResponse().setBody("characters_p1.json".asJsonString()))
+           enqueue(MockResponse().setBody("characters_p2.json".asJsonString()))
+       }
+
+        onView(
+            withId(R.id.rcv_characters)
+        ).perform(
+            RecyclerViewActions
+                .scrollToPosition<CharactersViewHolder>(20)
+        )
+
+        onView(
+            withText("Amora")
+        ).check(
+            matches(isDisplayed())
+        )
+    }
+
+    @Test
+    fun shouldShowErrorView_whenReceivesAnErrorFromApi() {
+        server.enqueue(MockResponse().setResponseCode(404))
+
+        onView(
+            withId(R.id.text_initial_loading_error)
         ).check(
             matches(isDisplayed())
         )
