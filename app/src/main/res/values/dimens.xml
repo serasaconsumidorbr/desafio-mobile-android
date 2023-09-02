@@ -82,6 +82,7 @@
     <dimen name="size_135dp">135dp</dimen>
     <dimen name="size_138dp">138dp</dimen>
     <dimen name="size_140dp">140dp</dimen>
+    <dimen name="size_150dp">150dp</dimen>
     <dimen name="size_156dp">156dp</dimen>
     <dimen name="size_160dp">160dp</dimen>
     <dimen name="size_164dp">164dp</dimen>

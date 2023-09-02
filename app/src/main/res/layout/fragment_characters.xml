@@ -21,6 +21,6 @@
 
    <include
        android:id="@+id/include_view_character_error_state"
-       layout="@layout/include_view_character_error_state"/>
+       layout="@layout/include_error_view"/>
 
 </ViewFlipper>

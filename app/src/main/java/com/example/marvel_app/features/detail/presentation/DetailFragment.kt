@@ -2,7 +2,6 @@ package com.example.marvel_app.features.detail.presentation
 
 import android.os.Bundle
 import android.transition.TransitionInflater
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,10 @@ import androidx.navigation.fragment.navArgs
 import com.example.marvel_app.databinding.FragmentDetailBinding
 import com.example.marvel_app.features.detail.presentation.adapter.DetailParentAdapter
 import com.example.marvel_app.framework.imageloader.ImageLoader
+import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_POSITION_DETAIL
+import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_POSITION_EMPTY
+import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_POSITION_ERROR
+import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_POSITION_LOADING
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -51,8 +54,8 @@ class DetailFragment : Fragment() {
         setSharedElementTransitionOnEnter()
 
         viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
-            when (uiState) {
-                DetailViewModel.UiState.Loading -> {}
+            binding.flipperDetail.displayedChild = when (uiState) {
+                DetailViewModel.UiState.Loading -> FLIPPER_CHILD_POSITION_LOADING
                 is DetailViewModel.UiState.Success -> {
                     binding.recyclerParentDetail.run{
                         setHasFixedSize(true)
@@ -61,11 +64,19 @@ class DetailFragment : Fragment() {
                             imageLoader
                         )
                     }
+                    FLIPPER_CHILD_POSITION_DETAIL
                 }
-                DetailViewModel.UiState.Error -> {}
+                DetailViewModel.UiState.Error -> {
+                    binding.includeErrorView.buttonRetry.setOnClickListener {
+                        viewModel.getCategories(detailViewArg.characterId)
+                    }
+
+                    FLIPPER_CHILD_POSITION_ERROR
+                }
+                DetailViewModel.UiState.Empty -> FLIPPER_CHILD_POSITION_EMPTY
             }
         }
-        viewModel.getComics(detailViewArg.characterId)
+        viewModel.getCategories(detailViewArg.characterId)
     }
 
     private fun setSharedElementTransitionOnEnter() {
