@@ -39,25 +39,26 @@ Essa arquitetura é baseada na Clean Architecture proposta por Robert C. Martin 
 
 ## Bibliotecas e Frameworks
 
-| Bibliotecas        | Justificativa de uso      | 
-|----------|----------|
-| Material Desing   | Conjunto de diretrizes e componentes de desing desenvolvidos pelo Google.  |
-| Navigation | Biblioteca que facilita a implementação de navegação entre diferentes telas e fluxos.  |
-| Lifecycle   | Fornece componentes e classes que ajudam a gerenciar o ciclo de vida dos componentes.   |
-| Coroutines   | Responsável pela configuração e implementação de programação assincrona e concorrente.   |
-| OkHTTP   | Cliente HTTP que fornece uma API simples para fazer solicitações de rede.  |
-| Retrofit   | Plataforma Google que auxilia no monitoramento e expansão dos apps de maneira rápida e com alta qualidade.   |
-| Gson   | Responsável por fazer serializações e desserializações de objetos Java/Kotlin em formato JSON.   |
-| Glide   | Responsável pelo carregamento e exibição de imagens.   |
-| Firebase Analytics & Crashlytics   | Responsável pelo monitoramento do uso do aplicativo pelos usuários.   |
-| Pagging   | Auxilia na configuração da forma de carregamento e exibição de dados paginados.   |
-| RemoteMediator   | Responsável por sincronizar dados entre um aplicativo Android e uma fonte de dados remota, atualizando o banco de dados local com novas informações.   |
-| Dagger-Hilt   | Facilita a injeção de dependencias no aplicativo.   |
-| Room   | Biblioteca de persistência de dados que facilita o acesso e a manipulação de dados em uma abstração d SQLite.   |
-| Facebook Shimmer   | Fornece um efeito de carregamento de dados agradavel ao usuário.   |
-| JUnit   | Framework de teste para Java e Kotlin que facilita a criação e execução de testes.   |
-| Mockito   | Biblioteca de mocking para testes.   |
-| Espresso   | Responsavel por auxiliar na criação de testes de interface de usuários.   |
+| Bibliotecas        | Justificativa de uso      | Versão |
+|----------|----------|-------|
+| Material Design   | Conjunto de diretrizes e componentes de design desenvolvidos pelo Google.  | 1.6.1 |
+| Navigation | Biblioteca que facilita a implementação de navegação entre diferentes telas e fluxos.  | 2.5.2 |
+| Lifecycle   | Fornece componentes e classes que ajudam a gerenciar o ciclo de vida dos componentes.   | 2.5.1 |
+| Coroutines   | Responsável pela configuração e implementação de programação assíncrona e concorrente.   | 1.6.4 |
+| OkHTTP   | Cliente HTTP que fornece uma API simples para fazer solicitações de rede.  | 4.9.0 |
+| Retrofit   | Plataforma Google que auxilia no monitoramento e expansão dos apps de maneira rápida e com alta qualidade.   | 2.9.0 |
+| Gson   | Responsável por fazer serializações e desserializações de objetos Java/Kotlin em formato JSON.   | 2.9.0 |
+| Glide   | Responsável pelo carregamento e exibição de imagens.   | 4.12.0 |
+| Firebase Analytics & Crashlytics   | Responsável pelo monitoramento do uso do aplicativo pelos usuários.   | 32.2.0 |
+| Paging &  RemoteMediator  | Auxilia na configuração da forma de carregamento e exibição de dados paginados.   | 3.1.1 |
+| Dagger-Hilt   | Facilita a injeção de dependências no aplicativo.   | 2.43.2 |
+| Room   | Biblioteca de persistência de dados que facilita o acesso e a manipulação de dados em uma abstração SQLite.   | 2.4.3 |
+| Facebook Shimmer   | Fornece um efeito de carregamento de dados agradável ao usuário.   | 0.5.0 |
+| JUnit   | Framework de teste para Java e Kotlin que facilita a criação e execução de testes.   | 4.13.2 |
+| Mockito   | Biblioteca de mocking para testes.   | 2.2.0 |
+| MockWebServer   | Biblioteca de mocking para testes.   | 4.9.3 |
+| Espresso   | Responsável por auxiliar na criação de testes de interface de usuários.   | 3.4.0 |
+
 
 ## Boas Práticas
 S.O.L.I.D
