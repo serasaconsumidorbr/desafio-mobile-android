@@ -49,6 +49,7 @@ Essa arquitetura é baseada na Clean Architecture proposta por Robert C. Martin 
 | Retrofit   | Plataforma Google que auxilia no monitoramento e expansão dos apps de maneira rápida e com alta qualidade.   |
 | Gson   | Responsável por fazer serializações e desserializações de objetos Java/Kotlin em formato JSON.   |
 | Glide   | Responsável pelo carregamento e exibição de imagens.   |
+| Firebase Analytics & Crashlytics   | Responsável pelo monitoramento do uso do aplicativo pelos usuários.   |
 | Pagging   | Auxilia na configuração da forma de carregamento e exibição de dados paginados.   |
 | RemoteMediator   | Responsável por sincronizar dados entre um aplicativo Android e uma fonte de dados remota, atualizando o banco de dados local com novas informações.   |
 | Dagger-Hilt   | Facilita a injeção de dependencias no aplicativo.   |
@@ -71,7 +72,9 @@ S.O.L.I.D
 
 <img width="200" height="400" alt="image" src="https://github.com/DevEgF/desafio-mobile-android/assets/104474051/539e1f9c-c185-482b-8c6f-d0ebee5575d3">
 
+## Monitoramento do app
 
+![image](https://github.com/DevEgF/desafio-mobile-android/assets/104474051/46633614-9625-4035-bbf1-d1be963d4f66)
 
 
 
