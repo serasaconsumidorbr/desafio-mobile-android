@@ -72,7 +72,7 @@ class DetailViewModel @Inject constructor(
     sealed class UiState {
         object Loading : UiState()
         data class Success(val detailParentList: List<DetailParentViewEntity>) : UiState()
-        object Error : UiState()
         object Empty: UiState()
+        object Error : UiState()
     }
 }

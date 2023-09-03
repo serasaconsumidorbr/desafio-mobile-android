@@ -3,7 +3,6 @@ package com.example.core.features.details.usecase
 import com.example.core.features.details.data.repository.CategoriesRepository
 import com.example.core.features.details.domain.Comic
 import com.example.core.features.details.domain.Event
-import com.example.core.utils.AppCoroutinesDispatchers
 import com.example.core.utils.CoroutinesDispatchers
 import com.example.core.utils.ResultStatus
 import com.example.core.utils.UseCase

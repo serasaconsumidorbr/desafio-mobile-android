@@ -12,6 +12,7 @@ class GlideImageLoader @Inject constructor(): ImageLoader {
         fallback: Int) {
         Glide.with(imageView.rootView)
             .load(imageUrl)
+            .placeholder(placeholder)
             .fallback(fallback)
             .into(imageView)
     }

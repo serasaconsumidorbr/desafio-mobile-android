@@ -6,10 +6,8 @@ import com.example.core.features.characters.data.repository.CharactersRepository
 import com.example.marvel_app.utils.MainCoroutineRule
 import com.example.marvel_app.utils.factory.CharacterFactory
 import com.example.marvel_app.utils.factory.PagingSourceFactory
-import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
