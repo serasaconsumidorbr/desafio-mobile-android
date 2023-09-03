@@ -7,11 +7,15 @@ import com.example.core.features.details.domain.Comic
 import com.example.core.features.details.domain.Event
 import com.example.core.features.details.usecase.GetCategoriesUseCase
 import com.example.core.features.favorites.usecase.AddFavoriteUseCase
+import com.example.core.features.favorites.usecase.RemoveFavoriteUseCase
 import com.example.core.utils.ResultStatus
 import com.example.marvel_app.R
 import com.example.marvel_app.features.detail.presentation.DetailViewModel
+import com.example.marvel_app.features.detail.presentation.DetailViewModel.AddFavoriteUiState
+import com.example.marvel_app.features.detail.presentation.DetailViewModel.RemoveFavoriteUiState
 import com.example.marvel_app.features.detail.presentation.DetailViewModel.UiState
 import com.example.marvel_app.utils.MainCoroutineRule
+import com.example.marvel_app.utils.args.DetailViewArg
 import com.example.marvel_app.utils.factory.CharacterFactory
 import com.example.marvel_app.utils.factory.ComicFactory
 import com.example.marvel_app.utils.factory.EventFactory
@@ -48,6 +52,9 @@ class DetailViewModelTest {
     @Mock
     private lateinit var addFavoriteUseCase: AddFavoriteUseCase
 
+    @Mock
+    private lateinit var removeFavoriteUseCase: RemoveFavoriteUseCase
+
     private lateinit var detailViewModel: DetailViewModel
 
     private val character = CharacterFactory().create(CharacterFactory.Hero.ThreeDMan)
@@ -58,7 +65,8 @@ class DetailViewModelTest {
 
     @Before
     fun setup() {
-        detailViewModel = DetailViewModel(getCategoryUseCase, addFavoriteUseCase)
+        detailViewModel =
+            DetailViewModel(getCategoryUseCase, addFavoriteUseCase, removeFavoriteUseCase)
         detailViewModel.uiState.observeForever(uiStateObserver)
     }
 
@@ -67,12 +75,12 @@ class DetailViewModelTest {
         runTest {
             //Arrange
             whenever(getCategoryUseCase.invoke(any())).thenReturn(
-                    flowOf(
-                        ResultStatus.Success(
-                            comics to events
-                        )
+                flowOf(
+                    ResultStatus.Success(
+                        comics to events
                     )
                 )
+            )
 
             //Act
             detailViewModel.getCategories(character.id)
@@ -97,12 +105,12 @@ class DetailViewModelTest {
         runTest {
             //Arrange
             whenever(getCategoryUseCase.invoke(any())).thenReturn(
-                    flowOf(
-                        ResultStatus.Success(
-                            comics to emptyList()
-                        )
+                flowOf(
+                    ResultStatus.Success(
+                        comics to emptyList()
                     )
                 )
+            )
             //Act
             detailViewModel.getCategories(character.id)
 
@@ -123,12 +131,12 @@ class DetailViewModelTest {
         runTest {
             //Arrange
             whenever(getCategoryUseCase.invoke(any())).thenReturn(
-                    flowOf(
-                        ResultStatus.Success(
-                            emptyList<Comic>() to events
-                        )
+                flowOf(
+                    ResultStatus.Success(
+                        emptyList<Comic>() to events
                     )
                 )
+            )
             //Act
             detailViewModel.getCategories(character.id)
 
@@ -149,12 +157,12 @@ class DetailViewModelTest {
         runTest {
             //Arrange
             whenever(getCategoryUseCase.invoke(any())).thenReturn(
-                    flowOf(
-                        ResultStatus.Success(
-                            emptyList<Comic>() to emptyList<Event>()
-                        )
+                flowOf(
+                    ResultStatus.Success(
+                        emptyList<Comic>() to emptyList<Event>()
                     )
                 )
+            )
             //Act
             detailViewModel.getCategories(character.id)
 
