@@ -64,19 +64,21 @@ S.O.L.I.D
 
 ## Visão do aplicativo
 
+<p align="center">
 <img width="200" height="400" alt="image" src="https://github.com/DevEgF/desafio-mobile-android/assets/104474051/9aec083b-1091-4849-bca1-b9bb7c14fd87">
-
 <img width="200" height="400" alt="image" src="https://github.com/DevEgF/desafio-mobile-android/assets/104474051/43aca908-e3c6-40c3-98f8-72a932b01b10">
-
 <img width="200" height="400" alt="image" src="https://github.com/DevEgF/desafio-mobile-android/assets/104474051/48a07f3a-e03a-4f92-8633-e8fe25d6ea18">
-
 <img width="200" height="400" alt="image" src="https://github.com/DevEgF/desafio-mobile-android/assets/104474051/539e1f9c-c185-482b-8c6f-d0ebee5575d3">
+</p>
 
 ## Monitoramento do app
+<p align="center">
+  
+![image](https://github.com/DevEgF/desafio-mobile-android/assets/104474051/e279f7b9-e4c9-47a2-9513-00441db86f58)
 
-![image](https://github.com/DevEgF/desafio-mobile-android/assets/104474051/46633614-9625-4035-bbf1-d1be963d4f66)
+Ob.: A versão do app exibida acima não reflete o periodo de desenvilvimento. O intuito é para evidênciar a integração do aplicativo com o Firebase Analytics
 
-
+</p>
 
 ## Referências
 
