@@ -76,7 +76,7 @@ S.O.L.I.D
   
 ![image](https://github.com/DevEgF/desafio-mobile-android/assets/104474051/e279f7b9-e4c9-47a2-9513-00441db86f58)
 
-Ob.: A versão do app exibida acima não reflete o periodo de desenvilvimento. O intuito é para evidênciar a integração do aplicativo com o Firebase Analytics
+Ob.: A versão do app exibida acima não reflete o periodo de desenvilvimento. O intuito da imagem é evidênciar a integração do aplicativo com o Firebase Analytics
 
 </p>
 
