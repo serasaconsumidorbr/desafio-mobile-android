@@ -10,7 +10,7 @@ private const val SNACKBAR_MAX_LINES = 5
 
 fun View.showSnackBar(
     @StringRes messageId: Int,
-    @ColorRes backgroundColor: Int) {
+    backgroundColor: Int) {
     val snackBar = Snackbar.make(
         this,
         resources.getString(messageId),

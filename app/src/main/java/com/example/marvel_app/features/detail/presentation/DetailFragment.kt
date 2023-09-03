@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.example.marvel_app.R
 import com.example.marvel_app.databinding.FragmentDetailBinding
 import com.example.marvel_app.features.detail.presentation.adapter.DetailParentAdapter
 import com.example.marvel_app.framework.imageloader.ImageLoader
@@ -19,6 +20,7 @@ import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_POSITION_LOADING
 import com.example.marvel_app.utils.Constants.FLIPPER_FAVORITE_CHILD_POSITION_LOADING
 import com.example.marvel_app.utils.Constants.FLIPPER_FAVORITE_CHILD_POSITION_SUCCESS
 import com.example.marvel_app.utils.args.DetailViewArg
+import com.example.marvel_app.utils.extensions.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -105,9 +107,10 @@ class DetailFragment : Fragment() {
                 }
 
                 is DetailViewModel.FavoriteUiState.Error -> {
-                    val errorMessage = "Error when trying to add favorite"
-                    val toast = Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG)
-                    toast.show()
+                    binding.root.showSnackBar(
+                        R.string.error_add_favorite,
+                        R.color.red_400
+                    )
                     FLIPPER_FAVORITE_CHILD_POSITION_LOADING
                 }
             }
