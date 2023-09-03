@@ -4,8 +4,4 @@
         android:id="@+id/home"
         android:icon="@drawable/ic_heroes_menu_outlined"
         android:title="@string/app_menu_heroes" />
-    <item
-        android:id="@+id/favorites"
-        android:icon="@drawable/ic_favorite_menu_outlined"
-        android:title="@string/app_menu_favorites" />
 </menu>

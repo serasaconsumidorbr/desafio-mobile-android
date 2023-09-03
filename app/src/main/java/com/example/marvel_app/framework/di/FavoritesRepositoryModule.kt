@@ -2,8 +2,8 @@ package com.example.marvel_app.framework.di
 
 import com.example.core.features.favorites.data.datasource.FavoritesLocalDatasource
 import com.example.core.features.favorites.data.repository.FavoritesRepository
-import com.example.marvel_app.features.favorites.local.datasource.FavoriteLocalDatasourceImpl
-import com.example.marvel_app.features.favorites.local.repository.FavoriteRepositoryImpl
+import com.example.marvel_app.features.characters.local.datasource.FavoriteLocalDatasourceImpl
+import com.example.marvel_app.features.characters.local.repository.FavoriteRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

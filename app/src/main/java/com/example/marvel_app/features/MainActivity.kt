@@ -1,6 +1,7 @@
 package com.example.marvel_app.features
 
 import android.os.Bundle
+import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -20,34 +21,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setNavStartDestination(R.id.charactersFragment)
 
-        /**
-         * Configura o navHostContainer
-         */
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_container) as NavHostFragment
-
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_container) as NavHostFragment
         navController = navHostFragment.navController
 
-        /**
-         * Configura bottom navigation
-         */
-        binding.bottomNavMain.setupWithNavController(navController)
-
-        /**
-         * Configura topLevel destination
-         */
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.charactersFragment, R.id.favoritesFragment)
+            setOf(R.id.charactersFragment)
         )
 
-        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
+        binding.toolbar.setupWithNavController(navController,appBarConfiguration)
 
-        navController.addOnDestinationChangedListener { _, destination, _->
-            val isTopLevelDestination = appBarConfiguration.topLevelDestinations.contains(destination.id)
-            if(!isTopLevelDestination) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val isTopLevelDestination = appBarConfiguration.topLevelDestinations.contains(destination
+                .id)
+
+            if (!isTopLevelDestination) {
                 binding.toolbar.setNavigationIcon(R.drawable.ic_back)
             }
         }
+    }
+
+    private fun setNavStartDestination(@IdRes startDestinationId: Int) {
+        val navController = getNavHostFragment().navController
+        val navGraph = navController.navInflater.inflate(R.navigation.characters)
+
+        navGraph.setStartDestination(startDestinationId)
+        navController.graph = navGraph
+    }
+
+    private fun getNavHostFragment(): NavHostFragment {
+        return supportFragmentManager.findFragmentById(R.id.nav_host_container) as NavHostFragment
     }
 }

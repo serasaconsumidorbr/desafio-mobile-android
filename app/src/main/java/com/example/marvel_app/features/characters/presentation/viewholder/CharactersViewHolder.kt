@@ -1,7 +1,6 @@
 package com.example.marvel_app.features.characters.presentation.viewholder
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.features.characters.domain.model.Character

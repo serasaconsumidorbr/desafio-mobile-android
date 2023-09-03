@@ -1,4 +1,4 @@
-package com.example.marvel_app.features.favorites.local.datasource
+package com.example.marvel_app.features.characters.local.datasource
 
 import com.example.core.features.characters.domain.model.Character
 import com.example.core.features.favorites.data.datasource.FavoritesLocalDatasource
