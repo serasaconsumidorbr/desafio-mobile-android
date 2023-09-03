@@ -20,8 +20,13 @@ Esse documento destina-se a equipe de avaliação.
 ## Arquitetura
 Essa arquitetura é baseada na Clean Architecture proposta por Robert C. Martin no livro “Arquitetura Limpa: O Guia do Artesão para Estrutura e Design de Software”, mais o desing patter MVVM proposto pela google no seu [Guia de Arquitetura do App](https://developer.android.com/jetpack/guide?hl=pt-br).
 
-1. Camadas da Clean Architecture + MVVM
-   1. Presenter
+- Camadas da Clean Architecture + MVVM
+
+<p align="center">
+  <img width="400" height="600" alt="image" src="https://github.com/DevEgF/desafio-mobile-android/assets/104474051/17c1ce02-8d0f-4360-8887-aa4d81ee612d">
+</p>
+
+   1. Presentation
       - A camada de apresentação é responsavel por lidar com a interface do usuário e apresentar os dados ao usuário final. Essa camada é dividida em duas partes principais View e ViewModel.
    2. View
       - A camada View é a interface do usuário, que exibe informações e interações com o usuário. Ela é responsavel por receber eventros e repassá-los para a ViewModel correspondente, bem como exibir os dados fornecidos pela ViewModel. A view não deve conter lógica de negócio, apenas manipulação da interface do usuário. Ela pode ser implementeada utilizando tecnologias especificas, como um Fragment ou uma Activity no Android.
