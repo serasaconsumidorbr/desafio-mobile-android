@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.marvel_app.databinding.FragmentDetailBinding
@@ -94,10 +95,20 @@ class DetailFragment : Fragment() {
     private fun observeFavoriteUiState() {
         viewModel.favoriteUiState.observe(viewLifecycleOwner) { favoriteUiState ->
             binding.flipperFavorite.displayedChild = when (favoriteUiState) {
-                DetailViewModel.FavoriteUiState.Loading -> FLIPPER_FAVORITE_CHILD_POSITION_LOADING
+                DetailViewModel.FavoriteUiState.Loading -> {
+                    FLIPPER_FAVORITE_CHILD_POSITION_LOADING
+                }
+
                 is DetailViewModel.FavoriteUiState.FavoriteIcon -> {
                     binding.imageFavoriteIcon.setImageResource(favoriteUiState.icon)
                     FLIPPER_FAVORITE_CHILD_POSITION_SUCCESS
+                }
+
+                is DetailViewModel.FavoriteUiState.Error -> {
+                    val errorMessage = "Error when trying to add favorite"
+                    val toast = Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG)
+                    toast.show()
+                    FLIPPER_FAVORITE_CHILD_POSITION_LOADING
                 }
             }
         }

@@ -86,7 +86,9 @@ class DetailViewModel @Inject constructor(
                 success = {
                     _favoriteUiState.value = FavoriteUiState.FavoriteIcon(R.drawable.ic_favorite_checked)
                 },
-                error = {}
+                error = {
+                    _favoriteUiState.value = FavoriteUiState.Error
+                }
             )
         }
     }
@@ -101,5 +103,6 @@ class DetailViewModel @Inject constructor(
     sealed class FavoriteUiState {
         object Loading : FavoriteUiState()
         class FavoriteIcon(@DrawableRes val icon: Int) : FavoriteUiState()
+        object Error: FavoriteUiState()
     }
 }
