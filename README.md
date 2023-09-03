@@ -81,6 +81,14 @@ Ob.: A versão do app exibida acima não reflete o periodo de desenvolvimento. O
 
 </p>
 
+## Roadmap para futuras implementações
+
+1. Adicionar o comando de "Swipe to refresh" na tela de listagem de personagens.
+
+2. Adicionar carrocel a tela inicial, logo a cima a listagem de personagens, que exiba os personagens favoritados.
+
+3. Adicionar "Searchbar" para procura de personagens especificos e adicionar opção para ordenação por nome.
+
 ## Referências
 
 - [1] MARTIN, Robert C. The Clean Architecture Artigo web. Ano: 2012. Disponível em: https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
