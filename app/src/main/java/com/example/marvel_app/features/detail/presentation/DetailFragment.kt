@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.marvel_app.R
@@ -59,12 +58,20 @@ class DetailFragment : Fragment() {
 
         setSharedElementTransitionOnEnter()
         observeUiState(detailViewArg)
-        observeFavoriteUiState()
+        observeAddFavoriteUiState()
+        observeRemoveFavoriteUiState()
 
         viewModel.getCategories(detailViewArg.characterId)
 
+        var isFavorite = false
+
         binding.imageFavoriteIcon.setOnClickListener {
-            viewModel.updateFavorite(detailViewArg)
+            if (isFavorite) {
+                viewModel.removeFavorite(detailViewArg)
+            } else {
+                viewModel.updateFavorite(detailViewArg)
+            }
+            isFavorite = !isFavorite
         }
     }
 
@@ -94,21 +101,44 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun observeFavoriteUiState() {
-        viewModel.favoriteUiState.observe(viewLifecycleOwner) { favoriteUiState ->
+    private fun observeAddFavoriteUiState() {
+        viewModel.addFavoriteUiState.observe(viewLifecycleOwner) { favoriteUiState ->
             binding.flipperFavorite.displayedChild = when (favoriteUiState) {
-                DetailViewModel.FavoriteUiState.Loading -> {
+                DetailViewModel.AddFavoriteUiState.Loading -> {
                     FLIPPER_FAVORITE_CHILD_POSITION_LOADING
                 }
 
-                is DetailViewModel.FavoriteUiState.FavoriteIcon -> {
+                is DetailViewModel.AddFavoriteUiState.FavoriteIcon -> {
                     binding.imageFavoriteIcon.setImageResource(favoriteUiState.icon)
                     FLIPPER_FAVORITE_CHILD_POSITION_SUCCESS
                 }
 
-                is DetailViewModel.FavoriteUiState.Error -> {
+                is DetailViewModel.AddFavoriteUiState.Error -> {
                     binding.root.showSnackBar(
                         R.string.error_add_favorite,
+                        R.color.red_400
+                    )
+                    FLIPPER_FAVORITE_CHILD_POSITION_LOADING
+                }
+            }
+        }
+    }
+
+    private fun observeRemoveFavoriteUiState() {
+        viewModel.removeFavoriteUiState.observe(viewLifecycleOwner) { favoriteUiState ->
+            binding.flipperFavorite.displayedChild = when (favoriteUiState) {
+                DetailViewModel.RemoveFavoriteUiState.Loading -> {
+                    FLIPPER_FAVORITE_CHILD_POSITION_LOADING
+                }
+
+                is DetailViewModel.RemoveFavoriteUiState.FavoriteIcon -> {
+                    binding.imageFavoriteIcon.setImageResource(favoriteUiState.icon)
+                    FLIPPER_FAVORITE_CHILD_POSITION_SUCCESS
+                }
+
+                is DetailViewModel.RemoveFavoriteUiState.Error -> {
+                    binding.root.showSnackBar(
+                        R.string.error_remove_favorite,
                         R.color.red_400
                     )
                     FLIPPER_FAVORITE_CHILD_POSITION_LOADING

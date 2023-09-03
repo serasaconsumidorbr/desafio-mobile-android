@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.features.details.usecase.GetCategoriesUseCase
 import com.example.core.features.favorites.usecase.AddFavoriteUseCase
+import com.example.core.features.favorites.usecase.RemoveFavoriteUseCase
 import com.example.marvel_app.R
 import com.example.marvel_app.features.detail.response.DetailChildViewEntity
 import com.example.marvel_app.features.detail.response.DetailParentViewEntity
@@ -19,17 +20,21 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(
     private val getCategoriesUseCase: GetCategoriesUseCase,
-    private val addFavoriteUseCase: AddFavoriteUseCase
+    private val addFavoriteUseCase: AddFavoriteUseCase,
+    private val removeFavoriteUseCase: RemoveFavoriteUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()
     val uiState: LiveData<UiState> get() = _uiState
 
-    private val _favoriteUiState = MutableLiveData<FavoriteUiState>()
-    val favoriteUiState: LiveData<FavoriteUiState> get() = _favoriteUiState
+    private val _addFavoriteUiState = MutableLiveData<AddFavoriteUiState>()
+    val addFavoriteUiState: LiveData<AddFavoriteUiState> get() = _addFavoriteUiState
+
+    private val _removeFavoriteUiState = MutableLiveData<RemoveFavoriteUiState>()
+    val removeFavoriteUiState: LiveData<RemoveFavoriteUiState> get() = _removeFavoriteUiState
 
     init {
-        _favoriteUiState.value = FavoriteUiState.FavoriteIcon(R.drawable.ic_favorite_unchecked)
+        _addFavoriteUiState.value = AddFavoriteUiState.FavoriteIcon(R.drawable.ic_favorite_unchecked)
     }
 
     fun getCategories(characterId: Int) = viewModelScope.launch {
@@ -81,13 +86,33 @@ class DetailViewModel @Inject constructor(
                 )
             ).watchStatus(
                 loading = {
-                    _favoriteUiState.value = FavoriteUiState.Loading
+                    _addFavoriteUiState.value = AddFavoriteUiState.Loading
                 },
                 success = {
-                    _favoriteUiState.value = FavoriteUiState.FavoriteIcon(R.drawable.ic_favorite_checked)
+                    _addFavoriteUiState.value = AddFavoriteUiState.FavoriteIcon(R.drawable.ic_favorite_checked)
                 },
                 error = {
-                    _favoriteUiState.value = FavoriteUiState.Error
+                    _addFavoriteUiState.value = AddFavoriteUiState.Error
+                }
+            )
+        }
+    }
+
+    fun removeFavorite (detailViewArg: DetailViewArg) = viewModelScope.launch {
+        detailViewArg.run {
+            removeFavoriteUseCase.invoke(
+                RemoveFavoriteUseCase.ParamsRemoveFavorite (
+                    characterId, name, imageUrl
+                )
+            ).watchStatus(
+                loading = {
+                    _removeFavoriteUiState.value = RemoveFavoriteUiState.Loading
+                },
+                success = {
+                    _removeFavoriteUiState.value = RemoveFavoriteUiState.FavoriteIcon(R.drawable.ic_favorite_unchecked)
+                },
+                error = {
+                    _removeFavoriteUiState.value = RemoveFavoriteUiState.Error
                 }
             )
         }
@@ -100,9 +125,15 @@ class DetailViewModel @Inject constructor(
         object Error : UiState()
     }
 
-    sealed class FavoriteUiState {
-        object Loading : FavoriteUiState()
-        class FavoriteIcon(@DrawableRes val icon: Int) : FavoriteUiState()
-        object Error: FavoriteUiState()
+    sealed class AddFavoriteUiState {
+        object Loading : AddFavoriteUiState()
+        class FavoriteIcon(@DrawableRes val icon: Int) : AddFavoriteUiState()
+        object Error: AddFavoriteUiState()
+    }
+
+    sealed class RemoveFavoriteUiState {
+        object Loading : RemoveFavoriteUiState()
+        class FavoriteIcon(@DrawableRes val icon: Int) : RemoveFavoriteUiState()
+        object Error: RemoveFavoriteUiState()
     }
 }

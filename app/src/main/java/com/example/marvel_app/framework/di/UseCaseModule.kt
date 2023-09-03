@@ -6,6 +6,8 @@ import com.example.core.features.details.usecase.GetCategoriesUseCase
 import com.example.core.features.details.usecase.GetCategoriesUseCaseImpl
 import com.example.core.features.favorites.usecase.AddFavoriteUseCase
 import com.example.core.features.favorites.usecase.AddFavoriteUseCaseImpl
+import com.example.core.features.favorites.usecase.RemoveFavoriteUseCase
+import com.example.core.features.favorites.usecase.RemoveFavoriteUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -23,4 +25,7 @@ interface UseCaseModule {
 
     @Binds
     fun bindsAddFavoriteUseCase(useCaseImpl: AddFavoriteUseCaseImpl): AddFavoriteUseCase
+
+    @Binds
+    fun bindsRemoveFavoriteUseCase(useCaseImpl: RemoveFavoriteUseCaseImpl): RemoveFavoriteUseCase
 }
