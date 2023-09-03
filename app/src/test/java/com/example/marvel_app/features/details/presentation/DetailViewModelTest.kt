@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import com.example.core.features.details.domain.Comic
 import com.example.core.features.details.domain.Event
 import com.example.core.features.details.usecase.GetCategoriesUseCase
+import com.example.core.features.favorites.usecase.AddFavoriteUseCase
 import com.example.core.utils.ResultStatus
 import com.example.marvel_app.R
 import com.example.marvel_app.features.detail.presentation.DetailViewModel
@@ -44,6 +45,9 @@ class DetailViewModelTest {
     @Mock
     private lateinit var getCategoryUseCase: GetCategoriesUseCase
 
+    @Mock
+    private lateinit var addFavoriteUseCase: AddFavoriteUseCase
+
     private lateinit var detailViewModel: DetailViewModel
 
     private val character = CharacterFactory().create(CharacterFactory.Hero.ThreeDMan)
@@ -54,7 +58,7 @@ class DetailViewModelTest {
 
     @Before
     fun setup() {
-        detailViewModel = DetailViewModel(getCategoryUseCase)
+        detailViewModel = DetailViewModel(getCategoryUseCase, addFavoriteUseCase)
         detailViewModel.uiState.observeForever(uiStateObserver)
     }
 

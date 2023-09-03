@@ -22,4 +22,8 @@ object DatabaseModule {
         AppDatabase::class.java,
         APP_DATABASE_NAME
     ).build()
+
+
+    @Provides
+    fun provideFavoriteDao(appDatabase: AppDatabase) = appDatabase.favoriteDao()
 }

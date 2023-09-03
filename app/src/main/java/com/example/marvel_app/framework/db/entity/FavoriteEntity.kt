@@ -3,6 +3,7 @@ package com.example.marvel_app.framework.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.core.features.characters.domain.model.Character
 import com.example.marvel_app.utils.Constants.FAVORITES_COLUMN_INFO_ID
 import com.example.marvel_app.utils.Constants.FAVORITES_COLUMN_INFO_IMAGE_URL
 import com.example.marvel_app.utils.Constants.FAVORITES_COLUMN_INFO_NAME
@@ -18,3 +19,7 @@ data class FavoriteEntity(
     @ColumnInfo(name = FAVORITES_COLUMN_INFO_IMAGE_URL)
     val imageUrl: String
 )
+
+fun List<FavoriteEntity>.toCharacterModel() = map {
+    Character(it.id, it.name, it.imageUrl)
+}
