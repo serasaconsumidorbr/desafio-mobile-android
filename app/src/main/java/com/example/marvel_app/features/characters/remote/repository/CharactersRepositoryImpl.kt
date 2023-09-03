@@ -4,13 +4,11 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.PagingSource
 import androidx.paging.map
 import com.example.core.features.characters.data.datasource.CharactersRemoteDatasource
 import com.example.core.features.characters.data.repository.CharactersRepository
 import com.example.core.features.characters.domain.model.Character
 import com.example.marvel_app.framework.db.AppDatabase
-import com.example.marvel_app.framework.paging.CharactersPagingSource
 import com.example.marvel_app.framework.paging.CharactersRemoteMediator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -20,10 +18,6 @@ class CharactersRepositoryImpl @Inject constructor(
     private val charactersRemoteDatasource: CharactersRemoteDatasource,
     private val appDatabase: AppDatabase
 ) : CharactersRepository {
-
-    override fun getCharacters(query: String): PagingSource<Int, Character> {
-        return CharactersPagingSource(charactersRemoteDatasource, query)
-    }
 
     @OptIn(ExperimentalPagingApi::class)
     override fun getCachedCharacters(

@@ -2,13 +2,17 @@ package com.example.core.features.characters.usecase
 
 import androidx.datastore.preferences.protobuf.ExperimentalApi
 import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.example.core.features.characters.data.repository.CharactersRepository
+import com.example.core.features.characters.domain.model.Character
 import com.example.marvel_app.utils.MainCoroutineRule
 import com.example.marvel_app.utils.factory.CharacterFactory
 import com.example.marvel_app.utils.factory.PagingSourceFactory
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Before
@@ -29,7 +33,7 @@ class GetCharactersUseCaseImplTest {
 
     private val hero = CharacterFactory().create(CharacterFactory.Hero.ThreeDMan)
 
-    private val fakePagingSource = PagingSourceFactory().create(listOf(hero))
+    private val fakePagingData = PagingSourceFactory().createPagingData(listOf(hero))
 
     @Mock
     lateinit var repository: CharactersRepository
@@ -42,17 +46,16 @@ class GetCharactersUseCaseImplTest {
     @Test
     fun `should validate the paging creation when invoke from use case is called`() =
         runTest {
-            //Arrange
-            whenever(repository.getCharacters(""))
-                .thenReturn(fakePagingSource)
+            // Arrange
+            whenever(repository.getCachedCharacters(any(), any()))
+                .thenReturn(fakePagingData)
 
-            //Act
+            // Act
             val result = getCharactersUseCase.invoke(
                 GetCharactersUseCase.GetCharactersParams("", PagingConfig(20))
             )
 
-            //Assert
-            verify(repository).getCharacters("")
-            assertNotNull(result.first())
+            // Assert
+            assertEquals(fakePagingData, result)
         }
 }
