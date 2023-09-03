@@ -18,6 +18,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.marvel_app.features.detail.presentation.DetailFragment"
+        android:label="{screenTitle}"
         tools:layout="@layout/fragment_detail">
 
         <argument
