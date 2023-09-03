@@ -16,11 +16,11 @@ import androidx.paging.LoadState
 import com.example.marvel_app.databinding.FragmentCharactersBinding
 import com.example.marvel_app.features.characters.presentation.adapter.CharacterAdapter
 import com.example.marvel_app.features.characters.presentation.adapter.CharactersLoadStateAdapter
-import com.example.marvel_app.utils.args.DetailViewArg
 import com.example.marvel_app.framework.imageloader.ImageLoader
 import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_CHARACTERS
 import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_ERROR
 import com.example.marvel_app.utils.Constants.FLIPPER_CHILD_LOADING
+import com.example.marvel_app.utils.args.DetailViewArg
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -65,7 +65,7 @@ class CharactersFragment : Fragment() {
     }
 
     private fun initCharacterAdapter() {
-        characterAdapter = CharacterAdapter(imageLoader) {character, view ->
+        characterAdapter = CharacterAdapter(imageLoader) { character, view ->
             val extras = FragmentNavigatorExtras(
                 view to character.name
             )
@@ -97,22 +97,31 @@ class CharactersFragment : Fragment() {
     private fun observeInitialLoadState() {
         lifecycleScope.launch {
             characterAdapter.loadStateFlow.collectLatest { loadState ->
-               binding.flippersCharacters.displayedChild = when (loadState.refresh) {
-                    is LoadState.Loading -> {
+                binding.flippersCharacters.displayedChild = when {
+                    loadState.mediator?.refresh is LoadState.Loading -> {
                         setShimmerVisibility(true)
                         FLIPPER_CHILD_LOADING
                     }
-                   is LoadState.NotLoading -> {
-                       setShimmerVisibility(false)
-                       FLIPPER_CHILD_CHARACTERS
-                   }
-                   is LoadState.Error -> {
-                       setShimmerVisibility(false)
-                       binding.includeViewCharacterErrorState.buttonRetry.setOnClickListener {
-                           characterAdapter.retry()
-                       }
-                       FLIPPER_CHILD_ERROR
-                   }
+
+                    loadState.mediator?.refresh is LoadState.Error
+                            && characterAdapter.itemCount == 0 -> {
+                        setShimmerVisibility(false)
+                        binding.includeViewCharacterErrorState.buttonRetry.setOnClickListener {
+                            characterAdapter.retry()
+                        }
+                        FLIPPER_CHILD_ERROR
+                    }
+
+                    loadState.source.refresh is LoadState.NotLoading
+                            || loadState.mediator?.refresh is LoadState.NotLoading -> {
+                        setShimmerVisibility(false)
+                        FLIPPER_CHILD_CHARACTERS
+                    }
+
+                    else -> {
+                        setShimmerVisibility(false)
+                        FLIPPER_CHILD_CHARACTERS
+                    }
                 }
             }
         }

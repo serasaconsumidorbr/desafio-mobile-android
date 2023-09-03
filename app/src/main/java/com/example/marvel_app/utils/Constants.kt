@@ -31,4 +31,14 @@ object Constants {
     const val FAVORITES_COLUMN_INFO_ID = "id"
     const val FAVORITES_COLUMN_INFO_NAME = "name"
     const val FAVORITES_COLUMN_INFO_IMAGE_URL = "image_url"
+
+    //Database Local Constants
+    const val CHARACTERS_TABLE_NAME = "characters"
+    const val CHARACTERS_COLUMN_INFO_ID = "id"
+    const val CHARACTERS_COLUMN_INFO_NAME = "name"
+    const val CHARACTERS_COLUMN_INFO_IMAGE_URL = "image_url"
+
+    //Remote Keys
+    const val REMOTE_KEYS_TABLE_NAME = "remote_keys"
+    const val REMOTE_KEYS_COLUMN_INFO_OFFSET = "next_offset"
 }
