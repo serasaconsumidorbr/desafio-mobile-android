@@ -11,7 +11,7 @@ Esse documento destina-se a equipe de avaliação.
 ## Funcionalidades
 1. **Listagem de Todos os Personagens da Marvel:** Os usuários podem navegar e visualizar uma lista completa de personagens da Marvel. Essa lista inclui nomes e imagens dos personagens.
 
-2. **Visualizar Detalhes do Personagem:** Os usuários podem selecionar um personagem da lista para visualizar um carrocel os quadrinhos em que ele é mencionado ou nos eventos em que ele está presente.
+2. **Visualizar Detalhes do Personagem:** Os usuários podem selecionar um personagem da lista para visualizar um carrocel com os quadrinhos em que ele é mencionado ou nos eventos em que ele está presente.
 
 3. **Cache de Dados para Utilização Offline:** O aplicativo utiliza um mecanismo de cache para armazenar os dados dos personagens. Isso permite que os usuários acessem as informações mesmo quando estão sem conexão com a internet. O cache garante uma experiência mais contínua e rápida, mesmo em condições de conectividade intermitente.
 
