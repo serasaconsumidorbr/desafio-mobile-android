@@ -2,10 +2,10 @@
 Este README apresenta uma visão geral da arquitetura utilizada no desenvolvimento do aplicativo Marvel APP.
 O intuito é capturar e transmitir as decisões significativas do ponto de vista da arquitetura que foram tomadas em relação ao app.
 
-## Proposito
+## Propósito
 Este documento foi criado para dar uma visão de alto nível da solução técnica seguida, enfatizando os componentes e frameworks que foram utilizados e desenvolvidos, além das interfaces e integrações entre os mesmos.
 
-## Publico Alvo
+## Público Alvo
 Esse documento destina-se a equipe de avaliação.
 
 ## Funcionalidades
@@ -88,6 +88,12 @@ Ob.: A versão do app exibida acima não reflete o periodo de desenvolvimento. O
 2. Adicionar carrocel a tela inicial, logo a cima a listagem de personagens, que exiba os personagens favoritados.
 
 3. Adicionar "Searchbar" para procura de personagens especificos e adicionar opção para ordenação por nome.
+
+## Raciocinio para desenvolvimento do projeto
+
+O aplicativo foi estruturado conforme a Clean Arc, em dois módulos: módulo Core e o módulo App. No módulo Core ficam todas as classes e padrões de projeto relacionado a camada de domain e data, como por exemplo: fontes de dados remotas e locais, além dos repositórios, models e casos de uso. Já no módulo App, ficam todas as classes e padrões de projeto que se relacionam ao framework do Android, sendo assim: injeção de dependência, implementações dos repositórios e fontes de dados, dtos, view models e fragmentos. Toda a aplicação foi modularizada por funcionalidade, são elas characters e details. Cada pacote segue o padrão da arquitetura adotada facilitando assim, a escalabididade e a manutenção de cada funcionalidade.
+
+Após o processo de desenvolvimento adicionei o aplicativo com versão de realese ao firebase, com o intuito de monitorar a utilização do app pelos usuário, capturando assim problemas de performance e crashs caso ocorram.
 
 ## Referências
 
