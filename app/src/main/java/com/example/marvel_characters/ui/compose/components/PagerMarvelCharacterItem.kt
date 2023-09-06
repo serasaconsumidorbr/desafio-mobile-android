@@ -21,8 +21,8 @@ fun PagerMarvelCharacterItem(marvelCharacter: MarvelCharacter) {
             Modifier.padding(mediumPadding)
         ) {
             MarvelCharacterImage(thumbnailUrl = marvelCharacter.thumbnailUrl)
-            Name()
-            Description()
+          Name()
+          Description()
         }
     }
 }

@@ -41,6 +41,4 @@ class CharactersRemoteDataSourceTest {
         assertTrue((resultData as Result.Success).data.isNotEmpty())
 
     }
-
-
 }
