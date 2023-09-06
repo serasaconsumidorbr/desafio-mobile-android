@@ -6,10 +6,15 @@ import com.google.gson.annotations.SerializedName
 
 
 data class NetworkCharacterContainer(
-    val data: Data
+      val data: Data,
+    val copyright:String,
+    val attributionText:String
 )
 
 data class Data(
+    val offset: Int,
+    val limit:Int,
+    val total:Int,
     @SerializedName("results")
     val networkCharacters: List<NetworkCharacter>
 )
