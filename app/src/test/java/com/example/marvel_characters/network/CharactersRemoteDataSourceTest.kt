@@ -1,0 +1,3 @@
+package com.example.marvel_characters.network
+
+class CharactersRemoteDataSourceTest
