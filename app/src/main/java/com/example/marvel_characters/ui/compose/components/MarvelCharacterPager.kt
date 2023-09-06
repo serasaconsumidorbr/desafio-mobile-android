@@ -6,27 +6,33 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerDefaults
+import androidx.compose.foundation.pager.PagerSnapDistance
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.example.marvel_characters.Constants.PAGER_PAGE_COUNT
+import com.example.marvel_characters.R
 import com.example.marvel_characters.domain.MarvelCharacter
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 import kotlin.math.absoluteValue
@@ -36,15 +42,21 @@ import kotlin.math.absoluteValue
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MarvelCharacterPager(modifier: Modifier = Modifier, marvelCharacters: List<MarvelCharacter>) {
+    val smallPadding = dimensionResource(id = R.dimen.small_padding)
+
 
     val pagerState = rememberPagerState(pageCount = {
         PAGER_PAGE_COUNT
     })
-    Column {
+    Column() {
 
-        HorizontalPager(state = pagerState) { page ->
-            Card(
-                Modifier.align(Alignment.CenterHorizontally)
+        val fling = PagerDefaults.flingBehavior(
+            state = pagerState,
+            pagerSnapDistance = PagerSnapDistance.atMost(3)
+        )
+        HorizontalPager(state = pagerState,    flingBehavior = fling) { page ->
+            OutlinedCard(
+                Modifier.align(Alignment.CenterHorizontally).padding(smallPadding)
                     .fillMaxWidth()
                     .graphicsLayer {
                         // Calculate the absolute offset for the current page from the
@@ -57,14 +69,14 @@ fun MarvelCharacterPager(modifier: Modifier = Modifier, marvelCharacters: List<M
 
                         // We animate the alpha, between 50% and 100%
                         alpha = lerp(
-                            start = 0.5f,
+                            start = 0.3f,
                             stop = 1f,
                             fraction = 1f - pageOffset.coerceIn(0f, 1f)
                         )
                     }
             ) {
 
-                    PagerMarvelCharacterItem(marvelCharacter =marvelCharacters[page])
+                    MarvelCharacterItem(marvelCharacter =marvelCharacters[page])
             }
 
         }
@@ -88,7 +100,7 @@ private fun PagerIndicator(
     ) {
         repeat(PAGER_PAGE_COUNT) { iteration ->
             val color =
-                if (pagerState.currentPage == iteration) Color.Red else Color.DarkGray
+                if (pagerState.currentPage == iteration) MaterialTheme.colorScheme.primaryContainer else  MaterialTheme.colorScheme.secondaryContainer
             Box(
                 modifier = Modifier
                     .padding(2.dp)

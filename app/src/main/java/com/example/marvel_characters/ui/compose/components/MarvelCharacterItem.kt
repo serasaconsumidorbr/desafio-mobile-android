@@ -13,16 +13,18 @@ import com.example.marvel_characters.domain.MarvelCharacter
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 
 @Composable
-fun PagerMarvelCharacterItem(marvelCharacter: MarvelCharacter) {
-    val mediumPadding = dimensionResource(id = R.dimen.medium_padding)
+fun MarvelCharacterItem(marvelCharacter: MarvelCharacter, modifier:Modifier = Modifier) {
+    val smallPadding = dimensionResource(id = R.dimen.small_padding)
 
     marvelCharacter.apply {
-        Column(
-            Modifier.padding(mediumPadding)
+        Column(modifier= Modifier.padding(smallPadding)
         ) {
-            MarvelCharacterImage(thumbnailUrl = marvelCharacter.thumbnailUrl)
-          Name()
-          Description()
+            MarvelCharacterImage(
+                thumbnailUrl = marvelCharacter.thumbnailUrl,
+                modifier = Modifier.padding(bottom = smallPadding)
+            )
+            Name(modifier = Modifier.padding(vertical = smallPadding))
+            Description()
         }
     }
 }
@@ -41,7 +43,7 @@ fun MarvelCharacterPreview() {
                 description = "Despite being the only one of the Runaways without any superhuman abilities or tech, Alex Wilder became the de facto leader of the group due to his natural leadership skills and intellect, as well as prodigy-level logic and strategy",
                 thumbnailUrl = ""
             )
-            PagerMarvelCharacterItem(character)
+            MarvelCharacterItem(character)
         }
     }
 }

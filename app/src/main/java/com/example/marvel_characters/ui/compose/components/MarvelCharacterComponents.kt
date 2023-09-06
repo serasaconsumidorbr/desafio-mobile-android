@@ -54,7 +54,7 @@ fun MarvelCharacter.Description(modifier: Modifier = Modifier) {
         style = style,
         maxLines = 2,
         overflow = TextOverflow.Ellipsis,
-        modifier = modifier.height(48.dp), textAlign = TextAlign.Start
+        modifier = modifier.height(36.dp), textAlign = TextAlign.Start
     )
 }
 
