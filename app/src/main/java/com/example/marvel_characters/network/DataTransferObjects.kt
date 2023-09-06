@@ -10,7 +10,7 @@ data class NetworkCharacterContainer(
 )
 
 data class Data(
-    @SerializedName("result")
+    @SerializedName("results")
     val networkCharacters: List<NetworkCharacter>
 )
 

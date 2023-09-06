@@ -31,6 +31,7 @@ android {
         debug {
             buildConfigField("String", "PUBLIC_API_KEY", "\"" + localProperties['publicApiKey'] + "\"")
             buildConfigField("String", "PRIVATE_API_KEY", "\"" + localProperties['privateApiKey'] + "\"")
+            buildConfigField("String", "HASH", "\"" + localProperties['hash'] + "\"")
 
             //     resValue("string", "api_key", localProperties['apiKey'])
         }
