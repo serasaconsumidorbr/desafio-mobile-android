@@ -15,13 +15,13 @@ class MarvelCharactersViewModel(private val repository: Repository) : ViewModel(
 
     init {
         viewModelScope.launch {
-            updateScreenWithDefaultSearch()
+            addNextPageCharactersResultToScreen()
         }
     }
 
-    private suspend fun updateScreenWithDefaultSearch() {
+    private suspend fun addNextPageCharactersResultToScreen() {
 
-        val result = repository.getCharactersFromWeb()
+        val result = repository.getNextPage()
         if (result.succeeded) {
             _uiState.value = MarvelCharactersUIState(
                 marvelCharacters = (result as Result.Success).data

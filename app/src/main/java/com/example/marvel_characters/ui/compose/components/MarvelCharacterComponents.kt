@@ -25,7 +25,7 @@ fun MarvelCharacterImage(
     val placeholder = R.drawable.marvel_m
     val representativeImageOfCharacterText =
         stringResource(R.string.character_thumbnail_content_description, name)
-    val isNotAvailableText =   stringResource(R.string.not_available, name)
+    val isNotAvailableText =   stringResource(R.string.not_available)
     val contentDescription =
         if (thumbnailUrl.equals(Constants.IMAGE_NOT_AVAILABLE_URL)) {
             "$representativeImageOfCharacterText $isNotAvailableText"
@@ -62,7 +62,7 @@ fun Name(
 @Composable
 fun Description( modifier: Modifier = Modifier, description: String, style : TextStyle) {
     val realDescription = description.ifBlank {
-        stringResource(id = R.string.description_is_not_available)
+        stringResource(id = R.string.description_not_available)
     }
     Text(
         text = realDescription,

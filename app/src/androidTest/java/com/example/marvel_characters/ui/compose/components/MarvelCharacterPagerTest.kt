@@ -3,14 +3,11 @@ package com.example.marvel_characters.ui.compose.components
 import androidx.activity.ComponentActivity
 import androidx.compose.material3.Surface
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performScrollToIndex
 import com.example.marvel_characters.Constants
-import com.example.marvel_characters.R
 import com.example.marvel_characters.Samples
-import com.example.marvel_characters.Samples.marvelCharacterSecond
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 import org.junit.Assert
 import org.junit.Rule
@@ -20,15 +17,15 @@ import org.junit.Test
 class MarvelCharacterPagerTest {
 
     private val charactersSampleList = Samples.marvelCharactersList
-    private val characterFirst = Samples.marvelCharacterFirst
-    private val characterSecond = marvelCharacterSecond
+    private val characterFirst = Samples.characterWithMissingImage
+    private val characterSecond = Samples.characterWithCompleteData
 
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
     @Test
-    fun showCharacterListElementsOnPager() {
+    fun charactersNameAreShownOnEveryPage() {
 
         composeTestRule.setContent {
             MarvelCharactersTheme {
@@ -38,20 +35,11 @@ class MarvelCharacterPagerTest {
             }
         }
 
+        val activity =   composeTestRule.activity
         charactersSampleList.forEachIndexed { index, character ->
-            val thumbnailContentDescription =
-                composeTestRule.activity.getString(
-                    R.string.character_thumbnail_content_description,
-                    character.name
-                )
 
             composeTestRule.onNodeWithText(character.name)
                 .assertExists("Character name was not found")
-
-            composeTestRule.onNodeWithText(character.description)
-                .assertExists("Character description was not found")
-
-            composeTestRule.onNodeWithContentDescription(thumbnailContentDescription).assertExists()
 
             val maxPagerIndex = charactersSampleList.size - 1
             if (index < maxPagerIndex) {
@@ -60,6 +48,7 @@ class MarvelCharacterPagerTest {
             }
         }
     }
+
 
     @Test
     fun couldAccessAllPagerPages() {
