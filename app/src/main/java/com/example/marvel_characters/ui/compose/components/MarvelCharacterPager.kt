@@ -6,23 +6,20 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.PagerDefaults
-import androidx.compose.foundation.pager.PagerSnapDistance
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,13 +32,19 @@ import com.example.marvel_characters.Constants.PAGER_PAGE_COUNT
 import com.example.marvel_characters.R
 import com.example.marvel_characters.domain.MarvelCharacter
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
+import kotlinx.coroutines.delay
 import kotlin.math.absoluteValue
-
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MarvelCharacterPager(modifier: Modifier = Modifier, marvelCharacters: List<MarvelCharacter>) {
+fun MarvelCharacterPager(
+    modifier: Modifier = Modifier,
+    marvelCharacters: List<MarvelCharacter>,
+    enableAutoScroll: Boolean = false
+) {
     val smallPadding = dimensionResource(id = R.dimen.small_padding)
 
 
@@ -49,64 +52,90 @@ fun MarvelCharacterPager(modifier: Modifier = Modifier, marvelCharacters: List<M
         PAGER_PAGE_COUNT
     })
     Column() {
+        Column(
+            Modifier
+                .background(MaterialTheme.colorScheme.surfaceVariant)
+                .wrapContentHeight()) {
 
-        val fling = PagerDefaults.flingBehavior(
-            state = pagerState,
-            pagerSnapDistance = PagerSnapDistance.atMost(3)
-        )
-        HorizontalPager(state = pagerState,    flingBehavior = fling) { page ->
-            OutlinedCard(
-                Modifier.align(Alignment.CenterHorizontally).padding(smallPadding)
-                    .fillMaxWidth()
-                    .graphicsLayer {
-                        // Calculate the absolute offset for the current page from the
-                        // scroll position. We use the absolute value which allows us to mirror
-                        // any effects for both directions
-                        val pageOffset = (
-                                (pagerState.currentPage - page) + pagerState
-                                    .currentPageOffsetFraction
-                                ).absoluteValue
 
-                        // We animate the alpha, between 50% and 100%
-                        alpha = lerp(
-                            start = 0.3f,
-                            stop = 1f,
-                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                        )
-                    }
-            ) {
+            HorizontalPager(state = pagerState) { page ->
+                OutlinedCard(
+                    Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(smallPadding)
+                        .fillMaxWidth()
+                        .graphicsLayer {
+                            // Calculate the absolute offset for the current page from the
+                            // scroll position. We use the absolute value which allows us to mirror
+                            // any effects for both directions
+                            val pageOffset = (
+                                    (pagerState.currentPage - page) + pagerState
+                                        .currentPageOffsetFraction
+                                    ).absoluteValue
 
-                    MarvelCharacterItem(marvelCharacter =marvelCharacters[page])
+                            // We animate the alpha, between 50% and 100%
+                            alpha = lerp(
+                                start = 0.3f,
+                                stop = 1f,
+                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                            )
+                        }
+                ) {
+                    MarvelCharacterItem(marvelCharacter = marvelCharacters[page])
+                }
             }
 
+            PagerIndicator(modifier = Modifier.padding(smallPadding), pagerState = pagerState)
+
+            if (enableAutoScroll) {
+                enableAutoScroll(pagerState)
+            }
         }
-        PagerIndicator(pagerState)
+
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun enableAutoScroll(pagerState: PagerState) {
+    val maxPageIndex = PAGER_PAGE_COUNT - 1
+    pagerState.settledPage.let {
+        LaunchedEffect(it) {
+            val secondsToWait = 10.toDuration(DurationUnit.SECONDS)
+            delay(secondsToWait)
+
+            if (it == maxPageIndex) {
+                pagerState.scrollToPage(0)
+
+            } else {
+                pagerState.animateScrollToPage(it + 1)
+            }
+        }
     }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun PagerIndicator(
+    modifier: Modifier = Modifier,
     pagerState: PagerState
 ) {
     Row(
-        Modifier
-            .height(50.dp)
+        modifier
             .fillMaxWidth(),
-
 
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.Bottom
     ) {
         repeat(PAGER_PAGE_COUNT) { iteration ->
             val color =
-                if (pagerState.currentPage == iteration) MaterialTheme.colorScheme.primaryContainer else  MaterialTheme.colorScheme.secondaryContainer
+                if (pagerState.currentPage == iteration) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.background
             Box(
                 modifier = Modifier
-                    .padding(2.dp)
+                    .padding(dimensionResource(id = R.dimen.small_padding))
                     .clip(CircleShape)
                     .background(color)
-                    .size(20.dp)
+                    .size(10.dp)
 
             )
         }
@@ -118,9 +147,15 @@ private fun PagerIndicator(
 )
 @Composable
 fun MarvelCharacterPagerPreview() {
+    val character = MarvelCharacter(
+        id = "0",
+        name = "Alex Wilder",
+        description = "Despite being the only one of the Runaways without any superhuman abilities or tech, Alex Wilder became the de facto leader of the group due to his natural leadership skills and intellect, as well as prodigy-level logic and strategy",
+        thumbnailUrl = ""
+    )
     MarvelCharactersTheme {
         Surface {
-            MarvelCharacterPager(marvelCharacters = listOf())
+            MarvelCharacterPager(marvelCharacters = listOf(character))
         }
     }
 }
