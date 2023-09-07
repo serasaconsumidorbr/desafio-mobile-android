@@ -24,12 +24,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.example.marvel_characters.Constants.PAGER_PAGE_COUNT
+import com.example.marvel_characters.Constants.PAGER_TEST_TAG
 import com.example.marvel_characters.R
+import com.example.marvel_characters.Samples
 import com.example.marvel_characters.domain.MarvelCharacter
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 import kotlinx.coroutines.delay
@@ -58,7 +61,7 @@ fun MarvelCharacterPager(
                 .wrapContentHeight()) {
 
 
-            HorizontalPager(state = pagerState) { page ->
+            HorizontalPager(state = pagerState, modifier =  modifier.testTag(PAGER_TEST_TAG)) { page ->
                 OutlinedCard(
                     Modifier
                         .align(Alignment.CenterHorizontally)
@@ -147,15 +150,10 @@ private fun PagerIndicator(
 )
 @Composable
 fun MarvelCharacterPagerPreview() {
-    val character = MarvelCharacter(
-        id = "0",
-        name = "Alex Wilder",
-        description = "Despite being the only one of the Runaways without any superhuman abilities or tech, Alex Wilder became the de facto leader of the group due to his natural leadership skills and intellect, as well as prodigy-level logic and strategy",
-        thumbnailUrl = ""
-    )
+
     MarvelCharactersTheme {
         Surface {
-            MarvelCharacterPager(marvelCharacters = listOf(character))
+            MarvelCharacterPager(marvelCharacters = Samples.marvelCharactersList)
         }
     }
 }

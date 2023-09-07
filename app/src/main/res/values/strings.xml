@@ -3,7 +3,7 @@
 
     <string name="internet_connection_error_message">Não foi possível obter os dados. Por favor, verifique sua conexão com a internet</string>
     <string name="an_error_occurred_when_trying_to_get_data">Um erro ocorreu ao tentar carregar os dados</string>
-    <string name="character_thumbnail_content_description">Imagem representativa desse personagem</string>
+    <string name="character_thumbnail_content_description">Imagem representativa de %s</string>
     <string name="retry_label">Tentar novamente</string>
     <string name="description_not_available">Descrição não disponível</string>
 </resources>

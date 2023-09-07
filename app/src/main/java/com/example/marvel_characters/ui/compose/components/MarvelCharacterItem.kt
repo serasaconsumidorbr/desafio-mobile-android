@@ -9,17 +9,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.marvel_characters.R
+import com.example.marvel_characters.Samples
 import com.example.marvel_characters.domain.MarvelCharacter
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 
 @Composable
-fun MarvelCharacterItem(marvelCharacter: MarvelCharacter, modifier:Modifier = Modifier) {
+fun MarvelCharacterItem(marvelCharacter: MarvelCharacter, modifier: Modifier = Modifier) {
     val smallPadding = dimensionResource(id = R.dimen.small_padding)
 
     marvelCharacter.apply {
-        Column(modifier= Modifier.padding(smallPadding)
+        Column(
+            modifier = Modifier.padding(smallPadding)
         ) {
             MarvelCharacterImage(
+                name = marvelCharacter.name,
                 thumbnailUrl = marvelCharacter.thumbnailUrl,
                 modifier = Modifier.padding(bottom = smallPadding)
             )
@@ -37,13 +40,7 @@ fun MarvelCharacterItem(marvelCharacter: MarvelCharacter, modifier:Modifier = Mo
 fun MarvelCharacterPreview() {
     MarvelCharactersTheme {
         Surface {
-            val character = MarvelCharacter(
-                id = "0",
-                name = "Alex Wilder",
-                description = "Despite being the only one of the Runaways without any superhuman abilities or tech, Alex Wilder became the de facto leader of the group due to his natural leadership skills and intellect, as well as prodigy-level logic and strategy",
-                thumbnailUrl = ""
-            )
-            MarvelCharacterItem(character)
+            MarvelCharacterItem(Samples.marvelCharacterFirst)
         }
     }
 }
