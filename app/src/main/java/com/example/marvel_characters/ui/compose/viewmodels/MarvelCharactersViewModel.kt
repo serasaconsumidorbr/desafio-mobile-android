@@ -13,7 +13,6 @@ class MarvelCharactersViewModel(private val repository: Repository) : ViewModel(
     private val _uiState = MutableStateFlow(MarvelCharactersUIState(loading = true))
     val uiState: StateFlow<MarvelCharactersUIState> = _uiState
 
-
     init {
         viewModelScope.launch {
             updateScreenWithDefaultSearch()

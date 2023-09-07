@@ -1,9 +1,13 @@
 package com.example.marvel_characters.ui.compose.screens
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.marvel_characters.Constants.PAGER_PAGE_COUNT
@@ -39,7 +43,10 @@ private fun MarvelCharacters(
     val charactersToDisplayOnVerticalList =
         marvelCharacters.drop(charactersToDisplayOnPagerQuantity)
 
-    MarvelCharacterPager(marvelCharacters = charactersToDisplayInPager)
+    Column(Modifier.verticalScroll(rememberScrollState())) {
+
+        MarvelCharacterPager(marvelCharacters = charactersToDisplayInPager)
+    }
 }
 
 @Preview(
