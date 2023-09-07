@@ -1,9 +1,11 @@
 package com.example.marvel_characters.ui.compose.screens
 
 import android.content.res.Configuration
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -13,6 +15,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.marvel_characters.Constants.PAGER_PAGE_COUNT
 import com.example.marvel_characters.domain.MarvelCharacter
 import com.example.marvel_characters.ui.compose.components.MarvelCharacterPager
+import com.example.marvel_characters.ui.compose.components.MarvelCharactersList
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 import com.example.marvel_characters.ui.compose.viewmodels.MarvelCharactersViewModel
 import org.koin.androidx.compose.getViewModel
@@ -23,29 +26,9 @@ fun CharactersScreen(marvelCharactersViewModel: MarvelCharactersViewModel = getV
 
     uiState.marvelCharacters.let {
         if (it.isNotEmpty()) {
-            MarvelCharacters(it)
+            MarvelCharactersList(marvelCharacters=it)
+
         }
-    }
-}
-
-@Composable
-private fun MarvelCharacters(
-    marvelCharacters: List<MarvelCharacter>
-) {
-    val charactersToDisplayOnPagerQuantity =
-        if (marvelCharacters.size >= PAGER_PAGE_COUNT) {
-            PAGER_PAGE_COUNT
-        } else {
-            marvelCharacters.size
-        }
-    val charactersToDisplayInPager =
-        marvelCharacters.take(charactersToDisplayOnPagerQuantity)
-    val charactersToDisplayOnVerticalList =
-        marvelCharacters.drop(charactersToDisplayOnPagerQuantity)
-
-    Column(Modifier.verticalScroll(rememberScrollState())) {
-
-        MarvelCharacterPager(marvelCharacters = charactersToDisplayInPager)
     }
 }
 

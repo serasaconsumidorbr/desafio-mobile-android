@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">Personagens da Marvel</string>
+    <string name="app_name">Marvel Characters</string>
 
-    <string name="internet_connection_error_message">Não foi possível obter os dados. Por favor, verifique sua conexão com a internet</string>
-    <string name="an_error_occurred_when_trying_to_get_data">Um erro ocorreu ao tentar carregar os dados</string>
-    <string name="character_thumbnail_content_description">Imagem representativa de %s</string>
-    <string name="retry_label">Tentar novamente</string>
-    <string name="description_not_available">Descrição não disponível</string>
+    <string name="internet_connection_error_message">Could not load data. Please, check your Internet connection</string>
+    <string name="an_error_occurred_when_trying_to_get_data">An error has occurred when trying to load data</string>
+    <string name="character_thumbnail_content_description">Representative image of %s</string>
+    <string name="retry_label">Try again</string>
+    <string name="description_is_not_available">Description not available</string>
+    <string name="not_available">not available\n</string>
 </resources>
