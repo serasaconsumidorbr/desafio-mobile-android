@@ -54,7 +54,7 @@ fun MarvelCharacterPager(
     val pagerState = rememberPagerState(pageCount = {
         PAGER_PAGE_COUNT
     })
-    Column() {
+
         Column(
             Modifier
                 .background(MaterialTheme.colorScheme.surfaceVariant)
@@ -93,7 +93,7 @@ fun MarvelCharacterPager(
             if (enableAutoScroll) {
                 enableAutoScroll(pagerState)
             }
-        }
+
 
     }
 }
