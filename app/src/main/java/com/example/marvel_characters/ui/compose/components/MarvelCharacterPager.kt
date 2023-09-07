@@ -68,15 +68,11 @@ fun MarvelCharacterPager(
                         .padding(smallPadding)
                         .fillMaxWidth()
                         .graphicsLayer {
-                            // Calculate the absolute offset for the current page from the
-                            // scroll position. We use the absolute value which allows us to mirror
-                            // any effects for both directions
                             val pageOffset = (
                                     (pagerState.currentPage - page) + pagerState
                                         .currentPageOffsetFraction
                                     ).absoluteValue
 
-                            // We animate the alpha, between 50% and 100%
                             alpha = lerp(
                                 start = 0.3f,
                                 stop = 1f,
@@ -91,7 +87,7 @@ fun MarvelCharacterPager(
             PagerIndicator(modifier = Modifier.padding(smallPadding), pagerState = pagerState)
 
             if (enableAutoScroll) {
-                enableAutoScroll(pagerState)
+                EnableAutoScroll(pagerState)
             }
 
 
@@ -100,7 +96,7 @@ fun MarvelCharacterPager(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun enableAutoScroll(pagerState: PagerState) {
+private fun EnableAutoScroll(pagerState: PagerState) {
     val maxPageIndex = PAGER_PAGE_COUNT - 1
     pagerState.settledPage.let {
         LaunchedEffect(it) {
