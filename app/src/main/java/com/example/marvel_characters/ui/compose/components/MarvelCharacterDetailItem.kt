@@ -11,31 +11,47 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.marvel_characters.R
 import com.example.marvel_characters.Samples
 import com.example.marvel_characters.domain.MarvelCharacter
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 
-@Composable
-fun MarvelCharacterPagerItem(marvelCharacter: MarvelCharacter, modifier: Modifier = Modifier) {
-    val smallPadding = dimensionResource(id = R.dimen.small_padding)
 
-    marvelCharacter.apply {
-        Column(
-            modifier = modifier.padding(smallPadding)
-        ) {
+@Composable
+fun MarvelCharacterDetailItem(
+    marvelCharacter: MarvelCharacter,
+    modifier: Modifier = Modifier
+) {
+    val smallPadding = dimensionResource(id = R.dimen.small_padding)
+    val mediumPadding = dimensionResource(id = R.dimen.medium_padding)
+
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+
+    ) {
+        marvelCharacter.apply {
             CharacterImage(
-                name = marvelCharacter.name,
-                thumbnailUrl = marvelCharacter.thumbnailUrl,
                 modifier = Modifier
                     .padding(bottom = smallPadding)
-                    .fillMaxWidth()
-                    .height(dimensionResource(id = R.dimen.large_character_thumbnail_height))
-
+                    .height(dimensionResource(id = R.dimen.large_character_thumbnail_height)),
+                thumbnailUrl = thumbnailUrl,
+                name = name
             )
-            Name( modifier = Modifier.padding(vertical = smallPadding), name = name, MaterialTheme.typography.titleLarge,)
-            DescriptionWithLinesLimit(modifier.height(36.dp), description = description, MaterialTheme.typography.labelLarge)
+
+            Column(Modifier.padding(start = mediumPadding, end = mediumPadding, bottom = mediumPadding)) {
+
+                Name(
+                    modifier = Modifier.padding(bottom = smallPadding),
+                    name = name,
+                    style = MaterialTheme.typography.headlineMedium
+                )
+
+                DescriptionFull(
+                    description = description,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
         }
     }
 }
@@ -45,12 +61,17 @@ fun MarvelCharacterPagerItem(marvelCharacter: MarvelCharacter, modifier: Modifie
 )
 
 @Composable
-fun MarvelCharacterPagerItemPreview() {
+fun MarvelCharacterDetailItemPreview() {
     MarvelCharactersTheme {
         Surface {
-            MarvelCharacterPagerItem(Samples.characterWithMissingImage)
+            MarvelCharacterListItem(
+                Samples.characterWithCompleteData,
+                navigateToCharacter = { }
+            )
         }
     }
 }
+
+
 
 

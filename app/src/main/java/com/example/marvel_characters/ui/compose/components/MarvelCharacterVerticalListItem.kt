@@ -2,6 +2,7 @@ package com.example.marvel_characters.ui.compose.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -24,24 +25,38 @@ import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 
 
 @Composable
-fun MarvelCharacterListItem(marvelCharacter: MarvelCharacter, modifier: Modifier = Modifier) {
+fun MarvelCharacterListItem(
+    marvelCharacter: MarvelCharacter,
+    modifier: Modifier = Modifier,
+    navigateToCharacter: (String) -> Unit
+) {
     val smallPadding = dimensionResource(id = R.dimen.small_padding)
     val mediumPadding = dimensionResource(id = R.dimen.medium_padding)
 
-    ConstraintLayout(modifier = modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp))) {
+    ConstraintLayout(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp))
+            .clickable { navigateToCharacter(marvelCharacter.id) }) {
         val (image, name) = createRefs()
         marvelCharacter.let {
 
-            MarvelCharacterImage(name = marvelCharacter.name,
-                thumbnailUrl = marvelCharacter.thumbnailUrl,
+            CharacterImage(name = it.name,
+                thumbnailUrl = it.thumbnailUrl,
                 modifier = Modifier
-                    .padding(start = smallPadding, end = mediumPadding, top = smallPadding, bottom = smallPadding).clip(CircleShape)
+                    .padding(
+                        start = smallPadding,
+                        end = mediumPadding,
+                        top = smallPadding,
+                        bottom = smallPadding
+                    )
+                    .clip(CircleShape)
                     .size(dimensionResource(id = R.dimen.list_item_thumbnail_size))
                     .constrainAs(image) {
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
                     })
-            Name(name = it.name, style =  MaterialTheme.typography.titleMedium, modifier=  modifier
+            Name(name = it.name, style = MaterialTheme.typography.titleMedium, modifier = modifier
                 .constrainAs(name) {
                     top.linkTo(parent.top)
                     bottom.linkTo(parent.bottom)
@@ -50,7 +65,6 @@ fun MarvelCharacterListItem(marvelCharacter: MarvelCharacter, modifier: Modifier
                     width = Dimension.fillToConstraints
 
                 })
-
         }
     }
 }
@@ -63,7 +77,10 @@ fun MarvelCharacterListItem(marvelCharacter: MarvelCharacter, modifier: Modifier
 fun MarvelCharacterListItemPreview() {
     MarvelCharactersTheme {
         Surface {
-            MarvelCharacterListItem(Samples.characterWithMissingImage)
+            MarvelCharacterListItem(
+                Samples.characterWithMissingImage,
+                navigateToCharacter = {  }
+            )
         }
     }
 }

@@ -113,7 +113,7 @@ dependencies {
     implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
     implementation("io.insert-koin:koin-androidx-compose:$koin_version")
 
-
+    implementation "androidx.navigation:navigation-compose:2.7.1"
 
     testImplementation "com.squareup.okhttp3:mockwebserver:4.9.0"
 }
