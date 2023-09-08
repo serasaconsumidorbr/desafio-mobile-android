@@ -7,15 +7,12 @@ import kotlinx.coroutines.withContext
 
 class CharactersRemoteDataSource(private val characterService: MarvelApiService) {
     private var lastResultDataInfo: CharactersResultDataInfo? = null
-    private suspend fun getCharacters(): Result<List<MarvelCharacter>> {
-        return getCharacterFromSearch()
-    }
 
     suspend fun getNextCharacterPage(): Result<List<MarvelCharacter>> =
         if (lastResultDataInfo != null && lastResultDataInfo!!.hasNextPage()) {
             getCharacterFromSearch(lastResultDataInfo!!.nextPageOffset())
         } else {
-             getCharacterFromSearch()
+            getCharacterFromSearch()
         }
 
 
@@ -29,6 +26,10 @@ class CharactersRemoteDataSource(private val characterService: MarvelApiService)
 
             characterListContainer.let {
                 if (it.isSuccessful) {
+                    lastResultDataInfo = it.body()!!.data.run {
+                        CharactersResultDataInfo(offset = offset, limit = limit, total = total)
+                    }
+
                     Result.Success(it.body()!!.asDomainModel())
                 } else {
                     Result.Error(Exception(it.errorBody().toString()))
@@ -37,6 +38,7 @@ class CharactersRemoteDataSource(private val characterService: MarvelApiService)
         }
     }
 
+    fun hasNextPage() = lastResultDataInfo?.hasNextPage()?:true
 
 }
 

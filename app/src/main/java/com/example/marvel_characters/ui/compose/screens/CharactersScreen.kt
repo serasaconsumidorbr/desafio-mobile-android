@@ -20,11 +20,11 @@ fun CharactersScreen(marvelCharactersViewModel: MarvelCharactersViewModel = getV
     val uiState by marvelCharactersViewModel.uiState.collectAsStateWithLifecycle()
 
     uiState.apply {
-        if (!marvelCharacters.isNullOrEmpty()) {
+        if (marvelCharacters.isNotEmpty()) {
             MarvelCharactersList(
                 marvelCharacters = uiState.marvelCharacters,
-                isLoading = uiState.loading
-            )
+                isLoading = uiState.loading, couldGetMoreFromWebService = couldGetMoreFromWebService
+            ) { marvelCharactersViewModel.listBottomIsVisible() }
         } else if (loading){
             CircularProgressIndicator(Modifier.wrapContentSize())
 

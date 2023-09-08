@@ -5,6 +5,6 @@
     <string name="an_error_occurred_when_trying_to_get_data">An error has occurred when trying to load data</string>
     <string name="character_thumbnail_content_description">Representative image of %s</string>
     <string name="retry_label">Try again</string>
-    <string name="description_not_available">This character description not available</string>
+    <string name="description_not_available">This character description is not available</string>
     <string name="not_available">not available</string>
 </resources>
