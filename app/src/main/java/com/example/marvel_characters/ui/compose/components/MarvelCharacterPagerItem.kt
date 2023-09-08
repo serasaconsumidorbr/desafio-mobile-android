@@ -2,19 +2,23 @@ package com.example.marvel_characters.ui.compose.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.marvel_characters.R
 import com.example.marvel_characters.Samples
 import com.example.marvel_characters.domain.MarvelCharacter
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 
 @Composable
-fun MarvelCharacterItem(marvelCharacter: MarvelCharacter, modifier: Modifier = Modifier) {
+fun MarvelCharacterPagerItem(marvelCharacter: MarvelCharacter, modifier: Modifier = Modifier) {
     val smallPadding = dimensionResource(id = R.dimen.small_padding)
 
     marvelCharacter.apply {
@@ -24,10 +28,14 @@ fun MarvelCharacterItem(marvelCharacter: MarvelCharacter, modifier: Modifier = M
             MarvelCharacterImage(
                 name = marvelCharacter.name,
                 thumbnailUrl = marvelCharacter.thumbnailUrl,
-                modifier = Modifier.padding(bottom = smallPadding)
+                modifier = Modifier
+                    .padding(bottom = smallPadding)
+                    .fillMaxWidth()
+                    .height(dimensionResource(id = R.dimen.pager_item_thumbnail_height))
+
             )
-            Name(modifier = Modifier.padding(vertical = smallPadding))
-            Description()
+            Name( modifier = Modifier.padding(vertical = smallPadding), name = name, MaterialTheme.typography.titleLarge,)
+            Description(modifier.height(36.dp), description = description, MaterialTheme.typography.labelLarge)
         }
     }
 }
@@ -37,10 +45,12 @@ fun MarvelCharacterItem(marvelCharacter: MarvelCharacter, modifier: Modifier = M
 )
 
 @Composable
-fun MarvelCharacterPreview() {
+fun MarvelCharacterPagerItemPreview() {
     MarvelCharactersTheme {
         Surface {
-            MarvelCharacterItem(Samples.marvelCharacterFirst)
+            MarvelCharacterPagerItem(Samples.characterWithMissingImage)
         }
     }
 }
+
+

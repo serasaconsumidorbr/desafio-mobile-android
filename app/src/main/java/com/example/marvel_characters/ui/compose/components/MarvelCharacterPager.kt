@@ -55,40 +55,41 @@ fun MarvelCharacterPager(
         PAGER_PAGE_COUNT
     })
 
-        Column(
-            Modifier
-                .background(MaterialTheme.colorScheme.surfaceVariant)
-                .wrapContentHeight()) {
+    Column(
+        Modifier
+            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .wrapContentHeight()
+    ) {
 
 
-            HorizontalPager(state = pagerState, modifier =  modifier.testTag(PAGER_TEST_TAG)) { page ->
-                OutlinedCard(
-                    Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .padding(smallPadding)
-                        .fillMaxWidth()
-                        .graphicsLayer {
-                            val pageOffset = (
-                                    (pagerState.currentPage - page) + pagerState
-                                        .currentPageOffsetFraction
-                                    ).absoluteValue
+        HorizontalPager(state = pagerState, modifier = modifier.testTag(PAGER_TEST_TAG)) { page ->
+            OutlinedCard(
+                Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(smallPadding)
+                    .fillMaxWidth()
+                    .graphicsLayer {
+                        val pageOffset = (
+                                (pagerState.currentPage - page) + pagerState
+                                    .currentPageOffsetFraction
+                                ).absoluteValue
 
-                            alpha = lerp(
-                                start = 0.3f,
-                                stop = 1f,
-                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                            )
-                        }
-                ) {
-                    MarvelCharacterItem(marvelCharacter = marvelCharacters[page])
-                }
+                        alpha = lerp(
+                            start = 0.3f,
+                            stop = 1f,
+                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                        )
+                    }
+            ) {
+                MarvelCharacterPagerItem(marvelCharacter = marvelCharacters[page])
             }
+        }
 
-            PagerIndicator(modifier = Modifier.padding(smallPadding), pagerState = pagerState)
+        PagerIndicator(modifier = Modifier.padding(smallPadding), pagerState = pagerState)
 
-            if (enableAutoScroll) {
-                EnableAutoScroll(pagerState)
-            }
+        if (enableAutoScroll) {
+            EnableAutoScroll(pagerState)
+        }
 
 
     }
@@ -135,7 +136,6 @@ private fun PagerIndicator(
                     .clip(CircleShape)
                     .background(color)
                     .size(10.dp)
-
             )
         }
     }

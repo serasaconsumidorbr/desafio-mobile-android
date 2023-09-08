@@ -47,7 +47,8 @@ class Repository private constructor(
     }
 
 
-    suspend fun getCharactersFromWeb() = characterRemoteDataSource.getCharacters()
+    suspend fun getNextPage() = characterRemoteDataSource.getNextCharacterPage()
+    fun couldGetMoreFromWebService() = characterRemoteDataSource.hasNextPage()
 
 
 }

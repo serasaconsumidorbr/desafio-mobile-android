@@ -1,31 +1,40 @@
 package com.example.marvel_characters.ui.compose.components
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.example.marvel_characters.Constants
 import com.example.marvel_characters.R
-import com.example.marvel_characters.domain.MarvelCharacter
 
 
 @Composable
-fun MarvelCharacterImage(modifier: Modifier = Modifier, thumbnailUrl: String?, name: String) {
+fun MarvelCharacterImage(
+    modifier: Modifier = Modifier,
+    thumbnailUrl: String?,
+    name: String
+) {
     val placeholder = R.drawable.marvel_m
-val contentDescription =  stringResource(R.string.character_thumbnail_content_description,name )
-
+    val representativeImageOfCharacterText =
+        stringResource(R.string.character_thumbnail_content_description, name)
+    val isNotAvailableText =   stringResource(R.string.not_available)
+    val contentDescription =
+        if (thumbnailUrl.equals(Constants.IMAGE_NOT_AVAILABLE_URL)) {
+            "$representativeImageOfCharacterText $isNotAvailableText"
+        } else {
+            representativeImageOfCharacterText
+        }
     AsyncImage(
+
+        modifier = modifier,
         model = ImageRequest.Builder(LocalContext.current)
             .data(thumbnailUrl)
             .crossfade(true)
@@ -34,17 +43,24 @@ val contentDescription =  stringResource(R.string.character_thumbnail_content_de
         contentScale = ContentScale.Crop,
         error = painterResource(placeholder),
         placeholder = painterResource(placeholder),
-        contentDescription = contentDescription,
-        modifier = modifier
-            .fillMaxWidth()
-            .height( dimensionResource(id = R.dimen.thumbnail_height))
+        contentDescription = contentDescription
+    )
+}
+@Composable
+fun Name(
+    modifier: Modifier = Modifier,
+    name: String,
+    style: TextStyle
+) {
+    Text(
+        modifier = modifier,
+        text = name, style = style, maxLines = 1,
+        overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Start
     )
 }
 
 @Composable
-fun MarvelCharacter.Description(modifier: Modifier = Modifier) {
-    val style = MaterialTheme.typography.labelMedium
-
+fun Description( modifier: Modifier = Modifier, description: String, style : TextStyle) {
     val realDescription = description.ifBlank {
         stringResource(id = R.string.description_not_available)
     }
@@ -53,14 +69,7 @@ fun MarvelCharacter.Description(modifier: Modifier = Modifier) {
         style = style,
         maxLines = 2,
         overflow = TextOverflow.Ellipsis,
-        modifier = modifier.height(36.dp), textAlign = TextAlign.Start
-    )
-}
-
-@Composable
-fun MarvelCharacter.Name(modifier: Modifier = Modifier) {
-    Text(
-        name, style = MaterialTheme.typography.titleLarge, maxLines = 1,
-        overflow = TextOverflow.Ellipsis
+        modifier =  modifier,
+        textAlign = TextAlign.Start
     )
 }

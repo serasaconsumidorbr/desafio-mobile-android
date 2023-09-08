@@ -25,7 +25,7 @@ class RepositoryTest {
     @Test
     fun shouldReturnNonEmptyCharactersListResult(): Unit = runBlocking {
 
-        val resultData = repository.getCharactersFromWeb()
+        val resultData = repository.getNextPage()
         Assert.assertTrue(resultData is Result.Success)
         Assert.assertTrue((resultData as Result.Success).data.isNotEmpty())
 
