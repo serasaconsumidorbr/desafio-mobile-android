@@ -42,6 +42,7 @@ fun OfflineDialog(onRetry: () -> Unit) {
         onDismissRequest = {},
         title = { Text(text = stringResource(R.string.internet_connection_error_title)) },
         text = { Text(text = stringResource(R.string.internet_connection_error_message)) },
+
         confirmButton = {
             TextButton(onClick = onRetry) {
                 Text(stringResource(R.string.retry_label))

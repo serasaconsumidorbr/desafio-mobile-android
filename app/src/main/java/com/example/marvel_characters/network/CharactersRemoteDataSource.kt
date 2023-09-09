@@ -48,16 +48,20 @@ class CharactersRemoteDataSource(private val characterService: MarvelApiService)
         id: String,
     ): Result<MarvelCharacter> {
         return withContext(Dispatchers.IO) {
-            val characterContainer =
-                characterService.getCharacterById(id)
-            val singleElementIndex = 0
-            characterContainer.let {
-                if (it.isSuccessful) {
-                    //TODO Add a treatment to the possibility of the server dont return exactly one element for this call
-                    Result.Success(it.body()!!.asDomainModel()[singleElementIndex])
-                } else {
-                    Result.Error(Exception(it.errorBody().toString()))
+            try {
+
+                val characterContainer =
+                    characterService.getCharacterById(id)
+                val singleElementIndex = 0
+                characterContainer.let {
+                    if (it.isSuccessful) {
+                        Result.Success(it.body()!!.asDomainModel()[singleElementIndex])
+                    } else {
+                        Result.Error(Exception(it.errorBody().toString()))
+                    }
                 }
+            } catch (exception: Exception) {
+                Result.Error(exception)
             }
         }
     }

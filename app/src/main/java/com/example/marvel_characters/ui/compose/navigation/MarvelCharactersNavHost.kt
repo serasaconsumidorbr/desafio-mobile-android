@@ -1,7 +1,5 @@
 package com.example.marvel_characters.ui.compose.navigation
 
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,9 +21,9 @@ fun MarvelCharactersNavHost(appState: MarvelCharactersAppState) {
                 }
             )
         }
-        composable(route = Screen.CharacterDetail.route) {
+        composable(route = Screen.CharacterDetail.route) {backStackEntry->
             CharacterDetailScreen(
-                onBackPress = appState::navigateBack
+                onBackPressed ={ appState.navigateBack(backStackEntry)}
             )
         }
     }

@@ -27,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,7 +40,10 @@ import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 
 @Composable
 fun MarvelCharacterDetailContent(
-    marvelCharacter: MarvelCharacter, modifier: Modifier = Modifier, onBackPress: () -> Unit
+    marvelCharacter: MarvelCharacter,
+    modifier: Modifier = Modifier,
+    onBackPressed: () -> Unit,
+    onDownloadPressed: () -> Unit
 ) {
     val smallPadding = dimensionResource(id = R.dimen.small_padding)
     val mediumPadding = dimensionResource(id = R.dimen.medium_padding)
@@ -66,7 +70,7 @@ fun MarvelCharacterDetailContent(
                 top.linkTo(parent.top)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
-            }, onBackPress)
+            }, onBackPressed, onDownloadPressed = onDownloadPressed)
             Column(
                 Modifier
                     .padding(
@@ -91,7 +95,7 @@ fun MarvelCharacterDetailContent(
 
 @Composable
 private fun Buttons(
-    modifier: Modifier, onBackPress: () -> Unit
+    modifier: Modifier, onBackPressed: () -> Unit, onDownloadPressed: () -> Unit
 ) {
 
     val buttonElevation = dimensionResource(id = R.dimen.button_elevation)
@@ -100,15 +104,18 @@ private fun Buttons(
     ConstraintLayout(modifier = modifier.fillMaxWidth()) {
         val (backArrow, optionsMenu) = createRefs()
 
-        IconButton(onClick = onBackPress,
+        IconButton(onClick = onBackPressed,
             Modifier
                 .constrainAs(backArrow) {
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
                 }) {
             Icon(
-                modifier =  Modifier
-                    .background( MaterialTheme.colorScheme.surfaceColorAtElevation(buttonElevation), shape = CircleShape),
+                modifier = Modifier
+                    .background(
+                        MaterialTheme.colorScheme.surfaceColorAtElevation(buttonElevation),
+                        shape = CircleShape
+                    ),
 
                 imageVector = Icons.Default.ArrowBack,
                 contentDescription = stringResource(R.string.back_button)
@@ -124,14 +131,17 @@ private fun Buttons(
                     end.linkTo(parent.end)
                 }) {
             Icon(
-                modifier =  Modifier
-                    .background( MaterialTheme.colorScheme.surfaceColorAtElevation(buttonElevation), shape = CircleShape),
+                modifier = Modifier
+                    .background(
+                        MaterialTheme.colorScheme.surfaceColorAtElevation(buttonElevation),
+                        shape = CircleShape
+                    ),
 
                 imageVector = Icons.Default.MoreVert,
                 contentDescription = stringResource(R.string.more)
             )
             DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-                DropdownMenuItem(text = { Text(downloadText) }, onClick = { })
+                DropdownMenuItem(text = { Text(downloadText) }, onClick = { onDownloadPressed() })
 
             }
         }
@@ -159,9 +169,15 @@ fun NewDetailAppBar(
                 contentDescription = stringResource(R.string.more)
             )
         }
+
+
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             DropdownMenuItem(text = { Text(stringResource(R.string.download)) },
-                onClick = { downloadCharacter() })
+                onClick = {
+                    downloadCharacter()
+                    expanded = false
+
+                })
         }
     }
 }

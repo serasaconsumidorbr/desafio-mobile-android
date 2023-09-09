@@ -24,7 +24,6 @@ class MarvelCharactersViewModel(private val repository: Repository) : ViewModel(
     }
 
     private fun fetchNextPageCharacters() {
-        _uiState.value = uiState.value.copy(loading = true)
         viewModelScope.launch {
             val result = repository.getNextPage()
             if (result.succeeded) {
@@ -42,6 +41,7 @@ class MarvelCharactersViewModel(private val repository: Repository) : ViewModel(
     }
 
     fun needsToGetCharactersFromNextPage() {
+        _uiState.value = uiState.value.copy(loading = true)
         fetchNextPageCharacters()
     }
 }

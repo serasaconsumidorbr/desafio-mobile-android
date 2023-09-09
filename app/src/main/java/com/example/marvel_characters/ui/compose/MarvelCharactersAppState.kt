@@ -46,8 +46,11 @@ class MarvelCharactersAppState(
         }
     }
 
-    fun navigateBack() {
-        navController.popBackStack()
+    fun navigateBack( from: NavBackStackEntry) {
+        if (from.lifecycleIsResumed()) {
+            navController.popBackStack()
+
+        }
     }
 
 }

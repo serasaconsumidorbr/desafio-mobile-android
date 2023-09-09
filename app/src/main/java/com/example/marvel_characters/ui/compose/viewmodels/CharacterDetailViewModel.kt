@@ -29,7 +29,6 @@ class CharacterDetailViewModel(
     }
 
     private fun fetchCharacter() {
-        _uiState.value = uiState.value.copy(loading = true)
         viewModelScope.launch {
             val result = repository.getCharacterById(id = characterId)
             if (result.succeeded) {
@@ -41,6 +40,12 @@ class CharacterDetailViewModel(
                     error = (result as Result.Error).exception.message
                 )
             }
+        }
+    }
+
+    fun onDownloadPressed () {
+        viewModelScope.launch {
+            repository.saveCharacter(uiState.value.marvelCharacter!!)
         }
     }
 
