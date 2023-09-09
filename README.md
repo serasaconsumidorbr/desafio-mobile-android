@@ -20,7 +20,7 @@ Aplicativo que trás os personagens da marvel.
 
 - ## Tela Load
 
-  <img src="image\loag.jpeg" width="300"/>
+  <img src="image\load.jpeg" width="300"/>
 
 - ## Tela Listagens
 
