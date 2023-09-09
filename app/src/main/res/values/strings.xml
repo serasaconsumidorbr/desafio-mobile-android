@@ -8,8 +8,9 @@
     <string name="retry_label">Try again</string>
     <string name="description_not_available">This character description is not available</string>
     <string name="not_available">not available</string>
-    <string name="back_button">Back</string>
+    <string name="back">Back</string>
     <string name="data_load_problem">An error has occurred when trying to load data\n</string>
     <string name="more">More</string>
     <string name="download">Download</string>
+    <string name="error">Error</string>
 </resources>

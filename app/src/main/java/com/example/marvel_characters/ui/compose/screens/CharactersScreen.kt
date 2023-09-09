@@ -1,17 +1,13 @@
 package com.example.marvel_characters.ui.compose.screens
 
 import android.content.res.Configuration
-import android.widget.Toast
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,18 +28,19 @@ fun CharactersScreen(
     val uiState by marvelCharactersViewModel.uiState.collectAsStateWithLifecycle()
 
     uiState.apply {
-        if (marvelCharacters.isNotEmpty()) {
-            MarvelCharactersList(modifier= Modifier.fillMaxSize(),
-                uiState = uiState,
-                navigateToCharacter = navigateToCharacter,
-                needsToGetNextPage = marvelCharactersViewModel::needsToGetCharactersFromNextPage,
-                hasNextPage = marvelCharactersViewModel.hasNextPage
-            )
-        } else if (loading) {
+        if (hadAnError()) {
+            GenericErrorDialog(marvelCharactersViewModel::fetchCharactersFromNextPage)
+        } else if (loading && marvelCharacters.isEmpty()) {
             FullScreenCenteredProgressIndicator()
         }
-        else{
-            //TODO: Add an error message
+        if (marvelCharacters.isNotEmpty()) {
+            MarvelCharactersList(
+                modifier = Modifier.fillMaxSize(),
+                uiState = uiState,
+                navigateToCharacter = navigateToCharacter,
+                needsToGetNextPage = marvelCharactersViewModel::fetchCharactersFromNextPage,
+                hasNextPage = marvelCharactersViewModel.hasNextPage
+            )
         }
     }
 }
@@ -62,3 +59,19 @@ fun CharactersScreenPreview() {
         }
     }
 }
+
+@Composable
+fun GenericErrorDialog(onRetry: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = {},
+        title = { Text(text = stringResource(R.string.error)) },
+        text = { Text(text = stringResource(R.string.an_error_occurred_when_trying_to_get_data)) },
+
+        confirmButton = {
+            TextButton(onClick = onRetry) {
+                Text(stringResource(R.string.retry_label))
+            }
+        }
+    )
+}
+

@@ -27,20 +27,28 @@ class MarvelCharactersViewModel(private val repository: Repository) : ViewModel(
         viewModelScope.launch {
             val result = repository.getNextPage()
             if (result.succeeded) {
-                val updatedCharactersList =
-                    uiState.value.marvelCharacters + (result as Result.Success).data
-                _uiState.value = MarvelCharactersUIState(
-                    marvelCharacters = updatedCharactersList
-                )
+                updateCharacterList(result)
             } else {
-                val foundException = result as Result.Error
-                _uiState.value =
-                    uiState.value.copy(error = foundException.exception.message, loading = false)
+                updateUiWithError(result)
             }
         }
     }
 
-    fun needsToGetCharactersFromNextPage() {
+    private fun updateUiWithError(result: Result<List<MarvelCharacter>>) {
+        val foundException = result as Result.Error
+        _uiState.value =
+            uiState.value.copy(error = foundException.exception.message, loading = false)
+    }
+
+    private fun updateCharacterList(result: Result<List<MarvelCharacter>>) {
+        val updatedCharactersList =
+            uiState.value.marvelCharacters + (result as Result.Success).data
+        _uiState.value = MarvelCharactersUIState(
+            marvelCharacters = updatedCharactersList
+        )
+    }
+
+    fun fetchCharactersFromNextPage() {
         _uiState.value = uiState.value.copy(loading = true)
         fetchNextPageCharacters()
     }

@@ -27,7 +27,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -118,7 +117,7 @@ private fun Buttons(
                     ),
 
                 imageVector = Icons.Default.ArrowBack,
-                contentDescription = stringResource(R.string.back_button)
+                contentDescription = stringResource(R.string.back)
             )
         }
 
@@ -159,7 +158,7 @@ fun NewDetailAppBar(
         IconButton(onClick = onBackPressed) {
             Icon(
                 imageVector = Icons.Default.ArrowBack,
-                contentDescription = stringResource(R.string.back_button)
+                contentDescription = stringResource(R.string.back)
             )
         }
 

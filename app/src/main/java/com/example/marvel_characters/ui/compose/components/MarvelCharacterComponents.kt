@@ -22,7 +22,7 @@ fun CharacterImage(
     thumbnailUrl: String?,
     name: String
 ) {
-    val placeholder = R.drawable.marvel_m
+    val placeholder = R.drawable.marvel_m_placeholder
     val representativeImageOfCharacterText =
         stringResource(R.string.character_thumbnail_content_description, name)
     val isNotAvailableText =   stringResource(R.string.not_available)

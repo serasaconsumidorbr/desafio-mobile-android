@@ -49,7 +49,7 @@ class Repository private constructor(
 
     suspend fun getNextPage() = characterRemoteDataSource.getNextCharacterPage()
 
-    suspend fun getCharacterById(id: String) = characterRemoteDataSource.getCharacterById(id)
+    suspend fun getCharacterByIdFromWeb(id: String) = characterRemoteDataSource.getCharacterById(id)
     fun hasNextPage() = characterRemoteDataSource.hasNextPage()
 
 

@@ -28,22 +28,37 @@ class CharacterDetailViewModel(
         }
     }
 
-    private fun fetchCharacter() {
-        viewModelScope.launch {
-            val result = repository.getCharacterById(id = characterId)
-            if (result.succeeded) {
-                val marvelCharacter = (result as Result.Success).data
-                _uiState.value = MarvelCharacterUIState(marvelCharacter)
-
-            } else {
-                _uiState.value = MarvelCharacterUIState(
-                    error = (result as Result.Error).exception.message
-                )
-            }
+    private suspend fun fetchCharacter() {
+        val result = repository.getSavedCharacter(characterId)
+        if (result.succeeded) {
+            updateStateAsSucceeded(result)
+        } else {
+            fetchCharacterFromWeb()
         }
     }
 
-    fun onDownloadPressed () {
+    private fun updateStateAsSucceeded(result: Result<MarvelCharacter>) {
+        val marvelCharacter = (result as Result.Success).data
+        _uiState.value = MarvelCharacterUIState(marvelCharacter)
+    }
+
+
+    private suspend fun fetchCharacterFromWeb() {
+
+        val result = repository.getCharacterByIdFromWeb(id = characterId)
+        if (result.succeeded) {
+            val marvelCharacter = (result as Result.Success).data
+            _uiState.value = MarvelCharacterUIState(marvelCharacter)
+
+        } else {
+            _uiState.value = MarvelCharacterUIState(
+                error = (result as Result.Error).exception.message
+            )
+        }
+
+    }
+
+    fun onDownloadPressed() {
         viewModelScope.launch {
             repository.saveCharacter(uiState.value.marvelCharacter!!)
         }
