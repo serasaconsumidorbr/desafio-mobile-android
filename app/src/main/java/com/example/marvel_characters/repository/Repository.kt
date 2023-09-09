@@ -40,9 +40,9 @@ class Repository private constructor(
         }
     }
 
-    suspend fun deleteCharacter(url: String) {
+    suspend fun deleteCharacter(character: MarvelCharacter) {
         coroutineScope {
-            launch { charactersLocalDataSource.deleteCharacter(url) }
+            launch { charactersLocalDataSource.deleteCharacterById(character.id) }
         }
     }
 

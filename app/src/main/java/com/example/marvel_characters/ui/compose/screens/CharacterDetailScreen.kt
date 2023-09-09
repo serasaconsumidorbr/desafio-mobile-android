@@ -1,6 +1,5 @@
 package com.example.marvel_characters.ui.compose.screens
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
@@ -10,7 +9,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -26,7 +24,6 @@ fun CharacterDetailScreen(
     onBackPressed: () -> Unit
 ) {
     val uiState by characterDetailViewModel.uiState.collectAsStateWithLifecycle()
-    val errorMessage = stringResource(id = R.string.an_error_occurred_when_trying_to_get_data)
     uiState.apply {
         if (loading) {
             FullScreenCenteredProgressIndicator()
@@ -39,8 +36,9 @@ fun CharacterDetailScreen(
 
                 MarvelCharacterDetailContent(
                     marvelCharacter = marvelCharacter!!,
+                    isCharacterSaved =  isCharacterSaved,
                     onBackPressed = onBackPressed,
-                    onDownloadPressed = characterDetailViewModel::onDownloadPressed
+                    onFavoritePressed = characterDetailViewModel::onFavoritePressed
                 )
             }
         } else {

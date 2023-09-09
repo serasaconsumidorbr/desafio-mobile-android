@@ -43,7 +43,7 @@ class CharactersLocalDataSource internal constructor(
         marvelDao.insertCharacter(marvelCharacter.asDatabaseModel())
     }
 
-    suspend fun deleteCharacter(characterUrl: String) = withContext<Unit>(ioDispatcher) {
-        marvelDao.deleteCharacterById(characterUrl)
+    suspend fun deleteCharacterById(characterId: String) = withContext<Unit>(ioDispatcher) {
+        marvelDao.deleteCharacterById(characterId)
     }
 }

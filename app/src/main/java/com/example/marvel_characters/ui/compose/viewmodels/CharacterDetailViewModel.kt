@@ -18,6 +18,7 @@ class CharacterDetailViewModel(
     savedStateHandle: SavedStateHandle,
     private val repository: Repository
 ) : ViewModel() {
+
     private val _uiState = MutableStateFlow(MarvelCharacterUIState(loading = true))
     val uiState: StateFlow<MarvelCharacterUIState> = _uiState
     private val characterId: String = savedStateHandle.get<String>(CHARACTER_DETAIL_ARG_KEY)!!
@@ -31,16 +32,14 @@ class CharacterDetailViewModel(
     private suspend fun fetchCharacter() {
         val result = repository.getSavedCharacter(characterId)
         if (result.succeeded) {
-            updateStateAsSucceeded(result)
+            val marvelCharacter = (result as Result.Success).data
+            _uiState.value = MarvelCharacterUIState(marvelCharacter, isCharacterSaved = true)
+
         } else {
             fetchCharacterFromWeb()
         }
     }
 
-    private fun updateStateAsSucceeded(result: Result<MarvelCharacter>) {
-        val marvelCharacter = (result as Result.Success).data
-        _uiState.value = MarvelCharacterUIState(marvelCharacter)
-    }
 
 
     private suspend fun fetchCharacterFromWeb() {
@@ -48,7 +47,7 @@ class CharacterDetailViewModel(
         val result = repository.getCharacterByIdFromWeb(id = characterId)
         if (result.succeeded) {
             val marvelCharacter = (result as Result.Success).data
-            _uiState.value = MarvelCharacterUIState(marvelCharacter)
+            _uiState.value = MarvelCharacterUIState(marvelCharacter, isCharacterSaved = false)
 
         } else {
             _uiState.value = MarvelCharacterUIState(
@@ -58,16 +57,33 @@ class CharacterDetailViewModel(
 
     }
 
-    fun onDownloadPressed() {
+    fun onFavoritePressed() {
         viewModelScope.launch {
-            repository.saveCharacter(uiState.value.marvelCharacter!!)
+            if (!uiState.value.isCharacterSaved) {
+                saveCharacter()
+            } else {
+                removeCharacter()
+            }
         }
     }
+
+    private suspend fun saveCharacter() {
+        repository.saveCharacter(uiState.value.marvelCharacter!!)
+        _uiState.value = uiState.value.copy(isCharacterSaved = true)
+    }
+
+
+    private suspend fun removeCharacter() {
+        repository.deleteCharacter(uiState.value.marvelCharacter!!)
+        _uiState.value = uiState.value.copy(isCharacterSaved = false)
+    }
+
 
     data class MarvelCharacterUIState(
         val marvelCharacter: MarvelCharacter? = null,
         override val loading: Boolean = false,
-        override val error: String? = null
+        override val error: String? = null,
+        val isCharacterSaved: Boolean = false
     ) :
         BaseDataUiState(loading, error)
 }

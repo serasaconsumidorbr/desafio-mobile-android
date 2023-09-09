@@ -13,4 +13,6 @@
     <string name="more">More</string>
     <string name="download">Download</string>
     <string name="error">Error</string>
+    <string name="mark_as_favorite">Mark as favorited</string>
+    <string name="remove_favorite">Remove favorite\n</string>
 </resources>
