@@ -1,11 +1,12 @@
 package com.example.marvel_characters.network
 
 import com.example.marvel_characters.Result
+import com.example.marvel_characters.Samples
 import com.example.marvel_characters.di.appModule
-import com.example.marvel_characters.domain.MarvelCharacter
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -36,9 +37,20 @@ class CharactersRemoteDataSourceTest {
     @Test
     fun shouldReturnNonEmptyCharactersListResult(): Unit = runBlocking {
 
-        val resultData = remoteDataSource.getCharacters()
+        val resultData = remoteDataSource.getNextCharacterPage()
         assertTrue(resultData is Result.Success)
         assertTrue((resultData as Result.Success).data.isNotEmpty())
 
+    }
+
+    @Test
+    fun shouldReturnExpectCharactersData(): Unit = runBlocking {
+
+        val resultData = remoteDataSource.getCharacterById(Samples.characterWithCompleteData.id)
+        assertTrue(resultData is Result.Success)
+
+        val returnedCharacter = (resultData as Result.Success).data
+
+        assertEquals(Samples.characterWithCompleteData, returnedCharacter)
     }
 }

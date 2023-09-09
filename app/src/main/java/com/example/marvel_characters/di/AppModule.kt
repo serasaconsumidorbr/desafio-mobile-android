@@ -9,12 +9,12 @@ import com.example.marvel_characters.database.MarvelDao
 import com.example.marvel_characters.network.CharactersRemoteDataSource
 import com.example.marvel_characters.network.MarvelApiService
 import com.example.marvel_characters.repository.Repository
+import com.example.marvel_characters.ui.compose.viewmodels.CharacterDetailViewModel
 import com.example.marvel_characters.ui.compose.viewmodels.MarvelCharactersViewModel
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModelOf
-import org.koin.core.scope.Scope
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,12 +22,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 val appModule = module {
 
     viewModelOf(::MarvelCharactersViewModel)
+    viewModelOf(::CharacterDetailViewModel)
 
     single { provideRetrofit() }
     single { provideApiService(get()) }
     single { CharactersRemoteDataSource(get()) }
     single { CharactersLocalDataSource(get(), Dispatchers.IO) }
-    single { provideCharactersDao( androidContext()) }
+    single { provideCharactersDao(androidContext()) }
     single {
         provideRepository(get(), get())
     }
@@ -35,7 +36,11 @@ val appModule = module {
 
 }
 
-private fun provideRepository(localDataSource: CharactersLocalDataSource, remoteDataSource: CharactersRemoteDataSource): Repository = Repository.getRepository(localDataSource, remoteDataSource)
+private fun provideRepository(
+    localDataSource: CharactersLocalDataSource,
+    remoteDataSource: CharactersRemoteDataSource
+): Repository = Repository.getRepository(localDataSource, remoteDataSource)
+
 private fun provideCharactersDao(context: Context): MarvelDao =
     CharacterDatabase.getInstance(context).marvelDao
 

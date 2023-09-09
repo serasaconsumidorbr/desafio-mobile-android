@@ -3,6 +3,7 @@ package com.example.marvel_characters.ui.compose.components
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -46,7 +47,8 @@ import kotlin.time.toDuration
 fun MarvelCharacterPager(
     modifier: Modifier = Modifier,
     marvelCharacters: List<MarvelCharacter>,
-    enableAutoScroll: Boolean = false
+    enableAutoScroll: Boolean = false,
+    navigateToCharacter: (String) -> Unit
 ) {
     val smallPadding = dimensionResource(id = R.dimen.small_padding)
 
@@ -81,7 +83,10 @@ fun MarvelCharacterPager(
                         )
                     }
             ) {
-                MarvelCharacterPagerItem(marvelCharacter = marvelCharacters[page])
+                val currentMarvelCharacter =  marvelCharacters[page]
+                MarvelCharacterPagerItem(
+                    marvelCharacter = currentMarvelCharacter,
+                    modifier = Modifier.clickable { navigateToCharacter(currentMarvelCharacter.id) })
             }
         }
 
@@ -149,7 +154,10 @@ fun MarvelCharacterPagerPreview() {
 
     MarvelCharactersTheme {
         Surface {
-            MarvelCharacterPager(marvelCharacters = Samples.marvelCharactersList)
+            MarvelCharacterPager(
+                marvelCharacters = Samples.marvelCharactersList,
+                navigateToCharacter = {  }
+            )
         }
     }
 }

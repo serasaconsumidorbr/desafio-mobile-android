@@ -13,5 +13,5 @@ sealed class Result<out R>  {
     }
 }
 
-val Result<*>.succeeded
+val Result<*>.succeeded   //TODO treat the possibility of a result be Success but with data == null
     get() = this is Result.Success && data != null

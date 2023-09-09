@@ -1,14 +1,19 @@
 package com.example.marvel_characters.ui.compose.screens
 
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.marvel_characters.R
+import com.example.marvel_characters.ui.compose.components.FullScreenCenteredProgressIndicator
 import com.example.marvel_characters.ui.compose.components.MarvelCharacterPager
 import com.example.marvel_characters.ui.compose.components.MarvelCharactersList
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
@@ -16,18 +21,26 @@ import com.example.marvel_characters.ui.compose.viewmodels.MarvelCharactersViewM
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun CharactersScreen(marvelCharactersViewModel: MarvelCharactersViewModel = getViewModel()) {
+fun CharactersScreen(
+    marvelCharactersViewModel: MarvelCharactersViewModel = getViewModel(),
+    navigateToCharacter: (String) -> Unit
+) {
     val uiState by marvelCharactersViewModel.uiState.collectAsStateWithLifecycle()
 
     uiState.apply {
+        if (hadAnError()) {
+            GenericErrorDialog(marvelCharactersViewModel::fetchCharactersFromNextPage)
+        } else if (loading && marvelCharacters.isEmpty()) {
+            FullScreenCenteredProgressIndicator()
+        }
         if (marvelCharacters.isNotEmpty()) {
             MarvelCharactersList(
-                marvelCharacters = uiState.marvelCharacters,
-                isLoading = uiState.loading, couldGetMoreFromWebService = couldGetMoreFromWebService
-            ) { marvelCharactersViewModel.listBottomIsVisible() }
-        } else if (loading){
-            CircularProgressIndicator(Modifier.wrapContentSize())
-
+                modifier = Modifier.fillMaxSize(),
+                uiState = uiState,
+                navigateToCharacter = navigateToCharacter,
+                needsToGetNextPage = marvelCharactersViewModel::fetchCharactersFromNextPage,
+                hasNextPage = marvelCharactersViewModel.hasNextPage
+            )
         }
     }
 }
@@ -39,7 +52,26 @@ fun CharactersScreen(marvelCharactersViewModel: MarvelCharactersViewModel = getV
 fun CharactersScreenPreview() {
     MarvelCharactersTheme {
         Surface {
-            MarvelCharacterPager(marvelCharacters = listOf())
+            MarvelCharacterPager(
+                marvelCharacters = listOf(),
+                navigateToCharacter = { }
+            )
         }
     }
 }
+
+@Composable
+fun GenericErrorDialog(onRetry: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = {},
+        title = { Text(text = stringResource(R.string.error)) },
+        text = { Text(text = stringResource(R.string.an_error_occurred_when_trying_to_get_data)) },
+
+        confirmButton = {
+            TextButton(onClick = onRetry) {
+                Text(stringResource(R.string.retry_label))
+            }
+        }
+    )
+}
+

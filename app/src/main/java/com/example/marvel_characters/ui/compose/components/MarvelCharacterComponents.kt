@@ -17,12 +17,12 @@ import com.example.marvel_characters.R
 
 
 @Composable
-fun MarvelCharacterImage(
+fun CharacterImage(
     modifier: Modifier = Modifier,
     thumbnailUrl: String?,
     name: String
 ) {
-    val placeholder = R.drawable.marvel_m
+    val placeholder = R.drawable.marvel_m_placeholder
     val representativeImageOfCharacterText =
         stringResource(R.string.character_thumbnail_content_description, name)
     val isNotAvailableText =   stringResource(R.string.not_available)
@@ -33,11 +33,11 @@ fun MarvelCharacterImage(
             representativeImageOfCharacterText
         }
     AsyncImage(
-
         modifier = modifier,
         model = ImageRequest.Builder(LocalContext.current)
             .data(thumbnailUrl)
             .crossfade(true)
+            .crossfade(1000)
             .build(),
 
         contentScale = ContentScale.Crop,
@@ -60,10 +60,8 @@ fun Name(
 }
 
 @Composable
-fun Description( modifier: Modifier = Modifier, description: String, style : TextStyle) {
-    val realDescription = description.ifBlank {
-        stringResource(id = R.string.description_not_available)
-    }
+fun DescriptionWithLinesLimit(modifier: Modifier = Modifier, description: String, style : TextStyle) {
+    val realDescription = getRealCharacterDescription(description)
     Text(
         text = realDescription,
         style = style,
@@ -72,4 +70,21 @@ fun Description( modifier: Modifier = Modifier, description: String, style : Tex
         modifier =  modifier,
         textAlign = TextAlign.Start
     )
+}
+
+@Composable
+fun DescriptionFull(modifier: Modifier = Modifier, description: String, style : TextStyle) {
+    val realDescription = getRealCharacterDescription(description)
+    Text(
+        text = realDescription,
+        style = style,
+        modifier =  modifier,
+        textAlign = TextAlign.Start
+    )
+}
+
+
+@Composable
+private fun getRealCharacterDescription(description: String) = description.ifBlank {
+    stringResource(id = R.string.description_not_available)
 }

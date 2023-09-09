@@ -30,7 +30,10 @@ class MarvelCharacterPagerTest {
         composeTestRule.setContent {
             MarvelCharactersTheme {
                 Surface {
-                    MarvelCharacterPager(marvelCharacters = charactersSampleList)
+                    MarvelCharacterPager(
+                        marvelCharacters = charactersSampleList,
+                        navigateToCharacter = {  }
+                    )
                 }
             }
         }
@@ -59,7 +62,10 @@ class MarvelCharacterPagerTest {
         composeTestRule.setContent {
             MarvelCharactersTheme {
                 Surface {
-                    MarvelCharacterPager(marvelCharacters = charactersSampleList)
+                    MarvelCharacterPager(
+                        marvelCharacters = charactersSampleList,
+                        navigateToCharacter = {  }
+                    )
                 }
             }
         }
@@ -87,7 +93,10 @@ class MarvelCharacterPagerTest {
         composeTestRule.setContent {
             MarvelCharactersTheme {
                 Surface {
-                    MarvelCharacterPager(marvelCharacters = charactersSampleList)
+                    MarvelCharacterPager(
+                        marvelCharacters = charactersSampleList,
+                        navigateToCharacter = {  }
+                    )
                 }
             }
         }

@@ -6,41 +6,63 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class CharactersRemoteDataSource(private val characterService: MarvelApiService) {
-    private var lastResultDataInfo: CharactersResultDataInfo? = null
+    private var lastListResultDataInfo: CharactersResultDataInfo? = null
 
     suspend fun getNextCharacterPage(): Result<List<MarvelCharacter>> =
-        if (lastResultDataInfo != null && lastResultDataInfo!!.hasNextPage()) {
-            getCharacterFromSearch(lastResultDataInfo!!.nextPageOffset())
+        if (lastListResultDataInfo != null && lastListResultDataInfo!!.hasNextPage()) {
+            getCharacters(lastListResultDataInfo!!.nextPageOffset())
         } else {
-            getCharacterFromSearch()
+            getCharacters()
         }
 
 
-    private suspend fun getCharacterFromSearch(
+    private suspend fun getCharacters(
         offset: Int = 0,
         limit: Int = 100
     ): Result<List<MarvelCharacter>> {
         return withContext(Dispatchers.IO) {
-            val characterListContainer =
-                characterService.getCharacters(offset = offset, limit = limit)
+            try {
+                val characterListContainer =
+                    characterService.getCharacters(offset = offset, limit = limit)
 
-            characterListContainer.let {
-                if (it.isSuccessful) {
-                    lastResultDataInfo = it.body()!!.data.run {
-                        CharactersResultDataInfo(offset = offset, limit = limit, total = total)
+                characterListContainer.let {
+                    if (it.isSuccessful) {
+                        lastListResultDataInfo = it.body()!!.data.run {
+                            CharactersResultDataInfo(offset = offset, limit = limit, total = total)
+                        }
+
+                        Result.Success(it.body()!!.asDomainModel())
+                    } else {
+                        throw Exception(it.errorBody().toString())
                     }
-
-                    Result.Success(it.body()!!.asDomainModel())
-                } else {
-                    Result.Error(Exception(it.errorBody().toString()))
                 }
+            } catch (exception: Exception) {
+                Result.Error(exception)
             }
         }
     }
 
-    fun hasNextPage() = lastResultDataInfo?.hasNextPage()?:true
+    fun hasNextPage() = lastListResultDataInfo?.hasNextPage() ?: true
 
+    suspend fun getCharacterById(
+        id: String,
+    ): Result<MarvelCharacter> {
+        return withContext(Dispatchers.IO) {
+            try {
+
+                val characterContainer =
+                    characterService.getCharacterById(id)
+                val singleElementIndex = 0
+                characterContainer.let {
+                    if (it.isSuccessful) {
+                        Result.Success(it.body()!!.asDomainModel()[singleElementIndex])
+                    } else {
+                        Result.Error(Exception(it.errorBody().toString()))
+                    }
+                }
+            } catch (exception: Exception) {
+                Result.Error(exception)
+            }
+        }
+    }
 }
-
-
-class InternetMissingException : Exception()

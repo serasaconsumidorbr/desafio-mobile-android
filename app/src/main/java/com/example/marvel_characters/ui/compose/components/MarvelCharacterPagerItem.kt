@@ -23,19 +23,19 @@ fun MarvelCharacterPagerItem(marvelCharacter: MarvelCharacter, modifier: Modifie
 
     marvelCharacter.apply {
         Column(
-            modifier = Modifier.padding(smallPadding)
+            modifier = modifier.padding(smallPadding)
         ) {
-            MarvelCharacterImage(
+            CharacterImage(
                 name = marvelCharacter.name,
                 thumbnailUrl = marvelCharacter.thumbnailUrl,
                 modifier = Modifier
                     .padding(bottom = smallPadding)
                     .fillMaxWidth()
-                    .height(dimensionResource(id = R.dimen.pager_item_thumbnail_height))
+                    .height(dimensionResource(id = R.dimen.large_character_thumbnail_height))
 
             )
             Name( modifier = Modifier.padding(vertical = smallPadding), name = name, MaterialTheme.typography.titleLarge,)
-            Description(modifier.height(36.dp), description = description, MaterialTheme.typography.labelLarge)
+            DescriptionWithLinesLimit(modifier.height(36.dp), description = description, MaterialTheme.typography.labelLarge)
         }
     }
 }

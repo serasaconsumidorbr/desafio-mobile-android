@@ -6,15 +6,15 @@ import com.google.gson.annotations.SerializedName
 
 
 data class NetworkCharacterContainer(
-      val data: Data,
-    val copyright:String,
-    val attributionText:String
+    val data: Data,
+    val copyright: String,
+    val attributionText: String
 )
 
 data class Data(
     val offset: Int,
-    val limit:Int,
-    val total:Int,
+    val limit: Int,
+    val total: Int,
     @SerializedName("results")
     val networkCharacters: List<NetworkCharacter>
 )
@@ -44,8 +44,8 @@ fun NetworkCharacterContainer.asDomainModel(): List<MarvelCharacter> {
 }
 
 fun MarvelCharacter.asDatabaseModel() = DatabaseCharacter(
-    id ?: "",
-    name ?: "",
-    description ?: "",
-    thumbnailUrl ?: ""
+    id,
+    name,
+    description,
+    thumbnailUrl
 )
