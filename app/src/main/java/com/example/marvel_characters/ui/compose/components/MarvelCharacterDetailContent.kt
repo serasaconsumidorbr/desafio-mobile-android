@@ -140,7 +140,10 @@ private fun Buttons(
                 contentDescription = stringResource(R.string.more)
             )
             DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-                DropdownMenuItem(text = { Text(downloadText) }, onClick = { onDownloadPressed() })
+                DropdownMenuItem(text = { Text(downloadText) }, onClick = {
+                    expanded = false
+                    onDownloadPressed()
+                                 })
 
             }
         }
