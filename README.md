@@ -1,6 +1,6 @@
 # Projeto Hearthstone
 
-Aplicativo que trás os personagens da marvel.
+Aplicativo que retorna os personagens da marvel.
 
 ## Tecnologias :computer:
 
@@ -30,4 +30,5 @@ Aplicativo que trás os personagens da marvel.
 
   <img src="screenshot\internet.png" width="300"/>
 
-Possivel implementalçao seria colocar as normas tecnicas de acessibilidade segundo a WCAG(W3.org)
+### Possível Implementação
+Colocar as normas técnicas de acessibilidade segundo a WCAG(W3.org)
