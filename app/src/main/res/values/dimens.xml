@@ -6,5 +6,6 @@
     <dimen name="extra_small_padding">4dp</dimen>
     <dimen name="large_character_thumbnail_height">300dp</dimen>
     <dimen name="list_item_thumbnail_size">64dp</dimen>
+    <dimen name="button_elevation">16dp</dimen>
 
 </resources>

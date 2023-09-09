@@ -2,18 +2,22 @@ package com.example.marvel_characters.ui.compose.screens
 
 import android.content.res.Configuration
 import android.widget.Toast
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.marvel_characters.R
+import com.example.marvel_characters.ui.compose.components.FullScreenCenteredProgressIndicator
 import com.example.marvel_characters.ui.compose.components.MarvelCharacterPager
 import com.example.marvel_characters.ui.compose.components.MarvelCharactersList
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
@@ -29,17 +33,17 @@ fun CharactersScreen(
 
     uiState.apply {
         if (marvelCharacters.isNotEmpty()) {
-            MarvelCharactersList(
+            MarvelCharactersList(modifier= Modifier.fillMaxSize(),
                 uiState = uiState,
                 navigateToCharacter = navigateToCharacter,
                 needsToGetNextPage = marvelCharactersViewModel::needsToGetCharactersFromNextPage,
                 hasNextPage = marvelCharactersViewModel.hasNextPage
             )
         } else if (loading) {
-            CircularProgressIndicator(Modifier.wrapContentSize())
+            FullScreenCenteredProgressIndicator()
         }
         else{
-            //TODO Add an error message
+            //TODO: Add an error message
         }
     }
 }

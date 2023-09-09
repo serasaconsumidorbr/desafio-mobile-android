@@ -10,4 +10,6 @@
     <string name="not_available">not available</string>
     <string name="back_button">Back</string>
     <string name="data_load_problem">An error has occurred when trying to load data\n</string>
+    <string name="more">More</string>
+    <string name="download">Download</string>
 </resources>

@@ -20,7 +20,7 @@ class CharacterDetailViewModel(
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(MarvelCharacterUIState(loading = true))
     val uiState: StateFlow<MarvelCharacterUIState> = _uiState
-    val characterId: String = savedStateHandle.get<String>(CHARACTER_DETAIL_ARG_KEY)!!
+    private val characterId: String = savedStateHandle.get<String>(CHARACTER_DETAIL_ARG_KEY)!!
 
     init {
         viewModelScope.launch {

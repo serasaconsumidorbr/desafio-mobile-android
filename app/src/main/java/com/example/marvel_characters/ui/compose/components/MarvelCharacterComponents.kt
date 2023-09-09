@@ -37,6 +37,7 @@ fun CharacterImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(thumbnailUrl)
             .crossfade(true)
+            .crossfade(1000)
             .build(),
 
         contentScale = ContentScale.Crop,

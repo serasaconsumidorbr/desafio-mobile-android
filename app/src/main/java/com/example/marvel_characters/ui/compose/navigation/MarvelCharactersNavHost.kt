@@ -5,7 +5,6 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.marvel_characters.network.isInternetAvailable
 import com.example.marvel_characters.ui.compose.MarvelCharactersAppState
 import com.example.marvel_characters.ui.compose.Screen
 import com.example.marvel_characters.ui.compose.screens.CharacterDetailScreen
@@ -15,8 +14,7 @@ import com.example.marvel_characters.ui.compose.screens.CharactersScreen
 fun MarvelCharactersNavHost(appState: MarvelCharactersAppState) {
     NavHost(
         navController = appState.navController,
-        startDestination = Screen.CharacterList.route
-    ) {
+        startDestination = Screen.CharacterList.route) {
 
         composable(Screen.CharacterList.route) { backStackEntry ->
             CharactersScreen(

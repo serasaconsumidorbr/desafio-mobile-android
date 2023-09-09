@@ -56,15 +56,18 @@ fun MarvelCharacterListItem(
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
                     })
-            Name(name = it.name, style = MaterialTheme.typography.titleMedium, modifier = modifier
-                .constrainAs(name) {
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                    start.linkTo(image.end)
-                    end.linkTo(parent.end)
-                    width = Dimension.fillToConstraints
+            Name(name = it.name,
+                style = MaterialTheme.typography.titleMedium,
+                modifier = modifier
+                    .padding(end = smallPadding)
+                    .constrainAs(name) {
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom)
+                        start.linkTo(image.end)
+                        end.linkTo(parent.end)
+                        width = Dimension.fillToConstraints
 
-                })
+                    })
         }
     }
 }
@@ -79,7 +82,7 @@ fun MarvelCharacterListItemPreview() {
         Surface {
             MarvelCharacterListItem(
                 Samples.characterWithMissingImage,
-                navigateToCharacter = {  }
+                navigateToCharacter = { }
             )
         }
     }
