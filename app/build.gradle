@@ -112,6 +112,7 @@ dependencies {
     implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
     implementation("io.insert-koin:koin-androidx-compose:$koin_version")
 
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.32.0"
     implementation "androidx.navigation:navigation-compose:2.7.2"
 
     testImplementation "com.squareup.okhttp3:mockwebserver:4.9.0"

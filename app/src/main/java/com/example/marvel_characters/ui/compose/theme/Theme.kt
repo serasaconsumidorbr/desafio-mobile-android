@@ -5,6 +5,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
 private val LightColors = lightColorScheme(
@@ -82,6 +84,12 @@ fun MarvelCharactersTheme(
     } else {
         DarkColors
     }
+
+    val systemUiController = rememberSystemUiController()
+
+        systemUiController.setSystemBarsColor(
+            color = colors.surfaceVariant
+        )
 
     MaterialTheme(
         colorScheme = colors,

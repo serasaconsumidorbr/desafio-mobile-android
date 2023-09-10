@@ -35,7 +35,7 @@ fun CharactersScreen(
         if (hadAnError()) {
             GenericErrorDialog(marvelCharactersViewModel::fetchCharactersFromNextWebResult)
         } else if (loading && marvelCharacters.isEmpty()) {
-            FullScreenCenteredProgress()
+            FullScreenCenteredProgress(true)
         }
         if (marvelCharacters.isNotEmpty()) {
             MarvelCharactersList(
