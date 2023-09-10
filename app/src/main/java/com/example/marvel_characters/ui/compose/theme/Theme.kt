@@ -85,6 +85,7 @@ fun MarvelCharactersTheme(
 
     MaterialTheme(
         colorScheme = colors,
+        typography = Typography,
         content = content
     )
 }
