@@ -90,7 +90,7 @@ fun MarvelCharactersList(
                 }
             }
         }
-        if (hasNextPage) {
+        if (hasNextPage&&!hadAnError()) {
             LaunchedEffect(!loading) {
                 snapshotFlow { listState.layoutInfo }.map { layoutInfo ->
                     uiIsShowingLastPageBeforeTheBottom(
