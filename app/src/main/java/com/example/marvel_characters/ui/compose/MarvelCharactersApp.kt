@@ -2,11 +2,9 @@ package com.example.marvel_characters.ui.compose
 
 import android.content.res.Configuration
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.rememberDismissState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -19,10 +17,10 @@ import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 fun MarvelCharactersApp(
     appState: MarvelCharactersAppState = rememberMarvelCharactersAppState()
 ) {
-    if (appState.isOnline) {
+    if (appState.isOnline|| appState.isOnOfflineMode) {
         MarvelCharactersNavHost(appState)
     } else {
-        OfflineDialog { appState.refreshOnline() }
+        OfflineDialog(appState::refreshOnline, appState::enterOnOfflineMode)
     }
 }
 
@@ -38,11 +36,8 @@ fun MarvelCharactersAppPreview() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OfflineDialog(onRetry: () -> Unit) {
-                var dismissState = rememberDismissState()
-
+fun OfflineDialog(onRetry: () -> Unit, offlineMode: () -> Unit) {
     AlertDialog(
         onDismissRequest = { },
         title = { Text(text = stringResource(R.string.internet_connection_error_title)) },
@@ -54,8 +49,8 @@ fun OfflineDialog(onRetry: () -> Unit) {
             }
         },
         dismissButton = {
-            TextButton(onClick = {}) {
-                Text(stringResource(R.string.retry_label))
+            TextButton(onClick = offlineMode) {
+                Text(stringResource(R.string.enterOnOfflineMode))
             }
         }
     )

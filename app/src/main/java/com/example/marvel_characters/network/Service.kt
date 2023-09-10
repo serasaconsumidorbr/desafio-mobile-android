@@ -19,8 +19,8 @@ interface MarvelApiService {
 
     @GET("v1/public/characters?ts=1&apikey=$PUBLIC_API_KEY&hash=$HASH")
     suspend fun getCharacters(
-        @Query("limit") limit: Int = 100,
-        @Query("offset") offset: Int = 0
+        @Query("limit") limit:Int,
+        @Query("offset") offset: Int
     ): Response<NetworkCharacterContainer>
 
     @GET("v1/public/characters/{id}?ts=1&apikey=$PUBLIC_API_KEY&hash=$HASH")

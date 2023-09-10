@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.marvel_characters.R
-import com.example.marvel_characters.ui.compose.components.FullScreenCenteredProgressIndicator
+import com.example.marvel_characters.ui.compose.components.FullScreenCenteredProgress
 import com.example.marvel_characters.ui.compose.components.MarvelCharacterDetailContent
 import com.example.marvel_characters.ui.compose.viewmodels.CharacterDetailViewModel
 import org.koin.androidx.compose.getViewModel
@@ -26,7 +26,7 @@ fun CharacterDetailScreen(
     val uiState by characterDetailViewModel.uiState.collectAsStateWithLifecycle()
     uiState.apply {
         if (loading) {
-            FullScreenCenteredProgressIndicator()
+            FullScreenCenteredProgress()
         } else if (!hadAnError()) {
             Column(
                 Modifier

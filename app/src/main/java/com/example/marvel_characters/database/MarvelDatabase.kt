@@ -14,7 +14,7 @@ interface MarvelDao {
     fun observeCharacterById(id: String): Flow<DatabaseCharacter>
 
     @Query("SELECT * FROM MarvelCharacter")
-    suspend fun getCharacterList(): List<DatabaseCharacter>
+    suspend fun getCharactersList(): List<DatabaseCharacter>
 
     @Query("SELECT * FROM MarvelCharacter WHERE id = :id")
     suspend fun getCharacterById(id: String): DatabaseCharacter?

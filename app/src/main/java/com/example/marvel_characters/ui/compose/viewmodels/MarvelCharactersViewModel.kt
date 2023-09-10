@@ -1,5 +1,6 @@
 package com.example.marvel_characters.ui.compose.viewmodels
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.marvel_characters.BaseDataUiState
@@ -7,19 +8,24 @@ import com.example.marvel_characters.Result
 import com.example.marvel_characters.domain.MarvelCharacter
 import com.example.marvel_characters.repository.Repository
 import com.example.marvel_characters.succeeded
+import com.example.marvel_characters.ui.compose.CHARACTER_LIST_ARG_KEY
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class MarvelCharactersViewModel(private val repository: Repository) : ViewModel() {
-    private val _uiState = MutableStateFlow(MarvelCharactersUIState(loading = true))
-    val uiState: StateFlow<MarvelCharactersUIState> = _uiState
+class MarvelCharactersViewModel(
+    savedStateHandle: SavedStateHandle, private val repository: Repository
+) : ViewModel() {
+    private val isOnOfflineMode: Boolean = savedStateHandle.get<Boolean>(CHARACTER_LIST_ARG_KEY)!!
 
-    val hasNextPage = repository.hasNextPage()
+    private val hasNextPage = repository.hasNextPage() && !isOnOfflineMode
+    private val _uiState =
+        MutableStateFlow(MarvelCharactersUIState(loading = true, hasNextPage = hasNextPage))
+    val uiState: StateFlow<MarvelCharactersUIState> = _uiState
 
     init {
         viewModelScope.launch {
-            fetchNextPageCharacters()
+            fetchData()
         }
     }
 
@@ -44,20 +50,38 @@ class MarvelCharactersViewModel(private val repository: Repository) : ViewModel(
         val updatedCharactersList =
             uiState.value.marvelCharacters + (result as Result.Success).data
         _uiState.value = MarvelCharactersUIState(
-            marvelCharacters = updatedCharactersList
+            marvelCharacters = updatedCharactersList, hasNextPage = hasNextPage
         )
     }
 
-    fun fetchCharactersFromNextPage() {
+    fun fetchCharactersFromNextWebResult() {
         _uiState.value = uiState.value.copy(loading = true)
         fetchNextPageCharacters()
+    }
+
+    private suspend fun fetchData() {
+        if (isOnOfflineMode) {
+            getLocalCharacters()
+        } else {
+            fetchCharactersFromNextWebResult()
+        }
+    }
+
+    private suspend fun getLocalCharacters() {
+        _uiState.value = uiState.value.copy(loading = true)
+
+        val marvelCharacters = repository.getSavedCharacterList()
+        _uiState.value = MarvelCharactersUIState(
+            marvelCharacters = marvelCharacters, hasNextPage = hasNextPage
+        )
     }
 }
 
 data class MarvelCharactersUIState(
     val marvelCharacters: List<MarvelCharacter> = emptyList(),
     override val loading: Boolean = false,
-    override val error: String? = null
+    override val error: String? = null,
+    val hasNextPage: Boolean
 ) :
     BaseDataUiState(loading, error)
 

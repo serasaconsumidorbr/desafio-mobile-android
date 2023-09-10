@@ -2,7 +2,7 @@
     <string name="app_name">Marvel Characters</string>
 
     <string name="internet_connection_error_title">Internet connection error</string>
-    <string name="internet_connection_error_message">Could not load data. Please, check your Internet connection</string>
+    <string name="internet_connection_error_message">Could not load data. Please, check your Internet connection or continue in offline mode</string>
     <string name="an_error_occurred_when_trying_to_get_data">An error has occurred when trying to load data</string>
     <string name="character_thumbnail_content_description">Representative image of %s</string>
     <string name="retry_label">Try again</string>
@@ -15,4 +15,7 @@
     <string name="error">Error</string>
     <string name="mark_as_favorite">Mark as favorited</string>
     <string name="remove_favorite">Remove favorite\n</string>
+    <string name="enterOnOfflineMode">Offline mode\n</string>
+    <string name="no_saved_character_to_display">"There is no saved Marvel character to display "</string>
+    <string name="loading">Loading</string>
 </resources>
