@@ -12,18 +12,22 @@ import com.example.marvel_characters.ui.compose.screens.CharactersScreen
 fun MarvelCharactersNavHost(appState: MarvelCharactersAppState) {
     NavHost(
         navController = appState.navController,
-        startDestination = Screen.CharacterList.route) {
+        startDestination = Screen.CharacterList.createRoute()
+    ) {
 
-        composable(Screen.CharacterList.route) { backStackEntry ->
+        composable(
+            route = Screen.CharacterList.route,
+            arguments = Screen.CharacterList.createArguments(appState.isOnOfflineMode)
+        ) { backStackEntry ->
             CharactersScreen(
                 navigateToCharacter = { characterId ->
-                    appState.navigateToCharacter(characterId, backStackEntry)
+                    appState.navigateToCharacterDetail(characterId, backStackEntry)
                 }
             )
         }
-        composable(route = Screen.CharacterDetail.route) {backStackEntry->
+        composable(route = Screen.CharacterDetail.route) { backStackEntry ->
             CharacterDetailScreen(
-                onBackPressed ={ appState.navigateBack(backStackEntry)}
+                onBackPressed = { appState.navigateBack(backStackEntry) }
             )
         }
     }

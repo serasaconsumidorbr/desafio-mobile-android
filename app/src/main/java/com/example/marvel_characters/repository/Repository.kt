@@ -31,8 +31,10 @@ class Repository private constructor(
     fun observeSavedCharactersList() = charactersLocalDataSource.observeCharactersList()
     fun observeSavedCharacter(id: String) = charactersLocalDataSource.observeCharacter(id)
 
-    suspend fun getSavedCharacter(id: String, forceUpdate: Boolean = false) =
+    suspend fun getSavedCharacter(id: String) =
         charactersLocalDataSource.getCharacter(id)
+    suspend fun getSavedCharacterList() =
+        charactersLocalDataSource.getSavedCharacters()
 
     suspend fun saveCharacter(character: MarvelCharacter) {
         coroutineScope {
@@ -40,9 +42,9 @@ class Repository private constructor(
         }
     }
 
-    suspend fun deleteCharacter(url: String) {
+    suspend fun deleteCharacter(character: MarvelCharacter) {
         coroutineScope {
-            launch { charactersLocalDataSource.deleteCharacter(url) }
+            launch { charactersLocalDataSource.deleteCharacterById(character.id) }
         }
     }
 

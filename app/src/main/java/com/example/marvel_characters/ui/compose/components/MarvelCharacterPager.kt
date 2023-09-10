@@ -54,7 +54,7 @@ fun MarvelCharacterPager(
 
 
     val pagerState = rememberPagerState(pageCount = {
-        PAGER_PAGE_COUNT
+        marvelCharacters.size
     })
 
     Column(
@@ -93,7 +93,7 @@ fun MarvelCharacterPager(
         PagerIndicator(modifier = Modifier.padding(smallPadding), pagerState = pagerState)
 
         if (enableAutoScroll) {
-            EnableAutoScroll(pagerState)
+            EnableAutoScroll( pagerState)
         }
 
 
@@ -103,7 +103,7 @@ fun MarvelCharacterPager(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun EnableAutoScroll(pagerState: PagerState) {
-    val maxPageIndex = PAGER_PAGE_COUNT - 1
+    val maxPageIndex = pagerState.pageCount - 1
     pagerState.settledPage.let {
         LaunchedEffect(it) {
             val secondsToWait = 10.toDuration(DurationUnit.SECONDS)
@@ -132,7 +132,7 @@ private fun PagerIndicator(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.Bottom
     ) {
-        repeat(PAGER_PAGE_COUNT) { iteration ->
+        repeat(pagerState.pageCount) { iteration ->
             val color =
                 if (pagerState.currentPage == iteration) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.background
             Box(

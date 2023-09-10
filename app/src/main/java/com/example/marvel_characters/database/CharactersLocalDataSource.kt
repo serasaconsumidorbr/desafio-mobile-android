@@ -20,9 +20,21 @@ class CharactersLocalDataSource internal constructor(
         }
     }
 
+    fun getCharactersList(): Flow<Result<List<MarvelCharacter>>> {
+        return marvelDao.observeCharacterList().map {
+            Result.Success(it.asDomainModel())
+        }
+    }
+
     fun observeCharacter(url: String): Flow<Result<MarvelCharacter>> {
         return marvelDao.observeCharacterById(url).map {
             Result.Success(it.asDomainModel())
+        }
+    }
+
+    suspend fun getSavedCharacters(): List<MarvelCharacter> {
+        return withContext(ioDispatcher) {
+            marvelDao.getCharactersList().asDomainModel()
         }
     }
 
@@ -43,7 +55,7 @@ class CharactersLocalDataSource internal constructor(
         marvelDao.insertCharacter(marvelCharacter.asDatabaseModel())
     }
 
-    suspend fun deleteCharacter(characterUrl: String) = withContext<Unit>(ioDispatcher) {
-        marvelDao.deleteCharacterById(characterUrl)
+    suspend fun deleteCharacterById(characterId: String) = withContext<Unit>(ioDispatcher) {
+        marvelDao.deleteCharacterById(characterId)
     }
 }

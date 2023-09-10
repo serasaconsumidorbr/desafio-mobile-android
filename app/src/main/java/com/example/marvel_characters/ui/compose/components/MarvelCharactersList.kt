@@ -35,8 +35,7 @@ fun MarvelCharactersList(
     modifier: Modifier = Modifier,
     uiState: MarvelCharactersUIState,
     navigateToCharacter: (String) -> Unit,
-    needsToGetNextPage: () -> Unit,
-    hasNextPage:Boolean
+    fetchNextCharactersFromWeb: () -> Unit,
 ) {
 
     val smallPadding = dimensionResource(id = R.dimen.small_padding)
@@ -45,7 +44,7 @@ fun MarvelCharactersList(
         val listState = rememberLazyListState()
 
         LazyColumn(
-            modifier=modifier,
+            modifier = modifier,
             state = listState,
             verticalArrangement = Arrangement.spacedBy(smallPadding),
             contentPadding = PaddingValues(horizontal = smallPadding)
@@ -61,16 +60,24 @@ fun MarvelCharactersList(
                 marvelCharacters.drop(charactersToDisplayOnPagerQuantity)
 
             item {
-                MarvelCharacterPager(marvelCharacters = charactersToDisplayInPager, navigateToCharacter= navigateToCharacter)
+                MarvelCharacterPager(
+                    marvelCharacters = charactersToDisplayInPager,
+                    navigateToCharacter = navigateToCharacter
+                )
             }
 
-            items(items = charactersToDisplayOnVerticalList, key = { marvelCharacter ->
-                marvelCharacter.id
-            }) { marvelCharacter ->
-                MarvelCharacterListItem(marvelCharacter = marvelCharacter, navigateToCharacter = navigateToCharacter)
+            if (charactersToDisplayOnVerticalList.isNotEmpty()) {
+                items(items = charactersToDisplayOnVerticalList, key = { marvelCharacter ->
+                    marvelCharacter.id
+                }) { marvelCharacter ->
+                    MarvelCharacterListItem(
+                        marvelCharacter = marvelCharacter,
+                        navigateToCharacter = navigateToCharacter
+                    )
+                }
             }
 
-            if (loading) {
+            if (hasNextPage && !hadAnError()) {
                 item(key = "circular_progress_indicator") {
                     Row(
                         Modifier
@@ -83,14 +90,14 @@ fun MarvelCharactersList(
                 }
             }
         }
-        if (hasNextPage) {
+        if (hasNextPage&&!hadAnError()) {
             LaunchedEffect(!loading) {
                 snapshotFlow { listState.layoutInfo }.map { layoutInfo ->
-                    uiIsShowing5thPageBeforeTheBottom(
+                    uiIsShowingLastPageBeforeTheBottom(
                         layoutInfo
                     )
                 }.distinctUntilChanged().filter { it && !loading }.collect {
-                    needsToGetNextPage()
+                    fetchNextCharactersFromWeb()
                 }
             }
         }
@@ -98,8 +105,8 @@ fun MarvelCharactersList(
 }
 
 
-private fun uiIsShowing5thPageBeforeTheBottom(layoutInfo: LazyListLayoutInfo) =
-    layoutInfo.visibleItemsInfo.first().index >= layoutInfo.totalItemsCount - layoutInfo.visibleItemsInfo.size * 5
+private fun uiIsShowingLastPageBeforeTheBottom(layoutInfo: LazyListLayoutInfo) =
+    layoutInfo.visibleItemsInfo.first().index >= layoutInfo.totalItemsCount - layoutInfo.visibleItemsInfo.size
 
 
 private fun getCharactersToDisplayOnPagerQuantity(marvelCharacters: List<MarvelCharacter>) =
@@ -124,13 +131,14 @@ fun MarvelCharacterListPreview() {
         Samples.characterWithCompleteData
     )
 
-    val uiState = MarvelCharactersUIState(marvelCharacters = marvelCharacters)
+    val uiState = MarvelCharactersUIState(marvelCharacters = marvelCharacters, hasNextPage = false)
     MarvelCharactersTheme {
         Surface {
-            MarvelCharactersList(uiState = uiState,
-                needsToGetNextPage = { },
+            MarvelCharactersList(
+                uiState = uiState,
+                fetchNextCharactersFromWeb = { },
                 navigateToCharacter = { },
-                hasNextPage = true)
+            )
         }
     }
 }

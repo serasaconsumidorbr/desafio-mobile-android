@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -27,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,7 +45,8 @@ fun MarvelCharacterDetailContent(
     marvelCharacter: MarvelCharacter,
     modifier: Modifier = Modifier,
     onBackPressed: () -> Unit,
-    onDownloadPressed: () -> Unit
+    onFavoritePressed: () -> Unit,
+    isCharacterSaved: Boolean
 ) {
     val smallPadding = dimensionResource(id = R.dimen.small_padding)
     val mediumPadding = dimensionResource(id = R.dimen.medium_padding)
@@ -69,7 +73,7 @@ fun MarvelCharacterDetailContent(
                 top.linkTo(parent.top)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
-            }, onBackPressed, onDownloadPressed = onDownloadPressed)
+            }, onBackPressed, onFavoriteClick = onFavoritePressed, isSaved = isCharacterSaved)
             Column(
                 Modifier
                     .padding(
@@ -94,11 +98,10 @@ fun MarvelCharacterDetailContent(
 
 @Composable
 private fun Buttons(
-    modifier: Modifier, onBackPressed: () -> Unit, onDownloadPressed: () -> Unit
+    modifier: Modifier, onBackPressed: () -> Unit, onFavoriteClick: () -> Unit, isSaved: Boolean
 ) {
 
     val buttonElevation = dimensionResource(id = R.dimen.button_elevation)
-    val downloadText = stringResource(id = R.string.download)
 
     ConstraintLayout(modifier = modifier.fillMaxWidth()) {
         val (backArrow, optionsMenu) = createRefs()
@@ -121,14 +124,25 @@ private fun Buttons(
             )
         }
 
-        var expanded by remember { mutableStateOf(false) }
+        val favoriteIcon: ImageVector
+        val favoriteButtonContentDescription: String
 
-        IconButton(onClick = { expanded = !expanded },
+        if (isSaved) {
+            favoriteIcon = Icons.Filled.Favorite
+            favoriteButtonContentDescription = stringResource(id = R.string.mark_as_favorite)
+        } else {
+            favoriteIcon = Icons.Filled.FavoriteBorder
+            favoriteButtonContentDescription = stringResource(id = R.string.remove_favorite)
+        }
+
+        IconButton(onClick = { onFavoriteClick() },
             Modifier
                 .constrainAs(optionsMenu) {
                     top.linkTo(parent.top)
                     end.linkTo(parent.end)
                 }) {
+
+
             Icon(
                 modifier = Modifier
                     .background(
@@ -136,16 +150,10 @@ private fun Buttons(
                         shape = CircleShape
                     ),
 
-                imageVector = Icons.Default.MoreVert,
-                contentDescription = stringResource(R.string.more)
+                imageVector = favoriteIcon,
+                contentDescription = favoriteButtonContentDescription
             )
-            DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-                DropdownMenuItem(text = { Text(downloadText) }, onClick = {
-                    expanded = false
-                    onDownloadPressed()
-                                 })
 
-            }
         }
     }
 }

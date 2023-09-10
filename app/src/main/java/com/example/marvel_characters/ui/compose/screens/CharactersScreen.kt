@@ -1,6 +1,7 @@
 package com.example.marvel_characters.ui.compose.screens
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Surface
@@ -8,39 +9,46 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.marvel_characters.R
-import com.example.marvel_characters.ui.compose.components.FullScreenCenteredProgressIndicator
+import com.example.marvel_characters.ui.compose.components.FullScreenCenteredProgress
 import com.example.marvel_characters.ui.compose.components.MarvelCharacterPager
 import com.example.marvel_characters.ui.compose.components.MarvelCharactersList
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 import com.example.marvel_characters.ui.compose.viewmodels.MarvelCharactersViewModel
 import org.koin.androidx.compose.getViewModel
 
+
 @Composable
 fun CharactersScreen(
     marvelCharactersViewModel: MarvelCharactersViewModel = getViewModel(),
-    navigateToCharacter: (String) -> Unit
-) {
+    navigateToCharacter: (String) -> Unit,
+
+    ) {
     val uiState by marvelCharactersViewModel.uiState.collectAsStateWithLifecycle()
 
     uiState.apply {
         if (hadAnError()) {
-            GenericErrorDialog(marvelCharactersViewModel::fetchCharactersFromNextPage)
+            GenericErrorDialog(marvelCharactersViewModel::fetchCharactersFromNextWebResult)
         } else if (loading && marvelCharacters.isEmpty()) {
-            FullScreenCenteredProgressIndicator()
+            FullScreenCenteredProgress()
         }
         if (marvelCharacters.isNotEmpty()) {
             MarvelCharactersList(
                 modifier = Modifier.fillMaxSize(),
                 uiState = uiState,
                 navigateToCharacter = navigateToCharacter,
-                needsToGetNextPage = marvelCharactersViewModel::fetchCharactersFromNextPage,
-                hasNextPage = marvelCharactersViewModel.hasNextPage
+                fetchNextCharactersFromWeb = marvelCharactersViewModel::fetchCharactersFromNextWebResult,
             )
+        } else if (!loading) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center)
+            {
+                Text(text = stringResource(id = R.string.no_saved_character_to_display))
+            }
         }
     }
 }
