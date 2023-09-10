@@ -32,13 +32,11 @@ class CharactersLocalDataSource internal constructor(
         }
     }
 
-
     suspend fun getSavedCharacters(): List<MarvelCharacter> {
         return withContext(ioDispatcher) {
             marvelDao.getCharactersList().asDomainModel()
         }
     }
-
 
     suspend fun getCharacter(url: String): Result<MarvelCharacter> = withContext(ioDispatcher) {
         try {

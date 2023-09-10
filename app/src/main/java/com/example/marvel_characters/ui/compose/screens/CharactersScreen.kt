@@ -28,7 +28,7 @@ fun CharactersScreen(
     marvelCharactersViewModel: MarvelCharactersViewModel = getViewModel(),
     navigateToCharacter: (String) -> Unit,
 
-) {
+    ) {
     val uiState by marvelCharactersViewModel.uiState.collectAsStateWithLifecycle()
 
     uiState.apply {
@@ -44,13 +44,11 @@ fun CharactersScreen(
                 navigateToCharacter = navigateToCharacter,
                 fetchNextCharactersFromWeb = marvelCharactersViewModel::fetchCharactersFromNextWebResult,
             )
-        }
-        else if(!loading)
-        {
-          Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center)
-          {
-             Text(text = stringResource(id = R.string.no_saved_character_to_display))
-          }
+        } else if (!loading) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center)
+            {
+                Text(text = stringResource(id = R.string.no_saved_character_to_display))
+            }
         }
     }
 }

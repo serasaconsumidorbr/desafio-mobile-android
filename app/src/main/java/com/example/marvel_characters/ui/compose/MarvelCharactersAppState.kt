@@ -21,10 +21,13 @@ const val CHARACTER_LIST_ARG_KEY = "startOnOfflineMode"
 
 sealed class Screen(val route: String) {
     object CharacterList : Screen("characterList/{$CHARACTER_LIST_ARG_KEY}") {
-        val arguments = listOf(
-            navArgument(CHARACTER_LIST_ARG_KEY) { type = NavType.BoolType }
+        fun createRoute() = route
+        //TODO: find a way to refactor this code and eliminate the needing of passing the startOnOfflineMode twice
+        fun createArguments(startOnOfflineMode: Boolean) = listOf(
+            navArgument(CHARACTER_LIST_ARG_KEY){
+                type = NavType.BoolType; defaultValue =startOnOfflineMode
+            }
         )
-        fun createRoute(startOnOfflineMode: Boolean) = "characterList/$startOnOfflineMode"
     }
 
     object CharacterDetail : Screen("character/{$CHARACTER_DETAIL_ARG_KEY}") {
@@ -55,12 +58,6 @@ class MarvelCharactersAppState(
     fun navigateToCharacterDetail(characterId: String, from: NavBackStackEntry) {
         if (from.lifecycleIsResumed()) {
             navController.navigate(Screen.CharacterDetail.createRoute(characterId))
-        }
-    }
-
-    fun navigateToCharacterList(startOnOfflineMode: Boolean, from: NavBackStackEntry) {
-        if (from.lifecycleIsResumed()) {
-            navController.navigate(Screen.CharacterList.createRoute(startOnOfflineMode))
         }
     }
 

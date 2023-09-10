@@ -77,7 +77,7 @@ fun MarvelCharactersList(
                 }
             }
 
-            if (loading) {
+            if (hasNextPage && !hadAnError()) {
                 item(key = "circular_progress_indicator") {
                     Row(
                         Modifier
