@@ -4,6 +4,7 @@ package com.example.marvel_characters.network
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.NetworkInfo
 import android.os.Build
 import androidx.core.content.ContextCompat
 import com.example.marvel_characters.BuildConfig.HASH
@@ -31,12 +32,15 @@ interface MarvelApiService {
 }
 
 fun isInternetAvailable(context: Context): Boolean {
-    val cm = ContextCompat.getSystemService(context, ConnectivityManager::class.java)
+
+    val connectivityManager = ContextCompat.getSystemService(context, ConnectivityManager::class.java)
 
     val capabilities = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        cm?.getNetworkCapabilities(cm.activeNetwork) ?: return false
+        connectivityManager?.getNetworkCapabilities(connectivityManager.activeNetwork) ?: return false
     } else {
-        TODO("VERSION.SDK_INT < M")
+
+        val activeNetworkInfo: NetworkInfo? = connectivityManager?.activeNetworkInfo
+        return activeNetworkInfo?.isConnected == true
     }
 
     return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
