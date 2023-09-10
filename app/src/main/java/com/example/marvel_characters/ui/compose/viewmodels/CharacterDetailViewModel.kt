@@ -51,7 +51,7 @@ class CharacterDetailViewModel(
 
         } else {
             _uiState.value = MarvelCharacterUIState(
-                error = (result as Result.Error).exception.message
+                error = (result as Result.Error).exception
             )
         }
 
@@ -82,7 +82,7 @@ class CharacterDetailViewModel(
     data class MarvelCharacterUIState(
         val marvelCharacter: MarvelCharacter? = null,
         override val loading: Boolean = false,
-        override val error: String? = null,
+        override val error: Exception? = null,
         val isCharacterSaved: Boolean = false
     ) :
         BaseDataUiState(loading, error)

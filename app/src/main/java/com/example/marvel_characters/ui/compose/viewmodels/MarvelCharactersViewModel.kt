@@ -44,7 +44,7 @@ class MarvelCharactersViewModel(
     private fun updateUiWithError(result: Result<List<MarvelCharacter>>) {
         val foundException = result as Result.Error
         _uiState.value =
-            uiState.value.copy(error = foundException.exception.message, loading = false)
+            uiState.value.copy(error = foundException.exception, loading = false)
     }
 
     private fun updateCharacterList(result: Result<List<MarvelCharacter>>) {
@@ -86,7 +86,7 @@ class MarvelCharactersViewModel(
 data class MarvelCharactersUIState(
     val marvelCharacters: List<MarvelCharacter> = emptyList(),
     override val loading: Boolean = false,
-    override val error: String? = null,
+    override val error: Exception? = null,
     val hasNextPage: Boolean
 ) :
     BaseDataUiState(loading, error)
