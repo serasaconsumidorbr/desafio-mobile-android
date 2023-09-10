@@ -2,7 +2,6 @@ package com.example.marvel_characters.ui.compose.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -47,9 +46,9 @@ fun MarvelCharactersList(
             modifier = modifier,
             state = listState,
             verticalArrangement = Arrangement.spacedBy(smallPadding),
-            contentPadding = PaddingValues(horizontal = smallPadding)
 
-        ) {
+
+            ) {
 
             val charactersToDisplayOnPagerQuantity =
                 getCharactersToDisplayOnPagerQuantity(marvelCharacters)
@@ -71,6 +70,7 @@ fun MarvelCharactersList(
                     marvelCharacter.id
                 }) { marvelCharacter ->
                     MarvelCharacterListItem(
+                        Modifier.padding(horizontal = smallPadding),
                         marvelCharacter = marvelCharacter,
                         navigateToCharacter = navigateToCharacter
                     )
@@ -90,7 +90,7 @@ fun MarvelCharactersList(
                 }
             }
         }
-        if (hasNextPage&&!hadAnError()) {
+        if (hasNextPage && !hadAnError()) {
             LaunchedEffect(!loading) {
                 snapshotFlow { listState.layoutInfo }.map { layoutInfo ->
                     uiIsShowingLastPageBeforeTheBottom(

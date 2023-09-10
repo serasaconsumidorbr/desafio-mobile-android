@@ -26,8 +26,8 @@ import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 
 @Composable
 fun MarvelCharacterListItem(
-    marvelCharacter: MarvelCharacter,
     modifier: Modifier = Modifier,
+    marvelCharacter: MarvelCharacter,
     navigateToCharacter: (String) -> Unit
 ) {
     val smallPadding = dimensionResource(id = R.dimen.small_padding)
@@ -81,7 +81,7 @@ fun MarvelCharacterListItemPreview() {
     MarvelCharactersTheme {
         Surface {
             MarvelCharacterListItem(
-                Samples.characterWithMissingImage,
+             marvelCharacter =    Samples.characterWithMissingImage,
                 navigateToCharacter = { }
             )
         }

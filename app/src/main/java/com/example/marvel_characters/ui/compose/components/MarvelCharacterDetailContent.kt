@@ -201,7 +201,7 @@ fun NewDetailAppBar(
 fun MarvelCharacterDetailItemPreview() {
     MarvelCharactersTheme {
         Surface {
-            MarvelCharacterListItem(Samples.characterWithCompleteData, navigateToCharacter = { })
+            MarvelCharacterListItem(marvelCharacter = Samples.characterWithCompleteData, navigateToCharacter = { })
         }
     }
 }
