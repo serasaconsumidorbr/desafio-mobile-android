@@ -11,6 +11,7 @@ import com.example.marvel_characters.succeeded
 import com.example.marvel_characters.ui.compose.CHARACTER_LIST_ARG_KEY
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class MarvelCharactersViewModel(
@@ -70,10 +71,15 @@ class MarvelCharactersViewModel(
     private suspend fun getLocalCharacters() {
         _uiState.value = uiState.value.copy(loading = true)
 
-        val marvelCharacters = repository.getSavedCharacterList()
-        _uiState.value = MarvelCharactersUIState(
-            marvelCharacters = marvelCharacters, hasNextPage = hasNextPage
-        )
+        repository.observeSavedCharactersList().collectLatest {
+
+            if (it.succeeded) {
+                val marvelCharacters = (it as Result.Success).data
+                _uiState.value = MarvelCharactersUIState(
+                    marvelCharacters = marvelCharacters, hasNextPage = hasNextPage
+                )
+            }
+        }
     }
 }
 

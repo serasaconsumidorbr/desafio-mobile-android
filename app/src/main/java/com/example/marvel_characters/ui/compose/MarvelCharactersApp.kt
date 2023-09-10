@@ -9,13 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.marvel_characters.R
 import com.example.marvel_characters.ui.compose.navigation.MarvelCharactersNavHost
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 
-//uiState: MarvelCharactersUIState
+
 @Composable
 fun MarvelCharactersApp(
     appState: MarvelCharactersAppState = rememberMarvelCharactersAppState()
