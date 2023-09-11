@@ -4,6 +4,8 @@ Um aplicativo para consultar uma lista de personagens da Marvel e algumas de sua
 
 [![Min Sdk](https://img.shields.io/badge/minSdk-21-green.svg)](https://developer.android.com/about/versions/android-5.0)
 
+![image](https://github.com/italocw/marvel-characters/assets/20100533/df18b87f-c18e-4a67-859d-09de25999e57)
+
 
 ## Recursos
 
@@ -13,14 +15,14 @@ Um aplicativo para consultar uma lista de personagens da Marvel e algumas de sua
 
 ## Arquitetura
 
-Este projeto segue a arquitetura MVVM. A navegação entre diferentes telas do aplicativo é gerenciada pelo componente de Navegação do Jetpack.
+Este projeto segue a arquitetura MVVM. A navegação entre diferentes telas do aplicativo é gerenciada pelo componente de navegação do Jetpack.
 
 ## Bibliotecas
 
 Algumas das bibliotecas utilizadas neste projeto são:
 
 ### Android Jetpack
-- Jetpack Compose - para definição de UI de maneira programática
+- Compose - para definição de UI de maneira programática
 - Activity - para o uso de APIs baseadas na Activity
 - Navigation  - para navegação
 - Room - para armazenamento local
@@ -35,9 +37,6 @@ Algumas das bibliotecas utilizadas neste projeto são:
 - Accompanist System UI Controller  - para definir as cores das barras do sistema
 
 Para mais informações sobre as bibliotecas utilizadas consulte as [configurações de compilação](https://github.com/italocw/marvel-characters/blob/develop/first-version/app/build.gradle).
-
-## Capturas de Tela
-
 
 ## Executando o Projeto
 
