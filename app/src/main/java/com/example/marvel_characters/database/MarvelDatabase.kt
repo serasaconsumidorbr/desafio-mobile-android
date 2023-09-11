@@ -23,10 +23,10 @@ interface MarvelDao {
     suspend fun insertCharacter(character: DatabaseCharacter)
 
     @Update
-    suspend fun updateCharacter(character: DatabaseCharacter): Int
+    suspend fun updateCharacter(character: DatabaseCharacter)
 
     @Query("DELETE FROM MarvelCharacter WHERE id = :id")
-    suspend fun deleteCharacterById(id: String): Int
+    suspend fun deleteCharacterById(id: String)
 
     @Query("DELETE FROM MarvelCharacter")
     suspend fun deleteCharacter()

@@ -46,8 +46,6 @@ fun MarvelCharactersList(
             modifier = modifier,
             state = listState,
             verticalArrangement = Arrangement.spacedBy(smallPadding),
-
-
             ) {
 
             val charactersToDisplayOnPagerQuantity =
@@ -77,7 +75,7 @@ fun MarvelCharactersList(
                 }
             }
 
-            if (hasNextPage && !hadAnError()) {
+            if (canRequestNewCharactersPage) {
                 item(key = "circular_progress_indicator") {
                     Row(
                         Modifier
@@ -90,8 +88,9 @@ fun MarvelCharactersList(
                 }
             }
         }
-        if (hasNextPage && !hadAnError()) {
-            LaunchedEffect(!loading) {
+
+        if (canRequestNewCharactersPage) {
+            LaunchedEffect(loading) {
                 snapshotFlow { listState.layoutInfo }.map { layoutInfo ->
                     uiIsShowingLastPageBeforeTheBottom(
                         layoutInfo
