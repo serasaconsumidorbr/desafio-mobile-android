@@ -158,41 +158,6 @@ private fun Buttons(
     }
 }
 
-
-@Composable
-fun NewDetailAppBar(
-    onBackPressed: () -> Unit, downloadCharacter: () -> Unit
-) {
-    var expanded by remember { mutableStateOf(false) }
-
-    Row(Modifier.fillMaxWidth(), Arrangement.SpaceBetween, Alignment.CenterVertically) {
-        IconButton(onClick = onBackPressed) {
-            Icon(
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = stringResource(R.string.back)
-            )
-        }
-
-        IconButton(onClick = { expanded = !expanded }) {
-            Icon(
-                imageVector = Icons.Default.MoreVert,
-                contentDescription = stringResource(R.string.more)
-            )
-        }
-
-
-        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-            DropdownMenuItem(text = { Text(stringResource(R.string.download)) },
-                onClick = {
-                    downloadCharacter()
-                    expanded = false
-
-                })
-        }
-    }
-}
-
-
 @Preview(
     uiMode = Configuration.UI_MODE_NIGHT_YES, name = "DefaultPreviewDark"
 )
