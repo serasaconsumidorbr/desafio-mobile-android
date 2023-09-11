@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:visible="false"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:title="@string/dark">
+    </item>
+
+    <item
+        android:id="@+id/favorite"
+        android:icon="@drawable/ic_favorite_click"
+        app:showAsAction="ifRoom"
+        android:visible="false"
+        android:title="@string/dark">
+    </item>
+
+    <item
+        android:id="@+id/comics"
+        android:icon="@drawable/ic_comics"
+        app:showAsAction="ifRoom"
+        android:visible="false"
+        android:title="@string/dark">
+    </item>
+</menu>
