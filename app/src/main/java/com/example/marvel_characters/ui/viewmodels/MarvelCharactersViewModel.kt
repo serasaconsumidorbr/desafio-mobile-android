@@ -1,4 +1,4 @@
-package com.example.marvel_characters.ui.compose.viewmodels
+package com.example.marvel_characters.ui.viewmodels
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

@@ -23,7 +23,7 @@ import com.example.marvel_characters.R
 import com.example.marvel_characters.Samples
 import com.example.marvel_characters.domain.MarvelCharacter
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
-import com.example.marvel_characters.ui.compose.viewmodels.MarvelCharactersUIState
+import com.example.marvel_characters.ui.viewmodels.MarvelCharactersUIState
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map

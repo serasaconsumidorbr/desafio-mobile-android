@@ -3,12 +3,14 @@ package com.example.marvel_characters.network
 import com.example.marvel_characters.Result
 import com.example.marvel_characters.Samples.characterWithCompleteData
 import com.example.marvel_characters.di.appModule
+import com.example.marvel_characters.domain.MarvelCharacter
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockWebServer
-import org.hamcrest.CoreMatchers
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.isA
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.GlobalContext
@@ -37,22 +39,20 @@ class CharactersRemoteDataSourceTest {
 
     @Test
     fun shouldReturnNonEmptyCharactersListResult(): Unit = runBlocking {
-
         val resultData = remoteDataSource.getNextCharacterPage()
-        assertTrue(resultData is Result.Success)
-        assertTrue((resultData as Result.Success).data.isNotEmpty())
 
+        assertThat(resultData, isA(Result.Success(listOf<MarvelCharacter>()).javaClass))
+        assertThat((resultData as Result.Success).data.isNotEmpty(), `is`(true))
     }
 
     @Test
     fun shouldReturnExpectCharactersData(): Unit = runBlocking {
-
         characterWithCompleteData.let {
-        val resultData = remoteDataSource.getCharacterById(it.id)
-        assertTrue(resultData is Result.Success)
+            val resultData = remoteDataSource.getCharacterById(it.id)
+            assertThat(resultData, isA(Result.Success(listOf<MarvelCharacter>()).javaClass))
 
-        val returnedCharacter = (resultData as Result.Success).data
-
-        assertThat(returnedCharacter, CoreMatchers.equalTo(it))
-    } }
+            val returnedCharacter = (resultData as Result.Success).data
+            assertThat(returnedCharacter, equalTo(it))
+        }
+    }
 }

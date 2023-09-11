@@ -19,7 +19,7 @@ import com.example.marvel_characters.ui.compose.components.FullScreenCenteredPro
 import com.example.marvel_characters.ui.compose.components.MarvelCharacterPager
 import com.example.marvel_characters.ui.compose.components.MarvelCharactersList
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
-import com.example.marvel_characters.ui.compose.viewmodels.MarvelCharactersViewModel
+import com.example.marvel_characters.ui.viewmodels.MarvelCharactersViewModel
 import org.koin.androidx.compose.getViewModel
 
 

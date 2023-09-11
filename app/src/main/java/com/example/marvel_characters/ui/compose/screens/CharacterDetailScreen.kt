@@ -15,7 +15,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.marvel_characters.R
 import com.example.marvel_characters.ui.compose.components.FullScreenCenteredProgress
 import com.example.marvel_characters.ui.compose.components.MarvelCharacterDetailContent
-import com.example.marvel_characters.ui.compose.viewmodels.CharacterDetailViewModel
+import com.example.marvel_characters.ui.viewmodels.CharacterDetailViewModel
 import org.koin.androidx.compose.getViewModel
 
 @Composable
