@@ -1,0 +1,77 @@
+# Projeto Marvel App
+
+Aplicativo que trás os cards do game hearthstone, podendo filtrar os campeões por classe, raça e tipo.
+
+## Tecnologias :computer:
+
+Utilizados Extra:
+[X] - Glide
+[X] - Paging3
+[X] - Retrofit2
+[X] - GSon
+[X] - MVVM
+[X] - ConstraintLayout
+[X] - RxJava ou Coroutines
+[X] - Testes unitários
+[X] - Kotlin
+[X] - Mockito
+[X] - LiveData
+[X] - Hilt/Dagger
+[X] - MVVM
+[X] - Clean Arquiteture
+[X] - Clean Code
+[X] - Modules android
+[X] - Navigation
+[X] - Material Design
+[X] - ViewBinding
+[X] - OkHttp
+[X] - facebook.shimmer
+
+futuras implementações:
+
+Tendo em vista a utilização do app por diversas pessoas,
+logo podemos implementar as convenções
+da assecibilidade seguindo as noprmas da WCAG(W3.com))
+
+Requisitos:
+[X] - Versão mínima do SDK: 21
+[X] - Tela deve ajustar em devices menores.
+[X] - Utilizar Kotlin
+[X] - Boa arquitetura, pode ser (mvc, mvp, mvvm, clean etc)
+[X] - RxJava ou Coroutines
+[X] - Testes unitários
+[-] - Cache de imagens
+[X] - Tratamentos de erros
+[X] - Padrão de Projeto e boas práticas de Orientação a Objetos.
+[-] - Google AAC (Android Architecture Components)
+
+Diferencial:
+[X] - Construir layouts com Constraints
+[-] - Trabalhar offline (cache dos dados)
+[X] - Injeção de dependência (dagger, koin, kodein)
+
+Obrigatórios:
+[X] - Carrossel superior com 5 personagens
+[X] - Uma lista vertical abaixo do carrossel com os personagens seguintes, sem repetir
+[X] - Scroll infinito
+
+### Screenshot
+
+- ## Tela Load
+
+  <img src="screenshot\load.png" width="300"/>
+
+- ## Tela Listagem
+
+  <img src="screenshot\listagens.jpeg" width="300"/>
+
+- ## Tela Listagem
+
+  <img src="screenshot\internet.jpeg" width="300"/>
+
+
+  O Projeto consiste em recuperar os personagens da marvel pela API da mesma,
+  foi utilizado para esse processo o Retrofit2 junto com o coroutine para realizar
+  as requisicoes de forma assíncrona
+
+
