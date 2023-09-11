@@ -33,6 +33,7 @@ class Repository private constructor(
 
     suspend fun getSavedCharacter(id: String) =
         charactersLocalDataSource.getCharacter(id)
+
     suspend fun getSavedCharacterList() =
         charactersLocalDataSource.getSavedCharacters()
 
@@ -53,6 +54,9 @@ class Repository private constructor(
 
     suspend fun getCharacterByIdFromWeb(id: String) = characterRemoteDataSource.getCharacterById(id)
     fun hasNextPage() = characterRemoteDataSource.hasNextPage()
+    suspend fun updateCharacter(marvelCharacter: MarvelCharacter) {
+        charactersLocalDataSource.updateCharacter(marvelCharacter)
+    }
 
 
 }
