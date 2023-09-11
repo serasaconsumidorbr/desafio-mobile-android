@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.marvel_characters.Constants
 import com.example.marvel_characters.R
 import com.example.marvel_characters.Samples
-import com.example.marvel_characters.domain.MarvelCharacter
+import com.example.marvel_characters.domain.Character
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 import com.example.marvel_characters.ui.viewmodels.CharactersUIState
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -49,16 +49,16 @@ fun MarvelCharactersList(
             ) {
 
             val charactersToDisplayOnPagerQuantity =
-                getCharactersToDisplayOnPagerQuantity(marvelCharacters)
+                getCharactersToDisplayOnPagerQuantity(characters)
 
             val charactersToDisplayInPager =
-                marvelCharacters.take(charactersToDisplayOnPagerQuantity)
+                characters.take(charactersToDisplayOnPagerQuantity)
             val charactersToDisplayOnVerticalList =
-                marvelCharacters.drop(charactersToDisplayOnPagerQuantity)
+                characters.drop(charactersToDisplayOnPagerQuantity)
 
             item {
                 MarvelCharacterPager(
-                    marvelCharacters = charactersToDisplayInPager,
+                    characters = charactersToDisplayInPager,
                     navigateToCharacter = navigateToCharacter
                 )
             }
@@ -69,7 +69,7 @@ fun MarvelCharactersList(
                 }) { marvelCharacter ->
                     MarvelCharacterListItem(
                         Modifier.padding(horizontal = smallPadding),
-                        marvelCharacter = marvelCharacter,
+                        character = marvelCharacter,
                         navigateToCharacter = navigateToCharacter
                     )
                 }
@@ -109,11 +109,11 @@ private fun uiIsShowingLastPageBeforeTheBottom(layoutInfo: LazyListLayoutInfo) =
     layoutInfo.visibleItemsInfo.first().index >= layoutInfo.totalItemsCount - layoutInfo.visibleItemsInfo.size
 
 
-private fun getCharactersToDisplayOnPagerQuantity(marvelCharacters: List<MarvelCharacter>) =
-    if (marvelCharacters.size >= Constants.PAGER_PAGE_COUNT) {
+private fun getCharactersToDisplayOnPagerQuantity(characters: List<Character>) =
+    if (characters.size >= Constants.PAGER_PAGE_COUNT) {
         Constants.PAGER_PAGE_COUNT
     } else {
-        marvelCharacters.size
+        characters.size
     }
 
 @Preview(
@@ -131,7 +131,7 @@ fun MarvelCharacterListPreview() {
         Samples.characterWithCompleteData
     )
 
-    val uiState = CharactersUIState(marvelCharacters = marvelCharacters, hasNextPage = false)
+    val uiState = CharactersUIState(characters = marvelCharacters, hasNextPage = false)
     MarvelCharactersTheme {
         Surface {
             MarvelCharactersList(

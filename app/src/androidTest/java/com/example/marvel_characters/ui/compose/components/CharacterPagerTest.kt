@@ -14,7 +14,7 @@ import org.junit.Rule
 import org.junit.Test
 
 
-class MarvelCharacterPagerTest {
+class CharacterPagerTest {
 
     private val charactersSampleList = Samples.marvelCharactersListWithNonRepeatedElements
     private val characterFirst = Samples.characterWithMissingImage
@@ -31,7 +31,7 @@ class MarvelCharacterPagerTest {
             MarvelCharactersTheme {
                 Surface {
                     MarvelCharacterPager(
-                        marvelCharacters = charactersSampleList,
+                        characters = charactersSampleList,
                         navigateToCharacter = {  }
                     )
                 }
@@ -63,7 +63,7 @@ class MarvelCharacterPagerTest {
             MarvelCharactersTheme {
                 Surface {
                     MarvelCharacterPager(
-                        marvelCharacters = charactersSampleList,
+                        characters = charactersSampleList,
                         navigateToCharacter = {  }
                     )
                 }
@@ -94,7 +94,7 @@ class MarvelCharacterPagerTest {
             MarvelCharactersTheme {
                 Surface {
                     MarvelCharacterPager(
-                        marvelCharacters = charactersSampleList,
+                        characters = charactersSampleList,
                         navigateToCharacter = {  }
                     )
                 }

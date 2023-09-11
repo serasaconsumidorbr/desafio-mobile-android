@@ -14,20 +14,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.marvel_characters.R
 import com.example.marvel_characters.Samples
-import com.example.marvel_characters.domain.MarvelCharacter
+import com.example.marvel_characters.domain.Character
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 
 @Composable
-fun MarvelCharacterPagerItem(marvelCharacter: MarvelCharacter, modifier: Modifier = Modifier) {
+fun MarvelCharacterPagerItem(character: Character, modifier: Modifier = Modifier) {
     val smallPadding = dimensionResource(id = R.dimen.small_padding)
 
-    marvelCharacter.apply {
+    character.apply {
         Column(
             modifier = modifier.padding(smallPadding)
         ) {
             CharacterImage(
-                name = marvelCharacter.name,
-                thumbnailUrl = marvelCharacter.thumbnailUrl,
+                name = character.name,
+                thumbnailUrl = character.thumbnailUrl,
                 modifier = Modifier
                     .padding(bottom = smallPadding)
                     .fillMaxWidth()

@@ -7,16 +7,16 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MarvelDao {
-    @Query("SELECT * FROM MarvelCharacter")
+    @Query("SELECT * FROM Character")
     fun observeCharacterList(): Flow<List<DatabaseCharacter>>
 
-    @Query("SELECT * FROM MarvelCharacter WHERE id = :id")
+    @Query("SELECT * FROM Character WHERE id = :id")
     fun observeCharacterById(id: String): Flow<DatabaseCharacter>
 
-    @Query("SELECT * FROM MarvelCharacter")
+    @Query("SELECT * FROM Character")
     suspend fun getCharactersList(): List<DatabaseCharacter>
 
-    @Query("SELECT * FROM MarvelCharacter WHERE id = :id")
+    @Query("SELECT * FROM Character WHERE id = :id")
     suspend fun getCharacterById(id: String): DatabaseCharacter?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -25,10 +25,10 @@ interface MarvelDao {
     @Update
     suspend fun updateCharacter(character: DatabaseCharacter)
 
-    @Query("DELETE FROM MarvelCharacter WHERE id = :id")
+    @Query("DELETE FROM Character WHERE id = :id")
     suspend fun deleteCharacterById(id: String)
 
-    @Query("DELETE FROM MarvelCharacter")
+    @Query("DELETE FROM Character")
     suspend fun deleteCharacter()
 }
 

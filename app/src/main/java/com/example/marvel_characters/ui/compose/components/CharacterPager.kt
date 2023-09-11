@@ -33,7 +33,7 @@ import androidx.compose.ui.util.lerp
 import com.example.marvel_characters.Constants.PAGER_TEST_TAG
 import com.example.marvel_characters.R
 import com.example.marvel_characters.Samples
-import com.example.marvel_characters.domain.MarvelCharacter
+import com.example.marvel_characters.domain.Character
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 import kotlinx.coroutines.delay
 import kotlin.math.absoluteValue
@@ -45,7 +45,7 @@ import kotlin.time.toDuration
 @Composable
 fun MarvelCharacterPager(
     modifier: Modifier = Modifier,
-    marvelCharacters: List<MarvelCharacter>,
+    characters: List<Character>,
     enableAutoScroll: Boolean = false,
     navigateToCharacter: (String) -> Unit
 ) {
@@ -53,7 +53,7 @@ fun MarvelCharacterPager(
 
 
     val pagerState = rememberPagerState(pageCount = {
-        marvelCharacters.size
+        characters.size
     })
 
     Column(
@@ -82,9 +82,9 @@ fun MarvelCharacterPager(
                         )
                     }
             ) {
-                val currentMarvelCharacter =  marvelCharacters[page]
+                val currentMarvelCharacter =  characters[page]
                 MarvelCharacterPagerItem(
-                    marvelCharacter = currentMarvelCharacter,
+                    character = currentMarvelCharacter,
                     modifier = Modifier.clickable { navigateToCharacter(currentMarvelCharacter.id) })
             }
         }
@@ -154,7 +154,7 @@ fun MarvelCharacterPagerPreview() {
     MarvelCharactersTheme {
         Surface {
             MarvelCharacterPager(
-                marvelCharacters = Samples.marvelCharactersListWithNonRepeatedElements,
+                characters = Samples.marvelCharactersListWithNonRepeatedElements,
                 navigateToCharacter = {  }
             )
         }

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.marvel_characters.BaseDataUiState
 import com.example.marvel_characters.Result
-import com.example.marvel_characters.domain.MarvelCharacter
+import com.example.marvel_characters.domain.Character
 import com.example.marvel_characters.repository.Repository
 import com.example.marvel_characters.succeeded
 import com.example.marvel_characters.ui.compose.CHARACTER_DETAIL_ARG_KEY
@@ -68,19 +68,19 @@ class CharacterDetailViewModel(
     }
 
     private suspend fun saveCharacter() {
-        repository.saveCharacter(uiState.value.marvelCharacter!!)
+        repository.saveCharacter(uiState.value.character!!)
         _uiState.value = uiState.value.copy(isCharacterSaved = true)
     }
 
 
     private suspend fun removeCharacter() {
-        repository.deleteCharacter(uiState.value.marvelCharacter!!)
+        repository.deleteCharacter(uiState.value.character!!)
         _uiState.value = uiState.value.copy(isCharacterSaved = false)
     }
 
 
     data class MarvelCharacterUIState(
-        val marvelCharacter: MarvelCharacter? = null,
+        val character: Character? = null,
         override val loading: Boolean = false,
         override val error: Exception? = null,
         val isCharacterSaved: Boolean = false

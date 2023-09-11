@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.marvel_characters.BaseDataUiState
 import com.example.marvel_characters.Result
-import com.example.marvel_characters.domain.MarvelCharacter
+import com.example.marvel_characters.domain.Character
 import com.example.marvel_characters.repository.Repository
 import com.example.marvel_characters.succeeded
 import com.example.marvel_characters.ui.compose.CHARACTER_LIST_ARG_KEY
@@ -44,23 +44,23 @@ class MarvelCharactersViewModel(
         }
     }
 
-    private suspend fun updateSavedLocalCharacters(charactersList: List<MarvelCharacter>) {
+    private suspend fun updateSavedLocalCharacters(charactersList: List<Character>) {
         charactersList.forEach {
             repository.updateCharacter(it)
         }
     }
 
-    private fun updateUiWithError(result: Result<List<MarvelCharacter>>) {
+    private fun updateUiWithError(result: Result<List<Character>>) {
         val foundException = result as Result.Error
         _uiState.value =
             uiState.value.copy(error = foundException.exception, loading = false)
     }
 
-    private fun updateCharacterList(newCharactersList: List<MarvelCharacter>) {
+    private fun updateCharacterList(newCharactersList: List<Character>) {
         val updatedCharactersList =
-            uiState.value.marvelCharacters + newCharactersList
+            uiState.value.characters + newCharactersList
         _uiState.value = CharactersUIState(
-            marvelCharacters = updatedCharactersList, hasNextPage = hasNextPage
+            characters = updatedCharactersList, hasNextPage = hasNextPage
         )
     }
 
@@ -85,7 +85,7 @@ class MarvelCharactersViewModel(
             if (it.succeeded) {
                 val marvelCharacters = (it as Result.Success).data
                 _uiState.value = CharactersUIState(
-                    marvelCharacters = marvelCharacters, hasNextPage = hasNextPage
+                    characters = marvelCharacters, hasNextPage = hasNextPage
                 )
             } else {
                 val foundException = (it as Result.Error).exception
@@ -96,7 +96,7 @@ class MarvelCharactersViewModel(
 }
 
 data class CharactersUIState(
-    val marvelCharacters: List<MarvelCharacter> = emptyList(),
+    val characters: List<Character> = emptyList(),
     override val loading: Boolean = false,
     override val error: Exception? = null,
     val hasNextPage: Boolean

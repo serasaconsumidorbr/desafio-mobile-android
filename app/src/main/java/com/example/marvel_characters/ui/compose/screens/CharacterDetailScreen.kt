@@ -35,7 +35,7 @@ fun CharacterDetailScreen(
             ) {
 
                 MarvelCharacterDetailContent(
-                    marvelCharacter = marvelCharacter!!,
+                    character = character!!,
                     isCharacterSaved =  isCharacterSaved,
                     onBackPressed = onBackPressed,
                     onFavoritePressed = characterDetailViewModel::onFavoritePressed

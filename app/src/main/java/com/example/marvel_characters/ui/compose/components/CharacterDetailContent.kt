@@ -25,13 +25,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.marvel_characters.R
 import com.example.marvel_characters.Samples
-import com.example.marvel_characters.domain.MarvelCharacter
+import com.example.marvel_characters.domain.Character
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 
 
 @Composable
 fun MarvelCharacterDetailContent(
-    marvelCharacter: MarvelCharacter,
+    character: Character,
     modifier: Modifier = Modifier,
     onBackPressed: () -> Unit,
     onFavoritePressed: () -> Unit,
@@ -47,7 +47,7 @@ fun MarvelCharacterDetailContent(
     ) {
         val (buttons, image, remainingCharacterData) = createRefs()
 
-        marvelCharacter.let {
+        character.let {
 
             CharacterImage(
                 modifier = Modifier
@@ -155,7 +155,7 @@ private fun Buttons(
 fun MarvelCharacterDetailItemPreview() {
     MarvelCharactersTheme {
         Surface {
-            MarvelCharacterListItem(marvelCharacter = Samples.characterWithCompleteData, navigateToCharacter = { })
+            MarvelCharacterListItem(character = Samples.characterWithCompleteData, navigateToCharacter = { })
         }
     }
 }

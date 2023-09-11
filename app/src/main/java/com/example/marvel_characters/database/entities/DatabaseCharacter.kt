@@ -2,9 +2,9 @@ package com.example.marvel_characters.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.marvel_characters.domain.MarvelCharacter
+import com.example.marvel_characters.domain.Character
 
-@Entity(tableName = "MarvelCharacter")
+@Entity(tableName = "Character")
 data class DatabaseCharacter constructor(
     @PrimaryKey
     val id: String,
@@ -12,7 +12,7 @@ data class DatabaseCharacter constructor(
     val description: String,
     val thumbnailUrl: String
 ) {
-    fun asDomainModel() = MarvelCharacter(
+    fun asDomainModel() = Character(
         id,
         name,
         description,
@@ -20,9 +20,9 @@ data class DatabaseCharacter constructor(
     )
 }
 
-fun List<DatabaseCharacter>.asDomainModel(): List<MarvelCharacter> {
+fun List<DatabaseCharacter>.asDomainModel(): List<Character> {
     return map {
-        MarvelCharacter(
+        Character(
             it.id,
             it.name,
             it.description,

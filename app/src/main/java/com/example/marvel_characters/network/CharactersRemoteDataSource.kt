@@ -1,14 +1,14 @@
 package com.example.marvel_characters.network
 
 import com.example.marvel_characters.Result
-import com.example.marvel_characters.domain.MarvelCharacter
+import com.example.marvel_characters.domain.Character
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class CharactersRemoteDataSource(private val characterService: MarvelApiService) {
     private var lastListResultDataInfo: CharactersResultDataInfo? = null
 
-    suspend fun getNextCharacterPage(): Result<List<MarvelCharacter>> =
+    suspend fun getNextCharacterPage(): Result<List<Character>> =
         if (lastListResultDataInfo != null && lastListResultDataInfo!!.hasNextPage()) {
             getCharacters(lastListResultDataInfo!!.nextPageOffset())
         } else {
@@ -19,7 +19,7 @@ class CharactersRemoteDataSource(private val characterService: MarvelApiService)
     private suspend fun getCharacters(
         offset: Int = 0,
         limit: Int = 30
-    ): Result<List<MarvelCharacter>> {
+    ): Result<List<Character>> {
         return withContext(Dispatchers.IO) {
             try {
                 val characterListContainer =
@@ -46,7 +46,7 @@ class CharactersRemoteDataSource(private val characterService: MarvelApiService)
 
     suspend fun getCharacterById(
         id: String,
-    ): Result<MarvelCharacter> {
+    ): Result<Character> {
         return withContext(Dispatchers.IO) {
             try {
 

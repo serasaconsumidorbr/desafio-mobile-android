@@ -34,10 +34,10 @@ fun CharactersScreen(
     uiState.apply {
         if (hadAnError()) {
             GenericErrorDialog(marvelCharactersViewModel::fetchCharactersFromNextWebResult)
-        } else if (loading && marvelCharacters.isEmpty()) {
+        } else if (loading && characters.isEmpty()) {
             FullScreenCenteredProgress(true)
         }
-        if (marvelCharacters.isNotEmpty()) {
+        if (characters.isNotEmpty()) {
             MarvelCharactersList(
                 modifier = Modifier.fillMaxSize(),
                 uiState = uiState,
@@ -61,7 +61,7 @@ fun CharactersScreenPreview() {
     MarvelCharactersTheme {
         Surface {
             MarvelCharacterPager(
-                marvelCharacters = listOf(),
+                characters = listOf(),
                 navigateToCharacter = { }
             )
         }

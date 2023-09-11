@@ -3,7 +3,7 @@ package com.example.marvel_characters.network
 import com.example.marvel_characters.Result
 import com.example.marvel_characters.Samples.characterWithCompleteData
 import com.example.marvel_characters.di.appModule
-import com.example.marvel_characters.domain.MarvelCharacter
+import com.example.marvel_characters.domain.Character
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockWebServer
 import org.hamcrest.CoreMatchers.equalTo
@@ -41,7 +41,7 @@ class CharactersRemoteDataSourceTest {
     fun shouldReturnNonEmptyCharactersListResult(): Unit = runBlocking {
         val resultData = remoteDataSource.getNextCharacterPage()
 
-        assertThat(resultData, isA(Result.Success(listOf<MarvelCharacter>()).javaClass))
+        assertThat(resultData, isA(Result.Success(listOf<Character>()).javaClass))
         assertThat((resultData as Result.Success).data.isNotEmpty(), `is`(true))
     }
 
@@ -49,7 +49,7 @@ class CharactersRemoteDataSourceTest {
     fun shouldReturnExpectCharactersData(): Unit = runBlocking {
         characterWithCompleteData.let {
             val resultData = remoteDataSource.getCharacterById(it.id)
-            assertThat(resultData, isA(Result.Success(listOf<MarvelCharacter>()).javaClass))
+            assertThat(resultData, isA(Result.Success(listOf<Character>()).javaClass))
 
             val returnedCharacter = (resultData as Result.Success).data
             assertThat(returnedCharacter, equalTo(it))

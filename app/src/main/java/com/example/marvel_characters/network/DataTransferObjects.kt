@@ -1,7 +1,7 @@
 package com.example.marvel_characters.network
 
 import com.example.marvel_characters.database.entities.DatabaseCharacter
-import com.example.marvel_characters.domain.MarvelCharacter
+import com.example.marvel_characters.domain.Character
 import com.google.gson.annotations.SerializedName
 
 
@@ -31,10 +31,10 @@ data class Thumbnail(
     val extension: String
 )
 
-fun NetworkCharacterContainer.asDomainModel(): List<MarvelCharacter> {
+fun NetworkCharacterContainer.asDomainModel(): List<Character> {
 
     return data.networkCharacters.map {
-        MarvelCharacter(
+        Character(
             it.id.toString(),
             it.name,
             it.description,
@@ -43,7 +43,7 @@ fun NetworkCharacterContainer.asDomainModel(): List<MarvelCharacter> {
     }
 }
 
-fun MarvelCharacter.asDatabaseModel() = DatabaseCharacter(
+fun Character.asDatabaseModel() = DatabaseCharacter(
     id,
     name,
     description,

@@ -20,14 +20,14 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.marvel_characters.R
 import com.example.marvel_characters.Samples
-import com.example.marvel_characters.domain.MarvelCharacter
+import com.example.marvel_characters.domain.Character
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 
 
 @Composable
 fun MarvelCharacterListItem(
     modifier: Modifier = Modifier,
-    marvelCharacter: MarvelCharacter,
+    character: Character,
     navigateToCharacter: (String) -> Unit
 ) {
     val smallPadding = dimensionResource(id = R.dimen.small_padding)
@@ -37,9 +37,9 @@ fun MarvelCharacterListItem(
         modifier = modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp))
-            .clickable { navigateToCharacter(marvelCharacter.id) }) {
+            .clickable { navigateToCharacter(character.id) }) {
         val (image, name) = createRefs()
-        marvelCharacter.let {
+        character.let {
 
             CharacterImage(name = it.name,
                 thumbnailUrl = it.thumbnailUrl,
@@ -81,7 +81,7 @@ fun MarvelCharacterListItemPreview() {
     MarvelCharactersTheme {
         Surface {
             MarvelCharacterListItem(
-             marvelCharacter =    Samples.characterWithMissingImage,
+             character =    Samples.characterWithMissingImage,
                 navigateToCharacter = { }
             )
         }

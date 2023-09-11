@@ -13,7 +13,7 @@ import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
 import org.junit.Rule
 import org.junit.Test
 
-class MarvelCharacterPagerItemTest {
+class CharacterPagerItemTest {
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()

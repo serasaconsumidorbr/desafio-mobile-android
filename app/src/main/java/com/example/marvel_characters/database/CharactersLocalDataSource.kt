@@ -2,7 +2,7 @@ package com.example.marvel_characters.database
 
 import com.example.marvel_characters.Result
 import com.example.marvel_characters.database.entities.asDomainModel
-import com.example.marvel_characters.domain.MarvelCharacter
+import com.example.marvel_characters.domain.Character
 import com.example.marvel_characters.network.asDatabaseModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +15,7 @@ class CharactersLocalDataSource internal constructor(
     private val ioDispatcher: CoroutineDispatcher
 ) {
 
-    fun observeCharactersList(): Flow<Result<List<MarvelCharacter>>> =
+    fun observeCharactersList(): Flow<Result<List<Character>>> =
         try {
             marvelDao.observeCharacterList().map {
                 Result.Success(it.asDomainModel())
@@ -25,7 +25,7 @@ class CharactersLocalDataSource internal constructor(
         }
 
 
-    fun observeCharacter(url: String): Flow<Result<MarvelCharacter>> =
+    fun observeCharacter(url: String): Flow<Result<Character>> =
         try {
             marvelDao.observeCharacterById(url).map {
                 Result.Success(it.asDomainModel())
@@ -34,7 +34,7 @@ class CharactersLocalDataSource internal constructor(
             flowOf(Result.Error(exception))
         }
 
-    suspend fun getSavedCharacters(): Result<List<MarvelCharacter>> {
+    suspend fun getSavedCharacters(): Result<List<Character>> {
         return withContext(ioDispatcher) {
             try {
                 val charactersList = marvelDao.getCharactersList().asDomainModel()
@@ -45,7 +45,7 @@ class CharactersLocalDataSource internal constructor(
         }
     }
 
-    suspend fun getCharacter(url: String): Result<MarvelCharacter> = withContext(ioDispatcher) {
+    suspend fun getCharacter(url: String): Result<Character> = withContext(ioDispatcher) {
         try {
             val character = marvelDao.getCharacterById(url)
             if (character != null) {
@@ -58,17 +58,17 @@ class CharactersLocalDataSource internal constructor(
         }
     }
 
-    suspend fun saveCharacter(marvelCharacter: MarvelCharacter) = withContext(ioDispatcher) {
-        marvelDao.insertCharacter(marvelCharacter.asDatabaseModel())
+    suspend fun saveCharacter(character: Character) = withContext(ioDispatcher) {
+        marvelDao.insertCharacter(character.asDatabaseModel())
     }
 
     suspend fun deleteCharacterById(characterId: String) = withContext<Unit>(ioDispatcher) {
         marvelDao.deleteCharacterById(characterId)
     }
 
-    suspend fun updateCharacter(marvelCharacter: MarvelCharacter) {
+    suspend fun updateCharacter(character: Character) {
         withContext(ioDispatcher) {
-            marvelDao.updateCharacter(marvelCharacter.asDatabaseModel())
+            marvelDao.updateCharacter(character.asDatabaseModel())
         }
     }
 }
