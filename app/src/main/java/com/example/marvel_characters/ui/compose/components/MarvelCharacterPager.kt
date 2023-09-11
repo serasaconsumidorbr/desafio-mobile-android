@@ -30,7 +30,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
-import com.example.marvel_characters.Constants.PAGER_PAGE_COUNT
 import com.example.marvel_characters.Constants.PAGER_TEST_TAG
 import com.example.marvel_characters.R
 import com.example.marvel_characters.Samples
@@ -155,7 +154,7 @@ fun MarvelCharacterPagerPreview() {
     MarvelCharactersTheme {
         Surface {
             MarvelCharacterPager(
-                marvelCharacters = Samples.marvelCharactersList,
+                marvelCharacters = Samples.marvelCharactersListWithNonRepeatedElements,
                 navigateToCharacter = {  }
             )
         }

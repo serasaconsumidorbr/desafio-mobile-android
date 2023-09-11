@@ -27,9 +27,15 @@ class CharactersLocalDataSource internal constructor(
         }
     }
 
-    suspend fun getSavedCharacters(): List<MarvelCharacter> {
+    suspend fun getSavedCharacters(): Result<List<MarvelCharacter>> {
         return withContext(ioDispatcher) {
-            marvelDao.getCharactersList().asDomainModel()
+            try {
+             val charactersList =    marvelDao.getCharactersList().asDomainModel()
+                Result.Success(charactersList)
+            }catch (exception:Exception)
+            {
+                Result.Error(exception)
+            }
         }
     }
 
@@ -39,7 +45,7 @@ class CharactersLocalDataSource internal constructor(
             if (character != null) {
                 return@withContext Result.Success(character.asDomainModel())
             } else {
-                return@withContext Result.Error(Exception("MarvelCharacter not found!"))
+                return@withContext Result.Error(NotFoundException())
             }
         } catch (e: Exception) {
             return@withContext Result.Error(e)
@@ -60,3 +66,5 @@ class CharactersLocalDataSource internal constructor(
         }
     }
 }
+
+class NotFoundException:Exception("Item not found")

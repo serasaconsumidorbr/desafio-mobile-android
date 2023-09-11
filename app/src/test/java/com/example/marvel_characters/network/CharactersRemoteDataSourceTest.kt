@@ -1,12 +1,13 @@
 package com.example.marvel_characters.network
 
 import com.example.marvel_characters.Result
-import com.example.marvel_characters.Samples
+import com.example.marvel_characters.Samples.characterWithCompleteData
 import com.example.marvel_characters.di.appModule
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockWebServer
+import org.hamcrest.CoreMatchers
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
-import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -46,11 +47,12 @@ class CharactersRemoteDataSourceTest {
     @Test
     fun shouldReturnExpectCharactersData(): Unit = runBlocking {
 
-        val resultData = remoteDataSource.getCharacterById(Samples.characterWithCompleteData.id)
+        characterWithCompleteData.let {
+        val resultData = remoteDataSource.getCharacterById(it.id)
         assertTrue(resultData is Result.Success)
 
         val returnedCharacter = (resultData as Result.Success).data
 
-        assertEquals(Samples.characterWithCompleteData, returnedCharacter)
-    }
+        assertThat(returnedCharacter, CoreMatchers.equalTo(it))
+    } }
 }
