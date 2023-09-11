@@ -6,6 +6,7 @@ import com.example.marvel_characters.domain.MarvelCharacter
 import com.example.marvel_characters.network.asDatabaseModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
@@ -14,26 +15,31 @@ class CharactersLocalDataSource internal constructor(
     private val ioDispatcher: CoroutineDispatcher
 ) {
 
-    fun observeCharactersList(): Flow<Result<List<MarvelCharacter>>> {
-        return marvelDao.observeCharacterList().map {
-            Result.Success(it.asDomainModel())
+    fun observeCharactersList(): Flow<Result<List<MarvelCharacter>>> =
+        try {
+            marvelDao.observeCharacterList().map {
+                Result.Success(it.asDomainModel())
+            }
+        } catch (exception: Exception) {
+            flowOf(Result.Error(exception))
         }
-    }
 
 
-    fun observeCharacter(url: String): Flow<Result<MarvelCharacter>> {
-        return marvelDao.observeCharacterById(url).map {
-            Result.Success(it.asDomainModel())
+    fun observeCharacter(url: String): Flow<Result<MarvelCharacter>> =
+        try {
+            marvelDao.observeCharacterById(url).map {
+                Result.Success(it.asDomainModel())
+            }
+        } catch (exception: Exception) {
+            flowOf(Result.Error(exception))
         }
-    }
 
     suspend fun getSavedCharacters(): Result<List<MarvelCharacter>> {
         return withContext(ioDispatcher) {
             try {
-             val charactersList =    marvelDao.getCharactersList().asDomainModel()
+                val charactersList = marvelDao.getCharactersList().asDomainModel()
                 Result.Success(charactersList)
-            }catch (exception:Exception)
-            {
+            } catch (exception: Exception) {
                 Result.Error(exception)
             }
         }
@@ -67,4 +73,4 @@ class CharactersLocalDataSource internal constructor(
     }
 }
 
-class NotFoundException:Exception("Item not found")
+class NotFoundException : Exception("Item not found")

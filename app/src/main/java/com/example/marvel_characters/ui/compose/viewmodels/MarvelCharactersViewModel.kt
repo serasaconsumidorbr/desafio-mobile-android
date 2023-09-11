@@ -34,7 +34,7 @@ class MarvelCharactersViewModel(
         viewModelScope.launch {
             val result = repository.getNextPage()
             if (result.succeeded) {
-               val charactersList = (result as Result.Success).data
+                val charactersList = (result as Result.Success).data
                 updateCharacterList(charactersList)
 
                 updateSavedLocalCharacters(charactersList)
@@ -87,6 +87,9 @@ class MarvelCharactersViewModel(
                 _uiState.value = MarvelCharactersUIState(
                     marvelCharacters = marvelCharacters, hasNextPage = hasNextPage
                 )
+            } else {
+                val foundException = (it as Result.Error).exception
+                _uiState.value = uiState.value.copy(error = foundException)
             }
         }
     }
