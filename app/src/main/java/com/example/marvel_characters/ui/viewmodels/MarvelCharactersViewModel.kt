@@ -21,8 +21,8 @@ class MarvelCharactersViewModel(
 
     private val hasNextPage = repository.hasNextPage() && !isOnOfflineMode
     private val _uiState =
-        MutableStateFlow(MarvelCharactersUIState(loading = true, hasNextPage = hasNextPage))
-    val uiState: StateFlow<MarvelCharactersUIState> = _uiState
+        MutableStateFlow(CharactersUIState(loading = true, hasNextPage = hasNextPage))
+    val uiState: StateFlow<CharactersUIState> = _uiState
 
     init {
         viewModelScope.launch {
@@ -59,7 +59,7 @@ class MarvelCharactersViewModel(
     private fun updateCharacterList(newCharactersList: List<MarvelCharacter>) {
         val updatedCharactersList =
             uiState.value.marvelCharacters + newCharactersList
-        _uiState.value = MarvelCharactersUIState(
+        _uiState.value = CharactersUIState(
             marvelCharacters = updatedCharactersList, hasNextPage = hasNextPage
         )
     }
@@ -84,7 +84,7 @@ class MarvelCharactersViewModel(
 
             if (it.succeeded) {
                 val marvelCharacters = (it as Result.Success).data
-                _uiState.value = MarvelCharactersUIState(
+                _uiState.value = CharactersUIState(
                     marvelCharacters = marvelCharacters, hasNextPage = hasNextPage
                 )
             } else {
@@ -95,7 +95,7 @@ class MarvelCharactersViewModel(
     }
 }
 
-data class MarvelCharactersUIState(
+data class CharactersUIState(
     val marvelCharacters: List<MarvelCharacter> = emptyList(),
     override val loading: Boolean = false,
     override val error: Exception? = null,

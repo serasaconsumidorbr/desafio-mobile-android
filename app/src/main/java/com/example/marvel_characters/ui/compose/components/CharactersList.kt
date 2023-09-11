@@ -23,7 +23,7 @@ import com.example.marvel_characters.R
 import com.example.marvel_characters.Samples
 import com.example.marvel_characters.domain.MarvelCharacter
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
-import com.example.marvel_characters.ui.viewmodels.MarvelCharactersUIState
+import com.example.marvel_characters.ui.viewmodels.CharactersUIState
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
@@ -32,7 +32,7 @@ import kotlinx.coroutines.flow.map
 @Composable
 fun MarvelCharactersList(
     modifier: Modifier = Modifier,
-    uiState: MarvelCharactersUIState,
+    uiState: CharactersUIState,
     navigateToCharacter: (String) -> Unit,
     fetchNextCharactersFromWeb: () -> Unit,
 ) {
@@ -131,7 +131,7 @@ fun MarvelCharacterListPreview() {
         Samples.characterWithCompleteData
     )
 
-    val uiState = MarvelCharactersUIState(marvelCharacters = marvelCharacters, hasNextPage = false)
+    val uiState = CharactersUIState(marvelCharacters = marvelCharacters, hasNextPage = false)
     MarvelCharactersTheme {
         Surface {
             MarvelCharactersList(
