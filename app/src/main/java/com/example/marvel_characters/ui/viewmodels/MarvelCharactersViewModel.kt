@@ -102,6 +102,6 @@ data class MarvelCharactersUIState(
     val hasNextPage: Boolean
 ) :
     BaseDataUiState(loading, error) {
-    val canRequestNewCharactersPage = hasNextPage && !hadAnError()
+    val canRequestNewCharactersPage = hasNextPage && !hadAnError() && !loading
 }
 

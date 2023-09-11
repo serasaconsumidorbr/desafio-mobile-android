@@ -75,7 +75,8 @@ fun MarvelCharactersList(
                 }
             }
 
-            if (canRequestNewCharactersPage) {
+            val progressIndicatorShouldBeVisible = canRequestNewCharactersPage || loading
+            if (progressIndicatorShouldBeVisible) {
                 item(key = "circular_progress_indicator") {
                     Row(
                         Modifier
