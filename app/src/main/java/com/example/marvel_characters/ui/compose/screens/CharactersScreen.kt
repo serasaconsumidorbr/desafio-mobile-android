@@ -19,21 +19,21 @@ import com.example.marvel_characters.ui.compose.components.FullScreenCenteredPro
 import com.example.marvel_characters.ui.compose.components.MarvelCharacterPager
 import com.example.marvel_characters.ui.compose.components.MarvelCharactersList
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
-import com.example.marvel_characters.ui.viewmodels.MarvelCharactersViewModel
+import com.example.marvel_characters.ui.viewmodels.CharactersViewModel
 import org.koin.androidx.compose.getViewModel
 
 
 @Composable
 fun CharactersScreen(
-    marvelCharactersViewModel: MarvelCharactersViewModel = getViewModel(),
+    charactersViewModel: CharactersViewModel = getViewModel(),
     navigateToCharacter: (String) -> Unit,
 
     ) {
-    val uiState by marvelCharactersViewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by charactersViewModel.uiState.collectAsStateWithLifecycle()
 
     uiState.apply {
         if (hadAnError()) {
-            GenericErrorDialog(marvelCharactersViewModel::fetchCharactersFromNextWebResult)
+            GenericErrorDialog(charactersViewModel::fetchCharactersFromNextWebResult)
         } else if (loading && characters.isEmpty()) {
             FullScreenCenteredProgress(true)
         }
@@ -42,7 +42,7 @@ fun CharactersScreen(
                 modifier = Modifier.fillMaxSize(),
                 uiState = uiState,
                 navigateToCharacter = navigateToCharacter,
-                fetchNextCharactersFromWeb = marvelCharactersViewModel::fetchCharactersFromNextWebResult,
+                fetchNextCharactersFromWeb = charactersViewModel::fetchCharactersFromNextWebResult,
             )
         } else if (!loading) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center)

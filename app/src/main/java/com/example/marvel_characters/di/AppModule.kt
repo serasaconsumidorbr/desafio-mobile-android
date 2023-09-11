@@ -10,7 +10,7 @@ import com.example.marvel_characters.network.CharactersRemoteDataSource
 import com.example.marvel_characters.network.MarvelApiService
 import com.example.marvel_characters.repository.Repository
 import com.example.marvel_characters.ui.viewmodels.CharacterDetailViewModel
-import com.example.marvel_characters.ui.viewmodels.MarvelCharactersViewModel
+import com.example.marvel_characters.ui.viewmodels.CharactersViewModel
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val appModule = module {
 
-    viewModelOf(::MarvelCharactersViewModel)
+    viewModelOf(::CharactersViewModel)
     viewModelOf(::CharacterDetailViewModel)
 
     single { provideRetrofit() }

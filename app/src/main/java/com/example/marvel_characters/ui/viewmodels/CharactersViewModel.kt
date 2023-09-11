@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class MarvelCharactersViewModel(
+class CharactersViewModel(
     savedStateHandle: SavedStateHandle, private val repository: Repository
 ) : ViewModel() {
     private val isOnOfflineMode: Boolean = savedStateHandle.get<Boolean>(CHARACTER_LIST_ARG_KEY)!!
