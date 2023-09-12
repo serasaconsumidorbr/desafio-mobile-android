@@ -18,7 +18,7 @@ class CharactersRemoteDataSource(private val characterService: MarvelApiService)
 
     private suspend fun getCharacters(
         offset: Int = 0,
-        limit: Int = 30
+        limit: Int = 100
     ): Result<List<Character>> {
         return withContext(Dispatchers.IO) {
             try {

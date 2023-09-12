@@ -1,11 +1,15 @@
 package com.example.marvel_characters.ui.viewmodels
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.marvel_characters.BaseDataUiState
 import com.example.marvel_characters.Result
 import com.example.marvel_characters.domain.Character
+import com.example.marvel_characters.network.isInternetAvailable
 import com.example.marvel_characters.repository.Repository
 import com.example.marvel_characters.succeeded
 import com.example.marvel_characters.ui.compose.START_ON_OFFILINE_MODE_ARG_KEY
@@ -19,9 +23,8 @@ class CharactersViewModel(
 ) : ViewModel() {
     private val isOnOfflineMode: Boolean = savedStateHandle.get<Boolean>(START_ON_OFFILINE_MODE_ARG_KEY)!!
 
-    private val hasNextPage = repository.hasNextPage() && !isOnOfflineMode
     private val _uiState =
-        MutableStateFlow(CharactersUIState(loading = true, hasNextPage = hasNextPage))
+        MutableStateFlow(CharactersUIState(loading = true, hasNextPage = hasNextPage()))
     val uiState: StateFlow<CharactersUIState> = _uiState
 
     init {
@@ -60,7 +63,7 @@ class CharactersViewModel(
         val updatedCharactersList =
             uiState.value.characters + newCharactersList
         _uiState.value = CharactersUIState(
-            characters = updatedCharactersList, hasNextPage = hasNextPage
+            characters = updatedCharactersList, hasNextPage = hasNextPage()
         )
     }
 
@@ -85,7 +88,7 @@ class CharactersViewModel(
             if (it.succeeded) {
                 val marvelCharacters = (it as Result.Success).data
                 _uiState.value = CharactersUIState(
-                    characters = marvelCharacters, hasNextPage = hasNextPage
+                    characters = marvelCharacters, hasNextPage = hasNextPage()
                 )
             } else {
                 val foundException = (it as Result.Error).exception
@@ -93,6 +96,8 @@ class CharactersViewModel(
             }
         }
     }
+
+    private fun hasNextPage() = repository.hasNextPage() && !isOnOfflineMode
 }
 
 data class CharactersUIState(

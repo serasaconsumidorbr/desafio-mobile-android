@@ -95,7 +95,8 @@ class CharactersViewModelTest : TestWithKoinBase() {
             assertThat(charactersViewModel.uiState.value.characters, `is`(charactersWithNonRepeatedElements))
         }
     }
-        @Test
+
+    @Test
     fun shouldReturnCanRequestNewCharactersPageFalseBecauseOnOfflineMode() {
         val sampleListResult = Result.Success(charactersWithNonRepeatedElements)
 
