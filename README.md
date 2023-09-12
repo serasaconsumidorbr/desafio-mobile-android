@@ -1,8 +1,9 @@
 # Personagens da Marvel
 
-Um aplicativo para consultar uma lista de personagens da Marvel e algumas de suas informações
+Um aplicativo Android nativo para consultar uma lista de personagens da Marvel e algumas de suas informações
 
 [![Min Sdk](https://img.shields.io/badge/minSdk-21-green.svg)](https://developer.android.com/about/versions/android-5.0)
+[![Kotlin Version](https://img.shields.io/badge/kotlin-1.8.10-blue.svg)](https://kotlinlang.org) 
 
 ![image](https://github.com/italocw/marvel-characters/assets/20100533/df18b87f-c18e-4a67-859d-09de25999e57)
 
