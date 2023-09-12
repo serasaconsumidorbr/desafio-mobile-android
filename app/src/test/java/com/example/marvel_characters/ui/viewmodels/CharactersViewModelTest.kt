@@ -26,7 +26,7 @@ import org.mockito.MockitoAnnotations
 
 
 class CharactersViewModelTest : TestWithKoinBase() {
-    lateinit var charactersViewModel: CharactersViewModel
+    private lateinit var charactersViewModel: CharactersViewModel
 
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
