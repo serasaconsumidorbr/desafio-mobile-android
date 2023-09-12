@@ -18,7 +18,7 @@ class CharacterPagerTest {
 
     private val charactersSampleList = Samples.charactersWithNonRepeatedElements
     private val characterFirst = Samples.characterWithMissingImage
-    private val characterSecond = Samples.characterWithCompleteData
+    private val characterSecond = Samples.characterAIMWithCompleteData
 
 
     @get:Rule

@@ -33,7 +33,7 @@ android {
             buildConfigField("String", "PRIVATE_API_KEY", "\"" + localProperties['privateApiKey'] + "\"")
             buildConfigField("String", "HASH", "\"" + localProperties['hash'] + "\"")
 
-            //     resValue("string", "api_key", localProperties['apiKey'])
+            //    if need to generate something on res-> resValue("string", "api_key", localProperties['apiKey'])
         }
 
         release {

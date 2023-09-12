@@ -17,13 +17,13 @@ object Samples {
         thumbnailUrl = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"
     )
 
-    val characterWithCompleteData = Character(
+    val characterAIMWithCompleteData = Character(
         id = "1009144",
         name = "A.I.M.",
         description = "AIM is a terrorist organization bent on destroying the world.",
         thumbnailUrl = "http://i.annihil.us/u/prod/marvel/i/mg/6/20/52602f21f29ec.jpg"
     )
-    val charactersWithNonRepeatedElements = listOf(characterWithMissingImage, characterWithCompleteData, characterWithMissingDescription)
+    val charactersWithNonRepeatedElements = listOf(characterWithMissingImage, characterAIMWithCompleteData, characterWithMissingDescription)
 
 
 }

@@ -155,7 +155,7 @@ private fun Buttons(
 fun MarvelCharacterDetailItemPreview() {
     MarvelCharactersTheme {
         Surface {
-            MarvelCharacterListItem(character = Samples.characterWithCompleteData, navigateToCharacter = { })
+            MarvelCharacterListItem(character = Samples.characterAIMWithCompleteData, navigateToCharacter = { })
         }
     }
 }

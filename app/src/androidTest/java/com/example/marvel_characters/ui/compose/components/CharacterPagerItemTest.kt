@@ -6,7 +6,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import com.example.marvel_characters.R
-import com.example.marvel_characters.Samples.characterWithCompleteData
+import com.example.marvel_characters.Samples.characterAIMWithCompleteData
 import com.example.marvel_characters.Samples.characterWithMissingDescription
 import com.example.marvel_characters.Samples.characterWithMissingImage
 import com.example.marvel_characters.ui.compose.theme.MarvelCharactersTheme
@@ -23,7 +23,7 @@ class CharacterPagerItemTest {
         composeTestRule.setContent {
             MarvelCharactersTheme {
                 Surface {
-                    MarvelCharacterPagerItem(characterWithCompleteData)
+                    MarvelCharacterPagerItem(characterAIMWithCompleteData)
                 }
             }
         }
@@ -31,12 +31,12 @@ class CharacterPagerItemTest {
         val activity = composeTestRule.activity
 
         val thumbnailContentDescription =
-            getThumbnailContentDescription(activity, characterWithCompleteData.name)
+            getThumbnailContentDescription(activity, characterAIMWithCompleteData.name)
 
-        composeTestRule.onNodeWithText(characterWithCompleteData.name)
+        composeTestRule.onNodeWithText(characterAIMWithCompleteData.name)
             .assertExists("Character name was not found")
 
-        composeTestRule.onNodeWithText(characterWithCompleteData.description)
+        composeTestRule.onNodeWithText(characterAIMWithCompleteData.description)
             .assertExists("Character description was not found")
 
         composeTestRule.onNodeWithContentDescription(thumbnailContentDescription).assertExists()

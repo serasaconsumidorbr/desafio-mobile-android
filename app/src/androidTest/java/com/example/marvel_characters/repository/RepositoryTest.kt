@@ -5,7 +5,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import com.example.marvel_characters.Result
-import com.example.marvel_characters.Samples.characterWithCompleteData
+import com.example.marvel_characters.Samples.characterAIMWithCompleteData
 import com.example.marvel_characters.Samples.charactersWithNonRepeatedElements
 import com.example.marvel_characters.database.CharacterDatabase
 import com.example.marvel_characters.database.MarvelDao
@@ -48,7 +48,7 @@ class RepositoryTest {
     @Throws(Exception::class)
     fun writeCharacterAndRead() {
         runBlocking {
-            characterWithCompleteData.let {
+            characterAIMWithCompleteData.let {
                 repository.saveCharacter(it)
                 val savedCharacterById = repository.getSavedCharacter(it.id)
                 assertThat(savedCharacterById, equalTo(Result.Success(it)))
@@ -61,7 +61,7 @@ class RepositoryTest {
     fun writeCharacterAndDelete() {
         runBlocking {
 
-            characterWithCompleteData.let {
+            characterAIMWithCompleteData.let {
                 repository.saveCharacter(it)
                 repository.deleteCharacter(it)
 
@@ -105,7 +105,7 @@ class RepositoryTest {
     fun writeCharacterAndReadAfterUpdate() {
         runBlocking {
 
-            characterWithCompleteData.let {
+            characterAIMWithCompleteData.let {
                 repository.saveCharacter(it)
                 val sameCharacterWithModifiedName = it.copy(name = "ModifiedName")
                 repository.updateCharacter(sameCharacterWithModifiedName)

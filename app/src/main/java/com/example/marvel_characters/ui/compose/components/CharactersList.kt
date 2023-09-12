@@ -124,11 +124,11 @@ fun MarvelCharacterListPreview() {
 
     val marvelCharacters = listOf(
         Samples.characterWithMissingImage,
-        Samples.characterWithCompleteData,
+        Samples.characterAIMWithCompleteData,
         Samples.characterWithMissingImage,
-        Samples.characterWithCompleteData,
+        Samples.characterAIMWithCompleteData,
         Samples.characterWithMissingImage,
-        Samples.characterWithCompleteData
+        Samples.characterAIMWithCompleteData
     )
 
     val uiState = CharactersUIState(characters = marvelCharacters, hasNextPage = false)
