@@ -8,7 +8,7 @@ import com.example.marvel_characters.Result
 import com.example.marvel_characters.domain.Character
 import com.example.marvel_characters.repository.Repository
 import com.example.marvel_characters.succeeded
-import com.example.marvel_characters.ui.compose.CHARACTER_DETAIL_ARG_KEY
+import com.example.marvel_characters.ui.compose.CHARACTER_ID_ARG_KEY
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -21,7 +21,7 @@ class CharacterDetailViewModel(
 
     private val _uiState = MutableStateFlow(MarvelCharacterUIState(loading = true))
     val uiState: StateFlow<MarvelCharacterUIState> = _uiState
-    private val characterId: String = savedStateHandle.get<String>(CHARACTER_DETAIL_ARG_KEY)!!
+    private val characterId: String = savedStateHandle.get<String>(CHARACTER_ID_ARG_KEY)!!
 
     init {
         viewModelScope.launch {

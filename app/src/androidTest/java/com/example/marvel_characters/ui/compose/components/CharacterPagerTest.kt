@@ -16,7 +16,7 @@ import org.junit.Test
 
 class CharacterPagerTest {
 
-    private val charactersSampleList = Samples.marvelCharactersListWithNonRepeatedElements
+    private val charactersSampleList = Samples.charactersWithNonRepeatedElements
     private val characterFirst = Samples.characterWithMissingImage
     private val characterSecond = Samples.characterWithCompleteData
 

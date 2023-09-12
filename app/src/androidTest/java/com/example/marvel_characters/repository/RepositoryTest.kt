@@ -6,7 +6,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import com.example.marvel_characters.Result
 import com.example.marvel_characters.Samples.characterWithCompleteData
-import com.example.marvel_characters.Samples.marvelCharactersListWithNonRepeatedElements
+import com.example.marvel_characters.Samples.charactersWithNonRepeatedElements
 import com.example.marvel_characters.database.CharacterDatabase
 import com.example.marvel_characters.database.MarvelDao
 import com.example.marvel_characters.database.NotFoundException
@@ -85,7 +85,7 @@ class RepositoryTest {
     fun shouldReturnExpectedList() {
         runBlocking {
 
-            marvelCharactersListWithNonRepeatedElements.let {
+            charactersWithNonRepeatedElements.let {
                 it.forEach {
                     repository.saveCharacter(it)
                 }

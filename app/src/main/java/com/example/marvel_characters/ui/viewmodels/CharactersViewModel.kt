@@ -8,7 +8,7 @@ import com.example.marvel_characters.Result
 import com.example.marvel_characters.domain.Character
 import com.example.marvel_characters.repository.Repository
 import com.example.marvel_characters.succeeded
-import com.example.marvel_characters.ui.compose.CHARACTER_LIST_ARG_KEY
+import com.example.marvel_characters.ui.compose.START_ON_OFFILINE_MODE_ARG_KEY
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 class CharactersViewModel(
     savedStateHandle: SavedStateHandle, private val repository: Repository
 ) : ViewModel() {
-    private val isOnOfflineMode: Boolean = savedStateHandle.get<Boolean>(CHARACTER_LIST_ARG_KEY)!!
+    private val isOnOfflineMode: Boolean = savedStateHandle.get<Boolean>(START_ON_OFFILINE_MODE_ARG_KEY)!!
 
     private val hasNextPage = repository.hasNextPage() && !isOnOfflineMode
     private val _uiState =

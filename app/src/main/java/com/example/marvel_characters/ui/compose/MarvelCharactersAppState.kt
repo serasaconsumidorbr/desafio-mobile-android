@@ -15,22 +15,22 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.marvel_characters.network.isInternetAvailable
 
-const val CHARACTER_DETAIL_ARG_KEY = "characterId"
+const val CHARACTER_ID_ARG_KEY = "characterId"
 
-const val CHARACTER_LIST_ARG_KEY = "startOnOfflineMode"
+const val START_ON_OFFILINE_MODE_ARG_KEY = "startOnOfflineMode"
 
 sealed class Screen(val route: String) {
-    object CharacterList : Screen("characterList/{$CHARACTER_LIST_ARG_KEY}") {
+    object CharacterList : Screen("characterList/{$START_ON_OFFILINE_MODE_ARG_KEY}") {
         fun createRoute() = route
         //TODO: find a way to refactor this code and eliminate the needing of passing the startOnOfflineMode twice
         fun createArguments(startOnOfflineMode: Boolean) = listOf(
-            navArgument(CHARACTER_LIST_ARG_KEY){
+            navArgument(START_ON_OFFILINE_MODE_ARG_KEY){
                 type = NavType.BoolType; defaultValue =startOnOfflineMode
             }
         )
     }
 
-    object CharacterDetail : Screen("character/{$CHARACTER_DETAIL_ARG_KEY}") {
+    object CharacterDetail : Screen("character/{$CHARACTER_ID_ARG_KEY}") {
         fun createRoute(characterId: String) = "character/$characterId"
     }
 }

@@ -154,7 +154,7 @@ fun MarvelCharacterPagerPreview() {
     MarvelCharactersTheme {
         Surface {
             MarvelCharacterPager(
-                characters = Samples.marvelCharactersListWithNonRepeatedElements,
+                characters = Samples.charactersWithNonRepeatedElements,
                 navigateToCharacter = {  }
             )
         }

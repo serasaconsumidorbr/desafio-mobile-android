@@ -23,5 +23,7 @@ object Samples {
         description = "AIM is a terrorist organization bent on destroying the world.",
         thumbnailUrl = "http://i.annihil.us/u/prod/marvel/i/mg/6/20/52602f21f29ec.jpg"
     )
-    val marvelCharactersListWithNonRepeatedElements = listOf(characterWithMissingImage, characterWithCompleteData, characterWithMissingDescription)
+    val charactersWithNonRepeatedElements = listOf(characterWithMissingImage, characterWithCompleteData, characterWithMissingDescription)
+
+
 }
