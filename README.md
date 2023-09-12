@@ -1,63 +1,58 @@
-<!-- Header-->
-<br />
-<p align="center">
-  <a href="https://github.com/serasaconsumidorbr/desafio-mobile-iOS">
-    <img src="https://turismoemfoco.com.br/v1/wp-content/uploads/2020/05/serasa-logo-nova22.png" alt="Logo" width="180" height="80">
-  </a>
+# Personagens da Marvel
 
-  <h3 align="center">Desafio - Android Developer </h3>
+Um aplicativo Android nativo para consultar uma lista de personagens da Marvel e algumas de suas informações
 
-  <p align="center">
-    O nosso aplicativo é uma das nossas soluções para mudar a vida financeira de milhões de brasileiros. <b>Venha fazer parte desse time</b> muito engajado que
-  trabalha para que esse aplicativo chegue da melhor forma na mão dos consumidores.
-  </p>
-</p>
+[![Min Sdk](https://img.shields.io/badge/minSdk-21-green.svg)](https://developer.android.com/about/versions/android-5.0)
+[![Kotlin Version](https://img.shields.io/badge/kotlin-1.8.10-blue.svg)](https://kotlinlang.org) 
 
-## Sobre
-<p> Utilizamos este desafio para avaliar a qualidade do seu código, arquitetura, a forma que você organiza os seus pensamentos dentro do git e muitas outras coisas, por isso, sinta-se a vontade e dê o seu melhor! O tempo médio para a entrega deste desafio é de uma semana.</p>
-
-<p>Neste desafio você irá desenvolver um app que deverá mostrar os <b>personagens</b> da <a href="https://www.marvel.com/characters">Marvel</a>. 
-  
-<p>Para começar a fazer requests utilizando este serviço, siga esta <a href="https://developer.marvel.com/documentation/authorization">documentação</a>. O endpoint que deverá ser utilizado para popular as listas do app será a <b><a href="https://developer.marvel.com/docs#!/public/getCreatorCollection_get_0">/v1/public/characters</a></b>. </p>
+![image](https://github.com/italocw/marvel-characters/assets/20100533/df18b87f-c18e-4a67-859d-09de25999e57)
 
 
-## Requisitos
-<p>Estes requisitos básicos são utilizados para ver como você lida com cada um desses itens. A falta de qualquer um desses requisitos compromete a sua avaliação no final.</p>
+## Recursos
+
+- Exibe personagens da Marvel e sua respectiva descrição e imagem (se disponíveis)
+- Permite favoritar personagens para consulta offline 
 
 
-- Versão mínima do SDK: 21
-- Tela deve ajustar em devices menores.
-- Utilizar Kotlin
-- Boa arquitetura, pode ser (mvc, mvp, mvvm, clean etc)
-- RxJava ou Coroutines
-- Testes unitários
-- Cache de imagens
-- Tratamentos de erros
-- Padrão de Projeto e boas práticas de Orientação a Objetos.
-- Google AAC (Android Architecture Components)
+## Arquitetura
 
-## Será um diferencial 
-- Construir layouts com Constraints
-- Trabalhar offline (cache dos dados)
-- Injeção de dependência (dagger, koin, kodein)
+Este projeto segue a arquitetura MVVM. A navegação entre diferentes telas do aplicativo é gerenciada pelo componente de navegação do Jetpack.
 
-## O projeto deverá conter
-* Carrossel superior com **5** personagens
-* Uma lista **vertical** abaixo do carrossel **com os personagens seguintes, sem repetir**
-* Scroll infinito
+## Testes automatizados
 
-<b>Atente-se aos detalhes que ache interessante mostrar, por exemplo, nome, descrição, imagens ou outras informações dos personagens</b>
+Este projeto conta com alguns testes automatizados, incluindo teste unitário em view model e testes instrumentados para componentes do Compose e para a classe de repositório (que se conecta ao Room).
 
-## Importante
-* **Sua criatividade:** Utilize as considerações acima para criar o projeto do seu jeito, **utilizando as dependências que quiser**. Apenas saiba explicar o motivo das suas escolhas. 
+## Bibliotecas
 
-* **Documentação:** Ao finalizar o projeto, não se esqueça de documenta-lo. É Muito importante escrever o seu fluxo de pensamentos, **anexar imagens do aplicativo**, inserir as **bibliotecas** e versões que estão sendo utilizadas, **roadmap** de features que você gostaria de colocar e **melhorias que gostaria de fazer**...
+Algumas das bibliotecas utilizadas neste projeto são:
 
-## Por fim, envie seu teste!
-* Crie um `fork`, de preferencia público, desse repositório.
-* Tente seguir o <b><a href="https://imasters.com.br/agile/fluxo-de-desenvolvimento-com-gitflow#:~:text=Como%20afirma%20Vincent%20Driessen%20(2010,o%20trunk%20e%20o%20branch.">gitflow</a></b> para o seu fluxo de desenvolvimento.
-* Ao finalizar, faça o **pull request** para este repositório
+### Android Jetpack
+- Compose - para definição de UI de maneira programática
+- Activity - para o uso de APIs baseadas na Activity
+- Navigation  - para navegação
+- Room - para armazenamento local
+- ViewModel - para uso de e acesso a ViewModels
+- Compose Material 3 - para uso dos componentes e recursos do Material 3
 
-Agora é só torcer!
+### Outras Bibliotecas
+- Koin - para injeção de dependência
+- Retrofit - para fazer solicitações HTTP para a API de personagens
+- Coil - para carregamento de imagens
+- JUnit, Espresso e Mockito - para automatizar e fazer assersões de testes
+- Accompanist System UI Controller  - para definir as cores das barras do sistema
 
-**Ultimo recadinho:** não utilize o nome da Serasa dentro de seu projeto 😉
+Para mais informações sobre as bibliotecas utilizadas consulte as [configurações de compilação](https://github.com/italocw/marvel-characters/blob/develop/first-version/app/build.gradle).
+
+## Executando o Projeto
+
+1. Clone o repositório
+2. Selecione a branch develop/first-version
+3. Importe-o no Android Studio
+4. Adicione suas próprias chave da API da Marvel e a hash resultante ao arquivo local.properties:
+   `public_api_key=SUA_CHAVE_PUBLICA_AQUI`
+   `private_api_key=SUA_CHAVE_PRIVADA_AQUI`
+   `hash=SUA_HASH_AQUI` 
+
+  Nota: Crie uma conta em [Marvel Developer Portal](https://developer.marvel.com/) para as obter as chaves e consulte [Authorizing and Signing Requests (marvel.com)](https://developer.marvel.com/documentation/authorization) para saber como gerar a hash. 
+
+5. Compile e execute o aplicativo.

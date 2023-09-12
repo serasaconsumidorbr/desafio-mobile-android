@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Initially using the respected compose theme colors-->
+
+    <color name="surface">#201A19</color>
+    <color name="on_surface_variant">#534341</color>
+</resources>
+
+
