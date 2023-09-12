@@ -30,22 +30,20 @@ E por ultimo temos o package de Utils para quaisquer utilitarios que possam surg
 
 
 ## Bibliotecas e Frameworks
-Material Design</p>
-Navigation</p>
-Lifecycle</p>
-Coroutines</p>
-OkHTTP</p>
-Retrofit</p>
-Gson</p>
-Coil</p>
-Firebase Analytics & Crashlytics</p>
-Paging 3</p>
-Dagger-Hilt</p>
-Room</p>
-Facebook Shimmer</p>
-JUnit</p>
-Mockito</p>
-MockWebServer</p>
+Material Design - 1.9.0</p>
+Navigation - 2.5.0</p>
+Lifecycle - 2.5.1</p>
+Coroutines - 1.6.4</p>
+OkHTTP - 4.9.1</p>
+Retrofit - 2.9.0</p>
+Gson - 2.9.0</p>
+Coil - 2.4.0</p>
+Firebase Analytics & Crashlytics - 32.2.3</p>
+Paging 3 - 3.1.1</p>
+Dagger-Hilt - 2.43.2</p>
+Facebook Shimmer - 0.5.0</p>
+JUnit - 4.13.2</p>
+Mockito - 2.2.0</p>
 
 </p>
 </p>
@@ -53,7 +51,7 @@ MockWebServer</p>
 
 ## Proximas implementações
 
-1. Implementacao do .....
+1. Implementacao da feature de favoritos salvando o personagem no Room.
 
 
 ## Redes sociais para contato
