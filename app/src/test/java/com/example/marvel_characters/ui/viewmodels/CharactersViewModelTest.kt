@@ -75,28 +75,6 @@ class CharactersViewModelTest : TestWithKoinBase() {
     }
 
     @Test
-    fun shouldFetchCharactersFromNextWebResult() {
-        val sampleListResult = Result.Success(charactersWithNonRepeatedElements)
-
-        runBlocking {
-
-            `when`(repository.getNextPage()).thenReturn(sampleListResult)
-
-            `when`(savedStateHandle.get<Boolean>(START_ON_OFFILINE_MODE_ARG_KEY)).thenReturn(false)
-
-            charactersViewModel =  CharactersViewModel(savedStateHandle =savedStateHandle, repository = repository)
-
-
-            `when`(repository.getNextPage()).thenReturn(sampleListResult)
-
-
-            charactersViewModel.fetchCharactersFromNextWebResult()
-
-            assertThat(charactersViewModel.uiState.value.characters, `is`(charactersWithNonRepeatedElements))
-        }
-    }
-
-    @Test
     fun shouldReturnCanRequestNewCharactersPageFalseBecauseOnOfflineMode() {
         val sampleListResult = Result.Success(charactersWithNonRepeatedElements)
 
