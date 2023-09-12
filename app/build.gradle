@@ -3,9 +3,11 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id("androidx.navigation.safeargs")
     id 'com.google.firebase.crashlytics'
+    id("com.google.gms.google-services")
 }
 
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android'
 apply plugin: 'dagger.hilt.android.plugin'
 
 
@@ -154,5 +156,4 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:32.1.0')
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
-
 }
