@@ -17,6 +17,10 @@ Um aplicativo para consultar uma lista de personagens da Marvel e algumas de sua
 
 Este projeto segue a arquitetura MVVM. A navegação entre diferentes telas do aplicativo é gerenciada pelo componente de navegação do Jetpack.
 
+## Testes automatizados
+
+Este projeto conta com alguns testes automatizados, incluindo teste unitário em view model e testes instrumentados para componentes do Compose e para a classe de repositório (que se conecta ao Room).
+
 ## Bibliotecas
 
 Algumas das bibliotecas utilizadas neste projeto são:
@@ -33,7 +37,7 @@ Algumas das bibliotecas utilizadas neste projeto são:
 - Koin - para injeção de dependência
 - Retrofit - para fazer solicitações HTTP para a API de personagens
 - Coil - para carregamento de imagens
-- JUnit - para testes automatizados
+- JUnit, Espresso e Mockito - para automatizar e fazer assersões de testes
 - Accompanist System UI Controller  - para definir as cores das barras do sistema
 
 Para mais informações sobre as bibliotecas utilizadas consulte as [configurações de compilação](https://github.com/italocw/marvel-characters/blob/develop/first-version/app/build.gradle).
