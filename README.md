@@ -18,8 +18,6 @@ Este aplicativo ainda continua em desenvolvimento entao ao final deixarei minhas
 
 3. **Listagem de revistas:** Ao acessar o detalhe de algum personagem a barra superior conta com as features de favoritar o personagem e listagem de revistas. Na tela de listagem de revistas o usuario consegue ver a lista com titulos e numero de paginas de cada revista. 
 
-4. **Favoritar personagem:** Ao favoritar na tela de detalhe o personagem e salvo no banco de dados local e exibido na tela de favoritos acessado atraves da bottom navigation da tela principal. 
-
 ## Arquitetura
 A arquitetura escolhida para essa aplicação é a indicada pela Google para aplicativos Android nativo (MVVM) seguindos principios como Separação de conceitos, Única fonte de informações, Fluxo de dados unidirecional e SOLID.
 
