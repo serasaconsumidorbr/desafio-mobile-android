@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Marvel App</string>
+    <string name="dark">dark</string>
+    <string name="personagens">Characters</string>
+    <string name="digite_o_nome_do_personagem">Enter the characters name</string>
+    <string name="characters">Characters</string>
+    <string name="character_detail">Details</string>
+    <string name="no_description">No description</string>
+    <string name="character_comics_number">Comics = %1$s</string>
+    <string name="character_series_number">Series = %1$s</string>
+    <string name="comic_page_number">%1$s Pages</string>
+    <string name="not_found">No results found</string>
+    <string name="comics">Comics</string>
+    <string name="favorites">Favorites</string>
+    <string name="about">About</string>
+    <string name="resume">This app was developed using Marvels API. For more information access:</string>
+    <string name="github">https://github.com/JoaoPauloVenancio</string>
+    <string name="linkedin">https://www.linkedin.com/in/joao-paulo-venancio/</string>
+    <string name="not_found_message">Use different keywords.</string>
+    <string name="txtError">There was some error. Pull me to refresh page =D</string>
+    <string name="add_favorites_msg">Character added to favorites</string>
+</resources>
