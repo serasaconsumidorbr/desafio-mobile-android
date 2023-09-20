@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="marvelCharactersViewModel"
+            type="com.marvelverse.ui.MarvelCharactersViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_list_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_characters"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/recycler_view_margin"
+            android:layout_marginRight="@dimen/recycler_view_margin"
+            android:visibility="@{marvelCharactersViewModel.isLoadingCharacters || marvelCharactersViewModel.isErrorLoadingCharacters || marvelCharactersViewModel.characters.empty ? View.INVISIBLE : View.VISIBLE }"
+            app:layoutManager="LinearLayoutManager"
+            tools:context="com.marvelverse.ui.MainActivity"
+            tools:listitem="@layout/marvel_character_master_item" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="@{marvelCharactersViewModel.isLoadingCharacters ? View.VISIBLE : View.INVISIBLE }"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:showIn="@layout/fragment_master">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/error_page_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="@{marvelCharactersViewModel.isErrorLoadingCharacters ? View.VISIBLE : View.INVISIBLE }"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:showIn="@layout/fragment_master">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:alpha="0.5"
+                android:contentDescription="@string/error_loading_marvel_characters"
+                android:scaleType="fitCenter"
+                android:src="@drawable/error_loading_characters" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marvel"
+                android:gravity="center"
+                android:padding="@dimen/default_padding"
+                android:text="@string/error_loading_marvel_characters"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/gray" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/retry_button"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/retry"
+                android:textColor="@color/white"
+                app:icon="@android:drawable/ic_menu_rotate"
+                app:iconSize="@dimen/default_icon_size"
+                app:iconTint="@color/white"
+                app:strokeColor="@color/white" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_no_favorite_characters"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="@{marvelCharactersViewModel.characters.empty &amp;&amp; !marvelCharactersViewModel.isLoadingCharacters() &amp;&amp; !marvelCharactersViewModel.isErrorLoadingCharacters ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                android:id="@+id/text_no_characters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/marvel"
+                android:gravity="center"
+                android:padding="@dimen/default_padding"
+                android:text="@string/no_character"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView_thanos_glove"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/no_favorites_image_margin"
+                android:alpha="0.2"
+                android:contentDescription="@string/thanos_glove"
+                android:padding="@dimen/default_padding"
+                android:scaleType="centerInside"
+                android:src="@drawable/thanos"
+                app:layout_constraintBottom_toTopOf="@+id/text_no_characters"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
