@@ -25,7 +25,9 @@ Como o projeto em si é bem simplórido, uma arquitetura clean deixa mais agrad�
 Sobre interface tentei me inspirar principalmente no app da Netlflix, porém com o scroll infinito e os characters vindo em cards para trazer a "the best experience ever" ao usuário e esporto fortemente que curta o resultado.
 
 <br/>
+
 **TECHs UTILIZADAS **
+
 <br/>
 navigation:  2.3.5
 mock:        1.12.2
@@ -38,6 +40,8 @@ appcompat:   1.4.1
 <br/>
 
 **IMPLEMENTAÇÕES FUTURAS**
+
+<br/>
 - Implementar para trazer os comics de cada character
 - Implementar alguns skeletons para melhorar o design 
 - Avaliar a necessidade de trazer apenas characters que tenham imagem na API.
