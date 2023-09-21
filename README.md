@@ -6,7 +6,9 @@
 Hello everyone! Esse aplicativo foi feito no intuito de consumir os dados da API da MArvel trazendo seus character e algumas informações sobre eles e possibilitar criar uma lista de favoritos, aqueles personagens que você mais curtiu 💙. Ainda está em processo de desenvolvimento, podendo surgir novas funcionalidades e features pra você aproveitar ao máximo essa experiência pelo Marvel Verse.
 
 <br/>
+
 **PROJETO**
+
 <br/>
 Falando um pouco sobre o background do projeto, ele foi desenvolvido utilizando Clean Architecture e MVVN, com o intuito de trazer uma boa arquitetura e manter a casa em ordem conforme for crescendo o produto. 
 Já sobre a escolha da divisão que realizei do projeto, a fiz da seguinte forma:
