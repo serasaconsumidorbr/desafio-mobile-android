@@ -28,7 +28,7 @@ ui: A camada responsável pelas interações da UI.
 <br/>
 
 Como o projeto em si é bem simplórido, uma arquitetura clean deixa mais agradável de se trabalhar e sem dúvida de manter e compreender o funcionamento da aplicação como um todo.
-Sobre interface tentei me inspirar principalmente no app da Netlflix, porém com o scroll infinito e os characters vindo em cards para trazer a "the best experience ever" ao usuário e esporto fortemente que curta o resultado.
+Sobre interface tentei me inspirar principalmente no app da Netlflix, porém com o scroll infinito e os characters vindo em cards para trazer a "the best experience ever" ao usuário e espero fortemente que curta o resultado.
 
 <br/>
 <br/>
