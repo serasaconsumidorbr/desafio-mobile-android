@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/master_fragment">
+
+    <fragment
+        android:id="@+id/master_fragment"
+        android:name="com.marvelverse.ui.charactermaster.MasterFragment"
+        android:label="@string/master_fragment_title">
+        <action
+            android:id="@+id/show_detail"
+            app:destination="@id/detail_fragment"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/from_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/detail_fragment"
+        android:name="com.marvelverse.ui.characterdetails.DetailFragment"
+        android:label="@string/details_fragment_title"></fragment>
+    <fragment
+        android:id="@+id/favorites_fragment"
+        android:name="com.marvelverse.ui.favorites.FavoritesFragment"
+        android:label="@string/title_favorites_fragment">
+        <action
+            android:id="@+id/show_detail"
+            app:destination="@id/detail_fragment"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/from_left" />
+    </fragment>
+</navigation>

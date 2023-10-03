@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#FFCCCCCC</color>
+    <color name="marvel_light_red">#F0141E</color>
+    <color name="marvel_ultra_light_red">#EF777C</color>
+    <color name="marvel_light_red_opaque">#77F0141E</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="marvel_red">#6A060B</color>
+    <color name="light_black">#202020</color>
+    <color name="marvel_black">#151515</color>
+    <color name="yellow">#FFC107</color>
+</resources>

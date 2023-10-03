@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="marvelCharactersViewModel"
+            type="com.marvelverse.ui.MarvelCharactersViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_list_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_favorite_characters"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/recycler_view_margin"
+            android:layout_marginRight="@dimen/recycler_view_margin"
+            android:visibility="@{!marvelCharactersViewModel.favoriteCharacters.empty ? View.VISIBLE : View.INVISIBLE}"
+            app:layoutManager="LinearLayoutManager"
+            tools:context="com.marvelverse.ui.MainActivity"
+            tools:listitem="@layout/marvel_character_master_item" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_no_favorite_characters"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="@{marvelCharactersViewModel.favoriteCharacters.empty ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                android:id="@+id/text_no_characters"
+                android:layout_width="209dp"
+                android:layout_height="63dp"
+                android:fontFamily="@font/marvel"
+                android:gravity="center"
+                android:padding="@dimen/default_padding"
+                android:text="@string/no_fav_characters"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/gray"
+                android:textSize="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.783" />
+
+            <ImageView
+                android:id="@+id/imageView_thanos_glove"
+                android:layout_width="539dp"
+                android:layout_height="827dp"
+                android:layout_margin="@dimen/no_favorites_image_margin"
+                android:alpha="0.2"
+                android:contentDescription="@string/thanos_glove"
+                android:padding="@dimen/default_padding"
+                android:scaleType="centerInside"
+                android:src="@drawable/thanos"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

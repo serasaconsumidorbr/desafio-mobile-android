@@ -1,0 +1,41 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+<style name="Theme.MarvelCharacters" parent="Theme.MaterialComponents.DayNight">
+    <!-- Primary brand color. -->
+    <item name="colorPrimary">@color/marvel_black</item>
+    <item name="colorPrimaryVariant">@color/marvel_black</item>
+    <item name="colorSecondary">@color/light_black</item>
+    <item name="colorOnPrimary">@color/white</item>
+    <item name="colorAccent">@color/marvel_light_red</item>
+    <item name="colorPrimarySurface">@color/marvel_black</item>
+    <item name="colorSurface">@color/marvel_black</item>
+    <item name="colorOnPrimarySurface">@color/white</item>
+    <item name="colorOnSurface">@color/white</item>
+    <item name="android:textColor">@color/white</item>
+    <item name="android:windowBackground">@color/black</item>
+
+    <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    <item name="android:fontFamily">@font/marvel</item>
+</style>
+
+    <style name="Theme.MarvelCharacters.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MarvelCharacters.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MarvelCharacters.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Widget.MaterialComponents.CollapsingToolbar.collapsed">
+        <item name="android:shadowRadius">8</item>
+        <item name="android:shadowColor">@android:color/black</item>
+    </style>
+
+    <style name="TextAppearance.Design.CollapsingToolbar.Expanded.shadow">
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowRadius">8</item>
+        <item name="android:shadowColor">@android:color/black</item>
+    </style>
+</resources>
